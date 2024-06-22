@@ -39,7 +39,7 @@ export default function Menu() {
                 </li>
 
                 <li className='list-none text-base transition durantion-200 ease-in-out text-slate-500 hover:text-slate-400/90 mb-4'>
-                    <Link href="/dashboard/profile">
+                    <Link href="/dashboard/dashboardnative/profile">
                         <span className='flex items-center'>
                             <FaUser size={16} /><p className='ml-2'>Profile</p>
                         </span>

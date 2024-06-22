@@ -55,7 +55,7 @@ export default function TableOnePage() {
 
             <div className='flex items-end justify-end h-[10%]'>
                 <li className='list-none text-sm text-blue-400 hover:text-blue-500 active:text-blue-700'>
-                    <Link href="/dashboard/dashboardnative/traffic">Daily Traffic</Link>
+                    <Link href="/dashboard/dashboardnative/profile">Profile</Link>
                 </li>
             </div>
         </TablePage>

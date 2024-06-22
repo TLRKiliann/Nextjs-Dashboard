@@ -14,7 +14,7 @@ export default function TrafficPage() {
             </div>
 
             <div className='h-[80%] -mx-4'>
-                <LineChart />
+                Profile
             </div>
 
             <div className='flex items-end justify-end h-[10%] border'>
