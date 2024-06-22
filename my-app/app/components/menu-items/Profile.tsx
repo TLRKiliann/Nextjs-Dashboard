@@ -1,11 +1,13 @@
 import { CustomersProps } from '@/app/lib/definitions';
 import React from 'react';
-import { customers } from '@/app/lib/datadb';
+//import { customers } from '@/app/lib/datadb';
 
-export default function Profile() {
+export default function Profile({customers}: {customers: CustomersProps[]}) {
     const userSession: string = "Esteban";
-    const browser: string = "firefox";
-    const ossystem: string = "linux"
+    const browser: string = window.navigator.userAgent;
+    const ossystem: string = window.navigator.userAgent;
+    //const ip = https://jsonip.com/);
+
     return (
         <div className='flex flex-col justify-center w-full h-full'>
             {customers.map((customer: CustomersProps) => customer.username === userSession ? (
