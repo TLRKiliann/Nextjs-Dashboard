@@ -1,9 +1,8 @@
-"use client";
-
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import TablePage from '@/app/components/TablePage';
 import Profile from '@/app/components/menu-items/Profile';
+import { customers } from '@/app/lib/datadb';
 
 export default function TrafficPage() {
     const router = useRouter();
