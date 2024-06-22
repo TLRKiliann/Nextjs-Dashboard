@@ -5,7 +5,9 @@ import Profile from '@/app/components/menu-items/Profile';
 import { customers } from '@/app/lib/datadb';
 
 export default function TrafficPage() {
+    
     const router = useRouter();
+
     return (
         <TablePage>
             <div className='h-[10%] border'>
@@ -13,11 +15,13 @@ export default function TrafficPage() {
             </div>
 
             <div className='h-[80%]'>
-                <Profile />
+                <Profile customers={customers} />
             </div>
 
             <div className='flex items-end justify-end h-[10%] border'>
-                <button type="button" onClick={() => router.back()} 
+                <button 
+                    type="button" 
+                    onClick={() => router.back()} 
                     className='text-sm text-blue-400 hover:text-blue-500 active:text-blue-700'>
                     Customers
                 </button>
