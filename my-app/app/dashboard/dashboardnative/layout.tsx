@@ -21,12 +21,12 @@ export default function DashboardNativeLayout({children, tableone, squares, tabl
 
                     <div className='flex items-center justify-evenly w-full h-[70%] pt-2 pb-6'>
 
-                        <div className='flex w-[45%] h-full text-slate-500/70 bg-slate-800 border 
+                        <div className='flex w-[45%] h-full text-slate-500/70 bg-slate-50 border 
                             p-4 shadow-out rounded-lg'>
                             {tableone}
                         </div>
 
-                        <div className='flex w-[45%] h-full text-slate-500/70 bg-slate-800 border 
+                        <div className='flex w-[45%] h-full text-slate-500/70 bg-slate-50 border 
                             p-4 shadow-out rounded-lg'>
                             {tabletwo}
                         </div>
