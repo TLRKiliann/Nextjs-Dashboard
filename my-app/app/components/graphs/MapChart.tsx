@@ -4,7 +4,9 @@ import React, { useEffect } from 'react';
 import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
-function MyComponent() {
+type MyComponentProps = {};
+
+const MyComponent: React.FC<MyComponentProps> = () => {
     const map = useMap();
 
     useEffect(() => {
@@ -14,9 +16,13 @@ function MyComponent() {
     return null;
 }
 
-export default function MapChart() {
+const MapChart: React.FC = () => {
+
+    const mapCenter: [number, number] = [46.5197, 6.6323];
+    const mapZoom: number = 13;
+
     return (
-        <MapContainer center={[46.5197, 6.6323]} zoom={13} className="w-full h-full">
+        <MapContainer center={mapCenter} zoom={mapZoom} className="w-full h-full" style={{border: "none"}}>
             <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -25,4 +31,4 @@ export default function MapChart() {
         </MapContainer>
     );
 }
-//style={{ height: "100vh", width: "100%" }}
+export default MapChart;
