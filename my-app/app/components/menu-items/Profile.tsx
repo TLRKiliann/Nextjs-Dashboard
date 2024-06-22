@@ -1,23 +1,20 @@
 import React from 'react';
-import Link from 'next/link';
-import TablePage from '../TablePage';
+//import Link from 'next/link';
 
 export default function Profile() {
     return (
-        <TablePage>
-            <div className='h-[10%] border'>
-                <h2 className='text-xl'>Profile</h2>
+        <div className='flex flex-col justify-center w-full h-full'>
+            <div className='flex flex-col items-start justify-center p-4'>
+                <p>Username: </p>
+                <p>Lastname: </p>
+                <p>Address: </p>
+                <p>City: </p>
+                <p>Country: </p>
+                <p>Sepend: </p>
+                <p>Articles Quantity: </p>
+                <p>Browser: </p>
+                <p>OS: </p>
             </div>
-
-            <div className='flex flex-col items-center justify-center w-full h-[80%] border'>
-                Profile!!!
-            </div>
-
-            <div className='flex items-end justify-end h-[10%] border'>
-                <li className='list-none text-sm text-blue-400 hover:text-blue-500 active:text-blue-700'>
-                    <Link href="/dashboard/dashboardnative">Go back</Link>
-                </li>
-            </div>
-        </TablePage>
+        </div>
     )
 }
