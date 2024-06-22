@@ -19,24 +19,46 @@ ChartJS.register(
   Tooltip
 );
 
+export const options = {
+  responsive: true,
+  plugins: {
+    legend: {
+      position: 'top' as const,
+    },
+    title: {
+      display: false,
+      text: 'Chart.js Line Chart',
+    },
+  },
+};
+
 const labels = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
+const dataset1Values = [100, 260, 200, 350, 200, 100];
+const dataset2Values = [220, 100, 350, 180, 200, 20];
 
 const data = {
-  labels: labels,
+  labels,
   datasets: [
     {
-      label: "My First dataset",
-      backgroundColor: "rgb(255, 255, 255)",
-      borderColor: "rgb(0, 255, 255)",
-      data: [25, 38, 25, 33, 21, 31],
+      label: 'Girls',
+      data: dataset1Values,
+      borderColor: 'rgb(255, 99, 132)',
+      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+    },
+    {
+      label: 'Men',
+      data: dataset2Values,
+      borderColor: 'rgb(53, 162, 235)',
+      backgroundColor: 'rgba(53, 162, 235, 0.5)',
     },
   ],
 };
 
 const LineChart = () => {
   return (
-    <div className="flex items-center justify-center w-full h-full">
-      <Line data={data} className="w-full h-full bg-slate-800 px-2 py-2 rounded-lg" />
+    <div className="flex flex-col items-center justify-center w-full h-full">
+      <h2 className="text-base -mt-8 mb-2">Daily Traffic</h2>
+      <Line options={options} data={data} className="w-full h-full px-2 -mb-10 rounded-lg" />
     </div>
   );
 };
