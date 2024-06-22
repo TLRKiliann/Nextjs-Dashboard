@@ -12,7 +12,7 @@ export default function TrafficPage() {
 
     return (
         <TablePage>
-            <div className='h-[10%] border'>
+            <div className='h-[10%]'>
                 <h2 className='text-xl'>Profile</h2>
             </div>
 
@@ -20,7 +20,7 @@ export default function TrafficPage() {
                 <Profile customers={customers} />
             </div>
 
-            <div className='flex items-end justify-end h-[10%] border'>
+            <div className='flex items-end justify-end h-[10%]'>
                 <button 
                     type="button" 
                     onClick={() => router.back()} 
