@@ -8,6 +8,7 @@ import DataProfile from './data-profile';
 const isBrowser = () => typeof window !== 'undefined';
 
 export default function Profile({customers}: {customers: CustomersProps[]}) {
+    
     const userSession: string = "Esteban";
 
     const [browser, setBrowser] = useState<string | null>(null);
