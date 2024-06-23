@@ -1,5 +1,3 @@
-//http://localhost:3000/dashboard/dashboardnative/geolocation
-
 import React from 'react';
 import TablePage from '@/app/components/TablePage';
 import MapChart from '@/app/components/graphs/MapChart';
@@ -19,7 +17,7 @@ export default async function GeolocationPage() {
     if (!geoResult) {
         console.error('Error fetching IP');
     } else {
-        console.log('geoResult:', geoResult);
+        console.log('geoResult ok');
     }
 
     return (
