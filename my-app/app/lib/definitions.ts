@@ -6,6 +6,8 @@ export type CustomersProps = {
     lastname: string;
     img: StaticImageData;
     spend: number;
+    artQuantity: number;
+    address: string;
     country: string;
     city: string;
     connected: boolean;

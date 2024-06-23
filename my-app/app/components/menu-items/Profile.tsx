@@ -1,23 +1,78 @@
-import React from 'react';
-import Link from 'next/link';
-import TablePage from '../TablePage';
+"use client";
 
-export default function Profile() {
+import { CustomersProps } from '@/app/lib/definitions';
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import DataProfile from './data-profile';
+
+const isBrowser = () => typeof window !== 'undefined';
+
+export default function Profile({customers}: {customers: CustomersProps[]}) {
+    
+    const userSession: string = "Esteban";
+
+    const [browser, setBrowser] = useState<string | null>(null);
+    const [ossystem, setOssystem] = useState<string | null>(null);
+
+    //to avoid ssr error
+    useEffect(() => {
+        if (isBrowser()) {
+            setBrowser((prev) => prev = window.navigator.userAgent);
+            setOssystem((prev) => prev = window.navigator.userAgent);
+            //const ip = https://jsonip.com/);
+        };
+        return () => console.log("clean-up");
+    }, []);
+
     return (
-        <TablePage>
-            <div className='h-[10%] border'>
-                <h2 className='text-xl'>Profile</h2>
-            </div>
+        <div className='flex flex-col justify-center w-full h-full'>
+            {customers.map((customer: CustomersProps) => customer.username === userSession ? (
+                <div key={customer.id} className='flex flex-col items-start justify-center mx-4'>
 
-            <div className='flex flex-col items-center justify-center w-full h-[80%] border'>
-                Profile!!!
-            </div>
+                    <div className='relative w-full flex justify-end bg-slate-100'>
+                        <Image src={customer.img} width={400} height={250} alt="no img" 
+                            className='md:w-[70px] xl:w-[140px] h-auto object-fit rounded-bl-md shadow-md'
+                        />
+                    </div>
 
-            <div className='flex items-end justify-end h-[10%] border'>
-                <li className='list-none text-sm text-blue-400 hover:text-blue-500 active:text-blue-700'>
-                    <Link href="/dashboard/dashboardnative">Go back</Link>
-                </li>
-            </div>
-        </TablePage>
+                    <DataProfile varDef="Username:">
+                        {customer.username}
+                    </DataProfile>
+                    
+                    <DataProfile varDef="Lastname:">
+                        {customer.lastname}
+                    </DataProfile>
+
+                    <DataProfile varDef="Address:">
+                        {customer.address}
+                    </DataProfile>
+
+                    <DataProfile varDef="City:">
+                        {customer.city}
+                    </DataProfile>
+
+                    <DataProfile varDef="Country:">
+                        {customer.country}
+                    </DataProfile>
+
+                    <DataProfile varDef="Spend:">
+                        {customer.spend}.-
+                    </DataProfile>
+
+                    <DataProfile varDef="Articles:">
+                        {customer.artQuantity}
+                    </DataProfile>
+
+                    <DataProfile varDef="Browser:">
+                        {browser?.slice(57, 70)}
+                    </DataProfile>
+
+                    <DataProfile varDef="Os:">
+                        {ossystem?.slice(18, 30)}
+                    </DataProfile>
+
+                </div>
+            ) : null)}
+        </div>
     )
 }
