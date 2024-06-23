@@ -12,8 +12,8 @@ export default function SquarePage() {
                 <div className='flex flex-col items-center justify-around w-full h-full'>
 
                     <div className='flex items-end justify-center w-full rounded-full'>
-                        <GiReceiveMoney size={48} className="bg-gradient-to-br from-green-400/70 from-10%
-                            via-green-200 via-50% to-green-400/70 to-90% shadow-green
+                        <GiReceiveMoney size={48} className="bg-gradient-to-br
+                            from-green-200 from-10% to-green-400/70 to-90% shadow-green
                             rounded-full p-1" />
                     </div>
 
@@ -33,8 +33,8 @@ export default function SquarePage() {
                 <div className='flex flex-col items-center justify-around w-full h-full'>
 
                     <div className='flex items-end justify-center w-full rounded-full'>
-                        <GiPayMoney size={48} className="bg-gradient-to-br from-orange-400/70 from-10%
-                            via-orange-200 via-50% to-orange-400/70 to-90% shadow-orange
+                        <GiPayMoney size={48} className="bg-gradient-to-br
+                            from-orange-200 from-10% to-orange-400/50 to-90% shadow-orange
                             rounded-full p-1" />
                     </div>
 
@@ -54,8 +54,8 @@ export default function SquarePage() {
                 <div className='flex flex-col items-center justify-around w-full h-full'>
 
                     <div className='flex items-end justify-center w-full rounded-full'>
-                        <GiTakeMyMoney size={48} className="bg-gradient-to-br from-cyan-400 from-10%
-                            via-cyan-200 via-50% to-cyan-400 to-90% shadow-cyan
+                        <GiTakeMyMoney size={48} className="bg-gradient-to-br
+                            from-cyan-200 from-10% to-cyan-400/50 to-90% shadow-cyan
                             rounded-full p-1" />
                     </div>
 
@@ -75,8 +75,8 @@ export default function SquarePage() {
                 <div className='flex flex-col items-center justify-around w-full h-full'>
 
                     <div className='flex items-end justify-center w-full rounded-full'>
-                        <GiMoneyStack size={48} className="bg-gradient-to-br from-fuchsia-400/70 from-10%
-                            via-fuchsia-200 via-50% to-fuchsia-400/70 to-90% shadow-fuchsia
+                        <GiMoneyStack size={48} className="bg-gradient-to-br
+                            from-fuchsia-200 from-10% to-fuchsia-400/50 to-90% shadow-fuchsia
                             rounded-full p-1" />
                     </div>
 
