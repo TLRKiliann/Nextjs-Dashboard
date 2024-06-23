@@ -4,19 +4,10 @@
 import { TileLayer } from 'react-leaflet/TileLayer';
 import { MapContainer } from 'react-leaflet/MapContainer';
 import { useMapEvents } from 'react-leaflet/hooks';
+
 import 'leaflet/dist/leaflet.css';
 
 type MyComponentProps = {};
-
-/* const MyComponent: React.FC<MyComponentProps> = () => {
-    const map = useMap();
-
-    useEffect(() => {
-        console.log('map center:', map.getCenter());
-    }, [map]);
-
-    return null;
-} */
 
 const MyComponent: React.FC<MyComponentProps> = () => {
     const map = useMapEvents({
@@ -32,14 +23,17 @@ const MyComponent: React.FC<MyComponentProps> = () => {
 
 const MapChart: React.FC = () => {
 
-    const mapCenter: number[] = [46.5197, 6.6323];
-    const mapZoom: number = 13;
+    const mapOptions = {
+        center: [46.5197, 6.6323],
+        zoom: 13,
+        maxZoom: 18,
+        minZoom: 5,
+    };
 
     return (
-        <MapContainer center={mapCenter} zoom={mapZoom} className="w-full h-full" style={{border: "none"}}>
+        <MapContainer {...mapOptions} className="w-full h-full">
             <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             />
             <MyComponent />
         </MapContainer>
