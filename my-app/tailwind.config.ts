@@ -15,7 +15,11 @@ const config: Config = {
       },
       boxShadow: {
         "out": "0 0 10px rgba(0, 0, 0, 0.2)",
-        "in": "inset 0 0 10px rgba(0, 0, 0, 0.3)"
+        "in": "inset 0 0 10px rgba(0, 0, 0, 0.3)",
+        "green": "0 0 2px rgba(22, 163, 74, 0.3)",
+        "orange": "0 0 2px rgba(253, 186, 116, 0.3)",
+        "cyan": "0 0 2px rgba(103, 232, 249, 1)",
+        "fuchsia": "0 0 2px rgba(232, 121, 249, 1)",
       },
     },
   },
