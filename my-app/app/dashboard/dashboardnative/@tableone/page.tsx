@@ -12,7 +12,6 @@ export default function TableOnePage() {
                 <h2 className='text-xl'>Customers</h2>
             </div>
 
-
             <div className='relative top-0 h-[80%] z-10'>
 
                 <ul className='w-full h-[100%] bg-slate-100 overflow-y-auto
@@ -51,7 +50,6 @@ export default function TableOnePage() {
                     ))}
                 </ul>
             </div>
-
 
             <div className='flex items-end justify-end h-[10%]'>
                 <li className='list-none text-sm text-blue-400 hover:text-blue-500 active:text-blue-700'>
