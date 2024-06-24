@@ -1,10 +1,10 @@
-"use server";
-
 import React from 'react';
 import TablePage from '@/app/components/TablePage';
 import { ApiPublicIp, ApiGeolocation } from '@/app/utils/api-request';
 import MapChart from '@/app/components/graphs/MapChart';
-import Link from 'next/link';
+import ButtonGoBack from '@/app/components/ButtonGoBack';
+
+export const dynamic = "force-dynamic";
 
 export default async function GeolocationPage() {
 
@@ -27,17 +27,14 @@ export default async function GeolocationPage() {
             <div className='h-[10%] border'>
                 <h2 className='text-xl'>Geolocation</h2>
             </div>
+            
+            {geoResult ? (
+                <div className='w-full h-[80%]'>
+                    <MapChart latitude={geoResult.latitude} longitude={geoResult.longitude} />
+                </div>
+            ) : null}
 
-            <div className='w-full h-[80%]'>
-                <MapChart latitude={geoResult.latitude} longitude={geoResult.longitude} />
-            </div>
-
-            <div className='flex items-end justify-end h-[10%] border'>
-                <Link href="/dashboard/dashboardnative"
-                    className='text-sm text-blue-400 hover:text-blue-500 active:text-blue-700'>
-                    Table 2 ?
-                </Link>
-            </div>
+            <ButtonGoBack text="Sales" />
         </TablePage>
     )
 }
