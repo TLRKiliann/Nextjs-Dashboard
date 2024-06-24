@@ -22,7 +22,7 @@ ChartJS.register(
 );
 
 export const options = {
-  indexAxis: 'x' as const,
+  indexAxis: 'y' as const,
   elements: {
     bar: {
       borderWidth: 2,
@@ -35,12 +35,12 @@ export const options = {
     },
     title: {
       display: false,
-      text: 'Platform OS',
+      text: 'Best Sellers',
     },
   },
 };
 
-const labels = ['HDD', 'Keyboard', 'SSD', 'Ventirad', 'RAM'];
+const labels = ['CPU', 'Keyboard', 'SSD', 'Ventirad', 'RAM'];
 
 const datasetValues = [28, 22, 18, 12, 3];
 
@@ -48,7 +48,7 @@ export const data = {
   labels,
   datasets: [
     {
-      label: 'Products',
+      label: 'Sales in %',
       data: datasetValues,
       borderColor: 'rgb(53, 162, 235)',
       backgroundColor: 'rgba(53, 162, 235, 0.5)',
@@ -58,7 +58,7 @@ export const data = {
 
 const BarChart = () => {
     return (
-        <div className="flex flex-col items-center justify-center w-full h-full bg-slate-50 rounded-lg shadow-out">
+        <div className="flex flex-col items-center justify-center w-full h-full bg-slate-50 rounded-lg">
             <h2 className="text-base -mt-8 mb-2">Best Sellers</h2>
             <Bar options={options} data={data} className="w-full h-full px-2 -mb-10 rounded-lg" />
         </div>
