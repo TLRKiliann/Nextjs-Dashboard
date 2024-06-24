@@ -8,7 +8,9 @@ export default function DashboardIndexLayout({children, params}: {
     children: React.ReactNode;
     params: {indexDashboard: string};
 }) {
-
+    /*
+    params = profile || databases || charts
+    */
     return (
         <div className='flex flex-col w-full min-h-screen bg-slate-200'>
 

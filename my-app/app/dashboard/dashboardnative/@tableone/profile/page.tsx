@@ -1,15 +1,10 @@
-"use client";
-
 import React from 'react';
-import { useRouter } from 'next/navigation';
 import TablePage from '@/app/components/TablePage';
 import Profile from '@/app/components/menu-items/Profile';
 import { customers } from '@/app/lib/datadb';
+import ButtonGoBack from '@/app/components/ButtonGoBack';
 
 export default function TrafficPage() {
-    
-    const router = useRouter();
-
     return (
         <TablePage>
             <div className='h-[10%]'>
@@ -20,14 +15,7 @@ export default function TrafficPage() {
                 <Profile customers={customers} />
             </div>
 
-            <div className='flex items-end justify-end h-[10%]'>
-                <button 
-                    type="button" 
-                    onClick={() => router.back()} 
-                    className='text-sm text-blue-400 hover:text-blue-500 active:text-blue-700'>
-                    Customers
-                </button>
-            </div>
+            <ButtonGoBack text="customers" />
         </TablePage>
     )
 }

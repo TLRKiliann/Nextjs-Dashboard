@@ -3,6 +3,7 @@ import TableGraphs from '../TableGraphs';
 import LineChart from '../graphs/LineChart';
 import BarChartOs from '../graphs/BarChartOs';
 import BarChartBrowser from '../graphs/BarChartBrowser';
+import {DoughnutChart} from '../graphs/DoughnutChart';
 
 export default function DataTables() {
     return (
@@ -16,7 +17,7 @@ export default function DataTables() {
 
             <TableGraphs>
                 <div className='flex items-center justify-center h-[100%]'>
-                    <LineChart />
+                    <DoughnutChart />
                 </div>
             </TableGraphs>
 

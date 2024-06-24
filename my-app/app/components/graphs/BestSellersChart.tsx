@@ -22,7 +22,7 @@ ChartJS.register(
 );
 
 export const options = {
-  indexAxis: 'x' as const,
+  indexAxis: 'y' as const,
   elements: {
     bar: {
       borderWidth: 2,
@@ -31,32 +31,25 @@ export const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: 'right' as const,
+      position: 'top' as const,
     },
     title: {
       display: false,
-      text: 'Platform OS',
+      text: 'Best Sellers',
     },
   },
 };
 
-const labels = ['Window', 'Mac', 'Linux'];
+const labels = ['CPU', 'Keyboard', 'SSD', 'Ventirad', 'RAM'];
 
-const dataset1Values = [300, 200, 100];
-const dataset2Values = [350, 250, 150];
+const datasetValues = [28, 22, 18, 12, 3];
 
 export const data = {
   labels,
   datasets: [
     {
-      label: 'Girls',
-      data: dataset1Values,
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    },
-    {
-      label: 'Men',
-      data: dataset2Values,
+      label: 'Sales in %',
+      data: datasetValues,
       borderColor: 'rgb(53, 162, 235)',
       backgroundColor: 'rgba(53, 162, 235, 0.5)',
     },
@@ -65,9 +58,9 @@ export const data = {
 
 const BarChart = () => {
     return (
-        <div className="flex flex-col items-center justify-center w-full h-full text-slate-300 rounded-lg">
-            <h2 className="text-base -mt-8 mb-2">Platform OS</h2>
-            <Bar options={options} data={data} className="w-full h-full px-2 -mb-10 rounded-lg" />
+        <div className="flex flex-col items-center justify-center w-full h-full bg-slate-50 rounded-lg">
+            <h2 className="text-base -mt-4 mb-8">Best Sellers (last month)</h2>
+            <Bar options={options} data={data} className="w-auto h-[100%] px-2 -mb-10 rounded-lg" />
         </div>
     );
 }

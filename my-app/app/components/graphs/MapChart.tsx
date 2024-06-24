@@ -1,14 +1,22 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import { TileLayer } from 'react-leaflet/TileLayer';
-import { MapContainer } from 'react-leaflet/MapContainer';
-import { useMapEvents } from 'react-leaflet/hooks';
+import { TileLayer, MapContainer, useMapEvents } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+
+type MapOptionsProps = {
+    center: number[];
+    zoom: number;
+    maxZoom: number;
+    minZoom: number;
+    scrollWheelZoom: boolean;
+}
 
 type MyComponentProps = {};
 
-const getUndefined = () => typeof window === 'undefined';
+const leafletUrl: string = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+
+const getUndefined = () => typeof window !== 'undefined';
 
 const MyComponent: React.FC<MyComponentProps> = () => {
     
@@ -23,14 +31,23 @@ const MyComponent: React.FC<MyComponentProps> = () => {
     return null;
 };
 
-const MapChart: React.FC<{ latitude: number; longitude: number;}> = ({ latitude, longitude }) => {
+const MapChart: React.FC<{ latitude: number; longitude: number;}> = ({latitude, longitude}) => {
 
-    const [mapOptions, setMapOptions] = useState({
+    const [mapOptions, setMapOptions] = useState<MapOptionsProps>({
         center: [latitude, longitude],
         zoom: 13,
         maxZoom: 18,
         minZoom: 5,
+        scrollWheelZoom: true
     });
+
+    /* const mapOptions: MapOptionsProps = {
+        center: [latitude, longitude],
+        zoom: 13,
+        maxZoom: 18,
+        minZoom: 5,
+        scrollWheelZoom: true
+    }; */
 
     useEffect(() => {
         if (getUndefined()) {
@@ -39,18 +56,21 @@ const MapChart: React.FC<{ latitude: number; longitude: number;}> = ({ latitude,
                 zoom: 13,
                 maxZoom: 18,
                 minZoom: 5,
+                scrollWheelZoom: true
             });
         };
         return () => console.log("clean-up");
     }, [latitude, longitude]);
 
     return (
-        <MapContainer {...mapOptions} className="w-full h-full">
+        <MapContainer {...mapOptions} style={{height: "100%"}}>
             <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                /* attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' */
+                url={leafletUrl}
             />
             <MyComponent />
         </MapContainer>
-    );
+    )
 }
 export default MapChart;
+
