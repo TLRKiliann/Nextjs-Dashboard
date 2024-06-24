@@ -1,5 +1,5 @@
 "use client";
-//localhost:3000/dashboard/datatables
+
 import React from 'react';
 import {
   Chart as ChartJS,
