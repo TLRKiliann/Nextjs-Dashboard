@@ -14,8 +14,8 @@ export default function TableOneDefault() {
 
             <div className='relative top-0 h-[80%] z-10'>
 
-                <ul className='w-full h-[100%] bg-slate-100 overflow-y-auto
-                    flex flex-col items-center rounded-lg shadow-in px-2'>
+                <ul className='w-full h-[100%] bg-slate-100 overflow-y-scroll no-scrollbar
+                    flex flex-col items-center rounded-lg px-2 shadow-in'>
 
                     {customers.map((customer: CustomersProps) => (
                         <li key={customer.id} className='w-full bg-slate-50 my-2 shadow-out rounded-lg'>
