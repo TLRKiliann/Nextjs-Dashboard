@@ -21,7 +21,7 @@ export default function DashboardIndexLayout({children, params}: {
                 <div className="flex items-center justify-evenly w-full bg-slate-100">
 
                     {params.indexDashboard === "profile" ? (
-                        <div className='flex w-[90%] h-4/5 text-slate-500 bg-slate-50 border mt-[7%] 
+                        <div className='flex w-[90%] h-4/5 text-slate-500 bg-slate-50 mt-[7%] 
                             p-4 shadow-out rounded-lg'>
                             <Profile customers={customers} />
                         </div>
