@@ -15,8 +15,8 @@ const config: Config = {
       },
       boxShadow: {
         "sm-out": "0 0 7px rgba(100, 100, 100, 0.2)",
-        "out": "0 0 10px rgba(0, 0, 0, 0.2)",
-        "in": "inset 0 0 10px rgba(0, 0, 0, 0.3)",
+        "out": "0 0 10px rgba(0, 0, 0, 1)",
+        "in": "inset 0 0 10px rgba(0, 0, 0, 0.2)",
         "green": "0 0 3px rgba(74, 222, 128, 0.5)",
         "orange": "0 0 3px rgba(251, 146, 60, 0.5)",
         "cyan": "0 0 3px rgba(34, 211, 238, 0.5)",
