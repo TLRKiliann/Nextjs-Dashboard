@@ -1,7 +1,6 @@
 import React from 'react';
 import { GiReceiveMoney } from "react-icons/gi";
 import { GiTakeMyMoney } from "react-icons/gi";
-import { FaMoneyCheckDollar } from "react-icons/fa6";
 import { GiMoneyStack } from "react-icons/gi";
 import { GiPayMoney } from "react-icons/gi";
 
@@ -9,7 +8,7 @@ export default function SquareDefault() {
     return (
         <div className='flex flex-row items-center justify-evenly w-full'>
             
-            <div className='w-[21%] h-[80%] bg-green-200 rounded-lg shadow-out p-2 pt-3'>
+            <div className='w-[21%] h-[80%] bg-green-200 rounded-lg shadow-square-green p-2 pt-3'>
                 <div className='flex flex-col items-center justify-around w-full h-full'>
 
                     <div className='flex items-end justify-center w-full rounded-full'>
@@ -30,7 +29,7 @@ export default function SquareDefault() {
                 </div>
             </div>
 
-            <div className='w-[21%] h-[80%] bg-orange-200 rounded-lg shadow-out p-2 pt-3'>
+            <div className='w-[21%] h-[80%] bg-orange-200 rounded-lg shadow-square-orange p-2 pt-3'>
                 <div className='flex flex-col items-center justify-around w-full h-full'>
 
                     <div className='flex items-end justify-center w-full rounded-full'>
@@ -51,7 +50,7 @@ export default function SquareDefault() {
                 </div>
             </div>
 
-            <div className='w-[21%] h-[80%] bg-cyan-200 rounded-lg shadow-out p-2 pt-3'>
+            <div className='w-[21%] h-[80%] bg-cyan-200 rounded-lg shadow-square-cyan p-2 pt-3'>
                 <div className='flex flex-col items-center justify-around w-full h-full'>
 
                     <div className='flex items-end justify-center w-full rounded-full'>
@@ -72,7 +71,7 @@ export default function SquareDefault() {
                 </div>
             </div>
 
-            <div className='w-[21%] h-[80%] bg-fuchsia-200 rounded-lg shadow-out p-2 pt-3'>
+            <div className='w-[21%] h-[80%] bg-fuchsia-200 rounded-lg shadow-square-fuchsia p-2 pt-3'>
                 <div className='flex flex-col items-center justify-around w-full h-full'>
 
                     <div className='flex items-end justify-center w-full rounded-full'>
