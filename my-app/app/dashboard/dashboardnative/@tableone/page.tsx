@@ -20,20 +20,24 @@ export default function TableOnePage() {
                     {customers.map((customer: CustomersProps) => (
                         <li key={customer.id} className='w-full bg-slate-50 my-2 shadow-out rounded-lg'>
 
-                            <div className='flex items-center text-slate-500/90 px-2'>
+                            <div className='flex items-center justify-between text-slate-500/90 px-2'>
                                 
-                                <Image src={customer.img} width={400} height={250} alt="no-img" 
-                                    className='w-[50px] h-[50px] border border-slate-500 object-cover my-1 rounded-full'/>
+                                <div className='flex flex-row items-center justify-start'>
+                                    <Image src={customer.img} width={400} height={250} alt="no-img" 
+                                        className='w-[50px] h-[50px] border border-slate-500 object-cover my-1 rounded-full'/>
 
-                                <div className='w-[80px] mx-2'>
-                                    <p className='text-base font-bold'>{customer.username}</p>
-                                    <p className='text-xs'>{customer.country}</p>
+                                    <div className='w-[80px] mx-2'>
+                                        <p className='text-base font-bold'>{customer.username}</p>
+                                        <p className='text-xs'>{customer.country}</p>
+                                    </div>
                                 </div>
 
-                                <div className='w-[200px] flex items-center justify-between'>
+                                <div className='w-[50%] flex flex-row items-center justify-between'>
                                     
-                                    <div className="flex items-center justify-center ml-8">
-                                        <p className='text-sm mr-2'>{customer.connected === true ? "Online" : "Offline"}</p>
+                                    <div className="flex items-center">
+                                        <p className={`${customer.connected === true ? "ml-0" : "-ml-[2px]"} text-sm mr-2`}>
+                                            {customer.connected === true ? "Online" : "Offline"}
+                                        </p>
 
                                         {customer.connected === true ? (
                                             <span className='w-[12px] h-[12px] bg-green-500 border border-slate-500/50 rounded-full'></span>
@@ -42,7 +46,7 @@ export default function TableOnePage() {
                                         )}
                                     </div>
                                 
-                                    <p className='flex justify-end text-sm font-bold'>{customer.spend}.-</p>    
+                                    <p className='flex items-center justify-end text-sm font-bold'>{customer.spend}.-</p>    
                                 </div>
 
                             </div>
