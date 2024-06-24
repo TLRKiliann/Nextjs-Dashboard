@@ -59,8 +59,8 @@ export const data = {
 const BarChart = () => {
     return (
         <div className="flex flex-col items-center justify-center w-full h-full bg-slate-50 rounded-lg">
-            <h2 className="text-base -mt-8 mb-2">Best Sellers</h2>
-            <Bar options={options} data={data} className="w-full h-full px-2 -mb-10 rounded-lg" />
+            <h2 className="text-base -mt-4 mb-8">Best Sellers (last month)</h2>
+            <Bar options={options} data={data} className="w-auto h-[100%] px-2 -mb-10 rounded-lg" />
         </div>
     );
 }
