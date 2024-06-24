@@ -18,7 +18,7 @@ export default function TableOnePage() {
                     flex flex-col items-center rounded-lg px-2 shadow-in'>
 
                     {customers.map((customer: CustomersProps) => (
-                        <li key={customer.id} className='w-full bg-slate-50 my-2 shadow-out rounded-lg'>
+                        <li key={customer.id} className='w-full bg-slate-50 my-2 shadow-sm-out rounded-lg'>
 
                             <div className='flex items-center justify-between text-slate-500/90 px-2'>
                                 
