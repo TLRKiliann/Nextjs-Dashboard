@@ -14,12 +14,11 @@ export default function Profile({customers}: {customers: CustomersProps[]}) {
     const [browser, setBrowser] = useState<string | null>(null);
     const [ossystem, setOssystem] = useState<string | null>(null);
 
-    //to avoid ssr error
+    //to avoid window is undefined
     useEffect(() => {
         if (isBrowser()) {
             setBrowser((prev) => prev = window.navigator.userAgent);
             setOssystem((prev) => prev = window.navigator.userAgent);
-            //const ip = https://jsonip.com/);
         };
         return () => console.log("clean-up");
     }, []);
