@@ -22,7 +22,7 @@ ChartJS.register(
 );
 
 export const options = {
-  indexAxis: 'y' as const,
+  indexAxis: 'x' as const,
   elements: {
     bar: {
       borderWidth: 2,
@@ -65,7 +65,7 @@ export const data = {
 
 const BarChart = () => {
     return (
-        <div className="flex flex-col items-center justify-center w-full h-full">
+        <div className="flex flex-col items-center justify-center w-full h-full text-slate-300 rounded-lg">
             <h2 className="text-base -mt-8 mb-2">Platform OS</h2>
             <Bar options={options} data={data} className="w-full h-full px-2 -mb-10 rounded-lg" />
         </div>
