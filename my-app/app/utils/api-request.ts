@@ -32,7 +32,11 @@ export const ApiPublicIp = async (): Promise<{data: {ip: string;}}> => {
 export const ApiGeolocation = async ({data}:{data: {ip: string;}}): Promise<GeoLocationData> => {
     const secApiKey = process.env.SECRET_API_KEY;
     try {
-        const geoRes = await fetch(`https://api.ip2location.io/?key=${secApiKey}&ip=${data.ip}`);
+        const geoRes = await fetch(`https://api.ip2location.io/?key=${secApiKey}&ip=${data.ip}`, {
+            next: {
+                revalidate: 10
+            }
+        });
         if (!geoRes.ok) {
             throw new Error('Failed to fetch geolocation');
         }
