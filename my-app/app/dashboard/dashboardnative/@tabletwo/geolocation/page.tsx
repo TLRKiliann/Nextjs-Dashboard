@@ -1,6 +1,6 @@
 import React from 'react';
-import TablePage from '@/app/components/TablePage';
 import { ApiPublicIp, ApiGeolocation } from '@/app/utils/api-request';
+import TablePage from '@/app/components/TablePage';
 import MapChart from '@/app/components/graphs/MapChart';
 import ButtonGoBack from '@/app/components/ButtonGoBack';
 
