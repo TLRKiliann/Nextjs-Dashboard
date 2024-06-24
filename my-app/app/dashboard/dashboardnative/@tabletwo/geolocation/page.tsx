@@ -1,7 +1,9 @@
+"use server";
+
 import React from 'react';
 import TablePage from '@/app/components/TablePage';
-import MapChart from '@/app/components/graphs/MapChart';
 import { ApiPublicIp, ApiGeolocation } from '@/app/utils/api-request';
+import MapChart from '@/app/components/graphs/MapChart';
 import Link from 'next/link';
 
 export default async function GeolocationPage() {
