@@ -24,12 +24,12 @@ export default async function GeolocationPage() {
 
     return (
         <TablePage>
-            <div className='h-[10%] border'>
+            <div className='h-[10%]'>
                 <h2 className='text-xl'>Geolocation</h2>
             </div>
             
             {geoResult ? (
-                <div className='w-full h-[80%]'>
+                <div className='w-[95%] h-[80%] m-auto rounded-lg'>
                     <MapChart latitude={geoResult.latitude} longitude={geoResult.longitude} />
                 </div>
             ) : null}

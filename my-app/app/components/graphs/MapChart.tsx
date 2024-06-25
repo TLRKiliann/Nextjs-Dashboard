@@ -63,7 +63,8 @@ const MapChart: React.FC<{ latitude: number; longitude: number;}> = ({latitude, 
     }, [latitude, longitude]);
 
     return (
-        <MapContainer {...mapOptions} style={{height: "100%"}}>
+        <MapContainer {...mapOptions} 
+            style={{width: "100%", height: "100%", borderRadius: "7px", boxShadow: "0 0 7px #808080"}}>
             <TileLayer
                 /* attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' */
                 url={leafletUrl}

@@ -8,7 +8,7 @@ export default function ButtonGoBack({text} : {text: string}) {
     const router = useRouter();
 
     return (
-        <div className='flex items-end justify-end h-[10%] border'>
+        <div className='flex items-end justify-end h-[10%]'>
             <button type="button" onClick={() => router.back()}
                 className='text-sm text-blue-400 hover:text-blue-500 active:text-blue-700'>
                 {text}
