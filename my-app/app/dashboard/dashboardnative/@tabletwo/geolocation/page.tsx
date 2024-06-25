@@ -29,8 +29,10 @@ export default async function GeolocationPage() {
             </div>
             
             {geoResult ? (
-                <div className='w-[95%] h-[80%] m-auto rounded-lg'>
-                    <MapChart latitude={geoResult.latitude} longitude={geoResult.longitude} />
+                <div className='w-[98%] h-[80%] m-auto rounded-lg shadow-in'>
+                    <div className='p-2'>
+                        <MapChart latitude={geoResult.latitude} longitude={geoResult.longitude} />
+                    </div>
                 </div>
             ) : null}
 

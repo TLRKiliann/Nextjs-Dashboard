@@ -41,14 +41,6 @@ const MapChart: React.FC<{ latitude: number; longitude: number;}> = ({latitude, 
         scrollWheelZoom: true
     });
 
-    /* const mapOptions: MapOptionsProps = {
-        center: [latitude, longitude],
-        zoom: 13,
-        maxZoom: 18,
-        minZoom: 5,
-        scrollWheelZoom: true
-    }; */
-
     useEffect(() => {
         if (getUndefined()) {
             setMapOptions({
@@ -64,7 +56,7 @@ const MapChart: React.FC<{ latitude: number; longitude: number;}> = ({latitude, 
 
     return (
         <MapContainer {...mapOptions} 
-            style={{width: "100%", height: "100%", borderRadius: "7px", boxShadow: "0 0 7px #808080"}}>
+            style={{width: "100%", height: "100%", borderRadius: "7px"}}>
             <TileLayer
                 /* attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' */
                 url={leafletUrl}
