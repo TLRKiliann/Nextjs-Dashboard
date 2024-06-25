@@ -48,6 +48,3 @@ $ pnpm add react-leaflet
 
 $ pnpm add react-icons
 
-$ pnpm add @nextui-org/react
-
-$ pnpm add @nextui-org/modal
