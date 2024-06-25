@@ -1,6 +1,7 @@
 import { CustomersProps } from '@/app/lib/definitions';
 import React from 'react';
 import Link from 'next/link';
+import ModalDisplay from '@/app/components/ModalDisplay';
 import Image from 'next/image';
 import TablePage from '@/app/components/TablePage';
 import { customers } from '@/app/lib/datadb';
@@ -55,7 +56,9 @@ export default function TableOnePage() {
                 </ul>
             </div>
 
-            <div className='flex items-end justify-end h-[10%]'>
+            <div className='flex flex-row items-end justify-between h-[10%]'>
+                <ModalDisplay />
+
                 <li className='list-none text-sm text-blue-400 hover:text-blue-500 active:text-blue-700'>
                     <Link href="/dashboard/dashboardnative/profile">Profile</Link>
                 </li>
