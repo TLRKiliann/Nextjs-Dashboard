@@ -22,4 +22,5 @@ export type ProductsProps = {
     readonly stock: number;
     readonly price: number;
     quantity: number;
+    switch: boolean;
 }
