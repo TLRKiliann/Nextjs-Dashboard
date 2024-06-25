@@ -21,13 +21,47 @@ ChartJS.register(
 
 export const options = {
   responsive: true,
+  maintainAspectRatio: false,
   plugins: {
     legend: {
       position: 'top' as const,
+      labels: {
+        color: 'rgba(255, 255, 255, 0.8)',
+      }
     },
     title: {
       display: false,
       text: 'Chart.js Line Chart',
+    },
+  },
+  scales: {
+    y: {
+      grid: {
+        drawBorder: true,
+        color: '#222',
+      },
+      ticks: {
+        beginAtZero: true,
+        min: 0,
+        color: 'rgba(255, 255, 255, 0.8)',
+        stepSize: 100,
+        font: {
+          size: 12,
+        },
+      }
+    },
+    x: {
+      grid: {
+        drawBorder: true,
+        color: '#222',
+      },
+      ticks: {
+        beginAtZero: false,
+        color: 'rgba(255, 255, 255, 0.8)',
+        font: {
+          size: 12,
+        },
+      }
     },
   },
 };
@@ -56,9 +90,9 @@ const data = {
 
 const LineChart = () => {
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full text-slate-300 rounded-lg">
+    <div className="flex flex-col items-center justify-center w-[100%] h-[70%] text-slate-300 rounded-lg">
       <h2 className="text-base -mt-8 mb-2">Daily Traffic</h2>
-      <Line options={options} data={data} className="w-full h-full px-2 -mb-10 rounded-lg" />
+      <Line options={options} data={data} className="w-[100%] h-[70%] -mb-10 m-2 rounded-lg" />
     </div>
   );
 };

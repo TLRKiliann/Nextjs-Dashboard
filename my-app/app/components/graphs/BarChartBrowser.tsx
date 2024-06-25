@@ -31,11 +31,38 @@ export const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: 'right' as const,
+      position: 'top' as const,
+      labels: {
+        color: "white",
+      }
     },
     title: {
       display: false,
       text: 'Browsers',
+    },
+  },
+  scales: {
+    x: {
+      grid: {
+        color: '#222',
+      },
+      ticks: {
+        color: 'rgba(255, 255, 255, 0.8)',
+        font: {
+          size: 12,
+        },
+      },
+    },
+    y: {
+      grid: {
+        color: '#222',
+      },
+      ticks: {
+        color: 'rgba(255, 255, 255, 0.8)',
+        font: {
+          size: 12,
+        },
+      },
     },
   },
 };
