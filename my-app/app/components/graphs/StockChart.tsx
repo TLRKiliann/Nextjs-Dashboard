@@ -35,32 +35,32 @@ export const options = {
     },
     title: {
       display: false,
-      text: 'Best Sellers',
+      text: 'Stock',
     },
   },
 };
 
-const labels = ['CPU', 'Keyboard', 'SSD', 'Ventirad', 'RAM'];
+const labels = ['RAM', 'Ventirad', 'SSD', 'Keyboard', 'CPU'];
 
-const datasetValues = [28, 22, 18, 12, 3];
+const datasetValues = [99, 85, 58, 22, 8];
 
 export const data = {
   labels,
   datasets: [
     {
-      label: 'Sales',
+      label: 'Stock of Products',
       data: datasetValues,
-      borderColor: 'rgb(53, 162, 235)',
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
+      borderColor: 'rgb(255, 99, 132)',
+      backgroundColor: 'rgba(255, 99, 132, 0.5)',
     },
   ],
 };
 
-const BestSellersChart = () => {
+const StockChart = () => {
     return (
         <div className="flex flex-col items-center justify-center w-full h-full bg-slate-50 rounded-lg">
             <Bar options={options} data={data} className="w-auto h-[100%] pb-4 rounded-lg" />
         </div>
     );
 }
-export default BestSellersChart;
+export default StockChart;

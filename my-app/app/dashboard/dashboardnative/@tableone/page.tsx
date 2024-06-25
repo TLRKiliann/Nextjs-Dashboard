@@ -18,7 +18,7 @@ export default function TableOnePage() {
                     flex flex-col items-center rounded-lg px-2 shadow-in'>
 
                     {customers.map((customer: CustomersProps) => (
-                        <li key={customer.id} className='w-full bg-slate-50 my-2 shadow-out rounded-lg'>
+                        <li key={customer.id} className='w-full bg-slate-50 my-2 shadow-sm-out rounded-lg'>
 
                             <div className='flex items-center justify-between text-slate-500/90 px-2'>
                                 
@@ -55,7 +55,7 @@ export default function TableOnePage() {
                 </ul>
             </div>
 
-            <div className='flex items-end justify-end h-[10%]'>
+            <div className='flex flex-row items-end justify-end h-[10%]'>
                 <li className='list-none text-sm text-blue-400 hover:text-blue-500 active:text-blue-700'>
                     <Link href="/dashboard/dashboardnative/profile">Profile</Link>
                 </li>

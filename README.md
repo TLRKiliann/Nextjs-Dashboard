@@ -42,7 +42,12 @@ $ pnpm add chart.js react-chartjs-2
 
 $ pnpm add leaflet
 
-$ pnpm add react-leaflet @types/react-leaflet
+$ pnpm add react-leaflet
+
+(not required @types/react-leaflet = deprecated)
 
 $ pnpm add react-icons
 
+$ pnpm add @nextui-org/react
+
+$ pnpm add @nextui-org/modal

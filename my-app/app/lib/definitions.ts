@@ -1,14 +1,25 @@
 import { StaticImageData } from "next/image";
 
 export type CustomersProps = {
-    id: number;
+    readonly id: number;
     username: string;
     lastname: string;
-    img: StaticImageData;
-    spend: number;
-    artQuantity: number;
-    address: string;
-    country: string;
-    city: string;
+    readonly img: StaticImageData;
+    readonly spend: number;
+    readonly artQuantity?: number;
+    readonly address?: string;
+    readonly country: string;
+    readonly city: string;
     connected: boolean;
+}
+
+export type ProductsProps = {
+    readonly id: number;
+    readonly family: string;
+    readonly img: StaticImageData;
+    readonly name: string;
+    readonly version: string;
+    readonly stock: number;
+    readonly price: number;
+    quantity: number;
 }

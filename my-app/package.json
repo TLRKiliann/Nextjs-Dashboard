@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@types/react-leaflet": "^3.0.0",
     "chart.js": "^4.4.3",
     "leaflet": "^1.9.4",
     "next": "14.2.4",
