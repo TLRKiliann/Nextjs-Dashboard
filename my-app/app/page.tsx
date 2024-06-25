@@ -7,7 +7,6 @@ export default function Home() {
       <h1>Dashboard- Project</h1>
 
       <Link href="/dashboard/dashboardnative">Dashboard</Link>
-      <Link href="/dashboard/overview">Dashboard overview</Link>
 
     </main>
   );
