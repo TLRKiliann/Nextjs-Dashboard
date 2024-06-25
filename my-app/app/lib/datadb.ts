@@ -1,12 +1,12 @@
 import type { CustomersProps } from "./definitions";
-import bruceImg from '@/public/assets/users/bruce.jpg';
-import celestineImg from '@/public/assets/users/celestine.jpg';
-import justineImg from '@/public/assets/users/justine.jpg';
-import jasonImg from '@/public/assets/users/jason.png';
-import rebeccaImg from '@/public/assets/users/rebecca.jpg';
-import paulaImg from '@/public/assets/users/paula.jpg';
-import koalaImg from '@/public/assets/users/user_icon.jpg';
-import MariaImg from '@/public/assets/users/maria.jpg';
+import bruceImg from '@/public/assets/images/users/bruce.jpg';
+import celestineImg from '@/public/assets/images/users/celestine.jpg';
+import justineImg from '@/public/assets/images/users/justine.jpg';
+import jasonImg from '@/public/assets/images/users/jason.png';
+import rebeccaImg from '@/public/assets/images/users/rebecca.jpg';
+import paulaImg from '@/public/assets/images/users/paula.jpg';
+import koalaImg from '@/public/assets/images/users/user_icon.jpg';
+import MariaImg from '@/public/assets/images/users/maria.jpg';
 
 export const customers: CustomersProps[] = [
     {
