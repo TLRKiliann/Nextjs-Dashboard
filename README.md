@@ -76,6 +76,8 @@ In FireFox you can get both with `slice()` function:
 
 ## Result
 
+*(Video will be here soon)*
+
 <!-- [<img src="https://img.youtube.com/vi/<VIDEO_ID>/hqdefault.jpg" width="600" height="300"
 />](https://www.youtube.com/embed/<VIDEO_ID>)
 
