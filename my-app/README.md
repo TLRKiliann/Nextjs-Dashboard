@@ -1,5 +1,4 @@
+- loading.tsx with @slots
 - drop-down menu
-- explanations about ip public + geolocation API + react-leaflet
-- design of @tabletwo
 - items of menu
 - login + NextAuth + middleware + routes + public IP 
