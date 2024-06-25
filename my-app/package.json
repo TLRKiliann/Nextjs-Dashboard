@@ -9,7 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@types/react-leaflet": "^3.0.0",
+    "@nextui-org/modal": "^2.0.36",
+    "@nextui-org/react": "^2.4.2",
     "chart.js": "^4.4.3",
     "leaflet": "^1.9.4",
     "next": "14.2.4",
