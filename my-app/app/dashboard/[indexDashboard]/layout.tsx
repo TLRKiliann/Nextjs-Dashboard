@@ -4,6 +4,7 @@ import DataTables from '@/app/components/menu-items/DataTables';
 import { notFound } from 'next/navigation';
 import { customers } from '@/app/lib/datadb';
 import Products from '@/app/components/menu-items/Products';
+import CreateProduct from '@/app/components/menu-items/CreateProduct';
 
 export default function DashboardIndexLayout({children, params}: {
     children: React.ReactNode;
@@ -37,6 +38,7 @@ export default function DashboardIndexLayout({children, params}: {
                     ) : params.indexDashboard === "products" ? (
                         <div className='w-full h-[90%] text-slate-500 mt-[7%] p-4'>
                             <Products />
+                            <CreateProduct />
                         </div>
                     ) : (
                         <div>
