@@ -1,5 +1,5 @@
 "use client";
-
+//localhost:3000/dashboard/products
 import { ProductsProps } from '@/app/lib/definitions';
 import React, { useState } from 'react';
 import Image from 'next/image';
@@ -15,21 +15,26 @@ export default function Products() {
         setListProducts(findById);
     };
 
-    const handleDelete = (id: number) => {
+    /* const handleDelete = (id: number) => {
         const findById: ProductsProps[] = listProducts.map((list: ProductsProps) => list.id === id 
             ? {...list, stock: list.stock + 1, quantity: list.quantity - 1} : list);
+        setListProducts(findById);
+    }; */
+
+    const handleDelete = (id: number) => {
+        const findById: ProductsProps[] = listProducts.filter((list: ProductsProps) => list.id !== id);
         setListProducts(findById);
     };
 
     return (
-        <div className='relative top-0 h-[60%] border z-10'>
+        <div className='relative top-0 h-[60%] z-10'>
             
             <div className='flex flex-col items-center justify-center w-full h-[100%] 
-                overflow-y-scroll no-scrollbar pt-52'>
+                overflow-y-scroll no-scrollbar lg:pt-64 xl:pt-20'>
 
                 {listProducts.map((product: ProductsProps) => (
                     <div key={product.id} 
-                        className='flex flex-row items-center justify-between w-full h-full bg-slate-50 
+                        className='flex flex-row items-center justify-between w-full h-[80px] bg-slate-50 
                             rounded-lg shadow-sm-out p-2 m-2'>
 
                         <div className='w-[60px] h-[60px]'>
@@ -64,6 +69,7 @@ export default function Products() {
                             >
                                 Add
                             </button>
+
                             <button type="button" 
                                 onClick={() => handleDelete(product.id)}
                                 className='text-slate-100 bg-blue-500 
@@ -72,6 +78,7 @@ export default function Products() {
                             >
                                 Delete
                             </button>
+
                         </div>
 
                     </div>
