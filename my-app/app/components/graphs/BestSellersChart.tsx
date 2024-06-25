@@ -48,7 +48,7 @@ export const data = {
   labels,
   datasets: [
     {
-      label: 'Sales in %',
+      label: 'Sales',
       data: datasetValues,
       borderColor: 'rgb(53, 162, 235)',
       backgroundColor: 'rgba(53, 162, 235, 0.5)',
@@ -56,12 +56,11 @@ export const data = {
   ],
 };
 
-const BarChart = () => {
+const BestSellersChart = () => {
     return (
         <div className="flex flex-col items-center justify-center w-full h-full bg-slate-50 rounded-lg">
-            <h2 className="text-base -mt-4 mb-8">Best Sellers (last month)</h2>
-            <Bar options={options} data={data} className="w-auto h-[100%] px-2 -mb-10 rounded-lg" />
+            <Bar options={options} data={data} className="w-auto h-[100%] pb-4 rounded-lg" />
         </div>
     );
 }
-export default BarChart;
+export default BestSellersChart;
