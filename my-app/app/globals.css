@@ -26,6 +26,17 @@
       -ms-overflow-style: none;  /* IE and Edge */
       scrollbar-width: none;  /* Firefox */
   }
+  /* Chrome, Safari, Edge, Opera */
+  .no-spin::-webkit-outer-spin-button,
+  .no-spin::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  .no-spin {
+    -moz-appearance: textfield;
+  }
 }
 
 body {
