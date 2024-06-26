@@ -1,21 +1,29 @@
 "use client";
 
+import { ProductsProps } from '@/app/lib/definitions';
+import { StaticImageData } from 'next/image';
 import React, { useState } from 'react';
+import { useStore } from '@/app/lib/store';
+import usePersistStore from '@/app/helpers/usePersistStore';
+import logo from "@/public/assets/images/cpu/cpu_i3.jpg";
 
 type AllProductsProps = {
-    familyProduct: string;
-    nameProduct: string;
-    stockProduct: string;
-    priceProduct: string;
+    familyProduct: string | undefined;
+    nameProduct: string | undefined;
+    stockProduct: string | undefined;
+    priceProduct: string | undefined;
 };
 
 export default function CreateProduct() {
 
+    const store = usePersistStore(useStore, (state) => state);
+
+    // all state in one
     const [allProductStates, setAllProductStates] = useState<AllProductsProps>({
-        familyProduct: "",
-        nameProduct: "",
-        stockProduct: "",
-        priceProduct: ""
+        familyProduct: undefined,
+        nameProduct: undefined,
+        stockProduct: undefined,
+        priceProduct: undefined
     });
 
     const handleFamilyProduct = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -34,16 +42,46 @@ export default function CreateProduct() {
         setAllProductStates((prev) => ({...prev, priceProduct: e.target.value}));
     };
 
+    // db simulation
     const handleSubmit = (e:React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
-        const form = new FormData();
-        const formData = form;
 
-        const family = formData.get("family");
-        const name = formData.get("name");
-        const stock = formData.get("stock");
-        const price = formData.get("price");
-        console.log(family, name, stock, price, "formData");
+        const formData = new FormData(e.target as HTMLFormElement);
+
+        const family: string = formData.get("family") as string;
+        const name: string = formData.get("name") as string;
+        const stock: number = Number(formData.get("stock"));
+        const price: number = Number(formData.get("price"));
+
+        //console.log(family, name, stock, price, "formData");
+        
+        const img: StaticImageData = logo; 
+        
+        const version: string = generateVersion();
+        const nbArtSold: number = 0;
+        const switcher: boolean = false;
+        
+        // to store in zustand
+        const newProduct: ProductsProps = {
+            id: Math.floor(Math.random() * 10000),
+            family,
+            img,
+            name,
+            version,
+            stock,
+            price,
+            nbArtSold,
+            switcher: switcher,
+        };
+        store?.addProducts([newProduct]);
+
+        // reinitialize state
+        setAllProductStates((prev) => ({...prev, 
+            nameProduct: undefined, 
+            familyProduct: undefined,
+            stockProduct: undefined,
+            priceProduct: undefined
+        }));
     };
 
     return (
@@ -56,9 +94,7 @@ export default function CreateProduct() {
                     <h2 className='text-lg font-bold text-center m-auto py-4'>Create Product</h2>
     
                     <div className='flex flex-row items-start justify-between mb-3'>
-
                         <label className="text-lg mr-4" htmlFor="family">Family of product:</label>
-
                         <input type="text" id="family" name="family" value={allProductStates.familyProduct} 
                             onChange={(e) => handleFamilyProduct(e)} 
                             className='bg-slate-50 border border-slate-500/70 outline-none ring-none
@@ -67,9 +103,7 @@ export default function CreateProduct() {
                     </div>
 
                     <div className='flex flex-row items-start justify-between mb-3'>
-
                         <label className="text-lg mr-4" htmlFor="name">Name of product:</label>
-
                         <input type="text" id="name" name="name" value={allProductStates.nameProduct} 
                             onChange={(e) => handleNameProduct(e)} 
                             className='bg-slate-50 border border-slate-500/70 outline-none ring-none
@@ -78,23 +112,19 @@ export default function CreateProduct() {
                     </div>
 
                     <div className='flex flex-row items-start justify-between mb-3'>
-
                         <label className="text-lg mr-4" htmlFor="stock">Stock of product:</label>
-
-                        <input type="text" id="stock" name="stock" value={allProductStates.stockProduct} 
+                        <input type="number" id="stock" name="stock" value={allProductStates.stockProduct} 
                             onChange={(e) => handleStockProduct(e)} 
-                            className='bg-slate-50 border border-slate-500/70 outline-none ring-none
+                            className='no-spin bg-slate-50 border border-slate-500/70 outline-none ring-none
                             focus:border focus:outline focus:ring focus:border-blue-400 focus:outline-blue-200 
                             focus:ring-blue-300 focus:bg-white rounded px-2 py-1'/>
                     </div>
 
                     <div className='flex flex-row items-start justify-between mb-3'>
-
                         <label className="text-lg mr-4" htmlFor="price">Price of product:</label>
-
-                        <input type="text" id="price" name="price" value={allProductStates.priceProduct} 
+                        <input type="number" id="price" name="price" value={allProductStates.priceProduct} 
                             onChange={(e) => handlePriceProduct(e)} 
-                            className='bg-slate-50 border border-slate-500/70 outline-none ring-none
+                            className='no-spin bg-slate-50 border border-slate-500/70 outline-none ring-none
                             focus:border focus:outline focus:ring focus:border-blue-400 focus:outline-blue-200 
                             focus:ring-blue-300 focus:bg-white rounded px-2 py-1'/>
                     </div>

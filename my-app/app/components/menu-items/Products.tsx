@@ -6,30 +6,32 @@ import Image from 'next/image';
 import { products } from '@/app/lib/products';
 
 type AllStateProps = {
-    name: string;
     family: string;
+    name: string;
     stock: string;
     price: string;
-}
+};
 
 export default function Products() {
 
+    // to simulate fake db
     const [listProducts, setListProducts] = useState<ProductsProps[]>(products);
+
+    // all state in one
     const [allState, setAllState] = useState<AllStateProps>(
         {
-            name: "",
             family: "",
+            name: "",
             stock: "",
             price: ""
         }
     );
 
-    //derivated state
-    const name: string = allState.name;
+    // derivated state
     const family: string = allState.family;
+    const name: string = allState.name;
     const stock: string = allState.stock;
     const price: string = allState.price;
-
 
     const handleFamily = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setAllState((prev) => ({...prev, family: e.target.value}));
@@ -49,17 +51,18 @@ export default function Products() {
     
     const handleModify = (id: number): void => {
         const modifyById = listProducts.map((list: ProductsProps) => list.id === id 
-            ? {...list, switch: !list.switch} : list);
+            ? {...list, switcher: !list.switcher} : list);
         setListProducts(modifyById);
     };
 
     const handleSave = (id: number): void => {
         const modifyById = listProducts.map((list: ProductsProps) => list.id === id 
             ? {...list, id: list.id, img: list.img, family: family, name: name, 
-                stock: Number(stock), price: Number(price), quantity: list.quantity, switch: !list.switch} : list);
+                stock: Number(stock), price: Number(price), quantity: list.nbArtSold, switcher: !list.switcher} : list);
         setListProducts(modifyById);
     };
 
+    // db simulation
     const handleDelete = (id: number): void => {
         const findById: ProductsProps[] = listProducts.filter((list: ProductsProps) => list.id !== id);
         setListProducts(findById);
@@ -86,7 +89,7 @@ export default function Products() {
                             />
                         </div>
 
-                        {product.switch === false ? (
+                        {product.switcher === false ? (
                             <>
                                 <div className='w-[25%] flex flex-row items-center justify-start font-bold ml-4'>
                                     <h3>{product.family}</h3>
@@ -135,7 +138,7 @@ export default function Products() {
 
                         <div className='w-[200px] flex items-center justify-between'>
                             
-                            {product.switch === false ? (
+                            {product.switcher === false ? (
                                 <button type="button" 
                                     onClick={() => handleModify(product.id)}
                                     className='text-slate-100 bg-blue-500 
@@ -171,4 +174,4 @@ export default function Products() {
             </div>
         </div>
     )
-}
+};
