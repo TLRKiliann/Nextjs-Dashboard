@@ -11,6 +11,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import { ProductsProps } from '@/app/lib/definitions';
 
 ChartJS.register(
   CategoryScale,
@@ -40,23 +41,27 @@ export const options = {
   },
 };
 
-const labels = ['RAM', 'Ventirad', 'SSD', 'Keyboard', 'CPU'];
+const StockChart: React.FC<{products: ProductsProps[]}> = ({products}): JSX.Element => {
 
-const datasetValues = [99, 85, 58, 22, 8];
+  // Sort products by stock in descending order
+  const sortedProducts = products.sort((a, b) => b.stock - a.stock);
 
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: 'Stock of Products',
-      data: datasetValues,
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    },
-  ],
-};
+  // Extract labels and dataset values from sorted products
+  const labels = sortedProducts.map((product: ProductsProps) => product.name);
+  const datasetValues = sortedProducts.map((product: ProductsProps) => product.stock);
 
-const StockChart = () => {
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: 'Stock of Products',
+        data: datasetValues,
+        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      },
+    ],
+  };
+
     return (
         <div className="flex flex-col items-center justify-center w-full h-full bg-slate-50 rounded-lg">
             <Bar options={options} data={data} className="w-auto h-[100%] pb-4 rounded-lg" />

@@ -11,6 +11,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import { ProductsProps } from '@/app/lib/definitions';
 
 ChartJS.register(
   CategoryScale,
@@ -40,23 +41,27 @@ export const options = {
   },
 };
 
-const labels = ['CPU', 'Keyboard', 'SSD', 'Ventirad', 'RAM'];
+const BestSellersChart: React.FC<{products: ProductsProps[]}> = ({products}): JSX.Element => {
 
-const datasetValues = [28, 22, 18, 12, 3];
+  // Sort products by stock in descending order
+  const sortedProducts = products.sort((a, b) => a.stock - b.stock);
 
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: 'Sales',
-      data: datasetValues,
-      borderColor: 'rgb(53, 162, 235)',
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
-    },
-  ],
-};
+  // Extract labels and dataset values from sorted products
+  const labels = sortedProducts.map((product: ProductsProps) => product.name);
+  const datasetValues = sortedProducts.map((product: ProductsProps) => product.stock);
 
-const BestSellersChart = () => {
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: 'Sales',
+        data: datasetValues,
+        borderColor: 'rgb(53, 162, 235)',
+        backgroundColor: 'rgba(53, 162, 235, 0.5)',
+      },
+    ],
+  };
+
     return (
         <div className="flex flex-col items-center justify-center w-full h-full bg-slate-50 rounded-lg">
             <Bar options={options} data={data} className="w-auto h-[100%] pb-4 rounded-lg" />
