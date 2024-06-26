@@ -19,7 +19,7 @@ export const products: ProductsProps[] = [
         stock: 20,
         price: 1044,
         quantity: 0,
-        switch: false
+        switcher: false
     },
     {
         id: 2,
@@ -30,7 +30,7 @@ export const products: ProductsProps[] = [
         stock: 30,
         price: 1244,
         quantity: 0,
-        switch: false
+        switcher: false
     },
     {
         id: 3,
@@ -41,7 +41,7 @@ export const products: ProductsProps[] = [
         stock: 25,
         price: 2000,
         quantity: 0,
-        switch: false
+        switcher: false
     },
     {
         id: 4,
@@ -52,7 +52,7 @@ export const products: ProductsProps[] = [
         stock: 35,
         price: 2000,
         quantity: 0,
-        switch: false
+        switcher: false
     },
     {
         id: 5,
@@ -63,7 +63,7 @@ export const products: ProductsProps[] = [
         stock: 22,
         price: 2000,
         quantity: 0,
-        switch: false
+        switcher: false
     },
     {
         id: 6,
@@ -74,7 +74,7 @@ export const products: ProductsProps[] = [
         stock: 28,
         price: 2000,
         quantity: 0,
-        switch: false
+        switcher: false
     },
     {
         id: 7,
@@ -85,6 +85,6 @@ export const products: ProductsProps[] = [
         stock: 38,
         price: 1230,
         quantity: 0,
-        switch: false
+        switcher: false
     }
 ]
