@@ -29,11 +29,11 @@ export default async function GeolocationPage() {
                 <h2 className='text-xl'>Geolocation</h2>
             </div>
             {geoResult ? (
-                <Suspense fallback={<Loader />}>
-                    <div className='w-[98%] h-[80%] m-auto rounded-lg'>
-                        <MapChart latitude={geoResult.latitude} longitude={geoResult.longitude} />
-                    </div>
-                </Suspense>
+                <div className='w-[98%] h-[80%] m-auto rounded-lg'>
+                    <Suspense fallback={<Loader />}>
+                        <MapChart latitude={geoResult.latitude} longitude={geoResult.longitude} />                        
+                    </Suspense>
+                </div>
             ): null}
             <ButtonGoBack text="Sales" />
         </TablePage>
