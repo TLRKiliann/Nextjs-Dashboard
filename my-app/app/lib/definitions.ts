@@ -21,6 +21,6 @@ export type ProductsProps = {
     readonly version: string;
     readonly stock: number;
     readonly price: number;
-    quantity: number;
+    nbArtSold: number;
     switcher: boolean;
 }
