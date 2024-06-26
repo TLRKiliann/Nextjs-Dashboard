@@ -18,7 +18,8 @@ export const products: ProductsProps[] = [
         version: "7897432",
         stock: 20,
         price: 1044,
-        quantity: 0
+        nbArtSold: 23,
+        switcher: false
     },
     {
         id: 2,
@@ -28,7 +29,8 @@ export const products: ProductsProps[] = [
         version: "2342432",
         stock: 30,
         price: 1244,
-        quantity: 0
+        nbArtSold: 12,
+        switcher: false
     },
     {
         id: 3,
@@ -38,7 +40,8 @@ export const products: ProductsProps[] = [
         version: "372473277",
         stock: 25,
         price: 2000,
-        quantity: 0
+        nbArtSold: 10,
+        switcher: false
     },
     {
         id: 4,
@@ -48,7 +51,8 @@ export const products: ProductsProps[] = [
         version: "411108997",
         stock: 35,
         price: 2000,
-        quantity: 0
+        nbArtSold: 40,
+        switcher: false
     },
     {
         id: 5,
@@ -58,7 +62,8 @@ export const products: ProductsProps[] = [
         version: "34324324324",
         stock: 22,
         price: 2000,
-        quantity: 0
+        nbArtSold: 8,
+        switcher: false
     },
     {
         id: 6,
@@ -68,7 +73,8 @@ export const products: ProductsProps[] = [
         version: "647228432",
         stock: 28,
         price: 2000,
-        quantity: 0
+        nbArtSold: 2,
+        switcher: false
     },
     {
         id: 7,
@@ -78,6 +84,7 @@ export const products: ProductsProps[] = [
         version: "98521711",
         stock: 38,
         price: 1230,
-        quantity: 0
+        nbArtSold: 4,
+        switcher: false
     }
 ]
