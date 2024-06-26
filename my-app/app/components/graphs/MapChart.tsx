@@ -58,7 +58,7 @@ const MapChart: React.FC<{ latitude: number; longitude: number;}> = ({latitude, 
         <MapContainer {...mapOptions} 
             style={{width: "100%", height: "100%", borderRadius: "7px"}}>
             <TileLayer
-                /* attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' */
+                /*attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' */
                 url={leafletUrl}
             />
             <MyComponent />
