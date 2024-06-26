@@ -70,6 +70,8 @@ In FireFox you can get both with `slice()` function:
 
 `$ pnpm add react-leaflet`
 
+`$ pnpm add zustand`
+
 (not required @types/react-leaflet = deprecated)
 
 ---
