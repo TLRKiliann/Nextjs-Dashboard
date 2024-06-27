@@ -10,7 +10,6 @@ export default function AllProducts({products}: {products: ProductsProps[]}) {
     
     const [database, setDatabase] = useState<ProductsProps[]>(products);
     
-
     // avec zustand
     const handleAdd = (id: number) => {
         const mappingToAdd = database.map((data) => data.id === id ? {...data, quantity: data.quantity + 1} : data);
@@ -72,7 +71,7 @@ export default function AllProducts({products}: {products: ProductsProps[]}) {
                                     -
                                 </button>
                                 
-                                    <p className='text-sm -mx-10'>Quantity: {product.quantity}</p>
+                                    <p className='text-sm -mx-10'>Quantity: <span className="text-lg text-blue-400">{product.quantity}</span></p>
                                 
                                 <button type="button" onClick={() => handleAdd(product.id)}
                                     
