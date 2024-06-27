@@ -1,5 +1,5 @@
 "use client";
-//localhost:3000/dashboard/products
+
 import { ProductsProps } from '@/app/lib/definitions';
 import React, { useState } from 'react';
 import Image from 'next/image';
@@ -12,20 +12,25 @@ type AllStateProps = {
     price: string;
 };
 
+/*
+    Admin can modify, update & remove products.
+    It's not necessary to use Zustand here, 
+    that's for modifying db & not the state, 
+    such as context with cart.
+*/
+
 export default function Products() {
 
-    // to simulate fake db
+    // simulation of db
     const [listProducts, setListProducts] = useState<ProductsProps[]>(products);
 
     // all state in one
-    const [allState, setAllState] = useState<AllStateProps>(
-        {
-            family: "",
-            name: "",
-            stock: "",
-            price: ""
-        }
-    );
+    const [allState, setAllState] = useState<AllStateProps>({
+        family: "",
+        name: "",
+        stock: "",
+        price: ""
+    });
 
     // derivated state
     const family: string = allState.family;
@@ -49,20 +54,22 @@ export default function Products() {
         setAllState((prev) => ({...prev, price: e.target.value}));
     };
     
+    // db simulation to switch the switcher
     const handleModify = (id: number): void => {
         const modifyById = listProducts.map((list: ProductsProps) => list.id === id 
             ? {...list, switcher: !list.switcher} : list);
         setListProducts(modifyById);
     };
 
+    // db simulation to update product
     const handleSave = (id: number): void => {
         const modifyById = listProducts.map((list: ProductsProps) => list.id === id 
             ? {...list, id: list.id, img: list.img, family: family, name: name, 
-                stock: Number(stock), price: Number(price), quantity: list.nbArtSold, switcher: !list.switcher} : list);
+                stock: Number(stock), price: Number(price), quantity: list.quantity, switcher: !list.switcher} : list);
         setListProducts(modifyById);
     };
 
-    // db simulation
+    // db simulation to remove product
     const handleDelete = (id: number): void => {
         const findById: ProductsProps[] = listProducts.filter((list: ProductsProps) => list.id !== id);
         setListProducts(findById);

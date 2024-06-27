@@ -1,12 +1,17 @@
+import type { ProductsProps } from '@/app/lib/definitions';
 import React, { Suspense } from 'react';
 import Link from 'next/link';
 import TablePage from '@/app/components/TablePage';
 import BestSellersChart from '@/app/components/graphs/BestSellersChart';
 import StockChart from '@/app/components/graphs/StockChart';
-import { products } from '@/app/lib/products';
+//import { products } from '@/app/lib/products';
 import Loader from '@/app/components/Loader';
 
-export default function TableTwoDefault() {
+export default async function TableTwoDefault() {
+
+    const response = await fetch("http://localhost:3000/api/products");
+    const products = (await response.json()) as ProductsProps[];
+
     return (
         <TablePage>
             <div className='h-[10%]'>

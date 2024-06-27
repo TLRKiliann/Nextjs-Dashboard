@@ -1,4 +1,4 @@
-import { ProductsProps } from './definitions';
+import type { ProductsProps } from './definitions';
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { products } from './products';
@@ -11,6 +11,7 @@ interface States {
 // Action types
 interface Actions {
   addProducts: (products: ProductsProps[]) => void;
+  removeAllProducts: () => void;
 };
 
 // useBearStore
@@ -20,6 +21,9 @@ export const useStore = create(
       bearProducts: products,
       addProducts: (newProducts) => set((state) => ({
         bearProducts: [...state.bearProducts, ...newProducts]
+      })),
+      removeAllProducts: () => set(({
+        bearProducts: []
       })),
     }),
     {

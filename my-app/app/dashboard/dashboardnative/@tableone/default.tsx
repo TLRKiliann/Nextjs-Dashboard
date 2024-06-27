@@ -1,11 +1,15 @@
-import { CustomersProps } from '@/app/lib/definitions';
+import type { CustomersProps } from '@/app/lib/definitions';
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import TablePage from '@/app/components/TablePage';
-import { customers } from '@/app/lib/datadb';
+//import { customers } from '@/app/lib/datadb';
 
-export default function TableOneDefault() {
+export default async function TableOneDefault() {
+
+    const response = await fetch("http://localhost:3000/api/customers");
+    const customers = (await response.json()) as CustomersProps[];
+
     return (
         <TablePage>
             <div className='h-[10%]'>

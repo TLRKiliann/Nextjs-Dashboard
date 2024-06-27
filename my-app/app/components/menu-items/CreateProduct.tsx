@@ -1,10 +1,10 @@
 "use client";
 
-import { ProductsProps } from '@/app/lib/definitions';
+//import { ProductsProps } from '@/app/lib/definitions';
 import { StaticImageData } from 'next/image';
 import React, { useState } from 'react';
-import { useStore } from '@/app/lib/store';
-import usePersistStore from '@/app/helpers/usePersistStore';
+//import { useStore } from '@/app/lib/store';
+//import usePersistStore from '@/app/helpers/usePersistStore';
 import logo from "@/public/assets/images/cpu/cpu_i3.jpg";
 
 type AllProductsProps = {
@@ -14,9 +14,15 @@ type AllProductsProps = {
     priceProduct: string | undefined;
 };
 
+/*
+    Admin can create new product for db.
+    that's for modifying db & not the state, 
+    such as context with cart.
+*/
+
 export default function CreateProduct() {
 
-    const store = usePersistStore(useStore, (state) => state);
+    //const store = usePersistStore(useStore, (state) => state);
 
     // all state in one
     const [allProductStates, setAllProductStates] = useState<AllProductsProps>({
@@ -42,10 +48,13 @@ export default function CreateProduct() {
         setAllProductStates((prev) => ({...prev, priceProduct: e.target.value}));
     };
 
-    // db simulation
+    /* 
+        It will be send in db by server-action (with action of form).
+        I did a simulation of db to test & display it.
+    */
     const handleSubmit = (e:React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
-
+        
         const formData = new FormData(e.target as HTMLFormElement);
 
         const family: string = formData.get("family") as string;
@@ -56,13 +65,12 @@ export default function CreateProduct() {
         //console.log(family, name, stock, price, "formData");
         
         const img: StaticImageData = logo; 
-        
         const version: string = generateVersion();
-        const nbArtSold: number = 0;
+        const quantity: number = 0;
         const switcher: boolean = false;
         
         // to store in zustand
-        const newProduct: ProductsProps = {
+        /* const newProduct: ProductsProps = {
             id: Math.floor(Math.random() * 10000),
             family,
             img,
@@ -70,10 +78,10 @@ export default function CreateProduct() {
             version,
             stock,
             price,
-            nbArtSold,
+            quantity,
             switcher: switcher,
         };
-        store?.addProducts([newProduct]);
+        store?.addProducts([newProduct]); */
 
         // reinitialize state
         setAllProductStates((prev) => ({...prev, 
