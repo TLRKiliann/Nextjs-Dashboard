@@ -24,6 +24,7 @@ export default function Header() {
                                 className='w-[200px] text-base border pl-8 py-1 bg-slate-50 focus:absolute 
                                     focus:z-10 focus:w-[300px] focus:ring-1 focus:ring-blue-500 focus:border-none 
                                     focus:outline-none focus:text-slate-600 shadow-inner rounded-full'
+                                placeholder="Search"
                             />
 
                         </div>
