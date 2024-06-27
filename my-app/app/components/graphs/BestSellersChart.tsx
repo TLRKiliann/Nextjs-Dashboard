@@ -44,11 +44,11 @@ export const options = {
 const BestSellersChart: React.FC<{products: ProductsProps[]}> = ({products}): JSX.Element => {
 
   // Sort products by stock in descending order
-  const sortedProducts = products.sort((a, b) => a.nbArtSold - b.nbArtSold);
+  const sortedProducts = products.sort((a, b) => a.quantity - b.quantity);
 
   // Extract labels and dataset values from sorted products
   const labels = sortedProducts.map((product: ProductsProps) => product.name);
-  const datasetValues = sortedProducts.map((product: ProductsProps) => product.nbArtSold);
+  const datasetValues = sortedProducts.map((product: ProductsProps) => product.quantity);
 
   const data = {
     labels,
