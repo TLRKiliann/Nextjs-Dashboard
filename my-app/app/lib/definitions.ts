@@ -14,13 +14,13 @@ export type CustomersProps = {
 }
 
 export type ProductsProps = {
-    readonly id: number;
-    readonly family: string;
-    readonly img: StaticImageData;
-    readonly name: string;
-    readonly version: string;
-    readonly stock: number;
-    readonly price: number;
-    nbArtSold: number;
+    id: number;
+    family: string;
+    img: StaticImageData;
+    name: string;
+    version: string;
+    stock: number;
+    price: number;
+    quantity: number;
     switcher: boolean;
 }
