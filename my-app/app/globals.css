@@ -32,10 +32,13 @@
     -webkit-appearance: none;
     margin: 0;
   }
-
   /* Firefox */
   .no-spin {
     -moz-appearance: textfield;
+  }
+  /* color of nth-n+1 of icon from react-icons */
+  .icon-hover-container:hover .icon-hover {
+    color: #708090;
   }
 }
 
