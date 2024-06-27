@@ -10,12 +10,12 @@ export default function Home() {
         <h1 className="text-2xl font-bold text-slate-100">Dashboard- Project</h1>
       </div>
 
-      <div className="transform durantion-100 ease-in-out text-blue-500 hover:text-blue-400 hover:scale-105 active:text-blue-700 mt-20">
-        <li className="list-none">
+      <div className="mt-20">
+        <li className="list-none transform durantion-100 ease-in-out text-blue-500 hover:text-blue-400 hover:scale-105 active:text-blue-700">
           <Link href="/dashboard/dashboardnative">Dashboard</Link>
         </li>
 
-        <li className="list-none">
+        <li className="list-none transform durantion-100 ease-in-out text-blue-500 hover:text-blue-400 hover:scale-105 active:text-blue-700">
           <Link href="/products">Products</Link>
         </li>
       </div>
