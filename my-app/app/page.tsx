@@ -14,6 +14,10 @@ export default function Home() {
         <li className="list-none">
           <Link href="/dashboard/dashboardnative">Dashboard</Link>
         </li>
+
+        <li className="list-none">
+          <Link href="/products">Products</Link>
+        </li>
       </div>
 
     </main>
