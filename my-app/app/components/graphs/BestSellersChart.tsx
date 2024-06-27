@@ -1,5 +1,6 @@
 "use client";
 
+import type { ProductsProps } from '@/app/lib/definitions';
 import React from 'react';
 import {
   Chart as ChartJS,
@@ -11,7 +12,6 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import { ProductsProps } from '@/app/lib/definitions';
 
 ChartJS.register(
   CategoryScale,
