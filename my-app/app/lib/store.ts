@@ -1,39 +1,94 @@
-import { StaticImageData } from 'next/image';
 import type { ProductsProps } from './definitions';
 import { create } from 'zustand';
-import { persist, createJSONStorage } from 'zustand/middleware';
-//import { products } from './products';
+import { persist } from 'zustand/middleware';
 
 // State types
-interface States {
+type States = {
   bearProducts: ProductsProps[];
 };
 
 // Action types
-interface Actions {
+type Actions = {
   addProducts: (products: ProductsProps) => void;
   deleteProducts: (products: ProductsProps) => void;
-  removeAllProducts: (products: ProductsProps[]) => void;
+  increaseQuantity: (productId: number) => void;
+  decreaseQuantity: (productId: number) => void;
+  removeAllById: (productId: number) => void;
 };
  
 // useBearStore
 export const useStore = create<States & Actions>()(
-  persist(
-    (set) => ({
+  persist((set, get) => ({
       bearProducts: [],
-      addProducts: (product) =>
-        set((state) => ({ bearProducts: [...state.bearProducts, product]
-      })),
-      deleteProducts: (product) =>
-        set((state) => ({ bearProducts: [...state.bearProducts, product]  
-      })),
-      removeAllProducts: () =>
-        set(({ bearProducts: [] 
-      })),
+      addProducts: (product) => {
+        const itemExists = get().bearProducts.find((cartItem) => cartItem.id === product.id)
+        if (itemExists) {
+          if (typeof itemExists.quantity === "number") {
+            itemExists.quantity++;
+          }
+          set({ bearProducts: [...get().bearProducts] })
+        } else {
+          set({ bearProducts: [...get().bearProducts, { ...product, quantity: 1 }] })
+        }
+      },
+      deleteProducts: (product) => {
+        const itemExists = get().bearProducts.find((cartItem) => cartItem.id === product.id)
+        if (itemExists) {
+          if (typeof itemExists.quantity === "number") {
+            itemExists.quantity--;
+          }
+          set({ bearProducts: [...get().bearProducts] })
+        } else {
+          set({ bearProducts: [...get().bearProducts, { ...product, quantity: 1 }] })
+        }
+      },
+      increaseQuantity: (productId) => {
+        const itemExists = get().bearProducts.find(
+          (cartItem) => cartItem.id === productId
+        );
+
+        if (itemExists) {
+          if (typeof itemExists.quantity === "number") {
+            itemExists.quantity++;
+          }
+
+          set({ bearProducts: [...get().bearProducts] });
+        }
+      },
+      decreaseQuantity: (productId) => {
+        const itemExists = get().bearProducts.find(
+          (cartItem) => cartItem.id === productId
+        );
+        if (itemExists) {
+          if (typeof itemExists.quantity === "number") {
+            if (itemExists.quantity === 1) {
+              const updatedbearProducts = get().bearProducts.filter(
+                (item) => item.id !== productId
+              );
+              set({ bearProducts: updatedbearProducts });
+            } else {
+              itemExists.quantity--;
+              set({ bearProducts: [...get().bearProducts] });
+            }
+          }
+        }
+      },
+      removeAllById: (productId) => {
+        const itemExists = get().bearProducts.find(
+          (product) => product.id === productId
+        );
+        if (itemExists) {
+          if (typeof itemExists.quantity === "number") {
+            const updatedbearProducts = get().bearProducts.filter(
+              (product) => product.id !== productId
+            );
+            set({ bearProducts: updatedbearProducts });
+          }
+        }
+      }
     }),
     {
-      name: 'bearStore',
-      storage: createJSONStorage(() => localStorage),
+      name: "cart-items",
     }
   )
 );
