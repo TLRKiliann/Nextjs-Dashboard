@@ -2,12 +2,14 @@ import type { Metadata } from 'next';
 import type { ProductsProps } from '../lib/definitions';
 import React from 'react';
 import AllProducts from '@/app/components/AllProducts';
-//import { products } from '@/app/lib/products';
 
 export const metadata: Metadata = {
-    title: "Products",
-    description: "access user"
-};
+    title: {
+      absolute: "Products"
+    },
+    description: "list of products"
+  };
+  
 
 export default async function ProductsPage() {
     
