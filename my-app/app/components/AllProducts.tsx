@@ -22,41 +22,47 @@ export default function AllProducts() {
         staleTime: 10 * 1000,
     });
 
-    const [database, setDatabase] = useState<ProductsProps[] | undefined >(data);
+    const [database, setDatabase] = useState<ProductsProps[]>(data!);
 
     // zustand
     const store = usePersistStore(useStore, (state) => state);
 
     if (!store) {
         return <Loader />;
-    }
+    };
 
-    //console.log(store.addProducts, "store.bearProducts");
+    console.log(store.bearProducts, "store.bearProducts");
 
     const handleDeleteProduct = (id: number) => {
-        /* const mappingToDelete = database.map((data) => data.id === id 
+        const mappingToDelete = database.find((prod: ProductsProps) => prod.id === id);
+        if (mappingToDelete) {
+            const updatedProduct = { ...mappingToDelete, quantity: mappingToDelete.quantity - 1 };
+            store.deleteProducts(updatedProduct);
+        };
+        /* const mappingToDeleteDb = database.map((data: ProductsProps) => data.id === id 
             ? {...data, quantity: data.quantity - 1} 
             : data);
-        setDatabase(mappingToDelete); */
-        store.deleteProducts(id);
+        setDatabase(mappingToDeleteDb); */
     };
 
     const handleAddProduct = (id: number) => {
-        /* const mappingToAdd = database.map((data) => data.id === id 
+        const mappingToAdd = database.find((data: ProductsProps) => data.id === id);
+        if (mappingToAdd) {
+            const updatedProduct = { ...mappingToAdd, quantity: mappingToAdd.quantity + 1 };
+            store.addProducts(updatedProduct);
+        };
+        /* const mappingToAddDb = database.map((data: ProductsProps) => data.id === id
             ? {...data, quantity: data.quantity + 1} 
             : data);
-        setDatabase(mappingToAdd); */
-        console.log("Before add product", store.bearProducts)
-        store.addProducts(id);
-        console.log("After add product", store.bearProducts)
+        setDatabase(mappingToAddDb); */
     };
 
     const handleRemoveAllProducts = (id: number) => {
-        /* const mappingToRemove = database.map((data) => data.id === id 
+        const mappingToRemove = database.map((data: ProductsProps) => data.id === id 
             ? {...data, quantity: 0} 
             : data);
-        setDatabase(mappingToRemove); */
-        store.removeAllProducts(id);
+        setDatabase(mappingToRemove);
+        store.removeAllProducts(mappingToRemove);
     };
 
     if (isLoading) {
@@ -117,7 +123,7 @@ export default function AllProducts() {
                                     -
                                 </button>
                                 
-                                    <p className='text-sm -mx-10'>Quantity: <span className="text-lg text-blue-400">{product.quantity}</span></p>
+                                <p className='text-sm -mx-10'>Quantity: <span className="text-lg text-blue-400">{product.quantity}</span></p>
                                 
                                 <button type="button" onClick={() => handleAddProduct(product.id)}
                                     className='w-[40px] h-[40px] font-bold bg-blue-500 rounded-full disabled:opacity-50'
