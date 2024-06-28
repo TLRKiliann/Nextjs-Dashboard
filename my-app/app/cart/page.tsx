@@ -1,17 +1,43 @@
 "use client";
 
 import { ProductsProps } from '@/app/lib/definitions';
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { useStore } from '@/app/lib/store';
 import usePersistStore from '@/app/helpers/usePersistStore';
 import Card from '@/app/components/Card';
+import { products } from '../lib/products';
 
 export default function ShoppingCartPage() {
 
-    //zustand bearProducts
+    const [database, setDatabase] = useState<ProductsProps[]>(products);
+
+    // zustand
     const store = usePersistStore(useStore, (state) => state);
 
+    if (!store) {
+        return <div>Loading...</div>;
+    }
+
+    const handleDeleteProduct = (id: number) => {
+        //store.deleteProducts(id);
+    };
+
+    const handleAddProduct = (id: number) => {
+        const mappingToAdd = database?.find((data) => data.id === id);
+        if (mappingToAdd) {
+            const updatedProduct = { ...mappingToAdd, quantity: mappingToAdd?.quantity + 1 };
+            store.addProducts(updatedProduct);
+        };
+        const mappingToAddDb = database.map((data) => data.id === id
+            ? {...data, quantity: data.quantity + 1} 
+            : data);
+        setDatabase(mappingToAddDb);
+    };
+
+    const handleRemoveAllProducts = (id: number) => {
+        //store.removeAllProducts(id);
+    };
 
     return (
         <div className='min-h-screen grid grid-cols-3 grid-flow-row bg-slate-200 gap-4 p-4'>
@@ -52,27 +78,30 @@ export default function ShoppingCartPage() {
 
                         <div className='w-full'>
                             <div className='flex flex-row items-center justify-evenly my-4'>
-                                <button type="button" onClick={() => store?.deleteProducts(product.id)}
+                                <button type="button" onClick={() => handleDeleteProduct(product.id)}
                                     className='w-[40px] h-[40px] font-bold bg-blue-500 rounded-full disabled:opacity-50'
                                     disabled={product.quantity < 1 ? true : false}
+                                    aria-label={`Remove one ${product.name}`}
                                 >
                                     -
                                 </button>
                                 
                                     <p className='text-sm -mx-10'>Quantity: <span className="text-lg text-blue-400">{product.quantity}</span></p>
                                 
-                                <button type="button" onClick={() => store?.addProducts(product.id)}
+                                <button type="button" onClick={() => handleAddProduct(product.id)}
                                     
                                     className='w-[40px] h-[40px] font-bold bg-blue-500 rounded-full disabled:opacity-50'
-                                    disabled={product.stock === product.quantity ? true : false}  
+                                    disabled={product.stock === product.quantity ? true : false}
+                                    aria-label={`Add one more ${product.name}`}
                                 >
                                     +
                                 </button>
                             </div>
 
                             <div className='flex justify-center'>
-                                <button type="button" onClick={() => store?.removeAllProducts(product.id)}
-                                    className='font-bold px-4 py-1 bg-red-500 rounded'>Remove</button>
+                                <button type="button" onClick={() => handleRemoveAllProducts(product.id)}
+                                    className='font-bold px-4 py-1 bg-red-500 rounded'
+                                    aria-label={`Remove all ${product.name}`}>Remove</button>
                             </div>
 
                         </div>
