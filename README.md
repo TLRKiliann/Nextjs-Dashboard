@@ -72,6 +72,8 @@ In FireFox you can get both with `slice()` function:
 
 `$ pnpm add zustand`
 
+`$ pnpm add @tanstack/react-query`
+
 (not required @types/react-leaflet = deprecated)
 
 ---

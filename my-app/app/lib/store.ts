@@ -1,7 +1,8 @@
+import { StaticImageData } from 'next/image';
 import type { ProductsProps } from './definitions';
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
-import { products } from './products';
+//import { products } from './products';
 
 // State types
 interface States {
@@ -10,20 +11,24 @@ interface States {
 
 // Action types
 interface Actions {
-  addProducts: (products: ProductsProps[]) => void;
-  removeAllProducts: () => void;
+  addProducts: (products: ProductsProps) => void;
+  deleteProducts: (products: ProductsProps) => void;
+  removeAllProducts: (products: ProductsProps[]) => void;
 };
-
+ 
 // useBearStore
-export const useStore = create(
-  persist<States & Actions>(
+export const useStore = create<States & Actions>()(
+  persist(
     (set) => ({
-      bearProducts: products,
-      addProducts: (newProducts) => set((state) => ({
-        bearProducts: [...state.bearProducts, ...newProducts]
+      bearProducts: [],
+      addProducts: (product) =>
+        set((state) => ({ bearProducts: [...state.bearProducts, product]
       })),
-      removeAllProducts: () => set(({
-        bearProducts: []
+      deleteProducts: (product) =>
+        set((state) => ({ bearProducts: [...state.bearProducts, product]  
+      })),
+      removeAllProducts: () =>
+        set(({ bearProducts: [] 
       })),
     }),
     {

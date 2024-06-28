@@ -1,19 +1,5 @@
-//api requests to establish ip & geolocation
-
-type GeoLocationData = {
-    ip:	string;
-    country_code: string;
-    country_name: string;
-    region_name: string;
-    city_name: string;
-    latitude: number;
-    longitude: number;
-    zip_code: string; 
-    time_zone: string; 
-    asn: string; 
-    as: string; 
-    is_proxy: boolean;	
-};
+import type { GeoLocationData, ProductsProps } from "@/app/lib/definitions";
+import { revalidatePath } from "next/cache";
 
 export const ApiPublicIp = async (): Promise<{data: {ip: string;}}> => {
     try {
@@ -47,3 +33,11 @@ export const ApiGeolocation = async ({data}:{data: {ip: string;}}): Promise<GeoL
         throw error;
     }
 }
+
+export async function getProductsData() {
+    const response = await fetch("http://localhost:3000/api/products", {
+        cache: "no-cache"
+    });
+    const products = (await response.json()) as ProductsProps[];
+    return products;
+};
