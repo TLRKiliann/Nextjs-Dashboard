@@ -1,24 +1,28 @@
 import type { Metadata } from 'next';
-import type { ProductsProps } from '../lib/definitions';
 import React from 'react';
+import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
+import { getProductsData } from "@/app/utils/api-request";
 import AllProducts from '@/app/components/AllProducts';
 
 export const metadata: Metadata = {
-    title: {
-      absolute: "Products"
-    },
-    description: "list of products"
-  };
+  title: {
+    absolute: "Products"
+  },
+  description: "list of products"
+};
   
+export default async function ProductsPage() {  
 
-export default async function ProductsPage() {
-    
-    const response = await fetch("http://localhost:3000/api/products");
-    const products = (await response.json()) as ProductsProps[];
+  const queryClient = new QueryClient();
 
-    return (
-        <>
-            <AllProducts products={products} />
-        </>
-    )
+  await queryClient.prefetchQuery({
+    queryKey: ["products"],
+    queryFn: getProductsData,
+  });
+  
+  return (
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <AllProducts />
+    </HydrationBoundary>
+  )
 };
