@@ -1,16 +1,12 @@
 "use client";
 
 import { ProductsProps } from '@/app/lib/definitions';
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import { useStore } from '@/app/lib/store';
 import usePersistStore from '@/app/helpers/usePersistStore';
-import Card from '@/app/components/Card';
-import { products } from '../lib/products';
 
 export default function ShoppingCartPage() {
-
-    const [database, setDatabase] = useState<ProductsProps[]>(products);
 
     // zustand
     const store = usePersistStore(useStore, (state) => state);
@@ -20,30 +16,31 @@ export default function ShoppingCartPage() {
     }
 
     const handleDeleteProduct = (id: number) => {
-        //store.deleteProducts(id);
+        const findId = store.bearProducts.find((bear) => bear.id === id);
+        if (findId) {
+            store.decreaseQuantity(findId.id);
+        }
     };
 
     const handleAddProduct = (id: number) => {
-        const mappingToAdd = database?.find((data) => data.id === id);
-        if (mappingToAdd) {
-            const updatedProduct = { ...mappingToAdd, quantity: mappingToAdd?.quantity + 1 };
-            store.addProducts(updatedProduct);
-        };
-        const mappingToAddDb = database.map((data) => data.id === id
-            ? {...data, quantity: data.quantity + 1} 
-            : data);
-        setDatabase(mappingToAddDb);
+        const findId = store.bearProducts.find((bear) => bear.id === id);
+        if (findId) {
+            store.increaseQuantity(findId.id);
+        }
     };
 
     const handleRemoveAllProducts = (id: number) => {
-        //store.removeAllProducts(id);
+        const findId = store.bearProducts.find((bear) => bear.id === id);
+        if (findId) {
+            store.removeAllById(findId.id);
+        }
     };
 
     return (
         <div className='min-h-screen grid grid-cols-3 grid-flow-row bg-slate-200 gap-4 p-4'>
             
             {store?.bearProducts.map((product: ProductsProps) => (
-                <Card key={product.id}>
+                <div key={product.id} className="w-full h-full bg-gradient-to-tr from-slate-700 to-slate-950 rounded-md">
                     
                     <div className='w-full h-full flex flex-col items-center justify-between rounded-md'>
 
@@ -108,7 +105,7 @@ export default function ShoppingCartPage() {
 
                     </div>
 
-                </Card>
+                </div>
             ))}
         </div>
     )
