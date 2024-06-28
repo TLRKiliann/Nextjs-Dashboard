@@ -1,5 +1,5 @@
-import React from 'react'
-import HeaderProducts from '../components/HeaderProducts'
+import React from 'react';
+import HeaderProducts from '@/app/components/HeaderProducts';
 
 export default function ProductLayout({children}: {children: React.ReactNode}) {
     return (
