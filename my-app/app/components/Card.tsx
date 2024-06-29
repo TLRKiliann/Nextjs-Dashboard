@@ -104,7 +104,10 @@ export default function Card({product}: ProductProps) {
                     <div className='flex justify-center'>
                         <button type="button" onClick={handleRemoveAllProducts}
                             className='font-bold px-4 py-1 bg-red-500 rounded'
-                            aria-label={`Remove all ${product.name}`}>Remove</button>
+                            aria-label={`Remove all ${product.name}`}
+                        >
+                                Remove
+                        </button>
                     </div>
                 </div>
 
