@@ -18,6 +18,8 @@ I have a second fetch to retrieve latitude & longitude with ***SECRET_API_KEY***
 
 `https://api.ip2location.io/?key=${SECRET_API_KEY}&ip=${publicIp}`
 
+(You can use the api free of charge with https://www.ip2location.io/).
+
 I had some problems with a **window is undefined** error. To solve this problem in my RSC (React Server Component), I simply added :
 
 `export const dynamic = "force-dynamic";`
@@ -46,10 +48,12 @@ In FireFox you can get both with `slice()` function:
 
 > Login to access to the dashboard by a middleware.
 
-1. Switch user connection Offline to Online
+1. Switch User connection Offline to Online
 2. Catch public IP with date when User logs in
 3. Access dashboard for Admin (only)
 4. Access Cart and Products for User.
+5. State management with Zustand
+6. Asynchronous state management useQuery
 
 ---
 
