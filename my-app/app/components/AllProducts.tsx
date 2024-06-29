@@ -15,7 +15,7 @@ export default function AllProducts() {
         staleTime: 10 * 1000,
     });
 
-    const [database, setDatabase] = useState<ProductsProps[]>(data!);
+    const [database] = useState<ProductsProps[]>(data!);
 
     if (isLoading) {
         return <div>Loading...</div>
@@ -32,7 +32,7 @@ export default function AllProducts() {
     };
 
     return (
-        <div className='min-h-screen grid grid-cols-3 grid-flow-row bg-slate-200 gap-4 p-4'>
+        <div className='min-h-screen grid grid-cols-3 xl:grid-cols-4 grid-rows-3 bg-cyan-200 gap-4 p-4'>
             {database?.map((product: ProductsProps) => (
                 <Card 
                     key={product.id}
@@ -41,4 +41,4 @@ export default function AllProducts() {
             ))}
         </div>
     )
-}
+};
