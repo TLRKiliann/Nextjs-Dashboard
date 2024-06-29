@@ -8,7 +8,7 @@ export const metadata: Metadata = {
       absolute: "Cart"
     },
     description: "cart items"
-  };
+};
 
 export default function CartPage() {
     return (
