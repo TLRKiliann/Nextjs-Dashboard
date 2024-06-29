@@ -38,17 +38,17 @@ export default function ShoppingCartPage() {
 
     return (
         <div className='w-full min-h-screen grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 
-            2xl:grid-cols-5 grid-rows-3 text-slate-100 bg-slate-200 gap-4 p-4'>
+            2xl:grid-cols-5 grid-rows-3 text-slate-100 bg-cyan-200 gap-4 p-4'>
         
             {store?.bearProducts.map((product: ProductsProps) => (
-                <div key={product.id} className="w-[300px] h-[300px] bg-gradient-to-bl from-slate-950 to-slate-700 
+                <div key={product.id} className="w-[300px] h-[300px] bg-gradient-to-bl from-slate-950 to-slate-800/90 
                     m-auto rounded-md shadow-out">
                     
                     <div className='w-full h-full flex flex-col items-center justify-between rounded-md'>
 
                         <div className="w-full h-[70%] flex flex-row items-start justify-center rounded-tl-md rounded-tr-md 
                             bg-gradient-to-t from-slate-800/70 to-cyan-600">
-                            <div className='w-[140px] h-[80px] border-none rounded-tl-md rounded-br-md shadow-lg'>
+                            <div className='w-[140px] h-[80px] border-none rounded-tl-md rounded-br-md'>
                                 <Image src={product.img}
                                     width={100}
                                     height={100}
@@ -72,7 +72,7 @@ export default function ShoppingCartPage() {
                                     )
                                 }
 
-                                <p className='text-base font-bold'>Price: {product.price}.-</p>
+                                <p className='text-base font-bold text-slate-200 mt-2'>Price: {product.price}.-</p>
                             </div>
                         </div>
 
@@ -80,21 +80,26 @@ export default function ShoppingCartPage() {
                             <div className='flex flex-row items-center justify-evenly my-4'>
                                 <button type="button" onClick={() => handleDeleteProduct(product.id)}
                                     className='w-[40px] h-[40px] hover:text-lg font-bold transform duration-100 ease-in-out hover:scale-105 
-                                        active:scale-95 hover:text-white active:text-slate-300 bg-cyan-600 hover:bg-cyan-400/70 active:bg-cyan-700
-                                        rounded-full disabled:opacity-50 px-[10px] pt-[0px] hover:pt-[1px] active:pt-[0px]'
+                                        active:scale-95 text-slate-300/90 hover:text-slate-300 active:text-slate-500 bg-gradient-to-bl from-slate-900 
+                                        hover:from-slate-800/80 active:from-slate-950 from-10% to-cyan-600 hover:to-cyan-500/80 
+                                        active:to-cyan-700 hover:shadow-lg active:shadow-indarker to-90%
+                                        rounded-full disabled:opacity-50 px-[10px] pt-[0px] hover:pt-[1px] active:pt-[1px]'
                                     disabled={product.quantity < 1 ? true : false}
                                     aria-label={`Remove one ${product.name}`}
                                 >
                                     -
                                 </button>
                                 
-                                    <p className='w-[100px] text-center text-sm -mx-10'>Quantity: <span className="text-lg text-cyan-400">{product.quantity}</span></p>
+                                    <p className='w-[120px] text-center text-base -mx-4'>
+                                        Quantity: <span className="text-lg text-cyan-400">{product.quantity}</span>
+                                    </p>
                                 
                                 <button type="button" onClick={() => handleAddProduct(product.id)}
-                                    
                                     className='w-[40px] h-[40px] hover:text-lg font-bold transform duration-100 ease-in-out hover:scale-105 
-                                        active:scale-95 hover:text-white active:text-slate-300 bg-cyan-600 hover:bg-cyan-400/70 active:bg-cyan-700
-                                        rounded-full disabled:opacity-50 px-[10px] pt-[0px] hover:pt-[1px] active:pt-[0px]'
+                                        active:scale-95 text-slate-300/90 hover:text-slate-300 active:text-slate-500 bg-gradient-to-bl from-slate-900 
+                                        hover:from-slate-800/80 active:from-slate-950 from-10% to-cyan-600 hover:to-cyan-500/80 
+                                        active:to-cyan-700 hover:shadow-lg active:shadow-indarker to-90% 
+                                        rounded-full disabled:opacity-50 px-[10px] pt-[0px] hover:pt-[1px] active:pt-[1px]'
                                     disabled={product.stock === product.quantity ? true : false}
                                     aria-label={`Add one more ${product.name}`}
                                 >
@@ -102,12 +107,13 @@ export default function ShoppingCartPage() {
                                 </button>
                             </div>
 
-                            <div className='flex justify-center mb-4'>
+                            <div className='flex justify-center mb-6'>
                                 <button type="button" onClick={() => handleRemoveAllProducts(product.id)}
-                                    className='font-bold
+                                    className='text-sm font-bold text-slate-300/70 hover:text-slate-300 active:text-slate-400
                                         transform duration-100 ease-in-out hover:scale-105 active:scale-95
-                                        bg-red-500 hover:bg-red-600 active:bg-red-700
-                                        px-4 py-1 rounded'
+                                        bg-gradient-to-tr from-red-700/70 hover:from-red-600/90 active:from-red-800/90 from-10% 
+                                        via-red-500 hover:via-red-500 active:via-red-800 via-50% to-red-700/70 
+                                        hover:to-red-600/90 active:to-red-800/90 to-90% px-4 py-1 rounded'
                                     aria-label={`Remove all ${product.name}`}>Remove</button>
                             </div>
 
