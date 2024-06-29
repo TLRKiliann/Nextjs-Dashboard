@@ -10,7 +10,7 @@ export default function Loader() {
                 width={40}
                 height={40}
                 alt="img loader"
-                className="w-[50px] h-[50px] animate-spin object-cover" 
+                className="w-[50px] h-auto animate-spin object-cover" 
             />
         </div>
     )
