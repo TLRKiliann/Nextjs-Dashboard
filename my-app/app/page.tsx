@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function Home() {
 
   return (
-    <main className="flex flex-col items-center justify-center w-full min-h-screen 
+    <div className="flex flex-col items-center justify-center w-full min-h-screen 
       bg-gradient-to-tr from-slate-800 to-slate-950 p-4">
 
       <div className="h-[20%]">
@@ -29,6 +29,6 @@ export default function Home() {
         </li>
       </div>
 
-    </main>
+    </div>
   );
 }
