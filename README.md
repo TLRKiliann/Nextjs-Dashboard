@@ -10,11 +10,11 @@ Nextjs 14 - TypeScript - Tailwind
 
 > Retrieve the public IP & determine the location by latitude & longitude on the react-leaflet map.
 
-I did a fetch to retrive public IP from :
+I fetched the public IP from :
 
 [https://jsonip.com/](https://jsonip.com/)
 
-My second fetch to retrieve latitude & longitude with ***SECRET_API_KEY*** & ***publicIp*** to customize url, such as:
+I have a second fetch to retrieve latitude & longitude with ***SECRET_API_KEY*** & ***publicIp*** to customize url, such as:
 
 `https://api.ip2location.io/?key=${SECRET_API_KEY}&ip=${publicIp}`
 
@@ -34,7 +34,7 @@ In FireFox you can get both with `slice()` function:
 
 ---
 
-> Manage products (delete & create)
+> Manage products (delete & create) as ADMIN
 
 1. Products.tsx 
 2. CreateProduct.tsx
@@ -47,14 +47,19 @@ In FireFox you can get both with `slice()` function:
 > Login to access to the dashboard by a middleware.
 
 1. Switch user connection Offline to Online
-2. Catch public IP with date
-3. Access to dashboard Admin VS User
+2. Catch public IP with date when User logs in
+3. Access dashboard for Admin (only)
+4. Access Cart and Products for User.
 
 ---
 
 *under development*
 
 > Use NextAuth without API connection, but with credentials of db.
+
+1. PostgreSQL
+2. Prisma
+3. NextAuth
 
 ---
 
