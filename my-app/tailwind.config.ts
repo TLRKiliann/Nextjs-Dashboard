@@ -17,7 +17,7 @@ const config: Config = {
         "sm-out": "0 0 7px rgba(100, 100, 100, 0.2)",
         "out": "0 0 10px rgba(0, 0, 0, 1)",
         "outdarker": "0 0 7px rgba(0, 0, 0, 1)",
-        "white": "0 0 7px rgba(255, 255, 255, 1)",
+        "whitecustom": "0 0 7px rgba(255, 255, 255, 1)",
         "in": "inset 0 0 10px rgba(0, 0, 0, 0.2)",
         "indarker": "inset 0 0 7px rgba(0, 0, 0, 1)",
         "green": "0 0 3px rgba(74, 222, 128, 0.5)",
