@@ -51,7 +51,6 @@ export const useStore = create<States & Actions>()(
           if (typeof itemExists.quantity === "number") {
             itemExists.quantity++;
           }
-
           set({ bearProducts: [...get().bearProducts] });
         }
       },
