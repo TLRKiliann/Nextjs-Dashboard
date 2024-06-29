@@ -1,19 +1,20 @@
 "use client";
 
 import { ProductsProps } from '@/app/lib/definitions';
-import React from 'react';
+import React, { useState } from 'react';
 import { useStore } from '@/app/lib/store';
 import usePersistStore from '@/app/helpers/usePersistStore';
 import Link from 'next/link';
 import Image from 'next/image';
 import Loader from '../Loader';
 
-
 type ProductProps = {
     product: ProductsProps;
 };
 
 export default function Card({product}: ProductProps) {
+
+    const [isAdd, setIsAdd] = useState<boolean>(false);
 
     // zustand
     const store = usePersistStore(useStore, (state) => state);
@@ -22,27 +23,11 @@ export default function Card({product}: ProductProps) {
         return <Loader />;
     };
 
-    console.log(store.bearProducts, "store.bearProducts");
-    
-    const storeQuantity = store?.bearProducts.map((cartItem) => (
-        cartItem.id === product.id ? {...cartItem, quantity: cartItem.quantity} : cartItem)
-    );
-    console.log(storeQuantity);
-
-    const handleDeleteProduct = () => {
-        store.deleteProducts(product);
-    };
+    //console.log(store.bearProducts, "store.bearProducts");
 
     const handleAddProduct = () => {
         store.addProducts(product);
-        /* const findId = store.bearProducts.find((bear) => bear.id === id);
-        if (findId) {
-            store.increaseQuantity(findId.id);
-        } */
-    };
-
-    const handleRemoveAllProducts = () => {
-        store.removeAllById(product.id)
+        setIsAdd(true);
     };
 
     return (
@@ -59,57 +44,27 @@ export default function Card({product}: ProductProps) {
                             alt="no img" 
                         />
                     </div>
-                    <div className='w-full rounded-tr-md pt-4 pr-4'>
+                    <div className='w-[340px] h-[160px] rounded-tr-md mr-8  pt-4 pr-4'>
                         <h3 className='text-xl'>{product.family}</h3>
                         <h4 className='text-lg'>{product.name}</h4>
                         <h4 className='text-sm my-2'>Version: {product.version}</h4>
-                        
-                        {product.stock === product.quantity ? (
-                                <p className='text-base text-orange-500'>
-                                    Stock: {product.stock - product.quantity}
-                                </p>
-                            ) : (
-                                <p className='text-base text-blue-400'>
-                                    Stock: {product.stock - product.quantity}
-                                </p>
-                            )
-                        }
                         <p className='text-base font-bold'>Price: {product.price}.-</p>
                     </div>
                 </div>
 
                 <div className='w-full'>
-                    <div className='flex flex-row items-center justify-evenly my-4'>
-                        <button type="button" onClick={handleDeleteProduct}
-                            className='w-[40px] h-[40px] font-bold bg-blue-500 rounded-full disabled:opacity-50'
-                            disabled={product.quantity < 1 ? true : false}
-                            aria-label={`Remove one ${product.name}`}
-                        >
-                            -
-                        </button>
-                        
-                        <p className='text-sm -mx-10'>Quantity: <span className="text-lg text-blue-400">
-                            {product.quantity}
-                            </span>
-                        </p>
+                    <div className='flex items-center justify-center mt-4'>
                         
                         <button type="button" onClick={handleAddProduct}
-                            className='w-[40px] h-[40px] font-bold bg-blue-500 rounded-full disabled:opacity-50'
-                            disabled={product.stock === product.quantity ? true : false}
+                            className='w-full text-sm font-bold bg-blue-500 hover:bg-blue-600 
+                                active:bg-blue-700 rounded disabled:opacity-50 mx-4 px-4 py-2'
+                            disabled={isAdd}
                             aria-label={`Add one more ${product.name}`}
                         >
-                            +
+                            Add to Cart
                         </button>
                     </div>
 
-                    <div className='flex justify-center'>
-                        <button type="button" onClick={handleRemoveAllProducts}
-                            className='font-bold px-4 py-1 bg-red-500 rounded'
-                            aria-label={`Remove all ${product.name}`}
-                        >
-                                Remove
-                        </button>
-                    </div>
                 </div>
 
                 <div className='text-center my-4'>
