@@ -5,6 +5,7 @@ import React from 'react';
 import Image from 'next/image';
 import { useStore } from '@/app/lib/store';
 import usePersistStore from '@/app/helpers/usePersistStore';
+import Link from 'next/link';
 
 export default function ShoppingCartPage() {
 
@@ -14,6 +15,8 @@ export default function ShoppingCartPage() {
     if (!store) {
         return <div>Loading...</div>;
     }
+
+    const storeQuantity: number = store.bearProducts.reduce((a: number,b: {quantity: number}) => a + b.quantity, 0);
 
     const handleDeleteProduct = (id: number) => {
         const findId = store.bearProducts.find((bear) => bear.id === id);
@@ -40,7 +43,8 @@ export default function ShoppingCartPage() {
         <div className='w-full min-h-screen grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 
             2xl:grid-cols-5 grid-rows-3 text-slate-100 bg-cyan-200 gap-4 p-4'>
         
-            {store?.bearProducts.map((product: ProductsProps) => (
+            {storeQuantity > 0 ? (
+                store.bearProducts.map((product: ProductsProps) => (
                 <div key={product.id} className="w-[300px] h-[300px] bg-gradient-to-bl from-slate-950 to-slate-800/90 
                     m-auto rounded-md shadow-out">
                     
@@ -72,7 +76,9 @@ export default function ShoppingCartPage() {
                                     )
                                 }
 
-                                <p className='text-base font-bold text-slate-200 mt-2'>Price: {product.price}.-</p>
+                                <p className='text-base font-bold text-slate-200 mt-2'>
+                                    Price: {product.price}.-
+                                </p>
                             </div>
                         </div>
 
@@ -116,13 +122,26 @@ export default function ShoppingCartPage() {
                                         hover:to-red-600/90 active:to-red-800/90 to-90% px-4 py-1 rounded'
                                     aria-label={`Remove all ${product.name}`}>Remove</button>
                             </div>
-
                         </div>
-
+                    </div>
+                </div>
+            ))) : (
+                <div 
+                    className='absolute top-4 right-4 bottom-4 left-4 flex items-center justify-center 
+                        bg-gradient-to-tr from-cyan-800 from-10% to-slate-950 to-90%'
+                >
+                    <div className='border border-cyan-400 bg-cyan-400/70 rounded-md'>
+                        <h3 className='text-xl text-center text-cyan-200 px-2 pt-2'>
+                            Cart is empty !
+                        </h3>
+                        <li className='list-none text-sm text-center text-blue-600 hover:text-blue-700 active:text-blue-800 p-2'>
+                            <Link href="/products">Go to products</Link>
+                        </li>
                     </div>
 
+                    
                 </div>
-            ))}
+            )}
         </div>
     )
 }
