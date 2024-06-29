@@ -27,7 +27,7 @@ export default function Notifications() {
 
             {isOpenRing === true ? (
                 
-                <div className='absolute w-[140px] p-0 h-auto text-slate-500/90 bg-slate-200 mt-2 -ml-14
+                <div className='absolute z-40 w-[130px] h-auto text-slate-500/90 bg-slate-200 mt-2 -ml-12
                     rounded-bl-md rounded-br-md'>
 
                     <span onClick={() => setIsOpenRing(false)} 
@@ -35,7 +35,7 @@ export default function Notifications() {
                             hover:bg-slate-300 icon-hover-container px-2 py-1'>
                         <IoReaderSharp size={16} className='text-slate-500/70 icon-hover' />
                         <p className='text-sm mx-2'>
-                            Read email
+                            Read notes
                         </p>
                     </span>
 

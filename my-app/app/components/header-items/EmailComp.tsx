@@ -27,7 +27,7 @@ export default function EmailComp() {
 
             {isOpen === true ? (
                 
-                <div className='absolute w-[140px] p-0 h-auto text-slate-500/90 bg-slate-200 mt-2 -ml-14
+                <div className='absolute w-[130px] h-auto text-slate-500/90 bg-slate-200 mt-2 -ml-12
                     rounded-bl-md rounded-br-md'>
 
                     <span onClick={() => setIsOpen(false)} 
