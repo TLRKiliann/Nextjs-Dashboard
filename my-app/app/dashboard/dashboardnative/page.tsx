@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function DashboardPage() {
     return (
         <React.Fragment>
-            <div className='absolute right-0 z-10 flex flex-row items-center w-[80%] xl:w-[86%] h-[10vh] 
+            <div className='absolute z-40 right-0 flex flex-row items-center w-[80%] xl:w-[86%] h-[10vh] 
                 bg-slate-200 border-b border-slate-300/20 shadow-md'>
                 <Suspense fallback={<Loader />}>
                     <Header />
