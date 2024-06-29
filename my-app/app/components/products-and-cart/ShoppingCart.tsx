@@ -56,7 +56,7 @@ export default function ShoppingCartPage() {
                                 <Image src={product.img}
                                     width={100}
                                     height={100}
-                                    className="w-full h-full object-fit rounded-tl-md rounded-br-md" 
+                                    className="w-full h-auto object-fit rounded-tl-md rounded-br-md" 
                                     alt="no img" 
                                 />
                             </div>
@@ -130,16 +130,15 @@ export default function ShoppingCartPage() {
                     className='absolute top-4 right-4 bottom-4 left-4 flex items-center justify-center 
                         bg-gradient-to-tr from-cyan-800 from-10% to-slate-950 to-90%'
                 >
-                    <div className='border border-cyan-400 bg-cyan-400/70 rounded-md'>
-                        <h3 className='text-xl text-center text-cyan-200 px-2 pt-2'>
+                    <div className='bg-cyan-400/70 border border-cyan-400 rounded-md'>
+                        <h3 className='text-xl text-center text-slate-100 px-2 pt-2'>
                             Cart is empty !
                         </h3>
-                        <li className='list-none text-sm text-center text-blue-600 hover:text-blue-700 active:text-blue-800 p-2'>
+                        <li className='list-none text-sm text-center text-blue-600 hover:text-blue-700 
+                            active:text-blue-800 p-2'>
                             <Link href="/products">Go to products</Link>
                         </li>
                     </div>
-
-                    
                 </div>
             )}
         </div>
