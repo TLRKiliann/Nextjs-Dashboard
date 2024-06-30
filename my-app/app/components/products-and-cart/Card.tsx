@@ -1,7 +1,7 @@
 "use client";
 
 import { ProductsProps } from '@/app/lib/definitions';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useStore } from '@/app/lib/store';
 import usePersistStore from '@/app/helpers/usePersistStore';
 import Link from 'next/link';

@@ -41,7 +41,7 @@ export default function ShoppingCartPage() {
 
     return (
         <div className='w-full min-h-screen grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 
-            2xl:grid-cols-5 grid-rows-3 text-slate-100 bg-cyan-200 gap-4 p-4'>
+            2xl:grid-cols-5 grid-rows-3 text-slate-100 bg-slate-200 gap-4 p-4'>
         
             {storeQuantity > 0 ? (
                 store.bearProducts.map((product: ProductsProps) => (
