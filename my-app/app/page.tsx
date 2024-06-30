@@ -21,14 +21,18 @@ export default function Home() {
 
       <div className="mt-20">
         <li className="list-none transform durantion-100 ease-in-out text-blue-500 hover:text-blue-400 hover:scale-105 active:text-blue-700">
-          <Link href="/dashboard/dashboardnative">Dashboard</Link>
+          <Link href="/dashboard/dashboardnative">Dashboard (login as admin required)</Link>
         </li>
 
         <li className="list-none transform durantion-100 ease-in-out text-blue-500 hover:text-blue-400 hover:scale-105 active:text-blue-700">
-          <Link href="/products">Products</Link>
+          <Link href="/products">Products (login as user required)</Link>
         </li>
-      </div>
 
+        <li className="list-none transform durantion-100 ease-in-out text-blue-500 hover:text-blue-400 hover:scale-105 active:text-blue-700">
+          <Link href="/login">Login</Link>
+        </li>
+
+      </div>
     </div>
   );
 }
