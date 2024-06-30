@@ -83,6 +83,12 @@ In FireFox you can get both with `slice()` function:
 
 `$ pnpm add @tanstack/react-query`
 
+`$ pnpm add jsonwebtoken`
+
+`$ pnpm add @types/jsonwebtoken`
+
+`$ pnpm add react-hook-form`
+
 (not required @types/react-leaflet = deprecated)
 
 ---
