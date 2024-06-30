@@ -23,8 +23,6 @@ export default function AllProducts() {
 
     if (!data) {
         return <div>No data</div>
-    } else {
-        console.log("data + cores : ", data)
     };
 
     if (isError) {

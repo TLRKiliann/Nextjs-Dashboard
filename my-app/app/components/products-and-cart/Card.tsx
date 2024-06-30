@@ -28,7 +28,7 @@ export default function Card({product}: ProductProps) {
     };
 
     return (
-        <div key={product.id} className="w-full h-full bg-gradient-to-tr from-slate-700 to-slate-950 rounded-md">
+        <div key={product.id} className="w-full h-full text-slate-100/90 bg-gradient-to-tr from-slate-700 to-slate-950 rounded-md">
             
             <div className='w-full h-full flex flex-col items-center justify-between rounded-md'>
 
@@ -53,8 +53,8 @@ export default function Card({product}: ProductProps) {
                     <div className='flex items-center justify-center mt-4'>
                         
                         <button type="button" onClick={handleAddProduct}
-                            className='w-full text-sm font-bold bg-blue-500 hover:bg-blue-600 
-                                active:bg-blue-700 rounded disabled:opacity-50 mx-4 px-4 py-2'
+                            className='w-[120px] h-[38px] text-sm font-bold bg-blue-500 hover:bg-blue-600 
+                                active:bg-blue-700 rounded disabled:opacity-50 m-auto'
                             aria-label={`Add one more ${product.name}`}
                         >
                             Add to Cart
