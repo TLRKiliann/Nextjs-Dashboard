@@ -41,7 +41,7 @@ export default function ShoppingCartPage() {
 
     return (
         <div className='w-full min-h-screen grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 
-            2xl:grid-cols-5 grid-rows-3 text-slate-100 bg-cyan-200 gap-4 p-4'>
+            2xl:grid-cols-5 grid-rows-3 text-slate-100 bg-slate-200 gap-4 p-4'>
         
             {storeQuantity > 0 ? (
                 store.bearProducts.map((product: ProductsProps) => (
@@ -56,7 +56,7 @@ export default function ShoppingCartPage() {
                                 <Image src={product.img}
                                     width={100}
                                     height={100}
-                                    className="w-full h-full object-fit rounded-tl-md rounded-br-md" 
+                                    className="w-full h-auto object-fit rounded-tl-md rounded-br-md" 
                                     alt="no img" 
                                 />
                             </div>
@@ -113,33 +113,37 @@ export default function ShoppingCartPage() {
                                 </button>
                             </div>
 
-                            <div className='flex justify-center mb-6'>
+                            <div className='flex flex-col justify-center'>
                                 <button type="button" onClick={() => handleRemoveAllProducts(product.id)}
-                                    className='text-sm font-bold text-slate-300/70 hover:text-slate-300 active:text-slate-400
+                                    className='w-[90px] h-[30px] text-sm font-bold text-slate-300/70 hover:text-slate-300 active:text-slate-400
                                         transform duration-100 ease-in-out hover:scale-105 active:scale-95
                                         bg-gradient-to-tr from-red-700/70 hover:from-red-600/90 active:from-red-800/90 from-10% 
                                         via-red-500 hover:via-red-500 active:via-red-800 via-50% to-red-700/70 
-                                        hover:to-red-600/90 active:to-red-800/90 to-90% px-4 py-1 rounded'
+                                        hover:to-red-600/90 active:to-red-800/90 to-90% m-auto rounded'
                                     aria-label={`Remove all ${product.name}`}>Remove</button>
+                                <li className='list-none text-sm text-center text-blue-500 hover:text-blue-600 
+                                    active:text-blue-700 py-4'>
+                                    <Link href={`/products/${product.id}`}>View more</Link>
+                                </li>
                             </div>
+
                         </div>
                     </div>
                 </div>
             ))) : (
                 <div 
                     className='absolute top-4 right-4 bottom-4 left-4 flex items-center justify-center 
-                        bg-gradient-to-tr from-cyan-800 from-10% to-slate-950 to-90%'
+                        bg-gradient-to-bl from-slate-500 from-10% to-slate-300 to-90%'
                 >
-                    <div className='border border-cyan-400 bg-cyan-400/70 rounded-md'>
-                        <h3 className='text-xl text-center text-cyan-200 px-2 pt-2'>
+                    <div className='rounded-md'>
+                        <h3 className='text-xl text-center text-slate-100 px-2 pt-2'>
                             Cart is empty !
                         </h3>
-                        <li className='list-none text-sm text-center text-blue-600 hover:text-blue-700 active:text-blue-800 p-2'>
-                            <Link href="/products">Go to products</Link>
+                        <li className='list-none text-sm text-center text-blue-500 hover:text-blue-600 
+                            active:text-blue-700 p-2'>
+                            <Link href="/products">Go back to products</Link>
                         </li>
                     </div>
-
-                    
                 </div>
             )}
         </div>

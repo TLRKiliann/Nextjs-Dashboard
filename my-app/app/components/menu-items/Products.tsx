@@ -78,7 +78,7 @@ export default function Products() {
     return (
         <div className='relative mt-0 h-[60%] z-10'>
             
-            <div className='flex flex-col items-center justify-center w-full h-[100%]
+            <div className='absolute -z-10 flex flex-col items-center justify-center w-full h-[100%]
                 overflow-y-scroll no-scrollbar md:pt-80 lg:pt-[25%] xl:pt-[20%] 2xl:pt-[10%]'>
 
                 {listProducts.map((product: ProductsProps) => (

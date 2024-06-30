@@ -10,24 +10,24 @@ export default function HeaderProducts() {
             <nav className="w-full h-full">
                 <ul className='w-full h-full flex flex-row items-center justify-end'>
 
-                    <li className='mr-6'>
+                    <li className='hover:text-blue-500 active:text-blue-600 mr-6'>
                         <Link href="/">Home</Link>
                     </li>
 
-                    <li className='mr-6'>
+                    <li className='hover:text-blue-500 active:text-blue-600 mr-6'>
                         <Link href="/products">Shop</Link>
                     </li>
 
-                    <li className='mr-6'>
+                    <li className='hover:text-blue-500 active:text-blue-600 mr-6'>
                         <Link href="/contact">Contact</Link>
                     </li>
 
-                    <li className='mr-4'>
+                    <li className='hover:text-blue-500 active:text-blue-600 mr-4'>
                         <Link href="/login">Login</Link>
                     </li>
 
                     <li className='relative flex items-center justify-center w-[40px] h-[40px] 
-                        transform duration-100 ease-in-out hover:scale-105 active:scale-95
+                        transform duration-200 ease-in-out
                         hover:text-white hover:bg-blue-200 active:text-slate-200 active:bg-blue-300
                         rounded-full mr-8'>
                         <Link href="/products/cart">

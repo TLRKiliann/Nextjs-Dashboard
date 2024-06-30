@@ -1,7 +1,7 @@
 "use client";
 
 import { ProductsProps } from '@/app/lib/definitions';
-import React, { useState } from 'react';
+import React from 'react';
 import { useStore } from '@/app/lib/store';
 import usePersistStore from '@/app/helpers/usePersistStore';
 import Link from 'next/link';
@@ -14,8 +14,6 @@ type ProductProps = {
 
 export default function Card({product}: ProductProps) {
 
-    const [isAdd, setIsAdd] = useState<boolean>(false);
-
     // zustand
     const store = usePersistStore(useStore, (state) => state);
 
@@ -27,11 +25,10 @@ export default function Card({product}: ProductProps) {
 
     const handleAddProduct = () => {
         store.addProducts(product);
-        setIsAdd(true);
     };
 
     return (
-        <div key={product.id} className="w-full h-full bg-gradient-to-tr from-slate-700 to-slate-950 rounded-md">
+        <div key={product.id} className="w-full h-full text-slate-100/90 bg-gradient-to-tr from-slate-700 to-slate-950 rounded-md">
             
             <div className='w-full h-full flex flex-col items-center justify-between rounded-md'>
 
@@ -40,7 +37,7 @@ export default function Card({product}: ProductProps) {
                         <Image src={product.img}
                             width={100}
                             height={100}
-                            className="w-[120px] h-[120px] object-fit rounded-tl-md rounded-br-md shadow-white" 
+                            className="w-[120px] h-auto object-fit rounded-tl-md rounded-br-md shadow-white" 
                             alt="no img" 
                         />
                     </div>
@@ -56,9 +53,8 @@ export default function Card({product}: ProductProps) {
                     <div className='flex items-center justify-center mt-4'>
                         
                         <button type="button" onClick={handleAddProduct}
-                            className='w-full text-sm font-bold bg-blue-500 hover:bg-blue-600 
-                                active:bg-blue-700 rounded disabled:opacity-50 mx-4 px-4 py-2'
-                            disabled={isAdd}
+                            className='w-[120px] h-[38px] text-sm font-bold bg-blue-500 hover:bg-blue-600 
+                                active:bg-blue-700 rounded disabled:opacity-50 m-auto'
                             aria-label={`Add one more ${product.name}`}
                         >
                             Add to Cart
