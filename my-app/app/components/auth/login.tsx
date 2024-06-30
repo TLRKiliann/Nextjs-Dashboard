@@ -1,11 +1,12 @@
 'use client';
 
+import { State } from "@/app/lib/definitions";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 //import { useForm, SubmitHandler } from "react-hook-form";
 import Link from "next/link";
 import { useFormState } from 'react-dom';
-import { State, onSubmitFunc } from "@/app/lib/actions";
+import { onSubmitFunc } from "@/app/lib/actions";
 
 type FormValues = {
     username: string;

@@ -4,9 +4,9 @@ import Login from "@/app/components/auth/login";
 
 export const metadata: Metadata = {
     title: {
-      absolute: "Products"
+      absolute: "Login"
     },
-    description: "list of products"
+    description: "login page"
 };
 
 export default function LoginPage() {
