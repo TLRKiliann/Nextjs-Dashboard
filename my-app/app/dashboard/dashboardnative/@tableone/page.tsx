@@ -3,11 +3,14 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import TablePage from '@/app/components/TablePage';
-//import { customers } from '@/app/lib/datadb';
 
 export default async function TableOnePage() {
 
     const response = await fetch("http://localhost:3000/api/customers");
+    if (!response) {
+        //throw new Error("Error: server cannot fetch customers");
+        console.error("Error with server, unable to obtain response for clients");
+    };
     const customers = (await response.json()) as CustomersProps[];
 
     return (

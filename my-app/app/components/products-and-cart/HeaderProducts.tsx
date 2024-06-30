@@ -5,7 +5,7 @@ import CartItemsQuantity from './CartItemsQuantity';
 
 export default function HeaderProducts() {
     return (
-        <div className='fixed z-20 top-0 w-full h-[70px] text-slate-700/90 bg-cyan-200 
+        <div className='fixed z-20 top-0 w-full h-[70px] text-slate-700/90 bg-slate-200 
             transition duration-300 ease-in-out opacity-0 hover:opacity-100'>
             <nav className="w-full h-full">
                 <ul className='w-full h-full flex flex-row items-center justify-end'>

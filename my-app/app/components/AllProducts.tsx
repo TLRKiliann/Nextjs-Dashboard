@@ -32,7 +32,7 @@ export default function AllProducts() {
     };
 
     return (
-        <div className='min-h-screen grid grid-cols-3 xl:grid-cols-4 grid-rows-3 bg-cyan-200 gap-4 p-4'>
+        <div className='min-h-screen grid grid-cols-3 xl:grid-cols-4 grid-rows-3 bg-slate-200 gap-4 p-4'>
             {database?.map((product: ProductsProps) => (
                 <Card 
                     key={product.id}
