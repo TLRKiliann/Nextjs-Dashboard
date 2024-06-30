@@ -18,6 +18,14 @@ export default function ProductIdCard({params}: {params: {productId: string}}) {
         staleTime: 10 * 1000,
     });
 
+    if (!data) {
+        throw new Error("Error: problem with data (useQuery)");
+    };
+
+    if (isError) {
+        throw new Error("Error - useQuery: ", error);
+    };
+    
     const [database] = useState<ProductsProps[]>(data!);
 
     // zustand
@@ -27,19 +35,12 @@ export default function ProductIdCard({params}: {params: {productId: string}}) {
         return <Loader />;
     };
 
-    if (isLoading) {
-        return <div>Loading...</div>
-    };
-
-    if (!data) {
-        return <div>No data</div>
-    };
-
-    if (isError) {
-        return <h2>{error.message}</h2>
-    };
-
     const storeQuantity: number = store.bearProducts.reduce((a: number,b: {quantity: number}) => a + b.quantity, 0);
+
+    // useQuery
+    if (isLoading) {
+        return <Loader />
+    };
 
     return (
         <div className='min-h-screen bg-gradient-to-tr from-slate-700 to-slate-950 pt-[25%]'>

@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getProductsData } from '@/app/utils/api-request';
 import Card from './products-and-cart/Card';
+import Loader from './Loader';
 
 export default function AllProducts() {
    
@@ -18,15 +19,15 @@ export default function AllProducts() {
     const [database] = useState<ProductsProps[]>(data!);
 
     if (isLoading) {
-        return <div>Loading...</div>
+        return <Loader />
     };
 
     if (!data) {
-        return <div>No data</div>
+        throw new Error("Error: problem with data (useQuery)");
     };
 
     if (isError) {
-        return <h2>{error.message}</h2>
+        throw new Error("Error - useQuery: ", error);
     };
 
     return (
