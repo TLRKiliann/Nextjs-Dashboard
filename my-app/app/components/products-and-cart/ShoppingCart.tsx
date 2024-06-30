@@ -113,30 +113,35 @@ export default function ShoppingCartPage() {
                                 </button>
                             </div>
 
-                            <div className='flex justify-center mb-6'>
+                            <div className='flex flex-col justify-center'>
                                 <button type="button" onClick={() => handleRemoveAllProducts(product.id)}
-                                    className='text-sm font-bold text-slate-300/70 hover:text-slate-300 active:text-slate-400
+                                    className='w-[90px] h-[30px] text-sm font-bold text-slate-300/70 hover:text-slate-300 active:text-slate-400
                                         transform duration-100 ease-in-out hover:scale-105 active:scale-95
                                         bg-gradient-to-tr from-red-700/70 hover:from-red-600/90 active:from-red-800/90 from-10% 
                                         via-red-500 hover:via-red-500 active:via-red-800 via-50% to-red-700/70 
-                                        hover:to-red-600/90 active:to-red-800/90 to-90% px-4 py-1 rounded'
+                                        hover:to-red-600/90 active:to-red-800/90 to-90% m-auto rounded'
                                     aria-label={`Remove all ${product.name}`}>Remove</button>
+                                <li className='list-none text-sm text-center text-blue-500 hover:text-blue-600 
+                                    active:text-blue-700 py-4'>
+                                    <Link href={`/products/${product.id}`}>View more</Link>
+                                </li>
                             </div>
+
                         </div>
                     </div>
                 </div>
             ))) : (
                 <div 
                     className='absolute top-4 right-4 bottom-4 left-4 flex items-center justify-center 
-                        bg-gradient-to-tr from-cyan-800 from-10% to-slate-950 to-90%'
+                        bg-gradient-to-bl from-slate-500 from-10% to-slate-300 to-90%'
                 >
-                    <div className='bg-cyan-400/70 border border-cyan-400 rounded-md'>
+                    <div className='rounded-md'>
                         <h3 className='text-xl text-center text-slate-100 px-2 pt-2'>
                             Cart is empty !
                         </h3>
-                        <li className='list-none text-sm text-center text-blue-600 hover:text-blue-700 
-                            active:text-blue-800 p-2'>
-                            <Link href="/products">Go to products</Link>
+                        <li className='list-none text-sm text-center text-blue-500 hover:text-blue-600 
+                            active:text-blue-700 p-2'>
+                            <Link href="/products">Go back to products</Link>
                         </li>
                     </div>
                 </div>
