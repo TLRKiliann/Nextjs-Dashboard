@@ -1,11 +1,7 @@
 "use server";
 
-import { redirect } from "next/navigation";
-
-export type State = {
-    status: "success";
-    message: string;
-} | null | undefined;
+//import { redirect } from "next/navigation";
+import { State } from "./definitions";
 
 export async function onSubmitFunc(prevState: State | null, data: FormData): Promise<State> {
     try {
