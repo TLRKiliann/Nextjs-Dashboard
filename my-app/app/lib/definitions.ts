@@ -1,5 +1,10 @@
 import { StaticImageData } from "next/image";
 
+export type State = {
+    status: "success";
+    message: string;
+} | null | undefined;
+
 export type GeoLocationData = {
     ip:	string;
     country_code: string;
