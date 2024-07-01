@@ -1,7 +1,7 @@
 "use server";
 
 import { State } from "./definitions";
-import { formSchema } from "./validation";
+import { formSchema, formSchemaRegister } from "./validation";
 import { ZodError } from "zod";
 
 export async function onLoginFunc(prevState: State | null, data: FormData): Promise<State> {
@@ -51,24 +51,11 @@ export async function onRegisterFunc(prevState: State | null, data: FormData): P
     try {
         //artificial promise to delete with server
         await new Promise((resolve) => setTimeout(resolve, 1000));
-        const response = await fetch('http://localhost:3000/api/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        });
-        if (response.ok) {
-            const responseData = await response.json();
-            console.log(responseData);
-            return {
-                status: "success",
-                message: `Welcome, ${data.get("username")} ${data.get("password")}!`,
-            };
-        } else {
-            alert('Invalid credentials');
-            throw new Error('Server validation error');
-        }
+        const { username, email, password } = formSchemaRegister.parse(data);
+        return {
+            status: "success",
+            message: `Welcome, ${username} ${email} ${password}!`,
+        };
     } catch (error) {
         console.error((error as Error).message);
     }
