@@ -89,6 +89,14 @@ In FireFox you can get both with `slice()` function:
 
 `$ pnpm add react-hook-form`
 
+`$ pnpm add zod @hookform/resolvers`
+
+`$ pnpm add zod-form-data`
+
+`$ pnpm add @hookform/error-message`
+
+//prisma + NextAuth
+
 (not required @types/react-leaflet = deprecated)
 
 ---
