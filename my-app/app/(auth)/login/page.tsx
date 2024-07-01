@@ -3,9 +3,7 @@ import React from "react";
 import Login from "@/app/components/auth/Login";
 
 export const metadata: Metadata = {
-    title: {
-      absolute: "Login"
-    },
+    title: "Login",
     description: "login page"
 };
 
