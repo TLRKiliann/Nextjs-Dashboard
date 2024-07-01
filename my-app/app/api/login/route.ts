@@ -26,29 +26,29 @@ export async function GET(req: Request): Promise<Response> {
 
 export async function POST(req: Request): Promise<Response> {
     if (req.method === 'POST') {
-        console.log(req.method, "post method done");
+        const body = await req.json();
+        if (body.username === 'admin' && body.password === 'password') {
+            // set TOKEN
+            const cookie = cookies();
+            const token = jwt.sign({ username: body.username }, SECRET_KEY, { expiresIn: '1h' });
+    
+            const cookieOptions = {
+                httpOnly: true,
+                path: '/',
+                secure: process.env.NODE_ENV === 'production',
+                sameSite:'strict'
+            }; 
+            // set COOKIE with TOKEN
+            cookie.set('Set-Cookie', `auth-token=${token}; ${serialize(cookieOptions)}`, {sameSite:'strict'});
+            return Response.json({message: "response from POST", body}, {status: 200, headers: {
+                "Content-Type": "application/json"
+            }});
+        } else {
+            return Response.json("login not done yet !");
+        }
     } else {
-        console.log(req.method, "post method failed");
-    }
-    const body = await req.json();
-    if (body.username === 'admin' && body.password === 'password') {
-        // set TOKEN
-        const cookie = cookies();
-        const token = jwt.sign({ username: body.username }, SECRET_KEY, { expiresIn: '1h' });
-
-        const cookieOptions = {
-            httpOnly: true,
-            path: '/',
-            secure: process.env.NODE_ENV === 'production',
-            sameSite:'strict'
-        }; 
-        // set COOKIE with TOKEN
-        cookie.set('Set-Cookie', `auth-token=${token}; ${serialize(cookieOptions)}`, {sameSite:'strict'});
-        return Response.json({message: "response from POST", body}, {status: 200, headers: {
-            "Content-Type": "application/json"
-        }});
-    } else {
-        return Response.json("login not done yet !");
+        console.log(req.method, "POST method failed for login !");
+        return Response.json("POST method failed for login !");
     }
 }
 
