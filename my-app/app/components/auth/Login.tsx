@@ -1,14 +1,14 @@
 'use client';
 
 import { State } from "@/app/lib/definitions";
+import { formSchema } from "@/app/lib/validation";
 import React, { useEffect } from "react";
-import { FieldPath, useForm } from "react-hook-form";
-//import { useForm, SubmitHandler } from "react-hook-form";
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
-import { useFormState } from 'react-dom';
+import { FieldPath, useForm } from "react-hook-form";
+//import { useForm, SubmitHandler } from "react-hook-form";
+import { useFormState, useFormStatus } from 'react-dom';
 import { onLoginFunc } from "@/app/lib/actions";
-import { formSchema } from "@/app/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ErrorMessage } from "@hookform/error-message";
 
@@ -24,6 +24,8 @@ export default function Login() {
         resolver: zodResolver(formSchema), 
     });
     //const onSubmit: SubmitHandler<FormValues> = data => console.log(data);
+    
+    const { pending } = useFormStatus();
     const [state, formAction] = useFormState<State, FormData>(onLoginFunc, null);
 
     const router = useRouter();
@@ -78,6 +80,7 @@ export default function Login() {
                             placeholder="username" 
                             required 
                             autoComplete='off'
+                            disabled={pending}
                             className='w-[70%] border border-blue-300 pl-3 py-1 rounded shadow-indarker'
                         />
                     </div>
@@ -93,6 +96,7 @@ export default function Login() {
                             id="password"
 
                             {...register("password", {
+                                pattern: /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/i,
                                 required: true, 
                                     minLength: {
                                         value: 8,
@@ -103,6 +107,7 @@ export default function Login() {
                             placeholder="password" 
                             required 
                             autoComplete='off'
+                            disabled={pending}
                             className='w-[70%] border border-blue-300 pl-3 py-1 rounded shadow-indarker'
                         />
                     </div>
@@ -110,23 +115,23 @@ export default function Login() {
                     <div className="mt-2 -mb-4">
                         <ErrorMessage name="password" errors={errors} />
                     </div>
-
                 </div>
 
                 <div className='w-full h-auto flex items-center justify-center mb-8'>
-                    <button type="submit" className='w-[80%] text-base font-bold text-slate-50 bg-blue-500 
+                    <button type="submit" disabled={pending}
+                        className='w-[80%] text-base font-bold text-slate-50 bg-blue-500 
                         hover:bg-blue-600 active:bg-blue-700 py-2 rounded shadow-lg'>
-                        Submit
+                        {pending ? "Pending..." : "Submit"}
                     </button>
                 </div>
 
                 <div className='w-[80%] h-auto m-auto flex flex-row items-center justify-between text-sm 
                     text-blue-400'>
                     <li className='list-none hover:text-blue-500 active:text-blue-600'>
-                        <Link href="/register">Not registered</Link>
+                        <Link href="/register">Don&apos;t have an account ?</Link>
                     </li>
                     <li className='list-none hover:text-blue-500 active:text-blue-600'>
-                        <Link href="/register">Password forget</Link>
+                        <Link href="/resetpassword">Forgot password ?</Link>
                     </li>
                 </div>
 
