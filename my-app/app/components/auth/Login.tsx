@@ -52,8 +52,7 @@ export default function Login() {
     return (
         <div className='w-full min-h-screen flex items-center justify-center text-base text-slate-800/70 
             bg-slate-100'>
-            <form 
-                action={formAction} 
+            <form action={formAction} 
                 className='w-[500px] h-auto bg-slate-50 p-4 rounded-lg shadow-xl'>
 
                 <div className='w-full h-auto pt-3'>
@@ -81,11 +80,12 @@ export default function Login() {
                             autoComplete='off'
                             className='w-[70%] border border-blue-300 pl-3 py-1 rounded shadow-indarker'
                         />
-                        
-                        {errors.username && <p>{errors.username.message}</p>}
-                        <ErrorMessage name="username" errors={errors} />
-
                     </div>
+
+                    <div className="-mt-2 mb-2">
+                        <ErrorMessage name="username" errors={errors} />
+                    </div>
+
                     <div className='w-[80%] flex flex-row items-center justify-between'>
                         <label htmlFor="password">Password:</label>
                         <input 
@@ -95,7 +95,7 @@ export default function Login() {
                             {...register("password", {
                                 required: true, 
                                     minLength: {
-                                        value: 10,
+                                        value: 8,
                                         message: "min length is 10"
                                     }
                             })}
@@ -105,14 +105,15 @@ export default function Login() {
                             autoComplete='off'
                             className='w-[70%] border border-blue-300 pl-3 py-1 rounded shadow-indarker'
                         />
-                        
-                        {errors.password && <p>{errors.password.message}</p>}
-                        <ErrorMessage name="password" errors={errors} />
-
                     </div>
+
+                    <div className="mt-2 -mb-4">
+                        <ErrorMessage name="password" errors={errors} />
+                    </div>
+
                 </div>
 
-                <div className='w-full h-auto flex items-center justify-center my-8'>
+                <div className='w-full h-auto flex items-center justify-center mb-8'>
                     <button type="submit" className='w-[80%] text-base font-bold text-slate-50 bg-blue-500 
                         hover:bg-blue-600 active:bg-blue-700 py-2 rounded shadow-lg'>
                         Submit
