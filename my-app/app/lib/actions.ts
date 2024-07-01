@@ -18,8 +18,8 @@ export async function onLoginFunc(prevState: State | null, data: FormData): Prom
             body: JSON.stringify(data),
         });
         if (response.ok) {
-            const responseData = (await response.json()) as State ;
-            console.log(responseData);
+            //const responseData = (await response.json()) as State;
+            //console.log(responseData);
             return {
                 status: "success",
                 message: `Welcome, ${username} ${password}!`,

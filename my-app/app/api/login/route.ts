@@ -43,6 +43,23 @@ export async function POST(req: Request): Promise<Response> {
             return Response.json({message: "response from POST", body}, {status: 200, headers: {
                 "Content-Type": "application/json"
             }});
+        } else if (body.username === 'esteban' && body.password === 'catanea79') {
+            // set TOKEN
+            const cookie = cookies();
+            const token = jwt.sign({ username: body.username }, SECRET_KEY, { expiresIn: '1h' });
+
+            const cookieOptions = {
+                httpOnly: true,
+                path: '/',
+                secure: process.env.NODE_ENV === 'production',
+                sameSite:'strict'
+            }; 
+            // set COOKIE with TOKEN
+            cookie.set('Set-Cookie', `auth-token=${token}; ${serialize(cookieOptions)}`, {sameSite:'strict'});
+            return Response.json({message: "response from POST", body}, {status: 200, headers: {
+                "Content-Type": "application/json"
+            }});
+
         } else {
             return Response.json("login not done yet !");
         }
