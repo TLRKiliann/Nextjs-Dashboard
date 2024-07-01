@@ -20,16 +20,14 @@ export default async function TableTwoPage() {
 
             <div className='flex flex-col items-center justify-between h-[80%]'>
 
-                
-                <div className='w-[95%] h-[48%] m-auto bg-slate-100 
+                <div className='w-[95%] h-[44%] m-auto bg-slate-100 
                     rounded-lg shadow-sm-out'>
                     <Suspense fallback={<Loader />}>
                         <BestSellersChart products={products} />
                     </Suspense>
                 </div>
                 
-
-                <div className='w-[95%] h-[48%] m-auto bg-slate-100 
+                <div className='w-[95%] h-[44%] m-auto bg-slate-100 
                     rounded-lg shadow-sm-out'>
                     <Suspense fallback={<Loader />}>
                         <StockChart products={products} />
