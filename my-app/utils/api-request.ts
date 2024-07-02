@@ -1,5 +1,5 @@
 import type { GeoLocationData, ProductsProps } from "@/lib/definitions";
-import { revalidatePath } from "next/cache";
+//import { revalidatePath } from "next/cache";
 
 export const ApiPublicIp = async (): Promise<{data: {ip: string;}}> => {
     try {

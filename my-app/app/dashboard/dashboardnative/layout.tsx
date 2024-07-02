@@ -1,11 +1,21 @@
 import React from 'react';
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
-export default function DashboardNativeLayout({children, tableone, squares, tabletwo}: {
+export default async function DashboardNativeLayout({children, tableone, squares, tabletwo}: {
     children: React.ReactNode;
     tableone: React.ReactNode;
     tabletwo: React.ReactNode;
     squares: React.ReactNode;
 }) {
+
+    const session = await auth();
+
+    if (!session?.user) {
+        return redirect("/api/auth/signin");
+    }
+
+    //const user = session?.user;
     return (
         <div className='flex flex-col w-full min-h-screen bg-slate-100'>
 
