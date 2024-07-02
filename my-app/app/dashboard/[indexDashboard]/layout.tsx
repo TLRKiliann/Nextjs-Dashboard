@@ -1,10 +1,10 @@
 import React from 'react';
-import Profile from '@/app/components/menu-items/Profile';
-import DataTables from '@/app/components/menu-items/DataTables';
+import Profile from '@/components/menu-items/Profile';
+import DataTables from '@/components/menu-items/DataTables';
 import { notFound } from 'next/navigation';
-import { customers } from '@/app/lib/datadb';
-import Products from '@/app/components/menu-items/Products';
-import CreateProduct from '@/app/components/menu-items/CreateProduct';
+import { customers } from '@/lib/datadb';
+import Products from '@/components/menu-items/Products';
+import CreateProduct from '@/components/menu-items/CreateProduct';
 
 export default function DashboardIndexLayout({children, params}: {
     children: React.ReactNode;

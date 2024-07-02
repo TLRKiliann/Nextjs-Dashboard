@@ -1,4 +1,4 @@
-import { customers } from "@/app/lib/datadb";
+import { customers } from "@/lib/datadb";
 
 export async function GET() {
     return Response.json(customers);

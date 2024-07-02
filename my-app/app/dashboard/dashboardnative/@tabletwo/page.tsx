@@ -1,11 +1,11 @@
-import type { ProductsProps } from '@/app/lib/definitions';
+import type { ProductsProps } from '@/lib/definitions';
 import React, { Suspense } from 'react';
 import Link from 'next/link';
-import TablePage from '@/app/components/TablePage';
-import BestSellersChart from '@/app/components/graphs/BestSellersChart';
-import StockChart from '@/app/components/graphs/StockChart';
-//import { products } from '@/app/lib/products';
-import Loader from '@/app/components/Loader';
+import TablePage from '@/components/TablePage';
+import BestSellersChart from '@/components/graphs/BestSellersChart';
+import StockChart from '@/components/graphs/StockChart';
+//import { products } from '@/lib/products';
+import Loader from '@/components/Loader';
 
 export default async function TableTwoPage() {
 
@@ -20,16 +20,14 @@ export default async function TableTwoPage() {
 
             <div className='flex flex-col items-center justify-between h-[80%]'>
 
-                
-                <div className='w-[95%] h-[48%] m-auto bg-slate-100 
+                <div className='w-[95%] h-[44%] m-auto bg-slate-100 
                     rounded-lg shadow-sm-out'>
                     <Suspense fallback={<Loader />}>
                         <BestSellersChart products={products} />
                     </Suspense>
                 </div>
                 
-
-                <div className='w-[95%] h-[48%] m-auto bg-slate-100 
+                <div className='w-[95%] h-[44%] m-auto bg-slate-100 
                     rounded-lg shadow-sm-out'>
                     <Suspense fallback={<Loader />}>
                         <StockChart products={products} />

@@ -1,9 +1,9 @@
 "use client";
 
-import { ProductsProps } from '@/app/lib/definitions';
+import { ProductsProps } from '@/lib/definitions';
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { products } from '@/app/lib/products';
+import { products } from '@/lib/products';
 
 type AllStateProps = {
     family: string;

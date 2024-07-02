@@ -2,7 +2,7 @@
 
 Handycraft Dashboard
 
-Nextjs 14 - TypeScript - Tailwind
+Nextjs 14 - TypeScript - Tailwind - PostgreSQL
 
 ![Dashboard Img](https://github.com/TLRKiliann/Nextjs-Dashboard/blob/master/my-app/public/assets/images/bg/wallpaper.png)
 
@@ -10,11 +10,11 @@ Nextjs 14 - TypeScript - Tailwind
 
 > Retrieve the public IP & determine the location by latitude & longitude on the react-leaflet map.
 
-I fetched the public IP from :
+Fetch the public IP from :
 
 [https://jsonip.com/](https://jsonip.com/)
 
-I have a second fetch to retrieve latitude & longitude with ***SECRET_API_KEY*** & ***publicIp*** to customize url, such as:
+Fetch to retrieve latitude & longitude with ***SECRET_API_KEY*** & ***publicIp*** to customize url, such as:
 
 `https://api.ip2location.io/?key=${SECRET_API_KEY}&ip=${publicIp}`
 
@@ -59,11 +59,13 @@ In FireFox you can get both with `slice()` function:
 
 *under development*
 
-> Use NextAuth without API connection, but with credentials of db.
+> Use NextAuth without API connection, but with credentials of postgresql db.
 
 1. PostgreSQL
 2. Prisma
 3. NextAuth
+4. middleware.ts
+5. auth.ts
 
 ---
 
@@ -78,6 +80,8 @@ In FireFox you can get both with `slice()` function:
 `$ pnpm add leaflet`
 
 `$ pnpm add react-leaflet`
+
+(not required @types/react-leaflet = deprecated)
 
 `$ pnpm add zustand`
 
@@ -95,9 +99,58 @@ In FireFox you can get both with `slice()` function:
 
 `$ pnpm add @hookform/error-message`
 
-//prisma + NextAuth
+`$ pnpm add @prisma/client`
 
-(not required @types/react-leaflet = deprecated)
+`$ pnpm add -D prisma`
+
+`$ pnpm prisma init --datasource-provider postgresql`
+
+(create db & table with PostgreSQL)
+
+`$ pnpm prisma migrate dev --name init`
+
+`$ pnpm add next-auth@beta @auth/prisma-adapter`
+
+`$ pnpm add bcryptjs`
+
+`$ pnpm add -D @types/bcryptjs`
+
+`$ pnpm add react-hot-toast`
+
+---
+
+#### Configuration in .env
+
+```
+POSTGRES_HOST=127.0.0.1
+POSTGRES_PORT=PPPPPPPPP
+POSTGRES_USER=UUUU
+POSTGRES_PASSWORD=XXXX
+POSTGRES_DB=DBDBDBD
+
+DATABASE_URL="postgresql://UUUU:XXXX@localhost:PPPPPPPPP/DBDBDBD?schema=public"
+
+# use: "openssl rand -base64 32"
+AUTH_SECRET="result of cmd above"
+NEXTAUTH_URL=http://localhost:3000
+```
+
+---
+
+#### Configuration in .gitignore
+
+> add .env & save.
+
+---
+
+#### Files required
+
+All files in app/(auth)/...
+
+app/api/auth/[...nextauth]/route.ts
+auth.ts
+middleware.ts
+prisma/prisma.ts
 
 ---
 

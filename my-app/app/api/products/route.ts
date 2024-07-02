@@ -1,4 +1,4 @@
-import { products } from "@/app/lib/products";
+import { products } from "@/lib/products";
 
 export async function GET() {
     return Response.json(products);

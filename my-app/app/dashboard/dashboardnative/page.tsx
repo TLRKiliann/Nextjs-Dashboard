@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 import React, { Suspense } from 'react';
-import Header from '@/app/components/Header';
-import Menu from '@/app/components/Menu';
-import Loader from '@/app/components/Loader';
+import Header from '@/components/Header';
+import Menu from '@/components/Menu';
+import Loader from '@/components/Loader';
 
 export const metadata: Metadata = {
     title: "Dashboard",
