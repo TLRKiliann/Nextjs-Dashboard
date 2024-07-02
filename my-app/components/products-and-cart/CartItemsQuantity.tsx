@@ -1,8 +1,8 @@
 "use client";
 
 import React from 'react';
-import { useStore } from '@/app/lib/store';
-import usePersistStore from '@/app/helpers/usePersistStore';
+import { useStore } from '@/lib/store';
+import usePersistStore from '@/helpers/usePersistStore';
 import Loader from '../Loader';
 
 export default function CartItemsQuantity() {

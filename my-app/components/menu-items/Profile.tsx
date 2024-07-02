@@ -1,6 +1,6 @@
 "use client";
 
-import { CustomersProps } from '@/app/lib/definitions';
+import { CustomersProps } from '@/lib/definitions';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import DataProfile from './data-profile';

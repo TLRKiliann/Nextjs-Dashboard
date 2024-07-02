@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import React, { Suspense } from 'react';
-import ShoppingCartPage from '@/app/components/products-and-cart/ShoppingCart';
-import Loader from '@/app/components/Loader';
+import ShoppingCartPage from '@/components/products-and-cart/ShoppingCart';
+import Loader from '@/components/Loader';
 
 export const metadata: Metadata = {
     title: {

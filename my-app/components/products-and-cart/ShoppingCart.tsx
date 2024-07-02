@@ -1,10 +1,10 @@
 "use client";
 
-import { ProductsProps } from '@/app/lib/definitions';
+import { ProductsProps } from '@/lib/definitions';
 import React from 'react';
 import Image from 'next/image';
-import { useStore } from '@/app/lib/store';
-import usePersistStore from '@/app/helpers/usePersistStore';
+import { useStore } from '@/lib/store';
+import usePersistStore from '@/helpers/usePersistStore';
 import Link from 'next/link';
 
 export default function ShoppingCartPage() {

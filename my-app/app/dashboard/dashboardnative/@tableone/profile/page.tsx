@@ -1,9 +1,9 @@
 import React, { Suspense } from 'react';
-import TablePage from '@/app/components/TablePage';
-import Profile from '@/app/components/menu-items/Profile';
-import { customers } from '@/app/lib/datadb';
-import ButtonGoBack from '@/app/components/ButtonGoBack';
-import Loader from '@/app/components/Loader';
+import TablePage from '@/components/TablePage';
+import Profile from '@/components/menu-items/Profile';
+import { customers } from '@/lib/datadb';
+import ButtonGoBack from '@/components/ButtonGoBack';
+import Loader from '@/components/Loader';
 
 export default function TrafficPage() {
     return (

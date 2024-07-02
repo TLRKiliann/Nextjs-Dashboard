@@ -1,14 +1,14 @@
 'use client';
 
-import { State } from "@/app/lib/definitions";
-import { formSchema } from "@/app/lib/validation";
+import { State } from "@/lib/definitions";
+import { formSchema } from "@/lib/validation";
 import React, { useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
 import { FieldPath, useForm } from "react-hook-form";
 //import { useForm, SubmitHandler } from "react-hook-form";
 import { useFormState, useFormStatus } from 'react-dom';
-import { onLoginFunc } from "@/app/lib/actions";
+import { onLoginFunc } from "@/lib/actions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ErrorMessage } from "@hookform/error-message";
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
-import { getProductsData } from "@/app/utils/api-request";
-import ProductIdCard from '@/app/components/products-and-cart/ProductIdCard';
+import { getProductsData } from "@/utils/api-request";
+import ProductIdCard from '@/components/products-and-cart/ProductIdCard';
 
 export default async function ProductIdPage({params}: {params: {productId: string}}) {
 

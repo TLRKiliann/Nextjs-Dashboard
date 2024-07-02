@@ -1,9 +1,9 @@
 import React, { Suspense } from 'react';
-import { ApiPublicIp, ApiGeolocation } from '@/app/utils/api-request';
-import TablePage from '@/app/components/TablePage';
-import MapChart from '@/app/components/graphs/MapChart';
-import ButtonGoBack from '@/app/components/ButtonGoBack';
-import Loader from '@/app/components/Loader';
+import { ApiPublicIp, ApiGeolocation } from '@/utils/api-request';
+import TablePage from '@/components/TablePage';
+import MapChart from '@/components/graphs/MapChart';
+import ButtonGoBack from '@/components/ButtonGoBack';
+import Loader from '@/components/Loader';
 
 export const dynamic = "force-dynamic";
 

@@ -1,8 +1,8 @@
-import type { CustomersProps } from '@/app/lib/definitions';
+import type { CustomersProps } from '@/lib/definitions';
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import TablePage from '@/app/components/TablePage';
+import TablePage from '@/components/TablePage';
 //import { customers } from '@/app/lib/datadb';
 
 export default async function TableOneDefault() {

@@ -1,6 +1,6 @@
 "use client";
 
-import type { ProductsProps } from '@/app/lib/definitions';
+import type { ProductsProps } from '@/lib/definitions';
 import React from 'react';
 import {
   Chart as ChartJS,
@@ -36,28 +36,28 @@ export const options = {
     },
     title: {
       display: false,
-      text: 'Best Sellers',
+      text: 'Stock',
     },
   },
 };
 
-const BestSellersChart: React.FC<{products: ProductsProps[]}> = ({products}): JSX.Element => {
+const StockChart: React.FC<{products: ProductsProps[]}> = ({products}): JSX.Element => {
 
   // Sort products by stock in descending order
-  const sortedProducts = products.sort((a, b) => b.quantity - a.quantity);
+  const sortedProducts = products.sort((a, b) => b.stock - a.stock);
 
   // Extract labels and dataset values from sorted products
   const labels = sortedProducts.map((product: ProductsProps) => product.name);
-  const datasetValues = sortedProducts.map((product: ProductsProps) => product.quantity);
+  const datasetValues = sortedProducts.map((product: ProductsProps) => product.stock);
 
   const data = {
     labels,
     datasets: [
       {
-        label: 'Sales',
+        label: 'Stock of Products',
         data: datasetValues,
-        borderColor: 'rgb(53, 162, 235)',
-        backgroundColor: 'rgba(53, 162, 235, 0.5)',
+        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },
     ],
   };
@@ -68,4 +68,4 @@ const BestSellersChart: React.FC<{products: ProductsProps[]}> = ({products}): JS
         </div>
     );
 }
-export default BestSellersChart;
+export default StockChart;

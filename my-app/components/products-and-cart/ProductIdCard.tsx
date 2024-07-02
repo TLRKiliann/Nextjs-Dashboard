@@ -1,11 +1,11 @@
 "use client";
 
-import { ProductsProps } from '@/app/lib/definitions';
+import { ProductsProps } from '@/lib/definitions';
 import React, { useState } from 'react';
-import { useStore } from '@/app/lib/store';
-import usePersistStore from '@/app/helpers/usePersistStore';
+import { useStore } from '@/lib/store';
+import usePersistStore from '@/helpers/usePersistStore';
 import { useQuery } from '@tanstack/react-query';
-import { getProductsData } from '@/app/utils/api-request';
+import { getProductsData } from '@/utils/api-request';
 import Image from 'next/image';
 import Loader from '../Loader';
 
