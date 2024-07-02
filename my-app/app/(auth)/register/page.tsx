@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import React from 'react';
-import Register from '@/components/auth/Register';
+import { RegisterForm } from '@/components/auth/register-form';
 
 export const metadata: Metadata = {
     title: "Register",
@@ -9,6 +9,6 @@ export const metadata: Metadata = {
 
 export default function RegisterPage() {
     return (
-        <Register />
+        <RegisterForm />
     )
 }
