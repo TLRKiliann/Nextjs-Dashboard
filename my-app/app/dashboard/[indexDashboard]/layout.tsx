@@ -1,4 +1,6 @@
+import { auth } from "@/auth";
 import React from 'react';
+import { redirect } from "next/navigation";
 import Profile from '@/components/menu-items/Profile';
 import DataTables from '@/components/menu-items/DataTables';
 import { notFound } from 'next/navigation';
@@ -6,13 +8,19 @@ import { customers } from '@/lib/datadb';
 import Products from '@/components/menu-items/Products';
 import CreateProduct from '@/components/menu-items/CreateProduct';
 
-export default function DashboardIndexLayout({children, params}: {
+export default async function DashboardIndexLayout({children, params}: {
     children: React.ReactNode;
     params: {indexDashboard: string};
 }) {
     /*
     params = profile || databases || charts
     */
+    const session = await auth();
+
+    if (!session?.user) {
+        return redirect("/api/auth/signin");
+    }
+
     return (
         <div className='flex flex-col w-full min-h-screen bg-slate-200'>
 

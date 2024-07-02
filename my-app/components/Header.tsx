@@ -7,6 +7,7 @@ import EmailComp from './header-items/EmailComp';
 import Notifications from './header-items/Notifications';
 
 const Header = async () => {
+    
     const session = await auth();
     const user = session?.user;
   

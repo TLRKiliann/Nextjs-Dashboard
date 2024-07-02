@@ -12,7 +12,10 @@ export default async function ProfilePage() {
     }
 
     const user = session?.user;
-
+    
+    //Should access to product (user) from here | dashboard (admin) !!!
+    //From layout.tsx
+    
     return (
         <>
             <section className="bg-ct-blue-600  min-h-screen pt-20">

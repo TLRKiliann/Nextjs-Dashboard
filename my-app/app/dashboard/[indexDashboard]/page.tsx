@@ -1,7 +1,5 @@
 import { Metadata } from 'next';
-import { auth } from "@/auth";
 import React, { Suspense } from 'react';
-import { redirect } from "next/navigation";
 import Header from '@/components/Header';
 import Menu from '@/components/Menu';
 import Loader from '@/components/Loader';
@@ -11,14 +9,7 @@ export const metadata: Metadata = {
     description: "access accepted"
 };
 
-export default async function DashboardIndexPage() {
-
-    const session = await auth();
-
-    if (!session?.user) {
-        return redirect("/api/auth/signin");
-    }
-
+export default function DashboardIndexPage() {
     return (
         <React.Fragment>
             <div className='absolute right-0 z-40 flex flex-row items-center w-[80%] xl:w-[86%] h-[10vh] 
