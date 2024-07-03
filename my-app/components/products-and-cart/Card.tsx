@@ -41,11 +41,14 @@ export default function Card({product}: ProductProps) {
                             alt="no img" 
                         />
                     </div>
-                    <div className='w-[340px] h-[160px] rounded-tr-md mr-8  pt-4 pr-4'>
-                        <h3 className='text-xl'>{product.family}</h3>
-                        <h4 className='text-lg'>{product.name}</h4>
-                        <h4 className='text-sm my-2'>Version: {product.version}</h4>
-                        <p className='text-base font-bold'>Price: {product.price}.-</p>
+
+                    <div className='flex items-center justify-start w-full pt-2'>
+                        <div className='flex flex-col items-start justify-start w-full'>
+                            <h3 className='text-xl'>{product.family}</h3>
+                            <h4 className='text-lg'>{product.name}</h4>
+                            <h4 className='text-xs my-2'>Version: {product.version}</h4>
+                            <p className='text-base font-bold'>{product.price}.-</p>
+                        </div>
                     </div>
                 </div>
 

@@ -31,6 +31,7 @@ export default async function ProfilePage() {
                                     alt={`profile photo of ${user?.name}`}
                                     width={100}
                                     height={100}
+                                    className="w-[100px] h-auto object-fit"
                                 />
                             </div>
                             <div className="mt-8">

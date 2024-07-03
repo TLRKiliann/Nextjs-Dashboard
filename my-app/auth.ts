@@ -26,20 +26,17 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         if (!credentials?.email || !credentials.password) {
           return null;
         }
-
         const user = await prisma.user.findUnique({
           where: {
             email: String(credentials.email),
           },
         });
-
         if (
           !user ||
           !(await bcrypt.compare(String(credentials.password), user.password!))
         ) {
           return null;
         }
-
         return {
           id: user.id,
           email: user.email,
@@ -52,7 +49,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
-      const paths = ["/profile", "/products"];
+      const paths = ["/profile"];
       const isProtected = paths.some((path) =>
         nextUrl.pathname.startsWith(path)
       );
@@ -64,6 +61,5 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       }
       return true;
     },
-    // Other code below
   },
 });

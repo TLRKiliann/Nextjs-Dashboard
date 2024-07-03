@@ -9,6 +9,9 @@ import toast from 'react-hot-toast';
 import { signIn } from 'next-auth/react';
 import { LoginUserInput, loginUserSchema } from '@/lib/user-schema';
 
+import googleLogo from "@/public/assets/images/logo/google.png";
+import githubLogo from "@/public/assets/images/logo/github.png";
+
 export const LoginForm = () => {
   const router = useRouter();
   const [error, setError] = useState('');
@@ -59,7 +62,7 @@ export const LoginForm = () => {
   };
 
   const input_style =
-    'form-control block w-full px-4 py-5 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none';
+    'form-control block w-full px-4 py-3 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none';
 
   return (
     <form onSubmit={handleSubmit(onSubmitHandler)}>
@@ -113,11 +116,11 @@ export const LoginForm = () => {
       >
         <Image
           className='pr-2'
-          src='/images/google.svg'
+          src={googleLogo}
           alt=''
           style={{ height: '2rem' }}
-          width={35}
-          height={35}
+          width={40}
+          height={40}
         />
         Continue with Google
       </a>
@@ -129,7 +132,7 @@ export const LoginForm = () => {
       >
         <Image
           className='pr-2'
-          src='/images/github.svg'
+          src={githubLogo}
           alt=''
           width={40}
           height={40}
