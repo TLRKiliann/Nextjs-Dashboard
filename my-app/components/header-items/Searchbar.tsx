@@ -47,8 +47,8 @@ export default function Searchbar() {
 
             <div className='absolute right-2 left-2 bg-slate-50/60'>
                 {searchWord ? dataUrl.map((data: ListOfItemsProps) => (
-                    <li key={data.id} className="text-slate-500 hover:text-blue-500 
-                        hover:bg-blue-200/20 px-4 py-1">
+                    <li key={data.id} className="w-full text-slate-500 hover:text-blue-500 
+                        hover:bg-blue-200/20 px-6 py-1">
                         <Link href={`/${data.item}`}>{data.item}</Link>
                     </li>
                 )): null}
