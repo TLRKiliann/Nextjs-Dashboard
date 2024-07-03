@@ -9,6 +9,9 @@ import toast from 'react-hot-toast';
 import { signIn } from 'next-auth/react';
 import { LoginUserInput, loginUserSchema } from '@/lib/user-schema';
 
+import googleLogo from "@/public/assets/images/logo/google.png";
+import githubLogo from "@/public/assets/images/logo/github.png";
+
 export const LoginForm = () => {
   const router = useRouter();
   const [error, setError] = useState('');
@@ -113,11 +116,11 @@ export const LoginForm = () => {
       >
         <Image
           className='pr-2'
-          src='/images/google.svg'
+          src={googleLogo}
           alt=''
           style={{ height: '2rem' }}
-          width={35}
-          height={35}
+          width={40}
+          height={40}
         />
         Continue with Google
       </a>
@@ -129,7 +132,7 @@ export const LoginForm = () => {
       >
         <Image
           className='pr-2'
-          src='/images/github.svg'
+          src={githubLogo}
           alt=''
           width={40}
           height={40}
