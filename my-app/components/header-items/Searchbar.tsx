@@ -1,32 +1,10 @@
 "use client";
 
+import { ListOfItemsProps } from '@/lib/definitions';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
+import { listOfItems } from '@/lib/search-items';
 import { FaSearch } from "react-icons/fa";
-
-type ListOfItemsProps = {
-    id: number;
-    item: string;
-}
-
-const listOfItems: ListOfItemsProps[] = [
-    {
-        id: 1,
-        item: "profile"
-    },
-    {
-        id: 2,
-        item: "login"
-    },
-    {
-        id: 3,
-        item: "register"
-    },
-    {
-        id: 4,
-        item: "product"
-    }
-];
 
 export default function Searchbar() {
 
@@ -68,7 +46,7 @@ export default function Searchbar() {
             />
 
             <div className='absolute right-2 left-2 bg-slate-50/60'>
-                {searchWord ? dataUrl.map((data) => (
+                {searchWord ? dataUrl.map((data: ListOfItemsProps) => (
                     <li key={data.id} className="text-slate-500 hover:text-blue-500 
                         hover:bg-blue-200/20 px-4 py-1">
                         <Link href={`/${data.item}`}>{data.item}</Link>

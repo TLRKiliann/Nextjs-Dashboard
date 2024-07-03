@@ -50,3 +50,8 @@ export type ProductsProps = {
     quantity: number;
     switcher?: boolean;
 }
+
+export type ListOfItemsProps = {
+    readonly id: number;
+    readonly item: string;
+}
