@@ -20,7 +20,7 @@ const HeaderProducts = async () => {
     };
 
     return (
-        <div className="fixed z-20 top-0 w-full h-20 text-slate-700/90 bg-slate-300 border-b border-none 
+        <div className="fixed z-20 top-0 w-full h-20 text-slate-500 bg-white border-none 
             transition duration-300 ease-in-out opacity-100 shadow-md">
             <nav className="w-full h-full">
                 <ul className='w-full h-full flex flex-row items-center justify-end'>
