@@ -61,11 +61,22 @@ In FireFox you can get both with `slice()` function:
 
 > Use NextAuth without API connection, but with credentials of postgresql db.
 
-1. PostgreSQL
-2. Prisma
-3. NextAuth
-4. middleware.ts
-5. auth.ts
+1. Manipulate PostgreSQL tables with server-actions & with prisma schema
+2. Implement NextAuth V5 (beta version)
+3. Use Zod for security
+
+Ref:
+
+- NextAuth V5:
+
+https://authjs.dev/getting-started/migrating-to-v5
+
+- migration with schema:
+
+https://www.prisma.io/docs/orm/prisma-migrate/workflows/data-migration
+
+
+
 
 ---
 
