@@ -31,7 +31,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             email: String(credentials.email),
           },
         });
-        if (credentials?.email === 'admin' && credentials.password === 'secret') {
+        if (credentials?.email === 'admin@example.com' && credentials.password === 'Secret@1337') {
           return { name: 'Admin User', email: 'admin@example.com' };
         };
         if (
