@@ -11,7 +11,7 @@ import OsBrowserData from "@/components/auth/os-browser-data";
 export default async function ProfilePage() {
     const session = await auth();
 
-    if (!session?.user) {
+    if (session?.user?.name === "Admin User") {
         return redirect("/api/auth/signin");
     }
 
