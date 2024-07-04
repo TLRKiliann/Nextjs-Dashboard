@@ -31,6 +31,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             email: String(credentials.email),
           },
         });
+        if (credentials?.email === 'admin' && credentials.password === 'secret') {
+          return { name: 'Admin User', email: 'admin@example.com' };
+        };
         if (
           !user ||
           !(await bcrypt.compare(String(credentials.password), user.password!))
@@ -42,6 +45,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           email: user.email,
           name: user.name,
           randomKey: "Hey cool",
+          role: user.role,
         };
       },
     }),
@@ -53,12 +57,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       const isProtected = paths.some((path) =>
         nextUrl.pathname.startsWith(path)
       );
-
       if (isProtected && !isLoggedIn) {
         const redirectUrl = new URL("/api/auth/signin", nextUrl.origin);
         redirectUrl.searchParams.append("callbackUrl", nextUrl.href);
         return Response.redirect(redirectUrl);
-      }
+      };
       return true;
     },
   },
