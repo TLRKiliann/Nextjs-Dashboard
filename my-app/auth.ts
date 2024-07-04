@@ -49,7 +49,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
-      const paths = ["/profile", "/products"];
+      const paths = ["profile", "/products", "/dashboard/dashboardnative"];
       const isProtected = paths.some((path) =>
         nextUrl.pathname.startsWith(path)
       );
