@@ -64,7 +64,7 @@ export default async function TableOnePage() {
 
             <div className='flex flex-row items-end justify-end h-[10%]'>
                 <li className='list-none text-sm text-blue-400 hover:text-blue-500 active:text-blue-700'>
-                    <Link href="/dashboard/dashboardnative/profile">Profile</Link>
+                    <Link href="/profile">Profile</Link>
                 </li>
             </div>
         </TablePage>

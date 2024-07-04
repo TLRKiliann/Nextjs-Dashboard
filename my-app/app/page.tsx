@@ -28,7 +28,7 @@ export default function Home() {
         </li>
 
         <li className="list-none transform durantion-100 ease-in-out text-blue-500 hover:text-blue-400 hover:scale-105 active:text-blue-700">
-          <Link href="/login">Login</Link>
+          <Link href="/profile">Profile (login as user required)</Link>
         </li>
 
       </div>

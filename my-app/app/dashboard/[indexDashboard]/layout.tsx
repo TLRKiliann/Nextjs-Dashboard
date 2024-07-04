@@ -1,12 +1,12 @@
 import { auth } from "@/auth";
 import React from 'react';
 import { redirect } from "next/navigation";
-import Profile from '@/components/menu-items/Profile';
-import DataTables from '@/components/menu-items/DataTables';
 import { notFound } from 'next/navigation';
-import { customers } from '@/lib/datadb';
+import DataTables from '@/components/menu-items/DataTables';
+import ProfilePage from "@/app/(auth)/profile/page";
 import Products from '@/components/menu-items/Products';
 import CreateProduct from '@/components/menu-items/CreateProduct';
+
 
 export default async function DashboardIndexLayout({children, params}: {
     children: React.ReactNode;
@@ -17,7 +17,7 @@ export default async function DashboardIndexLayout({children, params}: {
     */
     const session = await auth();
 
-    if (!session?.user) {
+    if (session?.user?.name === "Admin User") {
         return redirect("/api/auth/signin");
     }
 
@@ -33,7 +33,7 @@ export default async function DashboardIndexLayout({children, params}: {
                     {params.indexDashboard === "profile" ? (
                         <div className='flex w-[90%] h-4/5 text-slate-500 bg-slate-50 mt-[7%] 
                             p-4 shadow-out rounded-lg'>
-                            <Profile customers={customers} />
+                            <ProfilePage />
                         </div>
                     ) : params.indexDashboard === "datatables" ? (
                         <div className='w-full h-[90%] text-slate-500 mt-[7%] p-4'>
