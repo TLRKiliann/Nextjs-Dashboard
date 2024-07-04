@@ -13,10 +13,11 @@ const HeaderAuth = async () => {
         await signOut();
     };
 
-    const user = session?.user;
+    const user = session?.user?.name;
 
     return (
-        <div className='fixed top-0 z-10 flex flex-row items-center justify-end w-full h-[60px] bg-sky-200 pr-10'>
+        <div className='fixed top-0 z-10 flex flex-row items-center justify-end w-full h-[60px] bg-sky-200 
+            pr-10'>
 
             {!user && (
                 <>
@@ -29,9 +30,11 @@ const HeaderAuth = async () => {
                 </>
             )}
 
-            <li className="list-none">
-                <Link href="/dashboard/dashboardnative">Dashboard (admin)</Link>
-            </li>
+            {user === "Admin User" ? (
+                <li className="list-none">
+                    <Link href="/dashboard/dashboardnative">Dashboard (admin)</Link>
+                </li>
+            ) : null}
 
             {user && (
                 <form action={logoutAction} className='flex space-x-8'>
@@ -43,7 +46,7 @@ const HeaderAuth = async () => {
                         <Link href="/products">Products</Link>
                     </li>
 
-                    <p className="text-blue-500">{user.name}</p>
+                    <p className="text-blue-500">{user}</p>
 
                     <li className="relative flex list-none">
                         <button><FaPowerOff size={16} /></button>
