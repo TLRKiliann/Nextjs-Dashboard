@@ -15,7 +15,9 @@ export default function EmailComp() {
     return (
         <div className='relative'>
 
-            <button type="button" onClick={() => setIsOpen(!isOpen)}
+            <button 
+                type="button" 
+                onMouseEnter={() => setIsOpen(true)}
                 className='flex items-center transition duration-200 ease-in-out hover:text-slate-500'    
             >
                 {isEmailBoxFill === false ? (
@@ -26,20 +28,23 @@ export default function EmailComp() {
             </button>
 
             {isOpen === true ? (
-                
-                <div className='absolute w-[130px] h-auto text-slate-500/90 bg-slate-200 mt-2 -ml-12
+                <div 
+                    onMouseLeave={() => setIsOpen(false)} 
+                    className='absolute w-[130px] h-auto text-slate-500/90 bg-slate-200 mt-0 -ml-12
                     rounded-bl-md rounded-br-md'>
 
-                    <span onClick={() => setIsOpen(false)} 
+                    <span 
+                        onClick={() => setIsOpen(false)} 
                         className='flex flex-row items-center w-auto cursor-pointer hover:text-slate-500 
-                            hover:bg-slate-300 icon-hover-container px-2 py-1'>
+                            hover:bg-slate-300 icon-hover-container px-2 py-1 pt-2'>
                         <IoIosMailOpen size={16} className='text-slate-500/70 icon-hover' />
                         <p className='text-sm mx-2'>
                             Read email
                         </p>
                     </span>
 
-                    <span onClick={() => setIsEmailBoxFill(!isEmailBoxFill)} 
+                    <span 
+                        onClick={() => setIsEmailBoxFill(!isEmailBoxFill)} 
                         className='flex flex-row items-center w-auto cursor-pointer hover:text-slate-500 
                             hover:bg-slate-300 icon-hover-container px-2 py-1'>
                         <IoSettingsSharp size={16} className='text-slate-500/70 icon-hover' />
@@ -48,7 +53,8 @@ export default function EmailComp() {
                         </p>
                     </span>
 
-                    <span onClick={() => setIsOpen(false)}
+                    <span 
+                        onClick={() => setIsOpen(false)}
                         className='flex flex-row items-center w-auto cursor-pointer hover:text-slate-500 
                             hover:bg-slate-300 icon-hover-container px-2 py-1'>
                         <IoIosCloseCircle size={16} className='text-slate-500/70 icon-hover' />
@@ -58,9 +64,7 @@ export default function EmailComp() {
                     </span>
 
                 </div>
-
             ) : null}
-
         </div>
     )
 }
