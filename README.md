@@ -1,6 +1,6 @@
 # Nextjs-Dashboard
 
-Handycraft Dashboard
+Handicraft Dashboard
 
 Nextjs 14 - TypeScript - Tailwind - PostgreSQL
 
@@ -8,7 +8,7 @@ Nextjs 14 - TypeScript - Tailwind - PostgreSQL
 
 ### Goals
 
-> Retrieve the public IP & determine the location by latitude & longitude on the react-leaflet map.
+> Retrieve the public IP & determine the location by latitude & longitude with react-leaflet map.
 
 Fetch the public IP from :
 
@@ -20,7 +20,7 @@ Fetch to retrieve latitude & longitude with ***SECRET_API_KEY*** & ***publicIp**
 
 (You can use the api free of charge with https://www.ip2location.io/).
 
-I had some problems with a **window is undefined** error. To solve this problem in my RSC (React Server Component), I simply added :
+I had some problems, many times, with a **window is undefined** error. To solve this problem in my RSC (React Server Component), I simply added :
 
 `export const dynamic = "force-dynamic";`
 
@@ -36,47 +36,87 @@ In FireFox you can get both with `slice()` function:
 
 ---
 
-> Manage products (delete & create) as ADMIN
+> Manage products from store as ADMIN with server-actions & postgresql (prisma)
 
 1. Products.tsx 
 2. CreateProduct.tsx
-3. Same route for both
+
+<sub><sup>(They have the same route)</sup></sub>
 
 ---
 
-*under development*
+## Authentication
 
-> Login to access to the dashboard by a middleware.
+> Use NextAuth V5 without API connection, but with credentials of postgresql db.
 
-1. Switch User connection Offline to Online
-2. Catch public IP with date when User logs in
-3. Access dashboard for Admin (only)
-4. Access Cart and Products for User.
-5. State management with Zustand
-6. Asynchronous state management useQuery
-
----
-
-*under development*
-
-> Use NextAuth without API connection, but with credentials of postgresql db.
-
-1. Manipulate PostgreSQL tables with server-actions & with prisma schema
+1. Manipulate PostgreSQL db with prisma
 2. Implement NextAuth V5 (beta version)
 3. Use Zod for security
+4. Access dashboard for Admin.
+5. Access Cart and Products for User.
 
-Ref:
+I have created 2 possible accesses with NextAuth v5. 
+- Administrator can access the dashboard.
+- The user can access the product path and profile.
 
-- NextAuth V5:
+It was difficult to find out how to implement an admin, as I couldn't find anything in the official documentation. Therefore, I simply ran a simulation ADMIN is found in the auth.ts file.
 
-https://authjs.dev/getting-started/migrating-to-v5
+it's not a good practice, and I noticed that there wasn't much on stackoverflow about it. 
 
-- migration with schema:
+---
 
-https://www.prisma.io/docs/orm/prisma-migrate/workflows/data-migration
+#### Configuration in .env
 
+```
+POSTGRES_HOST=127.0.0.1
+POSTGRES_PORT=PPPPPPPPP
+POSTGRES_USER=UUUU
+POSTGRES_PASSWORD=XXXX
+POSTGRES_DB=DBDBDBD
 
+DATABASE_URL="postgresql://UUUU:XXXX@localhost:PPPPPPPPP/DBDBDBD?schema=public"
 
+# use: "openssl rand -base64 32"
+AUTH_SECRET="result of cmd above"
+NEXTAUTH_URL=http://localhost:3000
+
+# build mode require this setting:
+AUTH_TRUST_HOST=true
+```
+
+---
+
+#### Configuration in .gitignore
+
+add `.env` into .gitignore & save the file.
+
+---
+
+#### Files required
+
+All files in app/(auth)/...
+
+- app/api/auth/[...nextauth]/route.ts
+
+- auth.ts
+
+- middleware.ts
+
+- prisma/prisma.ts
+
+---
+
+## 
+
+*under development*
+
+> Login to access to the dashboard .
+
+1. Switch User connection Offline to Online
+2. Catch public IP with date when User is logged in
+3. State management with Zustand
+4. Asynchronous state management useQuery
+5. Server-actions with postgresql
 
 ---
 
@@ -130,41 +170,6 @@ https://www.prisma.io/docs/orm/prisma-migrate/workflows/data-migration
 
 ---
 
-#### Configuration in .env
-
-```
-POSTGRES_HOST=127.0.0.1
-POSTGRES_PORT=PPPPPPPPP
-POSTGRES_USER=UUUU
-POSTGRES_PASSWORD=XXXX
-POSTGRES_DB=DBDBDBD
-
-DATABASE_URL="postgresql://UUUU:XXXX@localhost:PPPPPPPPP/DBDBDBD?schema=public"
-
-# use: "openssl rand -base64 32"
-AUTH_SECRET="result of cmd above"
-NEXTAUTH_URL=http://localhost:3000
-```
-
----
-
-#### Configuration in .gitignore
-
-> add .env & save.
-
----
-
-#### Files required
-
-All files in app/(auth)/...
-
-app/api/auth/[...nextauth]/route.ts
-auth.ts
-middleware.ts
-prisma/prisma.ts
-
----
-
 ## Result
 
 *(Video will be here soon)*
@@ -176,6 +181,18 @@ prisma/prisma.ts
 
 [<img src="https://img.youtube.com/vi/<VIDEO_ID>/hqdefault.jpg" width="600" height="300"
 />](https://www.youtube.com/embed/<VIDEO_ID>) -->
+
+---
+
+## Ref:
+
+- NextAuth V5:
+
+[auth.ts](https://authjs.dev/getting-started/migrating-to-v5)
+
+- migration with schema:
+
+[prisma-migrate](https://www.prisma.io/docs/orm/prisma-migrate/workflows/data-migration)
 
 
 ---
