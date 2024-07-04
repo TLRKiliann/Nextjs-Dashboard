@@ -11,7 +11,7 @@ export default async function DashboardNativeLayout({children, tableone, squares
 
     const session = await auth();
 
-    if (!session?.user) {
+    if (session?.user?.name !== "Admin User") {
         return redirect("/api/auth/signin");
     }
 
