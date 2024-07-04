@@ -27,6 +27,8 @@ const HeaderAuth = async () => {
                         <Link href="/products">Products</Link>
                     </li>
 
+                    <p>{user.email}</p>
+
                     <li className="list-none">
                         <button>Logout</button>
                     </li>
