@@ -20,18 +20,18 @@ const HeaderAuth = async () => {
             pr-10'>
 
             {!user && (
-                <>
+                <div className="w-[140px] flex items-center justify-between">
                     <li className="list-none">
                         <Link href="/login">Login</Link>
                     </li>
                     <li className="list-none">
                         <Link href="/register">Register</Link>
                     </li>
-                </>
+                </div>
             )}
 
             {user === "Admin User" ? (
-                <li className="list-none">
+                <li className="list-none pr-8">
                     <Link href="/dashboard/dashboardnative">Dashboard (admin)</Link>
                 </li>
             ) : null}
@@ -43,7 +43,7 @@ const HeaderAuth = async () => {
                     </li>
 
                     <li className="list-none">
-                        <Link href="/products">Products</Link>
+                        <Link href="/products">Products (user)</Link>
                     </li>
 
                     <p className="text-blue-500">{user}</p>
