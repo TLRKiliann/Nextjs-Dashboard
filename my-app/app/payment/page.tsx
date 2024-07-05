@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from 'next/router';
 import React, { useState } from 'react'
 
 type MethodProps = {
@@ -10,11 +11,15 @@ type MethodProps = {
 
 export default function Payment() {
 
+    const router = useRouter();
+
     const [paymentMethod, setPaymentMethod] = useState<MethodProps>({
         paypalMethod: false,
         stripeMethod: false,
         onDeliveryMethod: false,
     });
+
+    //server-actions with form action or only btn action
 
     const handlePaypal = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPaymentMethod({
@@ -95,14 +100,19 @@ export default function Payment() {
                 </div>    
 
                 <div className='w-full h-[20%] flex flex-row items-center justify-around mt-8 pb-2'>
-                    <button type="button" className='text-base text-slate-50 font-bold bg-blue-500 
-                        hover:bg-blue-600 active:bg-blue-700
-                        px-6 py-[5px] rounded shadow-lg'>
+                    <button
+                        type="button"
+                        onClick={() => router.back()}
+                        className='text-base text-slate-50 font-bold bg-blue-500 
+                            hover:bg-blue-600 active:bg-blue-700
+                            px-6 py-[5px] rounded shadow-lg'>
                         Back
                     </button>
-                    <button type="submit" className='text-base text-slate-50 font-bold bg-blue-500 
-                        hover:bg-blue-600 active:bg-blue-700
-                        px-6 py-[5px] rounded shadow-lg'>
+                    <button 
+                        type="submit"
+                        className='text-base text-slate-50 font-bold bg-blue-500 
+                            hover:bg-blue-600 active:bg-blue-700
+                            px-6 py-[5px] rounded shadow-lg'>
                         Next
                     </button>
                 </div>
