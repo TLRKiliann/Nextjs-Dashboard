@@ -17,7 +17,7 @@ export default async function DashboardIndexLayout({children, params}: {
     */
     const session = await auth();
 
-    if (session?.user?.name === "Admin User") {
+    if (session?.user?.name !== "Admin User") {
         return redirect("/api/auth/signin");
     }
 
