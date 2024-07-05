@@ -1,7 +1,5 @@
-- drop-down menu with over
-- items of menu
+- items of menu - profiles + payments (all)
 - forgot password
 - heaeder-auth dynamic auto-refresh ???
 - requests with postgresl & products (admin + user)
-- server-actions for requests
-- order + payment with stripe
+- payment with stripe
