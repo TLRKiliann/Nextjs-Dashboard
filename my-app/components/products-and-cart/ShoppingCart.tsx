@@ -44,7 +44,6 @@ export default function ShoppingCartPage() {
         
             {storeQuantity > 0 ? (
                 store.bearProducts.map((product: ProductsProps) => (
-                
                 <div key={product.id} className="w-full h-20 flex items-center justify-start space-x-4 bg-white rounded-md shadow-sm-out my-1 p-2">
                     
                     <div className='w-[70px] flex items-center justify-center border-none rounded-tl-md 
@@ -126,6 +125,17 @@ export default function ShoppingCartPage() {
                                 Remove
                             </button>
                         </div>
+                    </div>
+
+                    <div className='absolute z-50 h-20 right-0 bottom-0 -left-4 flex items-center justify-center bg-white -ml-4'>
+            
+                        <li className="list-none">
+                            <Link href="/order/address" className='text-base font-bold text-slate-50 bg-blue-500 
+                                hover:bg-blue-600 active:bg-blue-700 px-6 py-2 rounded'>
+                                Payment
+                            </Link>
+                        </li>
+
                     </div>
 
                 </div>
