@@ -13,11 +13,12 @@ export default function EmailComp() {
     const [isEmailBoxFill, setIsEmailBoxFill] = useState<boolean>(true);
 
     return (
-        <div className='relative'>
+        <div 
+            onMouseEnter={() => setIsOpen(true)}
+            onMouseLeave={() => setIsOpen(false)}
+            className='relative'>
 
-            <button 
-                type="button" 
-                onMouseEnter={() => setIsOpen(true)}
+            <span
                 className='flex items-center transition duration-200 ease-in-out hover:text-slate-500'    
             >
                 {isEmailBoxFill === false ? (
@@ -25,13 +26,12 @@ export default function EmailComp() {
                 ) : (
                     <MdMarkEmailUnread size={18} />
                 )}
-            </button>
+            </span>
 
             {isOpen === true ? (
-                <div 
-                    onMouseLeave={() => setIsOpen(false)} 
+                <div  
                     className='absolute w-[130px] h-auto text-slate-500/90 bg-slate-200 mt-0 -ml-12
-                    rounded-bl-md rounded-br-md'>
+                        rounded-bl-md rounded-br-md'>
 
                     <span 
                         onClick={() => setIsOpen(false)} 
@@ -46,7 +46,7 @@ export default function EmailComp() {
                     <span 
                         onClick={() => setIsEmailBoxFill(!isEmailBoxFill)} 
                         className='flex flex-row items-center w-auto cursor-pointer hover:text-slate-500 
-                            hover:bg-slate-300 icon-hover-container px-2 py-1'>
+                            hover:bg-slate-300 icon-hover-container px-2 py-2'>
                         <IoSettingsSharp size={16} className='text-slate-500/70 icon-hover' />
                         <p className='text-sm mx-2'>
                             Settings
@@ -56,7 +56,7 @@ export default function EmailComp() {
                     <span 
                         onClick={() => setIsOpen(false)}
                         className='flex flex-row items-center w-auto cursor-pointer hover:text-slate-500 
-                            hover:bg-slate-300 icon-hover-container px-2 py-1'>
+                            hover:bg-slate-300 icon-hover-container px-2 py-2'>
                         <IoIosCloseCircle size={16} className='text-slate-500/70 icon-hover' />
                         <p className='text-sm mx-2'>
                             Close
