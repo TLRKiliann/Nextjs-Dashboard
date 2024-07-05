@@ -13,11 +13,12 @@ export default function Notifications() {
     const [isRingBell, setIsRingBell] = useState<boolean>(false);
 
     return (
-        <div className='relative'>
+        <div 
+            onMouseEnter={() => setIsOpenRing(true)}
+            onMouseLeave={() => setIsOpenRing(false)} 
+            className='relative'>
 
-            <button 
-                type="button" 
-                onMouseEnter={() => setIsOpenRing(true)}
+            <div 
                 className='flex items-center transition duration-200 ease-in-out hover:text-slate-500'    
             >
                 {isRingBell === false ? (
@@ -25,18 +26,17 @@ export default function Notifications() {
                 ) : (
                     <FaRegBell size={18} />
                 )}
-            </button>
+            </div>
 
             {isOpenRing === true ? (
                 
                 <div 
-                    onMouseLeave={() => setIsOpenRing(false)} 
-                    className='absolute z-40 w-[130px] h-auto text-slate-500/90 bg-slate-200 mt-2 -ml-12
+                    className='absolute z-40 w-[130px] h-auto text-slate-500/90 bg-slate-200 mt-0 -ml-12
                         rounded-bl-md rounded-br-md'>
 
                     <span onClick={() => setIsOpenRing(false)} 
                         className='flex flex-row items-center w-auto cursor-pointer hover:text-slate-500 
-                            hover:bg-slate-300 icon-hover-container px-2 py-1'>
+                            hover:bg-slate-300 icon-hover-container px-2 py-2'>
                         <IoReaderSharp size={16} className='text-slate-500/70 icon-hover' />
                         <p className='text-sm mx-2'>
                             Read notes
@@ -45,7 +45,7 @@ export default function Notifications() {
 
                     <span onClick={() => setIsRingBell(!isRingBell)} 
                         className='flex flex-row items-center w-auto cursor-pointer hover:text-slate-500 
-                            hover:bg-slate-300 icon-hover-container px-2 py-1'>
+                            hover:bg-slate-300 icon-hover-container px-2 py-2'>
                         <IoSettingsSharp size={16} className='text-slate-500/70 icon-hover' />
                         <p className='text-sm mx-2'>
                             Settings
@@ -54,7 +54,7 @@ export default function Notifications() {
 
                     <span onClick={() => setIsOpenRing(false)}
                         className='flex flex-row items-center w-auto cursor-pointer hover:text-slate-500 
-                            hover:bg-slate-300 icon-hover-container px-2 py-1'>
+                            hover:bg-slate-300 icon-hover-container px-2 py-2'>
                         <IoIosCloseCircle size={16} className='text-slate-500/70 icon-hover' />
                         <p className='text-sm mx-2'>
                             Close

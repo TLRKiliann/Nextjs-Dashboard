@@ -1,16 +1,8 @@
-import type { Metadata } from 'next';
 import React from 'react';
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 import { getProductsData } from "@/utils/api-request";
 import AllProducts from '@/components/AllProducts';
 
-export const metadata: Metadata = {
-  title: {
-    absolute: "Products"
-  },
-  description: "list of products"
-};
-  
 export default async function ProductsPage() {  
 
   const queryClient = new QueryClient();
