@@ -1,21 +1,20 @@
 'use client';
 
+import { signIn } from 'next-auth/react';
 import { zodResolver } from '@hookform/resolvers/zod';
-import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import Image from 'next/image';
 import toast from 'react-hot-toast';
-import { signIn } from 'next-auth/react';
 import { LoginUserInput, loginUserSchema } from '@/lib/user-schema';
-
 import googleLogo from "@/public/assets/images/logo/google.png";
 import githubLogo from "@/public/assets/images/logo/github.png";
 
 export const LoginForm = () => {
   const router = useRouter();
-  const [error, setError] = useState('');
-  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | undefined>('');
+  const [submitting, setSubmitting] = useState<boolean>(false);
 
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get('callbackUrl') || '/profile';
@@ -24,12 +23,7 @@ export const LoginForm = () => {
     resolver: zodResolver(loginUserSchema),
   });
 
-  const {
-    reset,
-    handleSubmit,
-    register,
-    formState: { errors },
-  } = methods;
+  const { reset, handleSubmit, register, formState: { errors } } = methods;
 
   const onSubmitHandler: SubmitHandler<LoginUserInput> = async (values) => {
     try {
@@ -65,14 +59,17 @@ export const LoginForm = () => {
     'form-control block w-full px-4 py-3 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none';
 
   return (
-    <form onSubmit={handleSubmit(onSubmitHandler)}>
+    <form onSubmit={handleSubmit(onSubmitHandler)} className="w-full bg-slate-100/30 px-20 py-10 rounded-3xl">
+      <div className="pb-6">
+          <h2 className="text-lg font-bold text-slate-500">Login</h2>
+      </div>
       {error && (
         <p className='text-center bg-red-300 py-4 mb-6 rounded'>{error}</p>
       )}
       <div className='mb-6'>
         <input
           type='email'
-          {...register('email')}
+          {...register('email', {required: true})}
           placeholder='Email address'
           className={`${input_style}`}
         />
@@ -85,7 +82,14 @@ export const LoginForm = () => {
       <div className='mb-6'>
         <input
           type='password'
-          {...register('password')}
+          {...register('password', {
+            pattern: /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/i,
+            required: true, 
+              minLength: {
+                  value: 8,
+                  message: "min length is 10"
+              }
+          })}
           placeholder='Password'
           className={`${input_style}`}
         />

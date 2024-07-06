@@ -1,13 +1,14 @@
 import { Metadata } from 'next';
-import React from 'react';
+import { NewPasswordForm } from '@/components/auth/new-password-form';
 
 export const metadata: Metadata = {
     title: "Reset Password",
     description: "reset password page"
 };
 
-export default function ResetPasswordPage() {
-    return (
-        <div>ResetPasswordPage</div>
-    )
+const NewPasswordPage = () => {
+    return ( 
+        <NewPasswordForm />
+    );
 }
+export default NewPasswordPage;

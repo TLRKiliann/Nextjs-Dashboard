@@ -35,8 +35,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           },
         });
         if (
-          !user ||
-          !(await bcrypt.compare(String(credentials.password), user.password!))
+          !user || !(await bcrypt.compare(String(credentials.password), user.password!))
         ) {
           return null;
         }
@@ -53,7 +52,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
-      const paths = ["/profile", "/products", "/order", "/contact", ];
+      const paths = ["/profile", "/products", "/order", "/contact"];
       const isProtected = paths.some((path) =>
         nextUrl.pathname.startsWith(path)
       );

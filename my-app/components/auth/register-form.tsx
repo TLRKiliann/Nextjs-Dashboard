@@ -8,40 +8,36 @@ import { signIn } from "next-auth/react";
 import { CreateUserInput, createUserSchema } from "@/lib/user-schema";
 
 export const RegisterForm = () => {
-    const [submitting, setSubmitting] = useState(false);
+    const [submitting, setSubmitting] = useState<boolean>(false);
 
     const methods = useForm<CreateUserInput>({
         resolver: zodResolver(createUserSchema),
     });
 
-    const {
-        handleSubmit,
-        register,
-        formState: { errors },
-    } = methods;
+    const { handleSubmit, register, watch, formState: { errors } } = methods;
 
     const onSubmitHandler: SubmitHandler<CreateUserInput> = async (values) => {
         try {
-        setSubmitting(true);
-        const res = await fetch("/api/register", {
-            method: "POST",
-            body: JSON.stringify(values),
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
+            setSubmitting(true);
+            const res = await fetch("/api/register", {
+                method: "POST",
+                body: JSON.stringify(values),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
 
-        if (!res.ok) {
-            const errorData = await res.json();
-            if (Array.isArray(errorData.errors) && errorData.errors.length > 0) {
-                errorData.errors.forEach((error: any) => {
-                    toast.error(error.message);
-                });
+            if (!res.ok) {
+                const errorData = await res.json();
+                if (Array.isArray(errorData.errors) && errorData.errors.length > 0) {
+                    errorData.errors.forEach((error: any) => {
+                        toast.error(error.message);
+                    });
+                    return;
+                }
+                toast.error(errorData.message);
                 return;
             }
-            toast.error(errorData.message);
-            return;
-        }
             signIn(undefined, {callbackUrl: "/"});
         } catch (error: any) {
             toast.error(error.message);
@@ -50,14 +46,24 @@ export const RegisterForm = () => {
         }
     };
 
-  const input_style =
-    "form-control block w-full px-4 py-5 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none";
+  const input_style = 
+    "form-control block w-full px-4 py-3 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none";
 
     return (
-        <form onSubmit={handleSubmit(onSubmitHandler)}>
+        <form onSubmit={handleSubmit(onSubmitHandler)} className="w-full bg-slate-100/30 px-20 py-10 rounded-3xl">
+            <div className="pb-6">
+                <h2 className="text-lg font-bold text-slate-500">Register</h2>
+            </div>
             <div className="mb-6">
                 <input
-                    {...register("name")}
+                    {...register("name", {
+                        pattern: /^[A-Za-z]+$/i,
+                        required: true, 
+                            minLength: {
+                                value: 4,
+                                message: "min length is 4"
+                            }
+                    })}
                     placeholder="Name"
                     className={`${input_style}`}
                 />
@@ -70,7 +76,9 @@ export const RegisterForm = () => {
             <div className="mb-6">
                 <input
                     type="email"
-                    {...register("email")}
+                    {...register("email", {
+                        required: true
+                    })}
                     placeholder="Email address"
                     className={`${input_style}`}
                 />
@@ -83,7 +91,14 @@ export const RegisterForm = () => {
             <div className="mb-6">
                 <input
                     type="password"
-                    {...register("password")}
+                    {...register("password", {
+                        pattern: /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/i,
+                        required: true, 
+                            minLength: {
+                                value: 8,
+                                message: "min length is 10"
+                            }
+                    })}
                     placeholder="Password"
                     className={`${input_style}`}
                 />
@@ -96,7 +111,16 @@ export const RegisterForm = () => {
             <div className="mb-6">
                 <input
                     type="password"
-                    {...register("passwordConfirm")}
+                    
+                    {...register("passwordConfirm", {
+                        required: true,
+                        validate: (val: string) => {
+                          if (watch('password') != val) {
+                            return "Your passwords do no match";
+                          }
+                        },
+                    })}
+
                     placeholder="Confirm Password"
                     className={`${input_style}`}
                 />
