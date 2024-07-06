@@ -14,11 +14,7 @@ export const RegisterForm = () => {
         resolver: zodResolver(createUserSchema),
     });
 
-    const {
-        handleSubmit,
-        register,
-        formState: { errors },
-    } = methods;
+    const { handleSubmit, register, watch, formState: { errors } } = methods;
 
     const onSubmitHandler: SubmitHandler<CreateUserInput> = async (values) => {
         try {
@@ -57,7 +53,14 @@ export const RegisterForm = () => {
         <form onSubmit={handleSubmit(onSubmitHandler)}>
             <div className="mb-6">
                 <input
-                    {...register("name")}
+                    {...register("name", {
+                        pattern: /^[A-Za-z]+$/i,
+                        required: true, 
+                            minLength: {
+                                value: 4,
+                                message: "min length is 4"
+                            }
+                    })}
                     placeholder="Name"
                     className={`${input_style}`}
                 />
@@ -70,7 +73,9 @@ export const RegisterForm = () => {
             <div className="mb-6">
                 <input
                     type="email"
-                    {...register("email")}
+                    {...register("email", {
+                        required: true
+                    })}
                     placeholder="Email address"
                     className={`${input_style}`}
                 />
@@ -83,7 +88,14 @@ export const RegisterForm = () => {
             <div className="mb-6">
                 <input
                     type="password"
-                    {...register("password")}
+                    {...register("password", {
+                        pattern: /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/i,
+                        required: true, 
+                            minLength: {
+                                value: 8,
+                                message: "min length is 10"
+                            }
+                    })}
                     placeholder="Password"
                     className={`${input_style}`}
                 />
@@ -96,7 +108,16 @@ export const RegisterForm = () => {
             <div className="mb-6">
                 <input
                     type="password"
-                    {...register("passwordConfirm")}
+                    
+                    {...register("passwordConfirm", {
+                        required: true,
+                        validate: (val: string) => {
+                          if (watch('password') != val) {
+                            return "Your passwords do no match";
+                          }
+                        },
+                    })}
+
                     placeholder="Confirm Password"
                     className={`${input_style}`}
                 />

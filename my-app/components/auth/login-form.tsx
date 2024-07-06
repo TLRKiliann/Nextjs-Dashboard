@@ -72,7 +72,7 @@ export const LoginForm = () => {
       <div className='mb-6'>
         <input
           type='email'
-          {...register('email')}
+          {...register('email', {required: true})}
           placeholder='Email address'
           className={`${input_style}`}
         />
@@ -85,7 +85,14 @@ export const LoginForm = () => {
       <div className='mb-6'>
         <input
           type='password'
-          {...register('password')}
+          {...register('password', {
+            pattern: /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/i,
+            required: true, 
+              minLength: {
+                  value: 8,
+                  message: "min length is 10"
+              }
+          })}
           placeholder='Password'
           className={`${input_style}`}
         />
