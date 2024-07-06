@@ -1,20 +1,19 @@
 'use client';
 
+import { signIn } from 'next-auth/react';
 import { zodResolver } from '@hookform/resolvers/zod';
-import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import Image from 'next/image';
 import toast from 'react-hot-toast';
-import { signIn } from 'next-auth/react';
 import { LoginUserInput, loginUserSchema } from '@/lib/user-schema';
-
 import googleLogo from "@/public/assets/images/logo/google.png";
 import githubLogo from "@/public/assets/images/logo/github.png";
 
 export const LoginForm = () => {
   const router = useRouter();
-  const [error, setError] = useState<string>('');
+  const [error, setError] = useState<string | undefined>('');
   const [submitting, setSubmitting] = useState<boolean>(false);
 
   const searchParams = useSearchParams();
@@ -24,12 +23,7 @@ export const LoginForm = () => {
     resolver: zodResolver(loginUserSchema),
   });
 
-  const {
-    reset,
-    handleSubmit,
-    register,
-    formState: { errors },
-  } = methods;
+  const { reset, handleSubmit, register, formState: { errors } } = methods;
 
   const onSubmitHandler: SubmitHandler<LoginUserInput> = async (values) => {
     try {
