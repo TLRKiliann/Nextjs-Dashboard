@@ -10,7 +10,7 @@ const HeaderAuth = async () => {
 
     const logoutAction = async () => {
         'use server';
-        await signOut();
+        await signOut({redirect: false});
     };
 
     const user = session?.user?.name;
