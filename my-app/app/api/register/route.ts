@@ -4,7 +4,7 @@ import prisma from "@/prisma/prisma";
 import { createUserSchema } from "@/lib/user-schema";
 import { ZodError } from "zod";
 
-export async function POST(req: Request) {
+export async function POST(req: Request): Promise<NextResponse> {
   try {
     const { name, email, password } = createUserSchema.parse(await req.json());
 
