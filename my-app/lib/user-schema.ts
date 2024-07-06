@@ -29,5 +29,12 @@ export const loginUserSchema = object({
     .min(1, "Password is required")
 });
 
+export const newPasswordSchema = object({
+  password: string().min(8, {
+    message: "Minimum of 8 characters required",
+  }),
+});
+
 export type LoginUserInput = TypeOf<typeof loginUserSchema>;
 export type CreateUserInput = TypeOf<typeof createUserSchema>;
+export type NewPasswordSchema = TypeOf<typeof newPasswordSchema>
