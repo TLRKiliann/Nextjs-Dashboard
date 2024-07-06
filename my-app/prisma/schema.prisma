@@ -22,7 +22,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   role          Role      @default(USER)
-
+  
   @@map("users")
 }
 

@@ -16,7 +16,7 @@ const HeaderProducts = async () => {
 
     const logoutAction = async () => {
         'use server';
-        await signOut({redirect: false});
+        await signOut();
     };
 
     return (
