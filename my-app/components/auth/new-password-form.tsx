@@ -13,8 +13,8 @@ export const NewPasswordForm = () => {
     const callbackUrl = searchParams.get('callbackUrl') || '/profile';
     const token = searchParams.get("token");
 
-    const [error, setError] = useState<string | undefined>("");
-    const [success, setSuccess] = useState<string | undefined>("");
+    const [error, setError] = useState<string>("");
+    const [success, setSuccess] = useState<string>("");
     const [submitting, setSubmitting] = useState<boolean>(false);
 
     const form = useForm<NewPasswordSchema>({
