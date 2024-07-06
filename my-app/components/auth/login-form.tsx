@@ -14,8 +14,8 @@ import githubLogo from "@/public/assets/images/logo/github.png";
 
 export const LoginForm = () => {
   const router = useRouter();
-  const [error, setError] = useState('');
-  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string>('');
+  const [submitting, setSubmitting] = useState<boolean>(false);
 
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get('callbackUrl') || '/profile';

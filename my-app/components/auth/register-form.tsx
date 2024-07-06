@@ -8,7 +8,7 @@ import { signIn } from "next-auth/react";
 import { CreateUserInput, createUserSchema } from "@/lib/user-schema";
 
 export const RegisterForm = () => {
-    const [submitting, setSubmitting] = useState(false);
+    const [submitting, setSubmitting] = useState<boolean>(false);
 
     const methods = useForm<CreateUserInput>({
         resolver: zodResolver(createUserSchema),
