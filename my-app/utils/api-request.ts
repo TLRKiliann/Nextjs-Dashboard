@@ -1,4 +1,4 @@
-import type { GeoLocationData } from "@/lib/definitions";
+import type { GeoLocationData, ProductsProps } from "@/lib/definitions";
 //import { revalidatePath } from "next/cache";
 
 export const ApiPublicIp = async (): Promise<{data: {ip: string;}}> => {
@@ -33,3 +33,11 @@ export const ApiGeolocation = async ({data}: {data: {ip: string;}}): Promise<Geo
         throw error;
     }
 }
+
+export const getProductsData = async () => {
+    const response = await fetch("http://localhost:3000/api/products", {
+        cache: "no-cache"
+    });
+    const products = (await response.json()) as ProductsProps[];
+    return products;
+};
