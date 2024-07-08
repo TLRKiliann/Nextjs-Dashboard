@@ -3,7 +3,7 @@
 import type { ProductsProps } from '../lib/definitions';
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { getProductsData } from '@/utils/api-request';
+import { getProductsData } from '@/lib/actions';
 import Card from './products-and-cart/Card';
 import Loader from './Loader';
 

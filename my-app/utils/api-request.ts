@@ -15,7 +15,7 @@ export const ApiPublicIp = async (): Promise<{data: {ip: string;}}> => {
     }
 }
 
-export const ApiGeolocation = async ({data}:{data: {ip: string;}}): Promise<GeoLocationData> => {
+export const ApiGeolocation = async ({data}: {data: {ip: string;}}): Promise<GeoLocationData> => {
     const secApiKey = process.env.SECRET_API_KEY;
     try {
         const geoRes = await fetch(`https://api.ip2location.io/?key=${secApiKey}&ip=${data.ip}`, {
@@ -34,7 +34,7 @@ export const ApiGeolocation = async ({data}:{data: {ip: string;}}): Promise<GeoL
     }
 }
 
-export async function getProductsData() {
+export const getProductsData = async () => {
     const response = await fetch("http://localhost:3000/api/products", {
         cache: "no-cache"
     });
