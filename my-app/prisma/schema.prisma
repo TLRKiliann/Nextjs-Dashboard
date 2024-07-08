@@ -13,8 +13,8 @@ datasource db {
 model User {
   id            String    @id @default(uuid())
   name          String
-  email         String?   @unique
-  password      String?
+  email         String    @unique
+  password      String
   emailVerified DateTime? @map("email_verified")
   image         String?
   createdAt     DateTime  @default(now())
@@ -22,6 +22,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   role          Role      @default(USER)
+  //posts         Post[]
   
   @@map("users")
 }
@@ -29,6 +30,23 @@ model User {
 enum Role {
   USER
   ADMIN
+}
+
+model Post {
+  id                Int      @id @default(autoincrement())
+  family            String
+  img               String
+  name              String
+  version           String
+  stock             Int
+  price             Int
+  quantity          Int
+  switcher          Boolean? @default(false)
+  //author            User     @relation(fields: [authorId], references: [id])
+  //authorId          String
+  published         Boolean? @default(false)
+  updatedAt         DateTime @updatedAt
+  createdAt         DateTime @default(now())
 }
 
 model Account {
