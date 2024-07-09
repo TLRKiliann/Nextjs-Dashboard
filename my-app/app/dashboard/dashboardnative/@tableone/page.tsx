@@ -42,11 +42,11 @@ export default async function TableOnePage() {
                                 <div className='w-[50%] flex flex-row items-center justify-between'>
                                     
                                     <div className="flex items-center">
-                                        <p className={`${customer.connected === true ? "ml-0" : "-ml-[2px]"} text-sm mr-2`}>
-                                            {customer.connected === true ? "Online" : "Offline"}
+                                        <p className={`${customer.isConnected === true ? "ml-0" : "-ml-[2px]"} text-sm mr-2`}>
+                                            {customer.isConnected === true ? "Online" : "Offline"}
                                         </p>
 
-                                        {customer.connected === true ? (
+                                        {customer.isConnected === true ? (
                                             <span className='w-[12px] h-[12px] bg-green-500 border border-slate-500/50 rounded-full'></span>
                                         ) : (
                                             <span className='w-[12px] h-[12px] bg-red-500 border border-slate-500/50 rounded-full'></span>

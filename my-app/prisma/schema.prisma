@@ -17,12 +17,12 @@ model User {
   password      String
   emailVerified DateTime? @map("email_verified")
   image         String?
+  isConnected   Boolean?  @default(false)
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   accounts      Account[]
   sessions      Session[]
   role          Role      @default(USER)
-  //posts         Post[]
   
   @@map("users")
 }
@@ -32,7 +32,7 @@ enum Role {
   ADMIN
 }
 
-model Post {
+model Product {
   id                Int      @id @default(autoincrement())
   family            String
   img               String
@@ -41,10 +41,6 @@ model Post {
   stock             Int
   price             Int
   quantity          Int
-  switcher          Boolean? @default(false)
-  //author            User     @relation(fields: [authorId], references: [id])
-  //authorId          String
-  published         Boolean? @default(false)
   updatedAt         DateTime @updatedAt
   createdAt         DateTime @default(now())
 }

@@ -1,20 +1,28 @@
-import React from 'react';
-import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
-import { getProductsData } from "@/lib/actions";
+import { auth } from '@/auth';
+import { redirect } from 'next/navigation';
+import { Suspense } from 'react';
 import AllProducts from '@/components/AllProducts';
+import Loader from '@/components/Loader';
+
 
 export default async function ProductsPage() {  
+  
+  const session = await auth();
 
-  const queryClient = new QueryClient();
+  if (!session?.user) {
+      return redirect("/api/auth/signin");
+  };
+
+  /* const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
     queryKey: ["products"],
     queryFn: getProductsData,
-  });
+  }); */
   
   return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
+    <Suspense fallback={<Loader />}>
       <AllProducts />
-    </HydrationBoundary>
+    </Suspense>
   )
 };

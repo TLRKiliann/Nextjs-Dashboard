@@ -1,13 +1,15 @@
 "use client";
 
 import { ProductsProps } from '@/lib/definitions';
-import React from 'react';
 import Image from 'next/image';
 import { useStore } from '@/lib/store';
 import usePersistStore from '@/helpers/usePersistStore';
 import Link from 'next/link';
+import AddItemToCart from '@/components/products-and-cart/add-item-to-cart';
+import DeleteItemFromCart from '@/components/products-and-cart/delete-item-from-cart';
+import RemoveItemsFromCart from '@/components/products-and-cart/remove-items-from-cart';
 
-export default function ShoppingCartPage() {
+export default function ShoppingCartPage({products}: {products: ProductsProps[]}) {
 
     // zustand
     const store = usePersistStore(useStore, (state) => state);
@@ -43,7 +45,7 @@ export default function ShoppingCartPage() {
         <div className='w-full min-h-screen flex flex-col text-slate-500 bg-slate-100 p-4 pt-24'>
         
             {storeQuantity > 0 ? (
-                store.bearProducts.map((product: ProductsProps) => (
+                products.map((product: ProductsProps) => (
                 <div key={product.id} className="w-full h-20 flex items-center justify-start space-x-4 bg-white rounded-md shadow-sm-out my-1 p-2">
                     
                     <div className='w-[70px] flex items-center justify-center border-none rounded-tl-md 
@@ -98,33 +100,30 @@ export default function ShoppingCartPage() {
 
                     <div className='flex flex-row items-center justify-between w-[200px]'>
                         <div className='flex flex-row items-center justify-evenly w-[100px]'>
-                            <button type="button" onClick={() => handleDeleteProduct(product.id)}
-                                className="w-[38px] h-[38px] text-slate-100 font-bold bg-blue-500 
-                                    hover:bg-blue-600/90 active:bg-blue-600 rounded-full shadow-sm-out"
-                                disabled={product.quantity < 1 ? true : false}
-                                aria-label={`Remove one ${product.name}`}
-                            >
-                                -
-                            </button>
                             
-                            <button type="button" onClick={() => handleAddProduct(product.id)}
-                                className="w-[38px] h-[38px] text-slate-100 font-bold bg-blue-500 
-                                    hover:bg-blue-600/90 active:bg-blue-600 rounded-full shadow-sm-out"
-                                disabled={product.stock === product.quantity ? true : false}
-                                aria-label={`Add one more ${product.name}`}
-                            >
-                                +
-                            </button>
+                            <DeleteItemFromCart
+                                id={product.id}
+                                quantity={product.quantity}
+                                name={product.name}
+                                stock={product.stock}
+                                handleDeleteProduct={() => handleDeleteProduct(product.id)}
+                            />
+                            
+                            <AddItemToCart 
+                                id={product.id}
+                                quantity={product.quantity}
+                                name={product.name}
+                                handleAddProduct={() => handleAddProduct(product.id)}
+                            />
+
                         </div>
 
-                        <div className='flex items-center justify-center'>
-                            <button type="button" onClick={() => handleRemoveAllProducts(product.id)}
-                                className="text-slate-50 bg-red-500 hover:bg-red-600/90 active:bg-red-700
-                                    rounded-full shadow-sm-out px-4 py-1"
-                                aria-label={`Remove all ${product.name}`}>
-                                Remove
-                            </button>
-                        </div>
+                            <RemoveItemsFromCart 
+                                id={product.id}
+                                name={product.name}
+                                handleRemoveAllProducts={() => handleRemoveAllProducts(product.id)}
+                            />
+
                     </div>
 
                     <div className='absolute z-50 h-20 right-0 bottom-0 -left-4 flex items-center justify-center bg-white -ml-4'>
