@@ -18,73 +18,66 @@ export const products: ProductsProps[] = [
         version: "7897432",
         stock: 20,
         price: 1044,
-        quantity: 2,
-        switcher: false
+        quantity: 2
     },
     {
         id: 2,
         family: "CPU",
         img: imgCpu_2,
         name: "i5",
-        version: "2342432",
+        version: "1297432",
         stock: 30,
         price: 1244,
-        quantity: 4,
-        switcher: false
+        quantity: 4
     },
     {
         id: 3,
         family: "CPU",
         img: imgCpu_3,
         name: "i7",
-        version: "372473277",
+        version: "2897433",
         stock: 25,
         price: 2000,
-        quantity: 10,
-        switcher: false
+        quantity: 10
     },
     {
         id: 4,
         family: "CPU",
         img: imgCpu_4,
         name: "i9",
-        version: "411108997",
+        version: "1897111",
         stock: 35,
         price: 2000,
-        quantity: 2,
-        switcher: false
+        quantity: 2
     },
     {
         id: 5,
         family: "RAM",
         img: imgRam_1,
         name: "MSI",
-        version: "34324324324",
+        version: "7866432",
         stock: 22,
         price: 2000,
-        quantity: 8,
-        switcher: false
+        quantity: 8
     },
     {
         id: 6,
         family: "RAM",
         img: imgRam_2,
         name: "Asus",
-        version: "647228432",
+        version: "647277732",
         stock: 28,
         price: 2000,
-        quantity: 12,
-        switcher: false
+        quantity: 12
     },
     {
         id: 7,
         family: "RAM",
         img: imgRam_3,
         name: "Patriot",
-        version: "98521711",
+        version: "299277732",
         stock: 38,
         price: 1230,
-        quantity: 6,
-        switcher: false
+        quantity: 6
     }
 ]
