@@ -4,10 +4,34 @@ import prisma from "@/prisma/prisma";
 import { revalidatePath } from "next/cache";
 //import { auth } from "@/auth";
 
-//update
+//update card
 export const addProductToDb = async (formData: FormData) => {
     try {
-        await prisma.post.update({
+        await prisma.product.update({
+            data: {
+                id: Number(formData.get("id")),
+                quantity: {
+                    increment: 1,
+                },
+            },
+            where: {
+                id: Number(formData.get("id")),
+            },
+            select: {
+                id: true,
+                name: true
+            }
+        });
+    } catch (error) {
+        console.log("Error: ", error)
+        return "Error: prisma.product.create";
+    }
+    revalidatePath("/products");
+};
+
+export async function addToCart(formData: FormData) {
+    try {
+        await prisma.product.update({
             data: {
                 id: Number(formData.get("id")),
                 quantity: {
@@ -18,17 +42,16 @@ export const addProductToDb = async (formData: FormData) => {
                 id: Number(formData.get("id")),
             },
         });
-        revalidatePath("/testcart");
     } catch (error) {
         console.log("Error: ", error)
-        throw new Error("Error: prisma.post.create");
+        return "Error: addToCart fn()";
     }
+    revalidatePath("/products/cart");
 };
 
-
-export const deleteProductToDb = async (formData: FormData) => {
+export async function deleteFromCart(formData: FormData) {
     try {
-        await prisma.post.update({
+        await prisma.product.update({
             data: {
                 id: Number(formData.get("id")),
                 quantity: {
@@ -39,9 +62,32 @@ export const deleteProductToDb = async (formData: FormData) => {
                 id: Number(formData.get("id")),
             },
         });
-        revalidatePath("/testcart");
     } catch (error) {
         console.log("Error: ", error)
-        throw new Error("Error: prisma.post.create");
+        return "Error: deleteFromCart fn()";
     }
+    revalidatePath("/products/cart");
 };
+
+export async function removeFromCart(id: number) {
+    try {
+        await prisma.product.delete({
+            where: { id },
+        });
+    } catch (error) {
+        console.log("Error: ", error)
+        return "Error: removeFromCart fn()";
+    }
+    revalidatePath("/products/cart");
+};
+
+/* export async function getAvailableProducts()  {
+    try {
+        await prisma.product.findMany();
+    } catch (error) {
+        console.log("Error: ", error)
+        return "Error: getAvailableProducts fn()";
+    }
+    revalidatePath("/products/cart");
+}
+ */
