@@ -36,19 +36,20 @@ export type CustomersProps = {
     readonly address?: string;
     readonly country: string;
     readonly city: string;
-    connected: boolean;
+    isConnected: boolean;
 }
 
 export type ProductsProps = {
     id: number;
     family: string;
-    img: StaticImageData;
+    img: StaticImageData | string;
     name: string;
     version: string;
     stock: number;
     price: number;
     quantity: number;
-    switcher?: boolean;
+    updateAt?: Date;
+    createdAt?: Date;
 }
 
 export type ListOfItemsProps = {
