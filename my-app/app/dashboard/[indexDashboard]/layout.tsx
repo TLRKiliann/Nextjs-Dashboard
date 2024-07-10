@@ -1,12 +1,10 @@
-import { auth } from "@/auth";
-import React from 'react';
-import { redirect } from "next/navigation";
+import { ProductsProps } from '@/lib/definitions';
 import { notFound } from 'next/navigation';
+import prisma from '@/prisma/prisma';
 import DataTables from '@/components/menu-items/DataTables';
 import ProfilePage from "@/app/(auth)/profile/page";
 import Products from '@/components/menu-items/Products';
 import CreateProduct from '@/components/menu-items/CreateProduct';
-
 
 export default async function DashboardIndexLayout({children, params}: {
     children: React.ReactNode;
@@ -15,12 +13,12 @@ export default async function DashboardIndexLayout({children, params}: {
     /*
     params = profile || databases || charts
     */
-    const session = await auth();
-
-    if (session?.user?.name !== "Admin User") {
-        return redirect("/api/auth/signin");
-    }
-
+    const listProducts: ProductsProps[] = await prisma.product.findMany({
+        orderBy: {
+            id: "asc",
+        }
+    });
+    
     return (
         <div className='flex flex-col w-full min-h-screen bg-slate-200'>
 
@@ -45,7 +43,7 @@ export default async function DashboardIndexLayout({children, params}: {
                         </div>
                     ) : params.indexDashboard === "products" ? (
                         <div className='w-full h-[90%] text-slate-500 mt-[7%] p-4'>
-                            <Products />
+                            <Products listProducts={listProducts} />
                             <CreateProduct />
                         </div>
                     ) : (
