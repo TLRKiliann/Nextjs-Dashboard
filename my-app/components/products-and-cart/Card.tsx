@@ -1,30 +1,13 @@
-"use client";
-
 import { ProductsProps } from '@/lib/definitions';
-import { addProductToDb } from '@/lib/actions';
-import { useStore } from '@/lib/store';
-import usePersistStore from '@/helpers/usePersistStore';
 import Link from 'next/link';
 import Image from 'next/image';
-import Loader from '@/components/Loader';
+import MainBtnAdd from './main-btn-add';
 
 type ProductProps = {
     product: ProductsProps;
 };
 
 export default function Card({product}: ProductProps) {
-
-    // zustand
-    const store = usePersistStore(useStore, (state) => state);
-
-    if (!store) {
-        return <Loader />;
-    };
-
-    const handleAddProduct = () => {
-        store.addProducts(product);
-    };
-
     return (
         <div key={product.id} className="w-full h-full text-slate-100/90 bg-gradient-to-tr from-slate-700 to-slate-950 rounded-md">
             
@@ -52,22 +35,18 @@ export default function Card({product}: ProductProps) {
 
                 <div className='w-full'>
 
-                    <form action={addProductToDb} className='flex items-center justify-center mt-4'>
-                        <input type="number" name="id" value={product.id} readOnly hidden />
-                        <button type="submit" onClick={handleAddProduct}
-                            className='w-[120px] h-[38px] text-sm font-bold bg-blue-500 hover:bg-blue-600 
-                                active:bg-blue-700 rounded disabled:opacity-50 m-auto'
-                            aria-label={`Add one more ${product.name}`}
-                        >
-                            Add to Cart
-                        </button>
-                    </form>
+                    <MainBtnAdd
+                        id={product.id}
+                        name={product.name}
+                        quantity={product.quantity}
+                        product={product}
+                    />
 
                 </div>
 
                 <div className='text-center my-4'>
                     <li className='list-none text-blue-400/80 hover:text-blue-600 active:text-blue-700'>
-                        <Link href={`/products/${product.id}`}>
+                        <Link href={`/products/${product.name}`}>
                             View product
                         </Link>
                     </li>

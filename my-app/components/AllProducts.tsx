@@ -5,7 +5,7 @@ import Loader from '@/components/Loader';
 
 export default async function AllProducts() {
     
-    // useQuery is not recommanded with server action
+    // useQuery
     /* const { data, isLoading, isError, error } = useQuery<ProductsProps[]>({
         queryKey: ["products"],
         queryFn: () => getProductsData(),
