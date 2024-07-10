@@ -1,4 +1,4 @@
-import { getAvailableProducts } from "@/lib/actions";
+/* import { getAvailableProducts } from "@/lib/actions";
 import { useQuery } from "@tanstack/react-query";
 
 // useQuery
@@ -10,4 +10,4 @@ export const useCities = () => {
             return getAvailableProducts()
         }
     })
-};
+}; */
