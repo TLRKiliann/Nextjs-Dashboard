@@ -2,15 +2,15 @@ import React from 'react';
 import { notFound } from 'next/navigation';
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 import { getProductsData } from "@/utils/api-request";
-import ProductIdCard from '@/components/products-and-cart/ProductIdCard';
+import ProductNameCard from '@/components/products-and-cart/ProductNameCard';
 
-export default async function ProductIdPage({params}: {params: {productId: string}}) {
+export default async function ProductIdPage({params}: {params: {productName: string}}) {
 
-    if (!parseInt(params.productId)) {
-        throw new Error("Error: id is not a number");
+    if (String(params.productName) !== params.productName.toLowerCase()) {
+        throw new Error("Error: name not corresponding");
     };
 
-    if (parseInt(params.productId) < 1 || parseInt(params.productId) > 10) {
+    if (!params.productName) {
         notFound();
     };
 
@@ -24,7 +24,7 @@ export default async function ProductIdPage({params}: {params: {productId: strin
 
     return (
         <HydrationBoundary state={dehydrate(queryClient)}>
-            <ProductIdCard params={params} />
+            <ProductNameCard params={params} />
         </HydrationBoundary>
     )
 };

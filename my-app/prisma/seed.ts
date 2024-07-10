@@ -8,12 +8,13 @@ async function main() {
         create: { 
             id: 1,
             family: "CPU",
-            img: "/public/assets/images/cpu/cpu_i3.jpg",
+            img: "/assets/images/cpu/cpu_i3.jpg",
             name: "i3",
             version: "7897432",
             stock: 20,
             price: 1044,
             quantity: 0,
+            switcher: false,
         }
     })
     const productTwo = await prisma.product.upsert({
@@ -22,12 +23,13 @@ async function main() {
         create: { 
             id: 2,
             family: "CPU",
-            img: "/public/assets/images/cpu/cpu_i5.jpg",
+            img: "/assets/images/cpu/cpu_i5.jpg",
             name: "i5",
             version: "1297432",
             stock: 30,
             price: 1244,
-            quantity: 0
+            quantity: 0,
+            switcher: false,
         }
     })
     const productThree = await prisma.product.upsert({
@@ -36,12 +38,13 @@ async function main() {
         create: { 
             id: 3,
             family: "CPU",
-            img: "/public/assets/images/cpu/cpu_i7.jpg",
+            img: "/assets/images/cpu/cpu_i7.jpg",
             name: "i7",
             version: "2897433",
             stock: 25,
             price: 2000,
-            quantity: 0
+            quantity: 0,
+            switcher: false,
         }
     })
     const productFour = await prisma.product.upsert({
@@ -50,12 +53,13 @@ async function main() {
         create: { 
             id: 4,
             family: "CPU",
-            img: "/public/assets/images/cpu/cpu_i9.jpg",
+            img: "/assets/images/cpu/cpu_i9.jpg",
             name: "i9",
             version: "1897111",
             stock: 35,
             price: 2000,
-            quantity: 0
+            quantity: 0,
+            switcher: false,
         }
     })
     const productFive = await prisma.product.upsert({
@@ -64,12 +68,13 @@ async function main() {
         create: { 
             id: 5,
             family: "RAM",
-            img: "/public/assets/images/ram/msi_ram.png",
+            img: "/assets/images/ram/msi_ram.png",
             name: "MSI",
             version: "7866432",
             stock: 22,
             price: 2000,
-            quantity: 8,
+            quantity: 0,
+            switcher: false,
         }
     })
     const alice = await prisma.user.upsert({

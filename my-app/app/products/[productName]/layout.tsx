@@ -3,14 +3,14 @@ import React from 'react';
 
 type ParamsProps = {
     params: {
-        productId: string;
+        productName: string;
     }
 };
 
 export const generateMetadata = async ({params}: ParamsProps): Promise<Metadata> => {
     const title = await new Promise((resolve) => {
         setTimeout(() => {
-            resolve(`Prod: ${params.productId}`)
+            resolve(`Prod: ${params.productName}`)
         }, 300)
     })
     return {
@@ -18,7 +18,7 @@ export const generateMetadata = async ({params}: ParamsProps): Promise<Metadata>
     }
 };
 
-export default function ProductIdLayout({children}: {children: React.ReactNode}) {
+export default function ProductNameLayout({children}: {children: React.ReactNode}) {
     return (
         <div>
             {children}

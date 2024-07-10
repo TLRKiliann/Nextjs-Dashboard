@@ -7,9 +7,9 @@ import usePersistStore from '@/helpers/usePersistStore';
 import { useQuery } from '@tanstack/react-query';
 import { getProductsData } from '@/utils/api-request';
 import Image from 'next/image';
-import Loader from '../Loader';
+import Loader from '@/components/Loader';
 
-export default function ProductIdCard({params}: {params: {productId: string}}) {
+export default function ProductNameCard({params}: {params: {productName: string}}) {
 
     // useQuery
     const { data, isLoading, isError, error } = useQuery<ProductsProps[]>({
@@ -45,7 +45,7 @@ export default function ProductIdCard({params}: {params: {productId: string}}) {
     return (
         <div className='min-h-screen bg-gradient-to-tr from-slate-700 to-slate-950 pt-[25%]'>
             {database.map((product: ProductsProps) => (
-                parseInt(params.productId) === product.id ? (
+                String(params.productName) === product.name ? (
 
                     <div key={product.id} 
                         className='w-[360px] m-auto bg-gradient-to-tr from-slate-200 to-slate-300 rounded-md 

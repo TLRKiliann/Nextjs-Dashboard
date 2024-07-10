@@ -29,6 +29,7 @@ export const addProductToDb = async (formData: FormData) => {
     revalidatePath("/products");
 };
 
+// increment quantity in cartItems
 export async function addToCart(formData: FormData) {
     try {
         await prisma.product.update({
@@ -49,6 +50,7 @@ export async function addToCart(formData: FormData) {
     revalidatePath("/products/cart");
 };
 
+// decrement quantity in cartItems
 export async function deleteFromCart(formData: FormData) {
     try {
         await prisma.product.update({
@@ -69,16 +71,82 @@ export async function deleteFromCart(formData: FormData) {
     revalidatePath("/products/cart");
 };
 
+// reinitialize quantity to 0 in cartItems
 export async function removeFromCart(id: number) {
     try {
-        await prisma.product.delete({
-            where: { id },
+        await prisma.product.update({
+            data: {
+                id: id,
+                quantity: 0,
+            },
+            where: {
+                id: id,
+            },
         });
     } catch (error) {
         console.log("Error: ", error)
         return "Error: removeFromCart fn()";
     }
     revalidatePath("/products/cart");
+};
+
+// /dashboard/products
+export async function handleModify(id: number, switcher: boolean) {
+    try {
+        await prisma.product.update({
+            data: {
+                id: id,
+                switcher: !switcher,
+            },
+            where: {
+                id: id,
+            }
+        })
+    } catch (error) {
+        console.log("Error: ", error)
+        return "Error: handleModify fn()";
+    }
+    revalidatePath("/dashboard/products");
+};
+
+// /dashboard/products
+export async function handleSave(
+    id: number, allStateFamily: string, allStateName: string, allStateStock: number, allStatePrice: number
+) {
+    try {
+        await prisma.product.update({
+            data: {
+                id: id,
+                family: allStateFamily,
+                name: allStateName,
+                stock: allStateStock,
+                price: allStatePrice,
+                switcher: false,
+            },
+            where: {
+                id: id,
+            }
+        })
+    } catch (error) {
+        console.log("Error: ", error)
+        return "Error: handleSave fn()";
+    }
+    revalidatePath("/dashboard/products");
+};
+
+// /dashboard/products
+export async function handleRemove(id: number) {
+    try {
+        await prisma.product.findUnique({
+            where: {
+                id: id,
+            }
+        })
+    } catch (error) {
+        console.log("Error: ", error)
+        return "Error: handleRemove fn()";
+    }
+    revalidatePath("/dashboard/products");
 };
 
 /* export async function getAvailableProducts()  {

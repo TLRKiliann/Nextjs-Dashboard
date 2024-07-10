@@ -19,7 +19,7 @@ export const customers: CustomersProps[] = [
         address: "not set",
         country: "Germany",
         city: "Berlin",
-        connected: true
+        isConnected: true
     },
     {
         id: 2,
@@ -31,7 +31,7 @@ export const customers: CustomersProps[] = [
         address: "not set",
         country: "Japan",
         city: "Kasugai",
-        connected: false
+        isConnected: false
     },
     {
         id: 3,
@@ -43,7 +43,7 @@ export const customers: CustomersProps[] = [
         address: "not set",
         country: "Japan",
         city: "Narita",
-        connected: true
+        isConnected: true
     },
     {
         id: 4,
@@ -55,7 +55,7 @@ export const customers: CustomersProps[] = [
         address: "not set",
         country: "USA",
         city: "Metropolis",
-        connected: true
+        isConnected: true
     },
     {
         id: 5,
@@ -67,7 +67,7 @@ export const customers: CustomersProps[] = [
         address: "not set",
         country: "USA",
         city: "Gotham City",
-        connected: false
+        isConnected: false
     },
     {
         id: 6,
@@ -79,7 +79,7 @@ export const customers: CustomersProps[] = [
         address: "Kungsbroplan 1",
         country: "Sweden",
         city: "Stockholm",
-        connected: true
+        isConnected: true
     },
     {
         id: 7,
@@ -91,7 +91,7 @@ export const customers: CustomersProps[] = [
         address: "Spychertenstrasse 3",
         country: "Switzerland",
         city: "Thun",
-        connected: true
+        isConnected: true
     },
     {
         id: 8,
@@ -103,6 +103,6 @@ export const customers: CustomersProps[] = [
         address: "Vester Voldgade 4",
         country: "Denmark",
         city: "Copenhagen",
-        connected: false
+        isConnected: false
     }
 ];
