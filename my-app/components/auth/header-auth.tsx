@@ -5,7 +5,7 @@ import { FaPowerOff } from "react-icons/fa6";
 export const dynamic = "force-dynamic";
 
 const HeaderAuth = async () => {
-
+    
     const session = await auth();
 
     const logoutAction = async () => {
