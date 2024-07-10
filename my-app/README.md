@@ -3,16 +3,17 @@
 - heaeder-auth dynamic auto-refresh ???
 - requests with postgresl & products (admin + user)
 
-client
 
-                        <button onClick={async () => {
-                            await prisma.post.updateMany({
-                                data: {
-                                    quantity: {
-                                        increment: 1,
-                                    },
-                                }
-                            });
-                            revalidatePath("/cart");
-                        }}>
-                        </button>
+//react 19
+//import React, { useActionState } from 'react'
+    //const [error, action, isPending] = useActionState(removeFromCart, null);
+
+// Don't use useQuery in NextJS
+// Don't use auth in layout.tsx
+
+
+$ pnpm prisma db push
+
+$ pnpm prisma studio
+
+$ pnpm prisma db seed

@@ -23,20 +23,18 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        if (credentials?.email === 'admin@example.com' || credentials.password === 'Secret@1337') {
-          return { name: 'Admin User', email: 'admin@example.com' };
+        if (credentials?.email === 'admin@prisma.io' || credentials?.password === 'Chester@79') {
+          return { name: 'Admin User', email: 'admin@prisma.io' };
         };
-        if (!credentials?.email || !credentials.password) {
+        if (!credentials.email || !credentials.password) {
           return null;
         }
         const user = await prisma.user.findUnique({
           where: {
-            email: String(credentials.email),
+            email: String(credentials.email)
           },
         });
-        if (
-          !user || !(await bcrypt.compare(String(credentials.password), user.password!))
-        ) {
+        if (!user || !(await bcrypt.compare(String(credentials.password), user.password!))) {
           return null;
         }
         return {
@@ -44,6 +42,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           email: user.email,
           name: user.name,
           randomKey: "Hey cool",
+          role: user.role
         };
       },
     }),

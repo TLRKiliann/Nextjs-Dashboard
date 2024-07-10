@@ -14,7 +14,9 @@ export async function POST(req: Request): Promise<NextResponse> {
     const { email, password } = loginUserSchema.parse(await req.json());
 
     const user = await prisma.user.findUnique({
-      where: { email: email.toLowerCase() },
+      where: { 
+        email: email.toLowerCase()
+      },
     });
     if (!user) {
       return NextResponse.json(
@@ -35,7 +37,6 @@ export async function POST(req: Request): Promise<NextResponse> {
         );
     }
     const isPasswordValid = await compare(password, user.password);
-    
     if (!isPasswordValid) {
       return NextResponse.json(
         {
@@ -57,11 +58,11 @@ export async function POST(req: Request): Promise<NextResponse> {
           sameSite:'strict'
       }; 
       // set COOKIE with TOKEN
-      cookie.set('Set-Cookie', `auth-token=${token}; ${serialize(cookieOptions)}`, {sameSite:'strict'});
+      cookie.set('Set-Cookie', `auth-token=${token}; ${serialize(cookieOptions)}`, {sameSite: 'strict'});
       return NextResponse.json({message: "response from POST", 
         user: {
           name: user.name,
-          email: user.email,
+          email: user.email
         }}, 
         {status: 200, headers: {
           "Content-Type": "application/json"
