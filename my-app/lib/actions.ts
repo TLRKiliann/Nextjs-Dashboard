@@ -71,8 +71,14 @@ export async function deleteFromCart(formData: FormData) {
 
 export async function removeFromCart(id: number) {
     try {
-        await prisma.product.delete({
-            where: { id },
+        await prisma.product.update({
+            data: {
+                id: id,
+                quantity: 0,
+            },
+            where: {
+                id: id,
+            },
         });
     } catch (error) {
         console.log("Error: ", error)
