@@ -41,6 +41,7 @@ model Product {
   stock             Int
   price             Int
   quantity          Int
+  switcher          Boolean  @default(false)
   updatedAt         DateTime @updatedAt
   createdAt         DateTime @default(now())
 }
