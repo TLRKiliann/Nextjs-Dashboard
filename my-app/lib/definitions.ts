@@ -48,6 +48,7 @@ export type ProductsProps = {
     stock: number;
     price: number;
     quantity: number;
+    switcher?: boolean;
     updateAt?: Date;
     createdAt?: Date;
 }
