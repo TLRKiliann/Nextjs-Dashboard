@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import prisma from '@/prisma/prisma';
 import DataTables from '@/components/menu-items/DataTables';
 import ProfilePage from "@/app/(auth)/profile/page";
-import Products from '@/components/menu-items/Products';
+import ProductsToModify from '@/components/menu-items/ProductsToModify';
 import CreateProduct from '@/components/menu-items/CreateProduct';
 
 export default async function DashboardIndexLayout({children, params}: {
@@ -11,7 +11,7 @@ export default async function DashboardIndexLayout({children, params}: {
     params: {indexDashboard: string};
 }) {
     /*
-    params = profile || databases || charts
+    params = profile || databases || charts || ...
     */
     const listProducts: ProductsProps[] = await prisma.product.findMany({
         orderBy: {
@@ -41,9 +41,9 @@ export default async function DashboardIndexLayout({children, params}: {
                         <div className='w-full h-[90%] text-slate-500 mt-[7%] p-4'>
                             <DataTables />
                         </div>
-                    ) : params.indexDashboard === "products" ? (
+                    ) : params.indexDashboard === "products-admin" ? (
                         <div className='w-full h-[90%] text-slate-500 mt-[7%] p-4'>
-                            <Products listProducts={listProducts} />
+                            <ProductsToModify listProducts={listProducts} />
                             <CreateProduct />
                         </div>
                     ) : (
