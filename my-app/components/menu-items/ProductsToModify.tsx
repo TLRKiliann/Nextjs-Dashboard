@@ -13,10 +13,10 @@ import FormChangeProduct from './form-change-product';
 
 export default function ProductsToModify({listProducts}: {listProducts: ProductsProps[]}) {
     return (
-        <div className='relative mt-0 h-[60%] z-10'>
+        <div className='relative mt-0 h-[50%] z-10'>
             
             <div className='absolute -z-10 flex flex-col items-center justify-center w-full h-[100%]
-                overflow-y-scroll no-scrollbar pt-10 md:pt-40 xl:pt-20 2xl:-mt-20'>
+                overflow-y-scroll no-scrollbar pt-10 md:pt-40 xl:pt-20 2xl:pt-6 pb-2'>
 
                 {listProducts.map((product: ProductsProps) => (
                     <div key={product.id} 
