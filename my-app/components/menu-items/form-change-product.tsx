@@ -2,6 +2,7 @@
 
 import { handleSaveProduct } from '@/lib/actions';
 import React, { useState } from 'react';
+import InputModify from './create-modify-form-content/input-modify';
 
 type AllStateProps = {
     family: string;
@@ -46,32 +47,32 @@ export default function FormChangeProduct({ id, family, name, stock, price }: {
             className='w-full flex flex-row items-center justify-between'    
         >
 
-            <input type="text" value={allState.family} onChange={(e)=> handleFamily(e)} 
+            <InputModify 
+                type="text"
+                value={allState.family}
+                onChange={(e)=> handleFamily(e)}
                 placeholder={family} 
-                className='w-1/5 bg-slate-50 border border-slate-500/70 outline-none ring-none  
-                    focus:border focus:outline focus:ring focus:border-blue-400 focus:outline-blue-200 
-                    focus:ring-blue-300 focus:bg-white rounded ml-2 px-2 py-1'
             />
 
-            <input type="text" value={allState.name} onChange={(e)=> handleName(e)} 
+            <InputModify 
+                type="text"
+                value={allState.name}
+                onChange={(e)=> handleName(e)}
                 placeholder={name} 
-                className='w-1/5 bg-slate-50 border border-slate-500/70 outline-none ring-none  
-                    focus:border focus:outline focus:ring focus:border-blue-400 focus:outline-blue-200 
-                    focus:ring-blue-300 focus:bg-white rounded ml-2 px-2 py-1'
             />
 
-            <input type="text" value={allState.stock} onChange={(e)=> handleStock(e)} 
+            <InputModify 
+                type="text"
+                value={allState.stock}
+                onChange={(e)=> handleStock(e)}
                 placeholder={String(stock)} 
-                className='w-1/5 bg-slate-50 border border-slate-500/70 outline-none ring-none  
-                    focus:border focus:outline focus:ring focus:border-blue-400 focus:outline-blue-200 
-                    focus:ring-blue-300 focus:bg-white rounded ml-2 px-2 py-1'
             />
 
-            <input type="text" value={allState.price} onChange={(e)=> handlePrice(e)} 
+            <InputModify 
+                type="text"
+                value={allState.price}
+                onChange={(e)=> handlePrice(e)}
                 placeholder={String(price)} 
-                className='w-1/5 bg-slate-50 border border-slate-500/70 outline-none ring-none  
-                    focus:border focus:outline focus:ring focus:border-blue-400 focus:outline-blue-200 
-                    focus:ring-blue-300 focus:bg-white rounded ml-2 px-2 py-1'
             />
 
             <button 
