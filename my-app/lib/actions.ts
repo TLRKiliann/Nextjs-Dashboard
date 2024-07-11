@@ -90,7 +90,7 @@ export async function removeFromCart(id: number) {
     revalidatePath("/products/cart");
 };
 
-// /dashboard/products
+// /dashboard/products-admin
 export async function handleModify(id: number, switcher: boolean) {
     try {
         await prisma.product.update({
@@ -106,21 +106,21 @@ export async function handleModify(id: number, switcher: boolean) {
         console.log("Error: ", error)
         return "Error: handleModify fn()";
     }
-    revalidatePath("/dashboard/products");
+    revalidatePath("/dashboard/products-admin");
 };
 
-// /dashboard/products
-export async function handleSave(
-    id: number, allStateFamily: string, allStateName: string, allStateStock: number, allStatePrice: number
+// /dashboard/products-admin
+export async function handleSaveProduct(
+    id: number, family: string, name: string, stock: number, price: number
 ) {
     try {
         await prisma.product.update({
             data: {
                 id: id,
-                family: allStateFamily,
-                name: allStateName,
-                stock: allStateStock,
-                price: allStatePrice,
+                family: family,
+                name: name,
+                stock: stock,
+                price: price,
                 switcher: false,
             },
             where: {
@@ -129,12 +129,12 @@ export async function handleSave(
         })
     } catch (error) {
         console.log("Error: ", error)
-        return "Error: handleSave fn()";
+        return "Error: handleSavePrice fn()";
     }
-    revalidatePath("/dashboard/products");
+    revalidatePath("/dashboard/products-admin");
 };
 
-// /dashboard/products
+// /dashboard/products-admin
 export async function handleRemove(id: number) {
     try {
         await prisma.product.findUnique({
@@ -146,7 +146,7 @@ export async function handleRemove(id: number) {
         console.log("Error: ", error)
         return "Error: handleRemove fn()";
     }
-    revalidatePath("/dashboard/products");
+    revalidatePath("/dashboard/products-admin");
 };
 
 /* export async function getAvailableProducts()  {
