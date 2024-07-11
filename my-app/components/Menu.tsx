@@ -71,7 +71,7 @@ export default function Menu() {
 
             <ul className='mt-12'>
                 <li className='list-none text-base transition durantion-200 ease-in-out text-slate-500 hover:text-slate-400/90 mb-4'>
-                    <Link href="/dashboard/products">
+                    <Link href="/dashboard/products-admin">
                         <span className='flex items-center'>
                             <FaProductHunt size={18} /><p className='ml-2'>Products</p>
                         </span>
