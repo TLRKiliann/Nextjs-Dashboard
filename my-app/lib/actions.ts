@@ -90,7 +90,7 @@ export async function removeFromCart(id: number) {
     revalidatePath("/products/cart");
 };
 
-// /dashboard/products-admin
+// /dashboard/products-admin (ProductToModify)
 export async function handleModify(id: number, switcher: boolean) {
     try {
         await prisma.product.update({
@@ -109,7 +109,7 @@ export async function handleModify(id: number, switcher: boolean) {
     revalidatePath("/dashboard/products-admin");
 };
 
-// /dashboard/products-admin
+// /dashboard/products-admin (ProductToModify)
 export async function handleSaveProduct(
     id: number, family: string, name: string, stock: number, price: number
 ) {
@@ -129,12 +129,12 @@ export async function handleSaveProduct(
         })
     } catch (error) {
         console.log("Error: ", error)
-        return "Error: handleSavePrice fn()";
+        return "Error: handleSaveProduct fn()";
     }
     revalidatePath("/dashboard/products-admin");
 };
 
-// /dashboard/products-admin
+// /dashboard/products-admin (ProductToModify)
 export async function handleRemove(id: number) {
     try {
         await prisma.product.findUnique({
@@ -149,6 +149,26 @@ export async function handleRemove(id: number) {
     revalidatePath("/dashboard/products-admin");
 };
 
+// /dashboard/products-admin (CreateProduct)
+export async function createProduct(formData: FormData) {
+    try {
+        await prisma.product.create({
+            data: {
+                family: (formData.get("family") as string),
+                name: (formData.get("name") as string),
+                img: (formData.get("img") as string),
+                version: (formData.get("version") as string),
+                quantity: 0,
+                stock: Number(formData.get("stock")),
+                price: Number(formData.get("price")),
+            } 
+        })
+    } catch (error) {
+        console.log("Error: ", error)
+        return "Error: createProduct fn()";
+    }
+    revalidatePath("/dashboard/products-admin");
+}
 /* export async function getAvailableProducts()  {
     try {
         await prisma.product.findMany();
