@@ -12,10 +12,13 @@ export default function BtnModify({id, switcher}: BtnModifyProps) {
         <button 
             key={id}
             type="button"
-            onClick={() => handleModify(id, switcher)} 
-            className='text-slate-100 bg-blue-500 
-                hover:bg-blue-600 active:bg-blue-700
-                px-4 py-1 rounded shadow-sm-out'
+            onClick={async () => (
+                await handleModify(id, switcher)
+            )} 
+            className='flex items-center justify-center text-sm text-slate-50 bg-blue-500
+                transition transform duration-100 ease-in-out 
+                hover:bg-blue-500 active:bg-blue-600 px-4 py-2 rounded shadow-md
+                hover:scale-105 active:scale-95 active:shadow-in'
         >
             Modify
         </button>
