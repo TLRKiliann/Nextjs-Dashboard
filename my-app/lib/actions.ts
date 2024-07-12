@@ -44,10 +44,10 @@ export async function addToCart(formData: FormData) {
             },
         });
     } catch (error) {
-        console.log("Error: ", error)
-        return "Error: addToCart fn()";
+        return {message: "There is an error!", error};
     }
     revalidatePath("/products/cart");
+    return {message: "Success!"};
 };
 
 // decrement quantity in cartItems
@@ -66,9 +66,10 @@ export async function deleteFromCart(formData: FormData) {
         });
     } catch (error) {
         console.log("Error: ", error)
-        return "Error: deleteFromCart fn()";
+        return {message: "There is an error!"};
     }
     revalidatePath("/products/cart");
+    return {message: "Success!"}
 };
 
 // reinitialize quantity to 0 in cartItems
@@ -84,10 +85,10 @@ export async function removeFromCart(id: number) {
             },
         });
     } catch (error) {
-        console.log("Error: ", error)
-        return "Error: removeFromCart fn()";
+        return {message: "There is an error!"};
     }
     revalidatePath("/products/cart");
+    return {message: "Success!"};
 };
 
 // /dashboard/products-admin (ProductToModify)
@@ -137,7 +138,7 @@ export async function handleSaveProduct(
 // /dashboard/products-admin (ProductToModify)
 export async function handleRemove(id: number) {
     try {
-        await prisma.product.findUnique({
+        await prisma.product.delete({
             where: {
                 id: id,
             }
@@ -154,9 +155,10 @@ export async function createProduct(formData: FormData) {
     try {
         await prisma.product.create({
             data: {
+                id: Number(formData.get("id")),
                 family: (formData.get("family") as string),
                 name: (formData.get("name") as string),
-                img: (formData.get("img") as string),
+                img: "/assets/images/cpu/cpu_i3.jpg",
                 version: (formData.get("version") as string),
                 quantity: 0,
                 stock: Number(formData.get("stock")),
@@ -164,10 +166,10 @@ export async function createProduct(formData: FormData) {
             } 
         })
     } catch (error) {
-        console.log("Error: ", error)
-        return "Error: createProduct fn()";
+        return {message: "There is an error"};
     }
     revalidatePath("/dashboard/products-admin");
+    return {message: "Success!"}
 }
 /* export async function getAvailableProducts()  {
     try {
