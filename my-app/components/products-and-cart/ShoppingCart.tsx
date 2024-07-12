@@ -5,9 +5,9 @@ import Image from 'next/image';
 import { useStore } from '@/lib/store';
 import usePersistStore from '@/helpers/usePersistStore';
 import Link from 'next/link';
-import AddItemToCart from '@/components/products-and-cart/add-item-to-cart';
-import DeleteItemFromCart from '@/components/products-and-cart/delete-item-from-cart';
-import RemoveItemsFromCart from '@/components/products-and-cart/remove-items-from-cart';
+import AddItemToCart from '@/components/products-and-cart/action-cart-item/add-item-to-cart';
+import DeleteItemFromCart from '@/components/products-and-cart/action-cart-item/delete-item-from-cart';
+import RemoveItemsFromCart from '@/components/products-and-cart/action-cart-item/remove-items-from-cart';
 
 export default function ShoppingCartPage({products}: {products: ProductsProps[]}) {
 
