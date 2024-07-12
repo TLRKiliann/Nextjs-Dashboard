@@ -2,10 +2,10 @@ import { Metadata } from "next";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import Image from "next/image";
-import userLogo from "@/public/assets/images/users/user_icon.jpg";
+import HeaderAuth from '@/components/auth/header-auth';
 import DataProfile from "@/components/auth/data-profile";
 import OsBrowserData from "@/components/auth/os-browser-data";
-//import HeaderAuth from '@/components/auth/header-auth';
+import userLogo from "@/public/assets/images/users/user_icon.jpg";
 
 export const dynamic = "force-dynamic";
 
@@ -25,7 +25,7 @@ export default async function ProfilePage() {
 
     return (
         <>
-            {/* <HeaderAuth /> */}
+            <HeaderAuth />
             <div className='flex flex-col justify-center w-[380px] xl:w-[500px] h-full m-auto bg-white rounded-lg'>
 
                 <div className='w-full flex flex-col items-center justify-center rounded-lg'>
