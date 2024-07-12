@@ -3,7 +3,7 @@
 import { ProductsProps } from '@/lib/definitions';
 import { useStore } from '@/lib/store';
 import usePersistStore from '@/helpers/usePersistStore';
-import { addProductToDb } from '@/lib/actions';
+
 import Loader from '@/components/Loader';
 
 export default function MainBtnAdd({ product, id, name, quantity }: {
@@ -25,7 +25,7 @@ export default function MainBtnAdd({ product, id, name, quantity }: {
     };
 
     return (
-        <form action={addProductToDb} className='flex items-center justify-center mt-4'>
+        <div className='flex items-center justify-center mt-4'>
             <input type="number" name="id" value={id} readOnly hidden />
             <button type="submit" onClick={handleAddProduct}
                 className='w-[120px] h-[38px] text-sm font-bold bg-blue-500 hover:bg-blue-600 
@@ -35,6 +35,6 @@ export default function MainBtnAdd({ product, id, name, quantity }: {
             >
                 Add to Cart
             </button>
-        </form>
+        </div>
     )
 }
