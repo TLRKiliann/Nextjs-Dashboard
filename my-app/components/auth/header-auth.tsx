@@ -10,7 +10,10 @@ const HeaderAuth = async () => {
 
     const logoutAction = async () => {
         'use server';
-        await signOut();
+        await signOut({
+            redirect: true,
+            redirectTo: 'http://localhost:3000/login',
+        });
     };
 
     const user = session?.user?.name;
@@ -53,7 +56,6 @@ const HeaderAuth = async () => {
                     </li>
                 </form>
             ) : null}
-
         </div>
     )
 }
