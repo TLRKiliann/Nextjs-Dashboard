@@ -42,7 +42,7 @@ async function main() {
             name: "i7",
             version: "2897433",
             stock: 25,
-            price: 2000,
+            price: 1200,
             quantity: 0,
             switcher: false,
         }
@@ -57,7 +57,7 @@ async function main() {
             name: "i9",
             version: "1897111",
             stock: 35,
-            price: 2000,
+            price: 1380,
             quantity: 0,
             switcher: false,
         }
@@ -72,9 +72,39 @@ async function main() {
             name: "MSI",
             version: "7866432",
             stock: 22,
+            price: 1480,
+            quantity: 0,
+            switcher: false,
+        }
+    })
+    const productSix = await prisma.product.upsert({
+        where: {id: 6},
+        update: {},
+        create: { 
+            id: 6,
+            family: "RAM",
+            img: "/assets/images/ram/asus_ram.png",
+            name: "Asus",
+            version: "7866432",
+            stock: 22,
             price: 2000,
             quantity: 0,
             switcher: false,
+        }
+    })
+    const productSeven = await prisma.product.upsert({
+        where: {id: 7},
+        update: {},
+        create: { 
+            id: 7,
+            family: "RAM",
+            img: "/assets/images/ram/patriot_ram.png",
+            name: "Patriot",
+            version: "2992777",
+            stock: 38,
+            price: 1230,
+            quantity: 0,
+            switcher: false
         }
     })
     const alice = await prisma.user.upsert({
@@ -107,7 +137,11 @@ async function main() {
             isConnected: false,
         },
     })
-    console.log({ alice, bob, admin, productOne, productTwo, productThree, productFour, productFive })
+    console.log(
+        { 
+            alice, bob, admin, productOne, productTwo, productThree, 
+            productFour, productFive, productSix, productSeven 
+        })
 }
 main()
   .then(async () => {

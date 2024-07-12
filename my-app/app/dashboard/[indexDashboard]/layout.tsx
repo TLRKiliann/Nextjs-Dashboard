@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import prisma from '@/prisma/prisma';
 import DataTables from '@/components/menu-items/DataTables';
 import ProfilePage from "@/app/(auth)/profile/page";
-import ProductsToModify from '@/components/menu-items/ProductsToModify';
+import ModifyProduct from '@/components/menu-items/ModifyProduct';
 import CreateProduct from '@/components/menu-items/CreateProduct';
 
 export default async function DashboardIndexLayout({children, params}: {
@@ -43,7 +43,7 @@ export default async function DashboardIndexLayout({children, params}: {
                         </div>
                     ) : params.indexDashboard === "products-admin" ? (
                         <div className='w-full h-[90%] text-slate-500 mt-[7%] p-4'>
-                            <ProductsToModify listProducts={listProducts} />
+                            <ModifyProduct listProducts={listProducts} />
                             <CreateProduct />
                         </div>
                     ) : (

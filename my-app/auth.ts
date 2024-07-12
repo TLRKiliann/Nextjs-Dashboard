@@ -16,11 +16,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       id: "credentials",
       credentials: {
         email: {
-          label: "Email",
           type: "email",
-          placeholder: "example@example.com",
+          placeholder: "Email address",
         },
-        password: { label: "Password", type: "password" },
+        password: { placeholder: "Password", type: "password" },
       },
       async authorize(credentials) {
         if (credentials?.email === 'admin@prisma.io' || credentials?.password === 'Chester@79') {

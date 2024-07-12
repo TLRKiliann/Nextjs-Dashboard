@@ -1,6 +1,8 @@
 "use client";
 
 import { deleteFromCart } from '@/lib/actions';
+import { useCallback } from 'react';
+import toast from 'react-hot-toast';
 
 export default function DeleteItemFromCart({id, quantity, name, stock, handleDeleteProduct}:
     {
@@ -11,8 +13,19 @@ export default function DeleteItemFromCart({id, quantity, name, stock, handleDel
         handleDeleteProduct: (id: number) => void;
     }) {
 
+    const onSubmit = useCallback(async (formData: FormData) => {
+        const res = await deleteFromCart(formData)
+        if (res.message === "Success!") {
+            toast.success("Successfully deleted from cart!");
+        } else if (res.message === "There is an error!") {
+            toast.error("Deleted from cart failed!");
+        } else {
+            toast.error("An unexpected error occurred.");
+        }
+    }, []);
+
     return (
-        <form action={deleteFromCart}>
+        <form action={onSubmit}>
             <input type="number" id="id" name="id" value={id} hidden readOnly />
             <button type="submit" onClick={() => handleDeleteProduct(id)}
                 className="w-[38px] h-[38px] text-slate-100 font-bold bg-blue-500 

@@ -42,8 +42,7 @@ export default function FormChangeProduct({ id, family, name, stock, price }: {
     };
 
     return (
-        <form key={id}
-            action={() => handleSaveProduct(id, allState.family, allState.name, allState.stock, allState.price)}
+        <div key={id}
             className='w-full flex flex-row items-center justify-between'    
         >
 
@@ -76,14 +75,19 @@ export default function FormChangeProduct({ id, family, name, stock, price }: {
             />
 
             <button 
-                type="submit"
-                className='text-slate-100 bg-blue-500 
-                    hover:bg-blue-600 active:bg-blue-700
-                    mx-4 px-4 py-1 rounded shadow-sm-out'
+                type="button"
+                onClick={async () => (
+                    await handleSaveProduct(id, allState.family, allState.name, 
+                        allState.stock, allState.price)
+                )}
+                className='flex items-center justify-center text-sm text-slate-50 bg-blue-500
+                    transition transform duration-100 ease-in-out 
+                    hover:bg-blue-500 active:bg-blue-600 px-6 py-2 rounded shadow-md
+                    hover:scale-105 active:scale-95 active:shadow-in'
             >
                 Save
             </button>
 
-        </form>
+        </div>
     )
 };

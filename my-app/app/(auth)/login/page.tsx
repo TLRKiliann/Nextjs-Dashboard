@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-//import HeaderAuth from '@/components/auth/header-auth';
+import HeaderAuth from '@/components/auth/header-auth';
 import { LoginForm } from "@/components/auth/login-form";
 
 export const metadata: Metadata = {
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default async function LoginPage() {
     return (
         <>
-            {/* <HeaderAuth /> */}
+            <HeaderAuth />
             <div className="flex flex-col items-center pt-10">
                 <LoginForm />
                 <div className="flex flex-col items-center justify-center">

@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import HeaderAuth from '@/components/auth/header-auth';
 import { RegisterForm } from '@/components/auth/register-form';
-//import HeaderAuth from '@/components/auth/header-auth';
 
 export const metadata: Metadata = {
     title: "Register",
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function RegisterPage() {
     return (
         <>
-            {/* <HeaderAuth /> */}
+            <HeaderAuth />
             <div className='flex flex-col items-center justify-center pt-10'>
                 <RegisterForm />
                 <div className="flex flex-col items-center justify-center">

@@ -1,4 +1,5 @@
 import { ProductsProps } from '@/lib/definitions';
+import { addProductToDb } from '@/lib/actions';
 import Link from 'next/link';
 import Image from 'next/image';
 import MainBtnAdd from './main-btn-add';
@@ -34,14 +35,14 @@ export default function Card({product}: ProductProps) {
                 </div>
 
                 <div className='w-full'>
-
-                    <MainBtnAdd
-                        id={product.id}
-                        name={product.name}
-                        quantity={product.quantity}
-                        product={product}
-                    />
-
+                    <form action={addProductToDb} className='flex items-center justify-center mt-4'>
+                        <MainBtnAdd
+                            id={product.id}
+                            name={product.name}
+                            quantity={product.quantity}
+                            product={product}
+                        />
+                    </form>
                 </div>
 
                 <div className='text-center my-4'>
