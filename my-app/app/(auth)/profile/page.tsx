@@ -7,8 +7,6 @@ import DataProfile from "@/components/auth/data-profile";
 import OsBrowserData from "@/components/auth/os-browser-data";
 import userLogo from "@/public/assets/images/users/user_icon.jpg";
 
-export const dynamic = "force-dynamic";
-
 export const metadata: Metadata = {
     title: "Login",
     description: "login page"
@@ -17,11 +15,11 @@ export const metadata: Metadata = {
 export default async function ProfilePage() {
 
     const session = await auth();
-
     const user = session?.user;
+    
     if (!user) {
         return redirect("/api/auth/signin");
-    }
+    };
 
     return (
         <>
