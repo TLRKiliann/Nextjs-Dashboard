@@ -49,7 +49,7 @@ export default function EmailComp({emailBox}: {emailBox: EmailProps[]}) {
                             hover:bg-slate-300 icon-hover-container px-2 py-2'>
                         <IoSettingsSharp size={16} className='text-slate-500/70 icon-hover' />
                         <p className='text-sm mx-2'>
-                            Settings
+                            Delete All
                         </p>
                     </span>
 
