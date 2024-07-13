@@ -177,7 +177,6 @@ export async function emailSending(formData: FormData) {
     try {
         await prisma.email.create({
             data: {
-                id: Number(formData.get("id")),
                 email: (formData.get("email") as string),
                 message: (formData.get("message") as string),
             }
