@@ -57,3 +57,10 @@ export type ListOfItemsProps = {
     readonly id: number;
     readonly item: string;
 }
+
+export type EmailProps = {
+    id: string;
+    email: string;
+    message: string;
+    createdAt: Date;
+}
