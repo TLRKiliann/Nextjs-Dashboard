@@ -1,6 +1,5 @@
-import React from 'react';
+import { EmailProps } from '@/lib/definitions';
 import { auth, signOut } from '@/auth';
-//import Link from 'next/link';
 import prisma from '@/prisma/prisma';
 import EmailComp from './header-items/EmailComp';
 import Notifications from './header-items/Notifications';
@@ -22,6 +21,18 @@ const Header = async () => {
         where: {
             email: user.email,
             role: "ADMIN",
+        }
+    });
+
+    const emailBox: EmailProps[] = await prisma.email.findMany({
+        orderBy: {
+            createdAt: "desc",
+        },
+        select: {
+            id: true,
+            email: true,
+            message: true,
+            createdAt: true,
         }
     });
 
@@ -52,16 +63,8 @@ const Header = async () => {
                         </li>
 
                         <li className='flex items-center justify-center text-base text-slate-500/80 px-4'>
-                            <EmailComp />
+                            <EmailComp emailBox={emailBox} />
                         </li>
-                        {/* {!user && (
-                            <li className='flex items-center justify-center text-base text-slate-500/80 
-                                transition duration-200 ease-in-out hover:text-slate-500'>
-                                <Link href="/login">
-                                    <FaPowerOff size={16} />
-                                </Link>
-                            </li>
-                        )} */}
                         {admin ? (
                             <form action={logoutAction} className='flex pr-4'>
                                 <li className='flex items-center justify-center text-base text-slate-500/80 
