@@ -16,7 +16,8 @@ export default function EmailComp() {
         <div 
             onMouseEnter={() => setIsOpen(true)}
             onMouseLeave={() => setIsOpen(false)}
-            className='relative'>
+            className='relative'
+        >
 
             <span
                 className='flex items-center transition duration-200 ease-in-out hover:text-slate-500'    
@@ -36,7 +37,7 @@ export default function EmailComp() {
                     <span 
                         onClick={() => setIsOpen(false)} 
                         className='flex flex-row items-center w-auto cursor-pointer hover:text-slate-500 
-                            hover:bg-slate-300 icon-hover-container px-2 py-1 pt-2'>
+                            hover:bg-slate-300 icon-hover-container px-2 py-2 mt-2'>
                         <IoIosMailOpen size={16} className='text-slate-500/70 icon-hover' />
                         <p className='text-sm mx-2'>
                             Read email
