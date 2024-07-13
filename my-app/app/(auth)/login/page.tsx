@@ -8,6 +8,8 @@ export const metadata: Metadata = {
     description: "login page"
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function LoginPage() {
     return (
         <>
