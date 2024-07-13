@@ -5,6 +5,7 @@ import DataTables from '@/components/menu-items/DataTables';
 import ProfilePage from "@/app/(auth)/profile/page";
 import ModifyProduct from '@/components/menu-items/ModifyProduct';
 import CreateProduct from '@/components/menu-items/CreateProduct';
+import EmailsAdmin from '@/components/header-items/EmailsAdmin';
 
 export default async function DashboardIndexLayout({children, params}: {
     children: React.ReactNode;
@@ -49,6 +50,8 @@ export default async function DashboardIndexLayout({children, params}: {
                             <ModifyProduct listProducts={listProducts} />
                             <CreateProduct />
                         </div>
+                    ) : params.indexDashboard === "emails-admin" ? (
+                        <EmailsAdmin />
                     ) : null}
                     
                 </div>
