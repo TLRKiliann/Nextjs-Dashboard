@@ -1,16 +1,30 @@
 import React from 'react';
 import { auth, signOut } from '@/auth';
-import Link from 'next/link';
-import { FaPowerOff } from "react-icons/fa6";
+//import Link from 'next/link';
+import prisma from '@/prisma/prisma';
 import EmailComp from './header-items/EmailComp';
 import Notifications from './header-items/Notifications';
 import Searchbar from './header-items/Searchbar';
+import { FaPowerOff } from "react-icons/fa6";
 
 const Header = async () => {
     
     const session = await auth();
     const user = session?.user;
   
+    if (!user) {
+        return null;
+    } else if (!user.email) {
+        return null;
+    };
+
+    const admin = await prisma.user.findUnique({
+        where: {
+            email: user.email,
+            role: "ADMIN",
+        }
+    });
+
     const logoutAction = async () => {
         'use server';
         await signOut({
@@ -28,9 +42,7 @@ const Header = async () => {
 
                     <li className='flex items-center justify-center text-base text-slate-500/80 
                         transition duration-200 ease-in-out hover:text-slate-500'>
-                        
                         <Searchbar />
-
                     </li>
 
                     <div className='flex items-center justify-evenly w-[200px]'>
@@ -42,15 +54,15 @@ const Header = async () => {
                         <li className='flex items-center justify-center text-base text-slate-500/80 px-4'>
                             <EmailComp />
                         </li>
-                        {!user && (
+                        {/* {!user && (
                             <li className='flex items-center justify-center text-base text-slate-500/80 
                                 transition duration-200 ease-in-out hover:text-slate-500'>
                                 <Link href="/login">
                                     <FaPowerOff size={16} />
                                 </Link>
                             </li>
-                        )}
-                        {user && (
+                        )} */}
+                        {admin ? (
                             <form action={logoutAction} className='flex pr-4'>
                                 <li className='flex items-center justify-center text-base text-slate-500/80 
                                     transition duration-200 ease-in-out hover:text-slate-500'>
@@ -59,7 +71,7 @@ const Header = async () => {
                                     </button>
                                 </li>
                             </form>
-                        )}
+                        ): null}
                     </div>
                 </ul>
             </nav>
