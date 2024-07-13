@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { NewPasswordForm } from '@/components/auth/new-password-form';
+import HeaderAuth from '@/components/auth/header-auth';
 
 export const metadata: Metadata = {
     title: "Reset Password",
@@ -7,8 +8,11 @@ export const metadata: Metadata = {
 };
 
 const NewPasswordPage = () => {
-    return ( 
-        <NewPasswordForm />
+    return (
+        <>
+            <HeaderAuth />
+            <NewPasswordForm />
+        </>
     );
 }
 export default NewPasswordPage;

@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { auth } from "@/auth";
+import prisma from '@/prisma/prisma';
 import { redirect } from "next/navigation";
 import React, { Suspense } from 'react';
 import Header from '@/components/Header';
@@ -15,9 +16,24 @@ export default async function DashboardIndexPage() {
 
     const session = await auth();
 
-    if (session?.user?.name !== "Admin User") {
-        return redirect("/api/auth/signin");
+    const user = session?.user;
+
+    if (!user) {
+        return null;
+    } else if (!user.email) {
+        return null;
     }
+
+    const admin = await prisma.user.findUnique({
+        where: {
+            email: user.email,
+            role: "ADMIN",
+        }
+    });
+
+    if (!admin) {
+        return redirect("/api/auth/signin");
+    };
 
     return (
         <React.Fragment>

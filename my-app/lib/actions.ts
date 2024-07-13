@@ -170,7 +170,26 @@ export async function createProduct(formData: FormData) {
     }
     revalidatePath("/dashboard/products-admin");
     return {message: "Success!"}
-}
+};
+
+// email from /contact
+export async function emailSending(formData: FormData) {
+    try {
+        await prisma.email.create({
+            data: {
+                email: (formData.get("email") as string),
+                message: (formData.get("message") as string),
+            }
+        })
+    } catch (error) {
+        return {message: "There is an error!"}
+    }
+    revalidatePath("/contact");
+    return {
+        message: "Success!"
+    }
+};
+
 /* export async function getAvailableProducts()  {
     try {
         await prisma.product.findMany();

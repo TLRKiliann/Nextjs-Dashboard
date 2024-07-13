@@ -46,6 +46,13 @@ model Product {
   createdAt         DateTime @default(now())
 }
 
+model Email {
+  id            String    @id @default(uuid())
+  email         String
+  message       String
+  createdAt     DateTime  @default(now())
+}
+
 model Account {
   id                String   @id @default(cuid())
   userId            String   @map("user_id")

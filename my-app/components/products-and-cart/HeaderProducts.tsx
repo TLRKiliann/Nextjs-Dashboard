@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { FaPowerOff, FaShoppingCart } from "react-icons/fa";
 import CartItemsQuantity from './CartItemsQuantity';
 
+//export const dynamic = "force-dynamic";
+
 const HeaderProducts = async () => {
 
     const session = await auth();

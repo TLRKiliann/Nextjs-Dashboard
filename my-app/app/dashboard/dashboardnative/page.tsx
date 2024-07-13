@@ -1,4 +1,7 @@
 import { Metadata } from 'next';
+import { auth } from "@/auth";
+import prisma from '@/prisma/prisma';
+import { redirect } from "next/navigation";
 import React, { Suspense } from 'react';
 import Header from '@/components/Header';
 import Menu from '@/components/Menu';
@@ -7,9 +10,31 @@ import Loader from '@/components/Loader';
 export const metadata: Metadata = {
     title: "Dashboard",
     description: "access accepted"
-}
+};
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+
+    const session = await auth();
+
+    const user = session?.user;
+
+    if (!user) {
+        return null;
+    } else if (!user.email) {
+        return null;
+    };
+
+    const admin = await prisma.user.findUnique({
+        where: {
+            email: user.email,
+            role: "ADMIN"
+        }
+    });
+
+    if (!admin) {
+        return redirect("/api/auth/signin");
+    };
+
     return (
         <React.Fragment>
             <div className='absolute z-40 right-0 flex flex-row items-center w-[80%] xl:w-[86%] h-[10vh] 

@@ -5,19 +5,23 @@ import DataTables from '@/components/menu-items/DataTables';
 import ProfilePage from "@/app/(auth)/profile/page";
 import ModifyProduct from '@/components/menu-items/ModifyProduct';
 import CreateProduct from '@/components/menu-items/CreateProduct';
+import EmailsAdmin from '@/components/header-items/EmailsAdmin';
 
 export default async function DashboardIndexLayout({children, params}: {
     children: React.ReactNode;
     params: {indexDashboard: string};
 }) {
-    /*
-    params = profile || databases || charts || ...
-    */
+    //params = profile || databases || charts || ...
+    
     const listProducts: ProductsProps[] = await prisma.product.findMany({
         orderBy: {
             id: "asc",
         }
     });
+
+    if (!params.indexDashboard) {
+        notFound();
+    };
     
     return (
         <div className='flex flex-col w-full min-h-screen bg-slate-200'>
@@ -46,16 +50,12 @@ export default async function DashboardIndexLayout({children, params}: {
                             <ModifyProduct listProducts={listProducts} />
                             <CreateProduct />
                         </div>
-                    ) : (
-                        <div>
-                            {notFound()}
-                        </div>
-                    )}
+                    ) : params.indexDashboard === "emails-admin" ? (
+                        <EmailsAdmin />
+                    ) : null}
                     
                 </div>
-
             </div>
-
         </div>
     )
 }
