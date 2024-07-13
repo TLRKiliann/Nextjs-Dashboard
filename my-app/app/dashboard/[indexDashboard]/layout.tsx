@@ -10,14 +10,17 @@ export default async function DashboardIndexLayout({children, params}: {
     children: React.ReactNode;
     params: {indexDashboard: string};
 }) {
-    /*
-    params = profile || databases || charts || ...
-    */
+    //params = profile || databases || charts || ...
+    
     const listProducts: ProductsProps[] = await prisma.product.findMany({
         orderBy: {
             id: "asc",
         }
     });
+
+    if (!params.indexDashboard) {
+        notFound();
+    };
     
     return (
         <div className='flex flex-col w-full min-h-screen bg-slate-200'>
@@ -46,16 +49,10 @@ export default async function DashboardIndexLayout({children, params}: {
                             <ModifyProduct listProducts={listProducts} />
                             <CreateProduct />
                         </div>
-                    ) : (
-                        <div>
-                            {notFound()}
-                        </div>
-                    )}
+                    ) : null}
                     
                 </div>
-
             </div>
-
         </div>
     )
 }
