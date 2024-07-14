@@ -12,6 +12,7 @@ import { IoIosCloseCircle } from "react-icons/io";
 export default function EmailComp({emailBox}: {emailBox: EmailProps[]}) {   
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
+    const isEmailOpened: boolean = emailBox.every((email) => email.isOpen === true);
 
     return (
         <div 
@@ -19,11 +20,10 @@ export default function EmailComp({emailBox}: {emailBox: EmailProps[]}) {
             onMouseLeave={() => setIsOpen(false)}
             className='relative'
         >
-
             <span
                 className='flex items-center transition duration-200 ease-in-out hover:text-slate-500'    
             >
-                {emailBox.length === 0 ? (
+                {isEmailOpened ? (
                     <MdMarkEmailRead size={18} />
                 ) : (
                     <MdMarkEmailUnread size={18} />
