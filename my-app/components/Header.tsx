@@ -32,6 +32,7 @@ const Header = async () => {
             id: true,
             email: true,
             message: true,
+            isOpen: true,
             createdAt: true,
         }
     });
