@@ -28,9 +28,9 @@ export default async function EmailsAdmin() {
     });
 
     if (!user) {
-        return console.log("There is an error!");
-        //throw new Error("An error occured!");
-    }
+        //return console.log("There is an error!");
+        throw new Error("An error occured!");
+    };
 
     return (
         <div className='flex flex-row items-start w-full h-[90%] text-slate-800 mt-[10vh]'>
