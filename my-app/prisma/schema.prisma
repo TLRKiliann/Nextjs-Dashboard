@@ -50,6 +50,7 @@ model Email {
   id            String    @id @default(uuid())
   email         String
   message       String
+  isOpen        Boolean  @default(false)
   createdAt     DateTime  @default(now())
 }
 

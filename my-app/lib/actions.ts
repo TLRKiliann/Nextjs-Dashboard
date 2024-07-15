@@ -190,6 +190,59 @@ export async function emailSending(formData: FormData) {
     }
 };
 
+// EMAIL actions
+export async function openEmail(id: string) {
+    try {
+        await prisma.email.update({
+            data: {
+                id: id,
+                isOpen: true,
+            },
+            where: {
+                id: id,
+            }   
+        })
+    } catch (error) {
+        return {message: "There is an error!"};
+    }
+    revalidatePath("/dashboard/emails-admin");
+    return {message: "Success!"};
+};
+
+export async function closeEmail(id: string) {
+    try {
+        await prisma.email.update({
+            data: {
+                id: id,
+                isOpen: false,
+            },
+            where: {
+                id: id,
+            }   
+        })
+    } catch (error) {
+        return {message: "There is an error!"}
+    }
+    revalidatePath("/dashboard/emails-admin");
+    return {message: "Success!"}
+};
+
+export async function removeEmail(id: string) {
+    try {
+        await prisma.email.delete({
+            where: {
+                id: id,
+            }
+        })
+    } catch (error) {
+        return {message: "There is an error!"};
+    }
+    revalidatePath("/dashboard/emails-admin");
+    return {message: "Success!"}
+};
+
+// deleteMany()
+
 /* export async function getAvailableProducts()  {
     try {
         await prisma.product.findMany();

@@ -62,5 +62,6 @@ export type EmailProps = {
     id: string;
     email: string;
     message: string;
+    isOpen: boolean;
     createdAt: Date;
 }

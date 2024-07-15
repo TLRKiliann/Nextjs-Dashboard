@@ -1,17 +1,13 @@
 "use client";
 
 import { emailSending } from '@/lib/actions';
+import { User } from 'next-auth';
 import React, { useCallback, useState } from 'react';
 import toast from 'react-hot-toast';
 
-export default function EmailForm() {
+export default function EmailForm({user}: {user: User}) {
 
-    const [textEmail, setTextEmail] = useState<string>("");
     const [textArea, setTextArea] = useState<string>("");
-
-    const handleTextEmail = (event: React.ChangeEvent<HTMLInputElement>): void => {
-        setTextEmail(event.target.value);
-    };
 
     const handleTextArea = (event: React.ChangeEvent<HTMLTextAreaElement>): void => {
         setTextArea(event.target.value);
@@ -26,6 +22,7 @@ export default function EmailForm() {
         } else {
             toast.error("An error as occured!");
         }
+        setTextArea("");
     }, []);
 
     return (
@@ -35,9 +32,9 @@ export default function EmailForm() {
                     type="email"
                     id="email"
                     name="email"
-                    value={textEmail}
-                    onChange={(e) => handleTextEmail(e)}
-                    placeholder='email@example.com'
+                    value={user?.email!}
+                    readOnly
+                    placeholder={user?.email!}
                     className='form-control block w-full px-4 py-3 text-sm font-normal text-gray-700 
                         bg-white bg-clip-padding border border-solid border-gray-300 rounded transition 
                         ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 
