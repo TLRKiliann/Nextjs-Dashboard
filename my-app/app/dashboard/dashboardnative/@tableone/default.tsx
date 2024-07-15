@@ -3,11 +3,14 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import TablePage from '@/components/TablePage';
-//import { customers } from '@/app/lib/datadb';
 
 export default async function TableOneDefault() {
 
     const response = await fetch("http://localhost:3000/api/customers");
+    if (!response) {
+        //throw new Error("Error: server cannot fetch customers");
+        console.error("Error with server, unable to obtain response for clients");
+    };
     const customers = (await response.json()) as CustomersProps[];
 
     return (
@@ -27,7 +30,7 @@ export default async function TableOneDefault() {
                             <div className='flex items-center justify-between text-slate-500/90 px-2'>
                                 
                                 <div className='flex flex-row items-center justify-start'>
-                                    <Image src={customer.img} width={400} height={250} alt="no-img" 
+                                    <Image src={customer.img} width={50} height={50} alt="no-img" 
                                         className='w-[50px] h-[50px] border border-slate-500 object-cover my-1 rounded-full'/>
 
                                     <div className='w-[80px] mx-2'>
