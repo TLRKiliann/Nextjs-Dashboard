@@ -1,12 +1,17 @@
+import { auth } from '@/auth';
 import { EmailProps } from '@/lib/definitions';
 import prisma from '@/prisma/prisma';
 import OpenEmail from './action-email/open-email';
 import CloseEmail from './action-email/close-email';
 import RemoveEmail from './action-email/remove-email';
+import ResponseAdminEmail from '../modal/response-admin-email';
 
 //http://localhost:3000/dashboard/emails-admin
 
 export default async function EmailsAdmin() {
+
+    const session = await auth();
+    const user = session?.user;
 
     const emailBox: EmailProps[] = await prisma.email.findMany({
         orderBy: {
@@ -16,10 +21,16 @@ export default async function EmailsAdmin() {
             id: true,
             email: true,
             message: true,
+            dst: true,
             isOpen: true,
             createdAt: true,
         }
     });
+
+    if (!user) {
+        return console.log("There is an error!");
+        //throw new Error("An error occured!");
+    }
 
     return (
         <div className='flex flex-row items-start w-full h-[90%] text-slate-800 mt-[10vh]'>
@@ -61,9 +72,15 @@ export default async function EmailsAdmin() {
 
                     {emailBox.map((email: EmailProps) => email.isOpen === true ? (
                         <div key={email.id} className='w-full h-auto bg-white'>
-                            <div className='w-full h-auto text-slate-50 bg-slate-800 rounded-tl rounded-bl p-2'>
-                                <p className='text-base font-bold py-1'>{email.email}</p>
-                                <p className='text-sm pb-1'>{String(email.createdAt).slice(0, 24)}</p>
+                            <div className='flex flex-row items-end justify-between w-full h-auto 
+                                text-slate-50 bg-slate-800 rounded-tl rounded-bl p-2'>
+                                <div>
+                                    <p className='text-base font-bold py-1'>{email.email}</p>
+                                    <p className='text-sm pb-1'>{String(email.createdAt).slice(0, 24)}</p>
+                                </div>
+                                <div className='py-1'>
+                                    <ResponseAdminEmail id={email.id} dst={email.email} user={user} prevMsg={email.message} /> 
+                                </div>
                             </div>
                             <div className='text-justify w-full h-auto bg-white border-l border-slate-200 p-4'>
                                 <div className='flex flex-col items-start justify-between'>
