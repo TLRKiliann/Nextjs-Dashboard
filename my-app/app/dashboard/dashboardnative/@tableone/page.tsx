@@ -30,7 +30,7 @@ export default async function TableOnePage() {
                             <div className='flex items-center justify-between text-slate-500/90 px-2'>
                                 
                                 <div className='flex flex-row items-center justify-start'>
-                                    <Image src={customer.img} width={50} height={50} alt="no-img" 
+                                    <Image priority src={customer.img} width={50} height={50} alt="no-img" 
                                         className='w-[50px] h-[50px] border border-slate-500 object-cover my-1 rounded-full'/>
 
                                     <div className='w-[80px] mx-2'>
