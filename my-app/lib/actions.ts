@@ -243,6 +243,27 @@ export async function removeEmail(id: string) {
 
 // deleteMany()
 
+// admin response
+export async function adminEmail(formData: FormData) {
+    try {
+        await prisma.email.create({
+            data: {
+                email: (formData.get("src") as string),
+                message: (formData.get("textMail") as string),
+                dst: (formData.get("email") as string),  
+            }
+        })
+    } catch (error) {
+        return {
+            message: "There is an error"
+        };
+    }
+    revalidatePath("/dashboard/emails-admin");
+    return {
+        message: "Success!"
+    };
+};
+
 /* export async function getAvailableProducts()  {
     try {
         await prisma.product.findMany();
