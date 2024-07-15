@@ -65,7 +65,7 @@ export default async function ContactPage() {
                         
                         <div className='mb-1 pl-2'>
                             <h3 className='text-lg font-bold text-slate-500'>
-                                Horaires
+                                Opening Hours
                             </h3>
                         </div>
 
@@ -99,7 +99,7 @@ export default async function ContactPage() {
                         </h2>
                     </div>
 
-                    <EmailForm />
+                    <EmailForm user={user} />
 
                 </div>
 
