@@ -22,12 +22,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         password: { placeholder: "Password", type: "password" },
       },
       async authorize(credentials) {
-        if (credentials?.email === 'admin@prisma.io' || credentials?.password === 'Chester@79') {
-          return { name: 'Admin User', email: 'admin@prisma.io' };
-        };
-        if (!credentials.email || !credentials.password) {
-          return null;
-        }
         const user = await prisma.user.findUnique({
           where: {
             email: String(credentials.email)

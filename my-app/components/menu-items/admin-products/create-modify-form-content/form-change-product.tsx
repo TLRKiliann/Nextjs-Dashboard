@@ -2,7 +2,7 @@
 
 import { handleSaveProduct } from '@/lib/actions';
 import React, { useState } from 'react';
-import InputModify from './create-modify-form-content/input-modify';
+import InputModify from './input-modify';
 
 type AllStateProps = {
     family: string;

@@ -1,5 +1,5 @@
 "use client";
-//localhost:3000/dashboard/datatables
+
 import React from 'react';
 import {
   Chart as ChartJS,
@@ -22,7 +22,7 @@ ChartJS.register(
 );
 
 export const options = {
-  indexAxis: 'y' as const,
+  indexAxis: 'x' as const,
   elements: {
     bar: {
       borderWidth: 2,
@@ -33,21 +33,21 @@ export const options = {
     legend: {
       position: 'top' as const,
       labels: {
-        color: "white",
+        color: 'rgba(100, 116, 139, 1)',
       }
     },
     title: {
       display: false,
-      text: 'Browsers',
+      text: 'Platform OS',
     },
   },
   scales: {
     x: {
       grid: {
-        color: '#222',
+        color: 'rgba(120, 120, 120, 0.1)',
       },
       ticks: {
-        color: 'rgba(255, 255, 255, 0.8)',
+        color: 'rgba(100, 116, 139, 1)',
         font: {
           size: 12,
         },
@@ -55,10 +55,10 @@ export const options = {
     },
     y: {
       grid: {
-        color: '#222',
+        color: 'rgba(120, 120, 120, 0.1)',
       },
       ticks: {
-        color: 'rgba(255, 255, 255, 0.8)',
+        color: 'rgba(100, 116, 139, 1)',
         font: {
           size: 12,
         },
@@ -67,10 +67,10 @@ export const options = {
   },
 };
 
-const labels = ['Chrome', 'Firefox', 'Safari', 'Edge', 'Opera', 'IE',];
+const labels = ['Window', 'Mac', 'Linux'];
 
-const dataset1Values = [100, 200, 300, 100, 300, 100];
-const dataset2Values = [150, 250, 350, 100, 300, 100];
+const dataset1Values = [300, 200, 100];
+const dataset2Values = [350, 250, 150];
 
 export const data = {
   labels,
@@ -91,11 +91,11 @@ export const data = {
 };
 
 const BarChart = () => {
-  return (
-    <div className="flex flex-col items-center justify-center w-full h-full text-slate-300 rounded-lg">
-      <h2 className="text-base -mt-8 mb-2">Browsers</h2>
-      <Bar options={options} data={data} className="w-full h-full px-2 -mb-10 rounded-lg" />
-    </div>
-  );
+    return (
+        <div className="flex flex-col items-center justify-center w-full h-full">
+            <h2 className="text-base text-slate-500 -mt-8 mb-2">Platform OS</h2>
+            <Bar options={options} data={data} className="w-full h-full px-2 -mb-10" />
+        </div>
+    );
 }
 export default BarChart;

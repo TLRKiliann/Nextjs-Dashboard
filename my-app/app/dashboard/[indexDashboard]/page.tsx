@@ -1,4 +1,3 @@
-import { Metadata } from 'next';
 import { auth } from "@/auth";
 import prisma from '@/prisma/prisma';
 import { redirect } from "next/navigation";
@@ -6,11 +5,6 @@ import React, { Suspense } from 'react';
 import Header from '@/components/Header';
 import Menu from '@/components/Menu';
 import Loader from '@/components/Loader';
-
-export const metadata: Metadata = {
-    title: "Dashboard (index)",
-    description: "access accepted"
-};
 
 export default async function DashboardIndexPage() {
 

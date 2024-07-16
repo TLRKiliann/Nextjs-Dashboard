@@ -1,4 +1,4 @@
-import FormCreateContent from './form-create-content';
+import FormCreateContent from "./create-modify-form-content/form-create-content";
 
 /*
     Admin can create new product for db.

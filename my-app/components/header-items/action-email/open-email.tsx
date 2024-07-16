@@ -21,7 +21,7 @@ export default function OpenEmail({id}: {id: string;}) {
         <button 
             type="button"
             onClick={() => revalidateEmail(id)}
-            className='absolute text-sky-500 mr-8'>
+            className='absolute text-sky-500 hover:text-sky-600 active:text-sky-700 mr-8'>
             <MdMarkEmailUnread size={18} />
         </button>
     )

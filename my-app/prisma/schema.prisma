@@ -50,7 +50,8 @@ model Email {
   id            String    @id @default(uuid())
   email         String
   message       String
-  isOpen        Boolean  @default(false)
+  dst           String    @default("admin@prisma.io")
+  isOpen        Boolean   @default(false)
   createdAt     DateTime  @default(now())
 }
 

@@ -2,11 +2,11 @@ import React from 'react';
 
 export default function DataProfile({children, varDef}: {children: React.ReactNode, varDef: string}) {
     return (
-        <div className='w-full h-full flex flex-row items-center justify-between 
+        <div className='w-full h-full flex flex-row items-center 
             md:text-base lg:text-base xl:text-lg'>
 
-            <div className="flex items-start w-[40%] h-full">
-                <p className="text-slate-700">
+            <div className="w-[40%] h-full pl-2">
+                <p className="h-full text-slate-600">
                     {varDef}
                 </p>
             </div>

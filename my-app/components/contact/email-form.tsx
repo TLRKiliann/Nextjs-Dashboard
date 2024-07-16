@@ -32,10 +32,10 @@ export default function EmailForm({user}: {user: User}) {
                     type="email"
                     id="email"
                     name="email"
-                    value={user?.email!}
+                    value={user.email!}
                     readOnly
-                    placeholder={user?.email!}
-                    className='form-control block w-full px-4 py-3 text-sm font-normal text-gray-700 
+                    placeholder={user.email!}
+                    className='form-control block w-full px-2 py-3 text-sm font-normal text-gray-700 
                         bg-white bg-clip-padding border border-solid border-gray-300 rounded transition 
                         ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 
                         focus:outline-none'

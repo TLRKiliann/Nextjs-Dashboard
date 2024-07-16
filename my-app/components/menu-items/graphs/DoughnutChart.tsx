@@ -12,7 +12,7 @@ const options = {
         legend: {
             position: 'right' as const,
             labels: {
-                color: 'rgba(255, 255, 255, 0.8)',
+                color: 'rgba(100, 116, 139, 1)',
             }
         },
         title: {
@@ -28,12 +28,12 @@ const options = {
                   return data['datasets'][0]['data'][tooltipItem['index']];
                 },
             },
-            backgroundColor: '#FFF',
+            /* backgroundColor: '#000',
             titleFontSize: 16,
-            titleFontColor: '#0066ff',
+            titleFontColor: 'rgba(100, 116, 139, 1)',
             bodyFontColor: '#000',
             bodyFontSize: 14,
-            displayColors: false
+            displayColors: true */
         }
     },
 };
@@ -62,9 +62,9 @@ const data = {
 };
 
 const DoughnutChart = () => (
-    <div className='flex flex-col items-center justify-center w-full h-[100%] text-slate-300 rounded-lg'>
-        <h2 className='text-base mt-10'>Satisfaction</h2>
-        <Doughnut options={options} data={data} className='w-auto h-[100%] -mt-10 rounded-lg'/> 
+    <div className='flex flex-col items-center justify-center w-full h-[100%]'>
+        <h2 className='text-base text-slate-500 mt-10'>Satisfaction</h2>
+        <Doughnut options={options} data={data} className='w-auto h-[100%] -mt-10'/> 
     </div>
 );
 export default DoughnutChart;

@@ -1,8 +1,8 @@
 import { ProductsProps } from '@/lib/definitions';
 import Image from 'next/image';
-import BtnModify from './btn-modify';
-import BtnRemove from './btn-remove';
-import FormChangeProduct from './form-change-product';
+import BtnModify from './create-modify-form-content/btn-modify';
+import BtnRemove from './create-modify-form-content/btn-remove';
+import FormChangeProduct from './create-modify-form-content/form-change-product';
 
 /*
     Admin can modify, update & remove products.

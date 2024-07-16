@@ -1,10 +1,8 @@
 import type { ProductsProps } from '@/lib/definitions';
 import React, { Suspense } from 'react';
-import Link from 'next/link';
 import TablePage from '@/components/TablePage';
-import BestSellersChart from '@/components/graphs/BestSellersChart';
-import StockChart from '@/components/graphs/StockChart';
-//import { products } from '@/lib/products';
+import BestSellersChart from '@/components/menu-items/graphs/BestSellersChart';
+import StockChart from '@/components/menu-items/graphs/StockChart';
 import Loader from '@/components/Loader';
 
 export default async function TableTwoDefault() {
@@ -13,10 +11,7 @@ export default async function TableTwoDefault() {
     const products = (await response.json()) as ProductsProps[];
 
     return (
-        <TablePage>
-            <div className='h-[10%]'>
-                <h2 className='text-xl'>Best Sellers</h2>
-            </div>
+        <TablePage title="Best Sellers" url="/dashboard/dashboardnative/geolocation" link="Geolocation">
 
             <div className='flex flex-col items-center justify-between h-[80%]'>
 
@@ -38,11 +33,6 @@ export default async function TableTwoDefault() {
 
             </div>
 
-            <div className='flex items-end justify-end h-[10%]'>
-                <li className='list-none text-sm text-blue-400 hover:text-blue-500 active:text-blue-700'>
-                    <Link href="/dashboard/dashboardnative/geolocation">Geolocation</Link>
-                </li>
-            </div>
         </TablePage>
     )
 }

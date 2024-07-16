@@ -1,8 +1,19 @@
-- items of menu - profiles + payments (all)
+1) 
+- save img from desktop and insert it in profile and in dashboard
+
+2) 
+- isConnect to true when a user login & write it into a file.json
+- charts (graphs) with data from db
+-
+
+3) 
+- next-safe-action to add with server action
+- retrieve data from file.json to display it in charts (graph)
+
+4) 
+- order + payments (user + auth)
 - forgot password
-- heaeder-auth dynamic auto-refresh ???
-- requests with postgresl & products (admin + user)
-- error handler with server action (IA)
+
 
 //react 19
 //import React, { useActionState } from 'react'

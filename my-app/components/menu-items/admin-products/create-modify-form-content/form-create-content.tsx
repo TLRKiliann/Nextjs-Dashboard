@@ -3,7 +3,7 @@
 import React, { useCallback, useState } from 'react';
 import toast from 'react-hot-toast';
 import { createProduct } from '@/lib/actions';
-import LblInputCreate from './create-modify-form-content/lbl-input-create';
+import LblInputCreate from './lbl-input-create';
 
 type AllProductsProps = {
     familyProduct: string | undefined;

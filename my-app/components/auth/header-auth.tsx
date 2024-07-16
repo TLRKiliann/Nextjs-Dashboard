@@ -33,10 +33,10 @@ const HeaderAuth = async () => {
 
             {!user ? (
                 <div className="flex flex-row items-center space-between space-x-8">
-                    <li className="list-none">
+                    <li className="list-none hover:text-indigo-500 active:text-indigo-400">
                         <Link href="/login">Login</Link>
                     </li>
-                    <li className="list-none">
+                    <li className="list-none hover:text-indigo-500 active:text-indigo-400">
                         <Link href="/register">Register</Link>
                     </li>
                 </div>
@@ -44,23 +44,23 @@ const HeaderAuth = async () => {
 
             {user ? (
                 <form action={logoutAction} className='flex flex-row items-center justify-center space-x-8'>
-                    <li className="list-none">
+                    <li className="list-none hover:text-indigo-500 active:text-indigo-400">
                         <Link href="/">Home</Link>
                     </li>
 
-                    <li className="list-none">
+                    <li className="list-none hover:text-indigo-500 active:text-indigo-400">
                         <Link href="/profile">Profile</Link>
                     </li>
 
-                    <li className="list-none">
+                    <li className="list-none hover:text-indigo-500 active:text-indigo-400">
                         <Link href="/products">Products (user)</Link>
                     </li>
 
                     <AdminAccessLink />
 
-                    <p className="text-blue-600">{user.name}</p>
+                    <p className="text-purple-500">{user.name}</p>
 
-                    <li className="relative flex list-none">
+                    <li className="relative flex list-none hover:text-indigo-500 active:text-indigo-400">
                         <button><FaPowerOff size={16} /></button>
                     </li>
                 </form>
