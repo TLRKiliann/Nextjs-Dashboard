@@ -42,7 +42,7 @@ export default function ShoppingCartPage({products}: {products: ProductsProps[]}
     };
 
     return (
-        <div className='w-full min-h-screen flex flex-col text-slate-500 bg-slate-100 p-4 pt-24'>
+        <div className='w-full min-h-screen flex flex-col text-slate-500 bg-gradient-to-bl from-sky-100 from-10% to-slate-100 to-90% p-4 pt-24'>
         
             {storeQuantity > 0 ? (
                 products.map((product: ProductsProps) => product.quantity > 0 ? (
