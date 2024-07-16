@@ -24,10 +24,8 @@ export default async function GeolocationPage() {
     }
 
     return (
-        <TablePage>
-            <div className='h-[10%]'>
-                <h2 className='text-xl'>Geolocation</h2>
-            </div>
+        <TablePage title='Geolocation' url="" link="">
+
             {geoResult ? (
                 <div className='w-[98%] h-[80%] m-auto rounded-lg'>
                     <Suspense fallback={<Loader />}>
@@ -36,6 +34,7 @@ export default async function GeolocationPage() {
                 </div>
             ): null}
             <ButtonGoBack text="Sales" />
+            
         </TablePage>
     )
 }

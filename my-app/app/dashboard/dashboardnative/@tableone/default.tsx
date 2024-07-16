@@ -1,6 +1,4 @@
 import type { CustomersProps } from '@/lib/definitions';
-import React from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import TablePage from '@/components/TablePage';
 
@@ -14,10 +12,7 @@ export default async function TableOneDefault() {
     const customers = (await response.json()) as CustomersProps[];
 
     return (
-        <TablePage>
-            <div className='h-[10%]'>
-                <h2 className='text-xl'>Customers</h2>
-            </div>
+        <TablePage title="Customers" url="/profile" link="Profile" >
 
             <div className='relative top-0 h-[80%] z-10'>
 
@@ -62,11 +57,6 @@ export default async function TableOneDefault() {
                 </ul>
             </div>
 
-            <div className='flex flex-row items-end justify-end h-[10%]'>
-                <li className='list-none text-sm text-blue-400 hover:text-blue-500 active:text-blue-700'>
-                    <Link href="/profile">Profile</Link>
-                </li>
-            </div>
         </TablePage>
     )
 }
