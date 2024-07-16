@@ -19,7 +19,7 @@ const HeaderAuth = async () => {
     };
 
     return (
-        <div className='fixed top-0 z-10 flex flex-row items-center justify-between w-full h-[60px] 
+        <div className='absolute top-0 z-10 flex flex-row items-center justify-between w-full h-[60px] 
             bg-sky-200 pr-10'>
             <div className="ml-2 rounded">
                 <Image 
