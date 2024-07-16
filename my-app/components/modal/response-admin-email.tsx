@@ -28,8 +28,8 @@ export default function ResponseAdminEmail({ id, dst, user, prevMsg }:
       </div>
 
       {isShow === true ? (
-        <div className='fixed z-50 flex items-center bg-slate-800/80 w-[80%] xl:w-[86%] right-0 top-0 bottom-0'>
-          <form action={adminEmail} className='flex flex-col w-[600px] h-auto bg-slate-800 text-slate-100 
+        <div className='fixed z-40 flex items-center bg-slate-700/50 w-[80%] xl:w-[86%] right-0 top-0 bottom-0 backdrop-blur-sm'>
+          <form action={adminEmail} className='z-50 flex flex-col w-[600px] h-auto bg-slate-800 text-slate-100  
             m-auto p-4 rounded shadow-out'>
             <div className="mb-4">
               <h2 className="text-xl font-bold">Send message</h2>

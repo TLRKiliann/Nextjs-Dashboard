@@ -1,5 +1,4 @@
 import { readdir, writeFile } from "fs/promises";
-import { StaticImageData } from "next/image";
 import { NextResponse } from "next/server";
 import path from 'path';
 
@@ -12,15 +11,16 @@ export const POST = async (request: Request): Promise<NextResponse> => {
     const file = await request.formData();
 
     const image = file.get("image");
+    
+    if (image instanceof Blob) {
+        const byteLength = await image.arrayBuffer();
+        const bufferData = Buffer.from(byteLength);
 
-    const byteLength = await image?.arrayBuffer();
+        const pathOfImage = `./public/assets/images/upload/${new Date().getTime()}${path.extname(image.name)}`;
+        await writeFile(pathOfImage, bufferData);
 
-    const bufferData = await Buffer.from(byteLength);
+        console.log(pathOfImage);
+    };
 
-    const pathOfImage = `./public/assets/images/upload/${new Date().getTime()}${path.extname(image?.name)}`;
-
-    writeFile(pathOfImage, bufferData);
-
-    console.log(pathOfImage);
     return NextResponse.json({msg: "image upload successfully"});
 };
