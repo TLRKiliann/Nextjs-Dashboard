@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { ProductsProps } from '@/lib/definitions';
 import { notFound } from 'next/navigation';
 import prisma from '@/prisma/prisma';
@@ -6,6 +7,23 @@ import ProfilePage from "@/app/(auth)/profile/page";
 import ModifyProduct from '@/components/menu-items/ModifyProduct';
 import CreateProduct from '@/components/menu-items/CreateProduct';
 import EmailsAdmin from '@/components/header-items/EmailsAdmin';
+
+type TitleParamsProps = {
+    params: {
+        indexDashboard: string;
+    }
+};
+
+export const generateMetadata = async ({params}: TitleParamsProps): Promise<Metadata> => {
+    const title = await new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(` - ${params.indexDashboard}`)
+        }, 300);
+    })
+    return {
+        title: `Dashboard ${title}`
+    };
+};
 
 export default async function DashboardIndexLayout({children, params}: {
     children: React.ReactNode;
@@ -38,11 +56,11 @@ export default async function DashboardIndexLayout({children, params}: {
                             <ProfilePage />
                         </div>
                     ) : params.indexDashboard === "datatables" ? (
-                        <div className='w-full h-[90%] text-slate-500 mt-[7%] p-4'>
+                        <div className='w-full h-[90%] text-slate-500 mt-[10vh] p-4'>
                             <DataTables />
                         </div>
                     ) : params.indexDashboard === "charts" ? (
-                        <div className='w-full h-[90%] text-slate-500 mt-[7%] p-4'>
+                        <div className='w-full h-[90%] text-slate-500 mt-[10vh]'>
                             <DataTables />
                         </div>
                     ) : params.indexDashboard === "products-admin" ? (
