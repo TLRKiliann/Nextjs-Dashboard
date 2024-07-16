@@ -1,3 +1,10 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Dashboard",
+    description: "original dashboard with slots"
+};
+
 export default async function DashboardNativeLayout({children, tableone, squares, tabletwo}: {
     children: React.ReactNode;
     tableone: React.ReactNode;
