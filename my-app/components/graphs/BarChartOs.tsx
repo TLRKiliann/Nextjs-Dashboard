@@ -33,7 +33,7 @@ export const options = {
     legend: {
       position: 'top' as const,
       labels: {
-        color: 'rgba(255, 255, 255, 0.8)',
+        color: 'rgba(100, 116, 139, 1)',
       }
     },
     title: {
@@ -44,10 +44,10 @@ export const options = {
   scales: {
     x: {
       grid: {
-        color: '#222',
+        color: 'rgba(120, 120, 120, 0.1)',
       },
       ticks: {
-        color: 'rgba(255, 255, 255, 0.8)',
+        color: 'rgba(100, 116, 139, 1)',
         font: {
           size: 12,
         },
@@ -55,10 +55,10 @@ export const options = {
     },
     y: {
       grid: {
-        color: '#222',
+        color: 'rgba(120, 120, 120, 0.1)',
       },
       ticks: {
-        color: 'rgba(255, 255, 255, 0.8)',
+        color: 'rgba(100, 116, 139, 1)',
         font: {
           size: 12,
         },
@@ -92,9 +92,9 @@ export const data = {
 
 const BarChart = () => {
     return (
-        <div className="flex flex-col items-center justify-center w-full h-full text-slate-300 rounded-lg">
-            <h2 className="text-base -mt-8 mb-2">Platform OS</h2>
-            <Bar options={options} data={data} className="w-full h-full px-2 -mb-10 rounded-lg" />
+        <div className="flex flex-col items-center justify-center w-full h-full">
+            <h2 className="text-base text-slate-500 -mt-8 mb-2">Platform OS</h2>
+            <Bar options={options} data={data} className="w-full h-full px-2 -mb-10" />
         </div>
     );
 }
