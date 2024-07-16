@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { ApiPublicIp, ApiGeolocation } from '@/utils/api-request';
 import TablePage from '@/components/TablePage';
-import MapChart from '@/components/graphs/MapChart';
+import MapChart from '@/components/menu-items/graphs/MapChart';
 import ButtonGoBack from '@/components/ButtonGoBack';
 import Loader from '@/components/Loader';
 

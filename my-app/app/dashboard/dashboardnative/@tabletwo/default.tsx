@@ -2,8 +2,8 @@ import type { ProductsProps } from '@/lib/definitions';
 import React, { Suspense } from 'react';
 import Link from 'next/link';
 import TablePage from '@/components/TablePage';
-import BestSellersChart from '@/components/graphs/BestSellersChart';
-import StockChart from '@/components/graphs/StockChart';
+import BestSellersChart from '@/components/menu-items/graphs/BestSellersChart';
+import StockChart from '@/components/menu-items/graphs/StockChart';
 //import { products } from '@/lib/products';
 import Loader from '@/components/Loader';
 
