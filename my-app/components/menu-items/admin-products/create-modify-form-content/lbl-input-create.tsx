@@ -24,7 +24,7 @@ export default function LblInputCreate({id, type, name, htmlFor, value, onChange
                 onChange={onChange} 
                 className='bg-slate-50 border border-slate-500/70 outline-none ring-none
                 focus:border focus:outline focus:ring focus:border-blue-400 focus:outline-blue-200 
-                focus:ring-blue-300 focus:bg-white rounded px-2 py-1'
+                focus:ring-blue-300 focus:bg-white rounded px-2 py-0 xl:py-1'
                 required
             />
 

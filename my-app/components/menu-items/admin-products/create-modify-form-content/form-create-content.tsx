@@ -66,7 +66,7 @@ export default function FormCreateContent() {
     }, []);
     
     return (
-        <form action={onSubmit} className='flex flex-col items-center justify-center w-full h-[400px]'>
+        <form action={onSubmit} className='flex flex-col items-center justify-center bg-slate-200 w-full h-[400px]'>
 
             <div className='flex items-center justify-center h-[20%] w-full'>
                 <h2 className='text-xl lg:text-2xl xl:text-3xl font-bold text-center xl:mb-3'>
