@@ -50,9 +50,9 @@ export const RegisterForm = () => {
     "form-control block w-full px-4 py-3 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none";
 
     return (
-        <form onSubmit={handleSubmit(onSubmitHandler)} className="w-full bg-slate-100/30 px-20 py-10 rounded-3xl">
+        <form onSubmit={handleSubmit(onSubmitHandler)} className="w-full bg-slate-50/30 px-20 py-10 rounded-3xl">
             <div className="pb-6">
-                <h2 className="text-lg font-bold text-slate-500">Register</h2>
+                <h2 className="text-3xl font-bold">Register</h2>
             </div>
             <div className="mb-6">
                 <input
