@@ -2,11 +2,11 @@ import { Metadata } from 'next';
 import { ProductsProps } from '@/lib/definitions';
 import { notFound } from 'next/navigation';
 import prisma from '@/prisma/prisma';
-import DataTables from '@/components/menu-items/DataTables';
+import DataTables from '@/components/DataTables';
 import ProfilePage from "@/app/(auth)/profile/page";
-import ModifyProduct from '@/components/menu-items/ModifyProduct';
-import CreateProduct from '@/components/menu-items/CreateProduct';
 import EmailsAdmin from '@/components/header-items/EmailsAdmin';
+import ModifyProduct from '@/components/menu-items/admin-products/ModifyProduct';
+import CreateProduct from '@/components/menu-items/admin-products/CreateProduct';
 
 type TitleParamsProps = {
     params: {
@@ -56,15 +56,15 @@ export default async function DashboardIndexLayout({children, params}: {
                             <ProfilePage />
                         </div>
                     ) : params.indexDashboard === "datatables" ? (
-                        <div className='w-full h-[90%] text-slate-500 mt-[10vh] p-4'>
+                        <div className='w-full h-[90vh] text-slate-500 mt-[10vh] p-4'>
                             <DataTables />
                         </div>
                     ) : params.indexDashboard === "charts" ? (
-                        <div className='w-full h-[90%] text-slate-500 mt-[10vh]'>
+                        <div className='w-full h-[90vh] text-slate-500 mt-[10vh]'>
                             <DataTables />
                         </div>
                     ) : params.indexDashboard === "products-admin" ? (
-                        <div className='w-full h-[90%] text-slate-500 mt-[7%] p-4'>
+                        <div className='w-full h-[90vh] text-slate-500 mt-[10vh] px-4 pt-2'>
                             <ModifyProduct listProducts={listProducts} />
                             <CreateProduct />
                         </div>
