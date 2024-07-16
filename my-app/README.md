@@ -1,5 +1,4 @@
 1) 
-- tablePage.tsx to review
 - save img from desktop and insert it in profile and in dashboard
 
 2) 
