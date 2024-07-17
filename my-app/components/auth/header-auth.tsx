@@ -34,10 +34,10 @@ const HeaderAuth = async () => {
             <div className="ml-2 rounded">
                 <Image 
                     src={dashLogo}
-                    width={50}
+                    width={70}
                     height={50}
                     alt="no logo"
-                    className="object-fit rounded"
+                    className="w-[50px] h-auto object-fit rounded"
                 />
             </div>
 
