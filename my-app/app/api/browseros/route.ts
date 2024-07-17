@@ -1,18 +1,14 @@
-import { NextResponse, userAgent } from "next/server";
 import { writeFile } from "fs/promises";
-import { headers } from "next/headers";
+import { NextResponse } from "next/server";
 
-export const GET = async (): Promise<NextResponse> => {
-
-    const headersList = headers();
-    const os = headersList.get('user-agent');
-    console.log(os)
-
+export async function POST(request: Request) {
+    const body = await request.json();
+    const browser = body;
     try {
-        await writeFile('./utils/browseros-data.json', JSON.stringify({os}));
-        return NextResponse.json({ message: 'Browser information saved to data.json' });
-    } catch (error) {
-        console.error(error);
-        return NextResponse.json({ error: 'An error occurred while saving browser information' });
-    }
+        await writeFile('./utils/browseros-data.json', JSON.stringify({browser}));
+        console.log('Data has been written to browseros-data.json');
+    } catch (err) {
+        throw new Error('An error occurred while writing to browseros-data.json:');
+    };
+    return NextResponse.json({message: "browser & os detected"});
 }
