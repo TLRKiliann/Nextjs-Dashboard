@@ -7,6 +7,7 @@ import DataProfile from "@/components/auth/data-profile";
 import OsBrowserData from "@/components/auth/os-browser-data";
 import userLogo from "@/public/assets/images/users/user_icon.jpg";
 import UploadImage from "@/components/auth/upload-image";
+import prisma from "@/prisma/prisma";
 
 export const metadata: Metadata = {
     title: "Profile",
@@ -22,12 +23,17 @@ export default async function ProfilePage() {
         return redirect("/api/auth/signin");
     };
 
-    /* const response = fetch("localhost:3000/api/imgupload");
-    //const result = (await response.json() as string | StaticImageData);
-
-    if (!response) {
-        return null;
-    } */
+    if (user) {
+        await prisma.user.update({
+            data: {
+                email: user.email!,
+                isConnected: true,
+            },
+            where: {
+                email: user.email!,
+            }
+        })
+    };
 
     return (
         <>
@@ -51,11 +57,11 @@ export default async function ProfilePage() {
                         <div className="w-full h-full rounded-bl-lg rounded-br-lg">
 
                             <DataProfile varDef="Username:">
-                                {user?.email}
+                                {user.email}
                             </DataProfile>
                             
                             <DataProfile varDef="Lastname:">
-                                {user?.name}
+                                {user.name}
                             </DataProfile>
 
                             {/* <DataProfile varDef="Address:">
