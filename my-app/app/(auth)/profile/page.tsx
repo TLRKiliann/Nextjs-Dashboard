@@ -1,13 +1,15 @@
 import { Metadata } from "next";
 import { auth } from "@/auth";
+import { writeFile } from "fs/promises";
 import { redirect } from "next/navigation";
-import Image, { StaticImageData } from "next/image";
+import prisma from "@/prisma/prisma";
+import { ApiPublicIp } from "@/utils/api-request";
+import Image from "next/image";
 import HeaderAuth from '@/components/auth/header-auth';
 import DataProfile from "@/components/auth/data-profile";
 import OsBrowserData from "@/components/auth/os-browser-data";
 import userLogo from "@/public/assets/images/users/user_icon.jpg";
 import UploadImage from "@/components/auth/upload-image";
-import prisma from "@/prisma/prisma";
 
 export const metadata: Metadata = {
     title: "Profile",
@@ -34,6 +36,34 @@ export default async function ProfilePage() {
             }
         })
     };
+
+    // Retrieve public IP
+    const ipResult = await ApiPublicIp();
+
+    if (!ipResult) {
+        throw new Error("No ip public detected");
+    } else {
+        console.log("Public IP detected");
+    };
+
+    const jsonData = JSON.stringify(ipResult);
+
+    try {
+        writeFile('./utils/data.json', jsonData);
+        console.log('Data has been written to data.json');
+    } catch (err) {
+        throw new Error('An error occurred while writing to data.json:');
+    };
+
+    const res = await fetch("http://127.0.0.1:3000/api/browseros");
+    console.log(res.status);
+    const data = await res.json();
+    //console.log(data, "data");
+    /* if (data) {
+        console.log("data ok", data)
+    } else {
+        console.log("data error");
+    }; */
 
     return (
         <>
