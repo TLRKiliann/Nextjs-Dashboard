@@ -55,16 +55,6 @@ export default async function ProfilePage() {
         throw new Error('An error occurred while writing to data.json:');
     };
 
-    const res = await fetch("http://127.0.0.1:3000/api/browseros");
-    console.log(res.status);
-    const data = await res.json();
-    //console.log(data, "data");
-    /* if (data) {
-        console.log("data ok", data)
-    } else {
-        console.log("data error");
-    }; */
-
     return (
         <>
             <HeaderAuth />
@@ -79,8 +69,8 @@ export default async function ProfilePage() {
                     <div className="w-full h-full border border-slate-200 rounded-lg">
 
                         <div className='relative w-full flex justify-end bg-slate-100 rounded-tl-lg rounded-tr-lg'>
-                            <Image src={user.image ? user.image : userLogo} width={400} height={250} alt="no img" 
-                                className='md:w-[100px] xl:w-[120px] h-auto object-fit rounded-tr-lg rounded-bl-lg shadow-md'
+                            <Image src={user.image ? user.image : userLogo} width={200} height={100} alt="no img" 
+                                className='w-[100px] h-auto object-fit rounded-tr-lg rounded-bl-lg shadow-md'
                             />
                         </div>
 
