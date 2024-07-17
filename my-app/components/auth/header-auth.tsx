@@ -1,8 +1,9 @@
 import { auth, signOut } from "@/auth";
 import Link from 'next/link';
-import { FaPowerOff } from "react-icons/fa6";
-import AdminAccessLink from "./admin-access-link";
+import prisma from "@/prisma/prisma";
 import Image from 'next/image';
+import AdminAccessLink from "./admin-access-link";
+import { FaPowerOff } from "react-icons/fa6";
 import dashLogo from '@/public/assets/images/logo/dash-logo.png';
 
 const HeaderAuth = async () => {
@@ -12,6 +13,15 @@ const HeaderAuth = async () => {
 
     const logoutAction = async () => {
         'use server';
+        await prisma.user.update({
+            data: {
+                email: user?.email!,
+                isConnected: false,
+            },
+            where: {
+                email: user?.email!,
+            }
+        });
         await signOut({
             redirect: true,
             redirectTo: 'http://localhost:3000/login',
@@ -24,10 +34,10 @@ const HeaderAuth = async () => {
             <div className="ml-2 rounded">
                 <Image 
                     src={dashLogo}
-                    width={50}
+                    width={70}
                     height={50}
                     alt="no logo"
-                    className="object-fit rounded"
+                    className="w-[50px] h-auto object-fit rounded"
                 />
             </div>
 

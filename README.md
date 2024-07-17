@@ -6,11 +6,33 @@ Nextjs 14 - TypeScript - Tailwind - PostgreSQL
 
 ![Dashboard Img](https://github.com/TLRKiliann/Nextjs-Dashboard/blob/master/my-app/public/assets/images/bg/wallpaper.png)
 
-### Goals
+## Goals
+
+> Login as User or Admin with NextAuth V5 without api (GitHub & Google)
+
+- Administrator can access to dashboard.
+- User can access to products & payment.
+
+**User:**
+- main page
+- products
+- contact (possibility to send message to admin)
+
+**Admin:**
+- main page
+- dashboard 
+
+**Dashboard with multiple management system:** 
+- message
+- statistics
+- users
+- products (best sellers & stock)
+
+---
+
+**Fetch the public IP from :**
 
 > Retrieve the public IP & determine the location by latitude & longitude with react-leaflet map.
-
-Fetch the public IP from :
 
 [https://jsonip.com/](https://jsonip.com/)
 
@@ -26,44 +48,36 @@ I had some problems, many times, with a **window is undefined** error. To solve 
 
 ---
 
-> Get browser & OS of user 
+**Retrieve Browser & OS from users**
 
-In FireFox you can get both with `slice()` function:
+> Display them to user & write them into a file
 
-[window.navigator.userAgent](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/userAgent)
-
-(I have to test it on chrome)
+*Useful link:* [window.navigator.userAgent](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/userAgent)
 
 ---
 
 > Manage products from store as ADMIN with server-actions & postgresql (prisma)
 
-1. Products.tsx 
-2. CreateProduct.tsx
+1. Upadate/Modify
+2. Delete
+3. Create
+
+`Products.tsx`
+
+`CreateProduct.tsx`
 
 <sub><sup>(They have the same route)</sup></sub>
 
 ---
 
-## Authentication
+> User can send maessage to Admin & management system message for Admin
 
-> Use NextAuth V5 without API connection, but with credentials of postgresql db.
+- contact (user)
+- dashboard (admin)
 
-1. Manipulate PostgreSQL db with prisma
-2. Implement NextAuth V5 (beta version)
-3. Use Zod for security
-4. Access dashboard for Admin.
-5. Access Cart and Products for User.
+> Retrieve data from db & data.json to display values in charts
 
-I have created 2 possible accesses with NextAuth v5. 
-- Administrator can access the dashboard.
-- The user can access the product path and profile.
-
-It was difficult to find out how to implement an admin, as I couldn't find anything in the official documentation. Therefore, I simply ran a simulation ADMIN is found in the auth.ts file.
-
-it's not a good practice, and I noticed that there wasn't much on stackoverflow about it. 
-
----
+- dashboard (admin)
 
 #### Configuration in .env
 
@@ -104,19 +118,16 @@ All files in app/(auth)/...
 
 - prisma/prisma.ts
 
+- zod
+
 ---
 
-## 
+***under development***
 
-*under development*
-
-> Login to access to the dashboard .
-
-1. Switch User connection Offline to Online
-2. Catch public IP with date when User is logged in
-3. State management with Zustand
-4. Asynchronous state management useQuery
-5. Server-actions with postgresql
+1. Switch User connection Offline to Online ✅
+2. Allow user & admin to change image of profile (upload, save & display) ✅
+3. Catch public IP + OS + browser when User is logged in &
+write data in data.json file. ❌
 
 ---
 
@@ -168,6 +179,8 @@ All files in app/(auth)/...
 
 `$ pnpm add react-hot-toast`
 
+`$ pnpm add next-safe-action`
+
 ---
 
 ## Result
@@ -190,7 +203,7 @@ All files in app/(auth)/...
 
 [auth.ts](https://authjs.dev/getting-started/migrating-to-v5)
 
-- migration with schema:
+- If you get some trouble with prisma migration schema:
 
 [prisma-migrate](https://www.prisma.io/docs/orm/prisma-migrate/workflows/data-migration)
 

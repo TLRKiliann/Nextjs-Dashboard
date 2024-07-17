@@ -2,10 +2,9 @@ import { auth, signOut } from "@/auth";
 import React from 'react';
 import { redirect } from "next/navigation";
 import Link from 'next/link';
-import { FaPowerOff, FaShoppingCart } from "react-icons/fa";
+import prisma from "@/prisma/prisma";
 import CartItemsQuantity from './CartItemsQuantity';
-
-//export const dynamic = "force-dynamic";
+import { FaPowerOff, FaShoppingCart } from "react-icons/fa";
 
 const HeaderProducts = async () => {
 
@@ -18,6 +17,15 @@ const HeaderProducts = async () => {
 
     const logoutAction = async () => {
         'use server';
+        await prisma.user.update({
+            data: {
+                email: user.email!,
+                isConnected: false,
+            },
+            where: {
+                email: user.email!,
+            }
+        });
         await signOut({
             redirect: true,
             redirectTo: 'http://localhost:3000/login',

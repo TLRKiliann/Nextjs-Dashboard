@@ -41,7 +41,6 @@ export default function UploadImage() {
     };
 
     return (
-
         <>
             <form onSubmit={handleSubmit} className='flex flex-row items-center justify-between mx-4 mt-4'>
                 <input type="file" onChange={handleFileChange} />
@@ -51,10 +50,9 @@ export default function UploadImage() {
             
             {imageUrl && (
                 <div className="flex items-center justify-center mt-2">
-                    <Image src={imageUrl} alt="Uploaded Image" width={100} height={100} className='object-fit'/>
+                    <Image src={imageUrl} alt="Uploaded Image" width={200} height={100} className='w-[100px] h-auto object-fit'/>
                 </div>
             )}
         </>
-
     )
 };

@@ -1,7 +1,10 @@
 import { Metadata } from "next";
 import { auth } from "@/auth";
+import { writeFile } from "fs/promises";
 import { redirect } from "next/navigation";
-import Image, { StaticImageData } from "next/image";
+import prisma from "@/prisma/prisma";
+import { ApiPublicIp } from "@/utils/api-request";
+import Image from "next/image";
 import HeaderAuth from '@/components/auth/header-auth';
 import DataProfile from "@/components/auth/data-profile";
 import OsBrowserData from "@/components/auth/os-browser-data";
@@ -22,12 +25,35 @@ export default async function ProfilePage() {
         return redirect("/api/auth/signin");
     };
 
-    /* const response = fetch("localhost:3000/api/imgupload");
-    //const result = (await response.json() as string | StaticImageData);
+    if (user) {
+        await prisma.user.update({
+            data: {
+                email: user.email!,
+                isConnected: true,
+            },
+            where: {
+                email: user.email!,
+            }
+        })
+    };
 
-    if (!response) {
-        return null;
-    } */
+    // Retrieve public IP
+    const ipResult = await ApiPublicIp();
+
+    if (!ipResult) {
+        throw new Error("No ip public detected");
+    } else {
+        console.log("Public IP detected");
+    };
+
+    const jsonData = JSON.stringify(ipResult);
+
+    try {
+        writeFile('./utils/data.json', jsonData);
+        console.log('Data has been written to data.json');
+    } catch (err) {
+        throw new Error('An error occurred while writing to data.json:');
+    };
 
     return (
         <>
@@ -43,19 +69,19 @@ export default async function ProfilePage() {
                     <div className="w-full h-full border border-slate-200 rounded-lg">
 
                         <div className='relative w-full flex justify-end bg-slate-100 rounded-tl-lg rounded-tr-lg'>
-                            <Image src={user.image ? user.image : userLogo} width={400} height={250} alt="no img" 
-                                className='md:w-[100px] xl:w-[120px] h-auto object-fit rounded-tr-lg rounded-bl-lg shadow-md'
+                            <Image src={user.image ? user.image : userLogo} width={200} height={100} alt="no img" 
+                                className='w-[100px] h-auto object-fit rounded-tr-lg rounded-bl-lg shadow-md'
                             />
                         </div>
 
                         <div className="w-full h-full rounded-bl-lg rounded-br-lg">
 
                             <DataProfile varDef="Username:">
-                                {user?.email}
+                                {user.email}
                             </DataProfile>
                             
                             <DataProfile varDef="Lastname:">
-                                {user?.name}
+                                {user.name}
                             </DataProfile>
 
                             {/* <DataProfile varDef="Address:">

@@ -13,11 +13,33 @@ export default function OsBrowserData() {
     //to avoid window is undefined
     useEffect(() => {
         if (isBrowser()) {
-            setBrowser((prev) => prev = window.navigator.userAgent);
-            setOssystem((prev) => prev = window.navigator.userAgent);
+            setBrowser(window.navigator.userAgent);
+            setOssystem(window.navigator.userAgent);
         };
         return () => console.log("clean-up");
     }, []);
+
+    // write browser & os in json file
+    useEffect(() => {
+        const fetchData = async () => {
+            const res = await fetch("/api/browseros", {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(browser),
+            });
+            const data = await res.json();
+            if (data) {
+                console.log("data ok", data)
+            } else {
+                console.log("data error");
+            };
+        }
+        fetchData();
+        return () => console.log("clean-up");
+    }, [browser]);
+
 
     return (
         <>
