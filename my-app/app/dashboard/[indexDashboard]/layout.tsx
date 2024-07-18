@@ -7,6 +7,7 @@ import EmailsAdmin from '@/components/header-items/EmailsAdmin';
 import ModifyProduct from '@/components/menu-items/admin-products/ModifyProduct';
 import CreateProduct from '@/components/menu-items/admin-products/CreateProduct';
 import AllUserProfiles from '@/components/menu-items/all-user-profiles';
+import GraphCharts from '@/components/GraphCharts';
 
 type TitleParamsProps = {
     params: {
@@ -29,8 +30,7 @@ export default async function DashboardIndexLayout({children, params}: {
     children: React.ReactNode;
     params: {indexDashboard: string};
 }) {
-    //params = profile || databases || charts || ...
-    
+
     const listProducts: ProductsProps[] = await prisma.product.findMany({
         orderBy: {
             id: "asc",
@@ -60,7 +60,7 @@ export default async function DashboardIndexLayout({children, params}: {
                         </div>
                     ) : params.indexDashboard === "charts" ? (
                         <div className='w-full h-[90vh] text-slate-500 mt-[10vh]'>
-                            <DataTables />
+                            <GraphCharts />
                         </div>
                     ) : params.indexDashboard === "products-admin" ? (
                         <div className='w-full h-[90vh] text-slate-500 mt-[10vh] p-4 pt-2'>
