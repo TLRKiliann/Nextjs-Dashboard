@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { auth } from "@/auth";
-import { writeFile } from "fs/promises";
+import { readFile, writeFile } from "fs/promises";
 import { redirect } from "next/navigation";
 import prisma from "@/prisma/prisma";
 import { ApiPublicIp } from "@/utils/api-request";
@@ -46,10 +46,12 @@ export default async function ProfilePage() {
         console.log("Public IP detected");
     };
 
-    const jsonData = JSON.stringify(ipResult);
-
+    const filename = './utils/data.json';
     try {
-        writeFile('./utils/data.json', jsonData);
+        const file = await readFile(filename, { encoding: 'utf8' });
+        const previousIp = JSON.parse(file);
+        previousIp.push(ipResult);
+        await writeFile(filename, JSON.stringify(previousIp, null, 4));
         console.log('Data has been written to data.json');
     } catch (err) {
         throw new Error('An error occurred while writing to data.json:');
