@@ -30,9 +30,12 @@ export default function UploadImage() {
             });
             const result = await response.json();
             if (result) {
-              console.log("img uploaded");
+              console.log("Image uploaded!");
+              await fetch("/api/imgupload", {
+                method: "GET",
+              })
             } else {
-              console.log("Upload failed");
+              console.error("Upload failed!");
             }
             
         } else {

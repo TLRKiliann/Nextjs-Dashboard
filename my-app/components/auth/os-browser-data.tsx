@@ -33,7 +33,7 @@ export default function OsBrowserData() {
             if (data) {
                 console.log("data ok", data)
             } else {
-                console.log("data error");
+                console.error("data error");
             };
         }
         fetchData();

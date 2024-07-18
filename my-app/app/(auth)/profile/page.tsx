@@ -68,7 +68,6 @@ export default async function ProfilePage() {
         }
     });
 
-    //console.log(userImg?.image, "user-img")
     const imageUser = userImg?.image;
 
     if (!imageUser) {
@@ -105,26 +104,6 @@ export default async function ProfilePage() {
                             <DataProfile varDef="Lastname:">
                                 {user.name}
                             </DataProfile>
-
-                            {/* <DataProfile varDef="Address:">
-                                {user.address}
-                            </DataProfile>
-
-                            <DataProfile varDef="City:">
-                                {user.city}
-                            </DataProfile>
-
-                            <DataProfile varDef="Country:">
-                                {user.country}
-                            </DataProfile>
-
-                            <DataProfile varDef="Spend:">
-                                {user.spend}.-
-                            </DataProfile>
-
-                            <DataProfile varDef="Articles:">
-                                {user.artQuantity}
-                            </DataProfile> */}
 
                             <OsBrowserData />
 

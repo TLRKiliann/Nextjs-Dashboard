@@ -5,12 +5,12 @@ import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import path from 'path';
 
-export const GET = async (request: Request): Promise<NextResponse> => {
+export async function GET(): Promise<NextResponse> {
     const files = await readdir("./public/assets/images/upload");
     return NextResponse.json({msg: "image get successfully", files});
 }
 
-export const POST = async (request: Request): Promise<NextResponse> => {
+export async function POST(request: Request): Promise<NextResponse> {
     const file = await request.formData();
 
     const image = file.get("image");
