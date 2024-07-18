@@ -30,7 +30,7 @@ export type CustomersProps = {
     readonly id: number;
     username: string;
     lastname: string;
-    readonly img: StaticImageData;
+    readonly img: StaticImageData | string;
     readonly spend: number;
     readonly artQuantity?: number;
     readonly address?: string;
