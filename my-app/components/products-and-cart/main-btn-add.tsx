@@ -1,13 +1,12 @@
 "use client";
 
-import { ProductsProps } from '@/lib/definitions';
-import { useStore } from '@/lib/store';
+import { Product } from '@prisma/client';
 import usePersistStore from '@/helpers/usePersistStore';
-
+import { useStore } from '@/lib/store';
 import Loader from '@/components/Loader';
 
 export default function MainBtnAdd({ product, id, name, quantity }: {
-    product: ProductsProps, 
+    product: Product, 
     id: number, 
     name: string, 
     quantity: number }) {

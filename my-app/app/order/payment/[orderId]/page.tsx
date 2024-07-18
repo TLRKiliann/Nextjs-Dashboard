@@ -4,7 +4,6 @@ import OrderSummary from '@/components/order/order-summary';
 import OrderShipping from '@/components/order/order-shipping';
 import OrderPayment from '@/components/order/order-payment';
 
-
 export default function OrderPage({params}: {params: {orderId: string}}) {
 
     if (!params.orderId) {

@@ -1,4 +1,5 @@
-import type { GeoLocationData, ProductsProps } from "@/lib/definitions";
+import type { GeoLocationData } from "@/lib/definitions";
+import { Product } from "@prisma/client";
 //import { revalidatePath } from "next/cache";
 
 export const ApiPublicIp = async (): Promise<{data: {ip: string;}}> => {
@@ -38,6 +39,6 @@ export const getProductsData = async () => {
     const response = await fetch("http://localhost:3000/api/products", {
         cache: "no-cache"
     });
-    const products = (await response.json()) as ProductsProps[];
+    const products = (await response.json()) as Product[];
     return products;
 };

@@ -1,4 +1,3 @@
-import React from 'react';
 import { notFound } from 'next/navigation';
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 import { getProductsData } from "@/utils/api-request";

@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import React from 'react';
 
 export const generateMetadata = async ({params}: {params: {orderId: string}}): Promise<Metadata> => {
     const title = await new Promise((resolve) => {

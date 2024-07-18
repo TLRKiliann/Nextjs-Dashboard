@@ -2,11 +2,12 @@ import { Metadata } from 'next';
 import { ProductsProps } from '@/lib/definitions';
 import { notFound } from 'next/navigation';
 import prisma from '@/prisma/prisma';
-import DataTables from '@/components/DataTables';
+import Network from '@/components/Network';
 import EmailsAdmin from '@/components/header-items/EmailsAdmin';
 import ModifyProduct from '@/components/menu-items/admin-products/ModifyProduct';
 import CreateProduct from '@/components/menu-items/admin-products/CreateProduct';
 import AllUserProfiles from '@/components/menu-items/all-user-profiles';
+import GraphCharts from '@/components/GraphCharts';
 
 type TitleParamsProps = {
     params: {
@@ -29,8 +30,7 @@ export default async function DashboardIndexLayout({children, params}: {
     children: React.ReactNode;
     params: {indexDashboard: string};
 }) {
-    //params = profile || databases || charts || ...
-    
+
     const listProducts: ProductsProps[] = await prisma.product.findMany({
         orderBy: {
             id: "asc",
@@ -54,13 +54,13 @@ export default async function DashboardIndexLayout({children, params}: {
                         <div className='w-full h-[90vh] text-slate-500 mt-[10vh] p-4'>
                             <AllUserProfiles />
                         </div>
-                    ) : params.indexDashboard === "datatables" ? (
+                    ) : params.indexDashboard === "network" ? (
                         <div className='w-full h-[90vh] text-slate-500 mt-[10vh] p-4'>
-                            <DataTables />
+                            <Network />
                         </div>
                     ) : params.indexDashboard === "charts" ? (
                         <div className='w-full h-[90vh] text-slate-500 mt-[10vh]'>
-                            <DataTables />
+                            <GraphCharts />
                         </div>
                     ) : params.indexDashboard === "products-admin" ? (
                         <div className='w-full h-[90vh] text-slate-500 mt-[10vh] p-4 pt-2'>
