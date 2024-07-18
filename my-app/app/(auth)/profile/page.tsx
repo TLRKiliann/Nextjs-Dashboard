@@ -1,10 +1,11 @@
 import { Metadata } from "next";
 import { auth } from "@/auth";
+import prisma from "@/prisma/prisma";
 import { readFile, writeFile } from "fs/promises";
 import { redirect } from "next/navigation";
-import prisma from "@/prisma/prisma";
-import { ApiPublicIp } from "@/utils/api-request";
+//import Image, { StaticImageData } from "next/image";
 import Image from "next/image";
+import { ApiPublicIp } from "@/utils/api-request";
 import HeaderAuth from '@/components/auth/header-auth';
 import DataProfile from "@/components/auth/data-profile";
 import OsBrowserData from "@/components/auth/os-browser-data";
@@ -37,7 +38,7 @@ export default async function ProfilePage() {
         })
     };
 
-    // Retrieve public IP
+    // retrieve public IP
     const ipResult = await ApiPublicIp();
 
     if (!ipResult) {
@@ -57,6 +58,23 @@ export default async function ProfilePage() {
         throw new Error('An error occurred while writing to data.json:');
     };
 
+    // retrieve image from db
+    const userImg = await prisma.user.findUnique({
+        where: {
+            email: user.email!,
+        },
+        select: {
+            image: true,
+        }
+    });
+
+    //console.log(userImg?.image, "user-img")
+    const imageUser = userImg?.image;
+
+    if (!imageUser) {
+        throw new Error('An error occurred while importing image');
+    };
+
     return (
         <>
             <HeaderAuth />
@@ -70,9 +88,11 @@ export default async function ProfilePage() {
 
                     <div className="w-full h-full border border-slate-200 rounded-lg">
 
-                        <div className='relative w-full flex justify-end bg-slate-100 rounded-tl-lg rounded-tr-lg'>
-                            <Image src={user.image ? user.image : userLogo} width={200} height={100} alt="no img" 
-                                className='w-[100px] h-auto object-fit rounded-tr-lg rounded-bl-lg shadow-md'
+                        <div className='relative flex justify-end bg-slate-100 rounded-tl-lg rounded-tr-lg'>
+                            <Image 
+                                src={imageUser ? imageUser : userLogo}
+                                alt="Uploaded Image" width={200} height={100} 
+                                className='w-[100px] h-auto object-fit'
                             />
                         </div>
 
