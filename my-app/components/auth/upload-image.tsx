@@ -23,20 +23,20 @@ export default function UploadImage() {
         if (image) {
             const formData = new FormData();
             formData.append('image', image);
-        
+
             const response = await fetch("/api/imgupload", {
                 method: "POST",
                 body: formData,
             });
             const result = await response.json();
-            if (result.success) {
+            if (result) {
               console.log("img uploaded");
             } else {
               console.log("Upload failed");
             }
             
         } else {
-            console.error("Aucun fichier sélectionné.");
+            console.error("No file selected.");
         }
     };
 
@@ -48,11 +48,11 @@ export default function UploadImage() {
                     active:bg-blue-700 px-4 py-1 rounded">Upload</button>
             </form>
             
-            {imageUrl && (
+            {imageUrl ? (
                 <div className="flex items-center justify-center mt-2">
                     <Image src={imageUrl} alt="Uploaded Image" width={200} height={100} className='w-[100px] h-auto object-fit'/>
                 </div>
-            )}
+            ) : null}
         </>
     )
 };

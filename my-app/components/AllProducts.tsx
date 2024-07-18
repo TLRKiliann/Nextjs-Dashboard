@@ -1,3 +1,4 @@
+import { Product } from '@prisma/client';
 import prisma from '@/prisma/prisma';
 import { Suspense } from 'react';
 import Card from '@/components/products-and-cart/Card';
@@ -12,7 +13,7 @@ export default async function AllProducts() {
         staleTime: 10 * 1000,
     }); */
 
-    const products = await prisma.product.findMany({
+    const products: Product[] = await prisma.product.findMany({
         orderBy: {
             id: "asc",
         }
