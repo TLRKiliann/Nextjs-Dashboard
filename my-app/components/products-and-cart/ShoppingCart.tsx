@@ -1,15 +1,15 @@
 "use client";
 
-import { ProductsProps } from '@/lib/definitions';
-import Image from 'next/image';
-import { useStore } from '@/lib/store';
+import { Product } from '@prisma/client';
 import usePersistStore from '@/helpers/usePersistStore';
+import { useStore } from '@/lib/store';
 import Link from 'next/link';
+import Image from 'next/image';
 import AddItemToCart from '@/components/products-and-cart/action-cart-item/add-item-to-cart';
 import DeleteItemFromCart from '@/components/products-and-cart/action-cart-item/delete-item-from-cart';
 import RemoveItemsFromCart from '@/components/products-and-cart/action-cart-item/remove-items-from-cart';
 
-export default function ShoppingCartPage({products}: {products: ProductsProps[]}) {
+export default function ShoppingCartPage({products}: {products: Product[]}) {
 
     // zustand
     const store = usePersistStore(useStore, (state) => state);
@@ -45,7 +45,7 @@ export default function ShoppingCartPage({products}: {products: ProductsProps[]}
         <div className='w-full min-h-screen flex flex-col text-slate-500 bg-gradient-to-bl from-sky-100 from-10% to-slate-100 to-90% p-4 pt-24'>
         
             {storeQuantity > 0 ? (
-                products.map((product: ProductsProps) => product.quantity > 0 ? (
+                products.map((product: Product) => product.quantity > 0 ? (
                     <div key={product.id} className="w-full h-20 flex items-center justify-start space-x-4 bg-white rounded-md shadow-sm-out my-1 p-2">
                         
                         <div className='w-[70px] flex items-center justify-center border-none rounded-tl-md 

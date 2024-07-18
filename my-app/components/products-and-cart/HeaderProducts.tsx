@@ -1,8 +1,7 @@
 import { auth, signOut } from "@/auth";
-import React from 'react';
+import prisma from "@/prisma/prisma";
 import { redirect } from "next/navigation";
 import Link from 'next/link';
-import prisma from "@/prisma/prisma";
 import CartItemsQuantity from './CartItemsQuantity';
 import { FaPowerOff, FaShoppingCart } from "react-icons/fa";
 

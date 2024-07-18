@@ -1,6 +1,6 @@
 "use client";
 
-import { ProductsProps } from '@/lib/definitions';
+import { Product } from '@prisma/client';
 import React, { useState } from 'react';
 import { useStore } from '@/lib/store';
 import usePersistStore from '@/helpers/usePersistStore';
@@ -12,7 +12,7 @@ import Loader from '@/components/Loader';
 export default function ProductNameCard({params}: {params: {productName: string}}) {
 
     // useQuery
-    const { data, isLoading, isError, error } = useQuery<ProductsProps[]>({
+    const { data, isLoading, isError, error } = useQuery<Product[]>({
         queryKey: ["products"],
         queryFn: () => getProductsData(),
         staleTime: 10 * 1000,
@@ -26,7 +26,7 @@ export default function ProductNameCard({params}: {params: {productName: string}
         throw new Error("Error - useQuery: ", error);
     };
     
-    const [database] = useState<ProductsProps[]>(data!);
+    const [database] = useState<Product[]>(data!);
 
     // zustand
     const store = usePersistStore(useStore, (state) => state);
@@ -44,7 +44,7 @@ export default function ProductNameCard({params}: {params: {productName: string}
 
     return (
         <div className='min-h-screen bg-gradient-to-tr from-slate-700 to-slate-950 pt-[25%]'>
-            {database.map((product: ProductsProps) => (
+            {database.map((product: Product) => (
                 String(params.productName) === product.name ? (
 
                     <div key={product.id} 

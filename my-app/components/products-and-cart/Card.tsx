@@ -1,11 +1,11 @@
-import { ProductsProps } from '@/lib/definitions';
+import { Product } from '@prisma/client';
 import { addProductToDb } from '@/lib/actions';
 import Link from 'next/link';
 import Image from 'next/image';
 import MainBtnAdd from './main-btn-add';
 
 type ProductProps = {
-    product: ProductsProps;
+    product: Product;
 };
 
 export default function Card({product}: ProductProps) {
