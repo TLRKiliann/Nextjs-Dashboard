@@ -1,30 +1,31 @@
-import React from 'react';
-import TableGraphs from './TableGraphs';
-import LineChart from './menu-items/graphs/LineChart';
-import BarChartOs from './menu-items/graphs/BarChartOs';
-import BarChartBrowser from './menu-items/graphs/BarChartBrowser';
-import DoughnutChart from './menu-items/graphs/DoughnutChart';
+import filenameIp from '@/utils/data.json';
+import filenameBrowser from '@/utils/browseros-data.json';
 
-export default function DataTables() {
+export default async function DataTables() {
+
     return (
-        <div className='w-full h-full grid grid-cols-2 grid-rows-2'>
+        <div className='flex justify-start w-full h-full'>
 
-            <TableGraphs>
-                <LineChart />
-            </TableGraphs>
+            <div className='w-full flex items-start justify-center'>
 
-            <TableGraphs>
-                <DoughnutChart />
-            </TableGraphs>
+                <div className='flex flex-row items-center justify-center w-full'>
 
-            <TableGraphs>
-                <BarChartOs />
-            </TableGraphs>
+                    <div className='px-4'>
+                        {filenameIp.map((data, index) => (
+                            <h3 key={index} className='text-base font-bold py-2'>Public IP: {data.data.ip}</h3>
+                        ))}
+                    </div>
 
-            <TableGraphs>
-                <BarChartBrowser />
-            </TableGraphs>
+                    <div className='px-4'>
+                        {filenameBrowser.map((item, index) => (
+                            <h3 key={index} className='text-base font-bold py-2'>Browsers: {item.browser}</h3>
+                        ))}
+                    </div>
+  
+                </div>
+
+            </div>
 
         </div>
     )
-};
+}
