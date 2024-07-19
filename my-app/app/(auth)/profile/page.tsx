@@ -46,15 +46,15 @@ export default async function ProfilePage() {
         console.log("Public IP detected");
     };
 
-    const filename = './utils/data.json';
+    const filename = './utils/ip-data.json';
     try {
         const file = await readFile(filename, { encoding: 'utf8' });
         const previousIp = JSON.parse(file);
         previousIp.push(ipResult);
         await writeFile(filename, JSON.stringify(previousIp, null, 4));
-        console.log('Data has been written to data.json');
+        console.log('Data has been written to ip-data.json');
     } catch (err) {
-        throw new Error('An error occurred while writing to data.json:');
+        throw new Error('An error occurred while writing to ip-data.json:');
     };
 
     // retrieve image from db
