@@ -14,7 +14,7 @@ export default async function TableOneDefault() {
         <div className='w-full'>
             
             <div className='h-[10%]'>
-                <h2 className='text-xl'>Memebers</h2>
+                <h2 className='text-xl'>Members</h2>
             </div>
 
             <div className='relative top-0 h-[80%] z-10'>
