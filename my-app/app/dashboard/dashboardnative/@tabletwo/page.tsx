@@ -8,7 +8,11 @@ import Loader from '@/components/Loader';
 
 export default async function TableTwoPage() {
 
-    const products: Product[] = await prisma.product.findMany({});
+    const products: Product[] = await prisma.product.findMany({
+        orderBy: {
+            id: "asc",
+        }
+    });
 
     /* const response = await fetch("http://localhost:3000/api/products");
     const products = (await response.json()) as Product[]; */
