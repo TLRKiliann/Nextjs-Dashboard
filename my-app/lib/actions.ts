@@ -263,14 +263,3 @@ export async function adminEmail(formData: FormData) {
         message: "Success!"
     };
 };
-
-/* export async function getAvailableProducts()  {
-    try {
-        await prisma.product.findMany();
-    } catch (error) {
-        console.log("Error: ", error)
-        return "Error: getAvailableProducts fn()";
-    }
-    revalidatePath("/products/cart");
-}
- */

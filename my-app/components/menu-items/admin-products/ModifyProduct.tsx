@@ -1,4 +1,4 @@
-import { ProductsProps } from '@/lib/definitions';
+import { Product } from '@prisma/client';
 import Image from 'next/image';
 import BtnModify from './create-modify-form-content/btn-modify';
 import BtnRemove from './create-modify-form-content/btn-remove';
@@ -11,13 +11,13 @@ import FormChangeProduct from './create-modify-form-content/form-change-product'
     such as context with cart.
 */
 
-export default async function ProductsToModify({listProducts}: {listProducts: ProductsProps[]}) {
+export default async function ProductsToModify({listProducts}: {listProducts: Product[]}) {
     return (
         <div className='relative mt-0 h-[50%] z-10'>
             
             <div className='absolute -z-10 w-full h-full overflow-y-scroll no-scrollbar pb-2'>
 
-                {listProducts.map((product: ProductsProps) => (
+                {listProducts.map((product: Product) => (
                     <div key={product.id} 
                         className='flex flex-row items-center justify-between w-full h-[80px] bg-white 
                             rounded-lg shadow-sm-out p-4 m-2'>

@@ -5,7 +5,7 @@ import justineImg from '@/public/assets/images/users/justine.jpg';
 import jasonImg from '@/public/assets/images/users/jason.png';
 import rebeccaImg from '@/public/assets/images/users/rebecca.jpg';
 import paulaImg from '@/public/assets/images/users/paula.jpg';
-import koalaImg from '@/public/assets/images/users/user_icon.jpg';
+import koalaImg from '@/public/assets/images/users/user_icon.png';
 import MariaImg from '@/public/assets/images/users/maria.jpg';
 
 export const customers: CustomersProps[] = [

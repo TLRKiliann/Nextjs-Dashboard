@@ -1,16 +1,15 @@
 import { auth } from "@/auth";
+import { NextResponse } from "next/server";
 import prisma from "@/prisma/prisma";
 import { readdir, writeFile } from "fs/promises";
-import { revalidatePath } from "next/cache";
-import { NextResponse } from "next/server";
 import path from 'path';
 
-export const GET = async (request: Request): Promise<NextResponse> => {
+export async function GET(): Promise<NextResponse> {
     const files = await readdir("./public/assets/images/upload");
     return NextResponse.json({msg: "image get successfully", files});
 }
 
-export const POST = async (request: Request): Promise<NextResponse> => {
+export async function POST(request: Request): Promise<NextResponse> {
     const file = await request.formData();
 
     const image = file.get("image");
@@ -29,16 +28,20 @@ export const POST = async (request: Request): Promise<NextResponse> => {
         };
 
         const pathToDb = pathOfImage.slice(8);
-        await prisma.user.update({
-            data: {
-                email: user.email!,
-                image: pathToDb,
-            },
-            where: {
-                email: user.email!,
-            }
-        })
-        revalidatePath("/profile");
+
+        try {
+            await prisma.user.update({
+                data: {
+                    email: user.email!,
+                    image: pathToDb,
+                },
+                where: {
+                    email: user.email!,
+                }
+            })
+        } catch (error) {
+            return NextResponse.json({msg: "Error: prisma update image!"});
+        }
     };
     return NextResponse.json({msg: "image upload successfully"});
 };

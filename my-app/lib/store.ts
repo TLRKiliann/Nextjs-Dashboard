@@ -1,16 +1,16 @@
-import type { ProductsProps } from './definitions';
+import { Product } from '@prisma/client';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 // State types
 type States = {
-  bearProducts: ProductsProps[];
+  bearProducts: Product[];
 };
 
 // Action types
 type Actions = {
-  addProducts: (products: ProductsProps) => void;
-  deleteProducts: (products: ProductsProps) => void;
+  addProducts: (products: Product) => void;
+  deleteProducts: (products: Product) => void;
   increaseQuantity: (productId: number) => void;
   decreaseQuantity: (productId: number) => void;
   removeAllById: (productId: number) => void;

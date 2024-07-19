@@ -5,10 +5,6 @@ import ProductNameCard from '@/components/products-and-cart/ProductNameCard';
 
 export default async function ProductIdPage({params}: {params: {productName: string}}) {
 
-    if (String(params.productName) !== params.productName.toLowerCase()) {
-        throw new Error("Error: name not corresponding");
-    };
-
     if (!params.productName) {
         notFound();
     };

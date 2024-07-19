@@ -1,4 +1,5 @@
 import { readFile, writeFile } from "fs/promises";
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
@@ -15,5 +16,6 @@ export async function POST(request: Request) {
     } catch (error) {
         throw new Error('An error occurred while writing to browseros-data.json:');
     };
+    revalidatePath("/profile");
     return NextResponse.json({message: "browser & os detected"});
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { ProductsProps } from '@/lib/definitions';
+import { Product } from '@prisma/client';
 import { useStore } from '@/lib/store';
 import usePersistStore from '@/helpers/usePersistStore';
 import Image from 'next/image';
@@ -24,7 +24,7 @@ export default function OrderItems() {
                 </div>
 
                 <div className='w-full bg-slate-100 mt-4 rounded'>
-                    {store.bearProducts.map((product: ProductsProps) => (
+                    {store.bearProducts.map((product: Product) => (
                         <div key={product.id} className='flex flex-row items-center justify-between bg-white m-4 p-3 rounded shadow-lg'>
                             <Image
                                 src={product.img}

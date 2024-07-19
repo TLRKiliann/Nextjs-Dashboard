@@ -14,7 +14,7 @@ export default async function TableOnePage() {
         <div className='w-full'>
             
             <div className='h-[10%]'>
-                <h2 className='text-xl'>Geolocation</h2>
+                <h2 className='text-xl'>Memebers</h2>
             </div>
 
             <div className='relative top-0 h-[80%] z-10'>

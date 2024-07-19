@@ -1,19 +1,17 @@
 1) 
-- save img from desktop and insert it in profile and in dashboard
+- restructure img upload and display it.
 
 2) 
-- isConnect to true when a user login & write it into a file.json
 - charts (graphs) with data from db
--
 
 3) 
 - next-safe-action to add with server action
-- retrieve data from file.json to display it in charts (graph)
+- retrieve data from file.json to display it in Data Table (graph)
 
 4) 
 - order + payments (user + auth)
 - forgot password
-
+- all-user-profiles.tsx
 
 //react 19
 //import React, { useActionState } from 'react'
@@ -28,3 +26,5 @@ $ pnpm prisma studio
 
 $ pnpm prisma db seed
 
+Image
+layout="fill"
