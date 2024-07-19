@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { ProductsProps } from '@/lib/definitions';
+import { Product } from '@prisma/client';
 import { notFound } from 'next/navigation';
 import prisma from '@/prisma/prisma';
 import Network from '@/components/Network';
@@ -8,6 +8,7 @@ import ModifyProduct from '@/components/menu-items/admin-products/ModifyProduct'
 import CreateProduct from '@/components/menu-items/admin-products/CreateProduct';
 import AllUserProfiles from '@/components/menu-items/all-user-profiles';
 import GraphCharts from '@/components/GraphCharts';
+
 
 type TitleParamsProps = {
     params: {
@@ -31,7 +32,7 @@ export default async function DashboardIndexLayout({children, params}: {
     params: {indexDashboard: string};
 }) {
 
-    const listProducts: ProductsProps[] = await prisma.product.findMany({
+    const listProducts: Product[] = await prisma.product.findMany({
         orderBy: {
             id: "asc",
         }

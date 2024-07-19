@@ -39,7 +39,7 @@ export type CustomersProps = {
     isConnected: boolean;
 }
 
-export type ProductsProps = {
+/* export type Product = {
     id: number;
     family: string;
     img: StaticImageData | string;
@@ -51,7 +51,7 @@ export type ProductsProps = {
     switcher?: boolean;
     updateAt?: Date;
     createdAt?: Date;
-}
+} */
 
 export type ListOfItemsProps = {
     readonly id: number;

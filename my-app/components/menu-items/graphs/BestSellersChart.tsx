@@ -1,6 +1,6 @@
 "use client";
 
-import type { ProductsProps } from '@/lib/definitions';
+import { Product } from '@prisma/client';
 import React from 'react';
 import {
   Chart as ChartJS,
@@ -41,14 +41,14 @@ export const options = {
   },
 };
 
-const BestSellersChart: React.FC<{products: ProductsProps[]}> = ({products}): JSX.Element => {
+const BestSellersChart: React.FC<{products: Product[]}> = ({products}): JSX.Element => {
 
   // Sort products by stock in descending order
   const sortedProducts = products.sort((a, b) => b.quantity - a.quantity);
 
   // Extract labels and dataset values from sorted products
-  const labels = sortedProducts.map((product: ProductsProps) => product.name);
-  const datasetValues = sortedProducts.map((product: ProductsProps) => product.quantity);
+  const labels = sortedProducts.map((product: Product) => product.name);
+  const datasetValues = sortedProducts.map((product: Product) => product.quantity);
 
   const data = {
     labels,

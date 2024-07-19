@@ -7,7 +7,7 @@ import Loader from '@/components/Loader';
 export default async function AllProducts() {
     
     // useQuery
-    /* const { data, isLoading, isError, error } = useQuery<ProductsProps[]>({
+    /* const { data, isLoading, isError, error } = useQuery<Product[]>({
         queryKey: ["products"],
         queryFn: () => getProductsData(),
         staleTime: 10 * 1000,
