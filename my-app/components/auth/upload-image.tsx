@@ -73,6 +73,8 @@ export default function UploadImage({userImg}: {userImg: string | undefined | nu
                     <div className='relative flex justify-end w-full h-auto bg-slate-100 rounded-tl-lg rounded-tr-lg'>
                         <Image 
                             src={userImg ? userImg : userLogo}
+                            priority={true}
+                            unoptimized={false}
                             alt="Uploaded Image" width={500} height={333} 
                             className='w-[100px] h-auto object-fit'
                         />
