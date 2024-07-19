@@ -1,6 +1,5 @@
 import type { GeoLocationData } from "@/lib/definitions";
 import { Product } from "@prisma/client";
-//import { revalidatePath } from "next/cache";
 
 export const ApiPublicIp = async (): Promise<{data: {ip: string;}}> => {
     try {
@@ -14,7 +13,7 @@ export const ApiPublicIp = async (): Promise<{data: {ip: string;}}> => {
         console.error('Error fetching public IP:', error);
         throw error;
     }
-}
+};
 
 export const ApiGeolocation = async ({data}: {data: {ip: string;}}): Promise<GeoLocationData> => {
     const secApiKey = process.env.SECRET_API_KEY;
@@ -33,9 +32,9 @@ export const ApiGeolocation = async ({data}: {data: {ip: string;}}): Promise<Geo
         console.error('Error fetching geo IP:', error);
         throw error;
     }
-}
+};
 
-export const getProductsData = async () => {
+export const getProductsData = async (): Promise<Product[]> => {
     const response = await fetch("http://localhost:3000/api/products", {
         cache: "no-cache"
     });
