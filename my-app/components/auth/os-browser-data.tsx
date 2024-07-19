@@ -22,7 +22,7 @@ export default function OsBrowserData() {
     // write browser & os in json file
     useEffect(() => {
         const fetchData = async () => {
-            const res = await fetch("/api/browseros", {
+            const res = await fetch("/api/profile/browseros", {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
