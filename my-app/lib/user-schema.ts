@@ -29,12 +29,6 @@ export const loginUserSchema = object({
     .min(1, "Password is required")
 });
 
-/* export const newPasswordSchema = object({
-  password: string().min(8, {
-    message: "Minimum of 8 characters required",
-  }),
-}); */
-
 export const newPasswordSchema = object({
   email: string().email({
     message: "Invalid email format",
