@@ -126,8 +126,8 @@ All files in app/(auth)/...
 
 1. Switch User connection Offline to Online ✅
 2. Allow user & admin to change image of profile (upload, save & display) ✅
-3. Catch public IP + OS + browser when User is logged in &
-write data in data.json file. ❌
+3. Catch public IP + OS + browser when User is logged in & write data in data.json file. ✅
+4. use next-safe-action 
 
 ---
 
