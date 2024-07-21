@@ -40,6 +40,7 @@ const Header = async () => {
 
     const logoutAction = async () => {
         'use server';
+        await prisma.$disconnect();
         await signOut({
             redirect: true,
             redirectTo: 'http://localhost:3000/login',
