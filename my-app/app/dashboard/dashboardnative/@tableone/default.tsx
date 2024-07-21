@@ -1,5 +1,6 @@
 import type { CustomersProps } from '@/lib/definitions';
 import Image from 'next/image';
+import TablePage from '@/components/TablePage';
 
 export default async function TableOneDefault() {
 
@@ -11,11 +12,7 @@ export default async function TableOneDefault() {
     const customers = (await response.json()) as CustomersProps[];
 
     return (
-        <div className='w-full'>
-            
-            <div className='h-[10%]'>
-                <h2 className='text-xl'>Memebers</h2>
-            </div>
+        <TablePage title="Members" url="" link="">
 
             <div className='relative top-0 h-[80%] z-10'>
 
@@ -59,7 +56,6 @@ export default async function TableOneDefault() {
                     ))}
                 </ul>
             </div>
-
-        </div>
+        </TablePage>
     )
 }

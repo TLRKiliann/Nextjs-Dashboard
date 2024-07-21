@@ -83,6 +83,8 @@ export default async function ProfilePage() {
                         <div className='relative flex justify-end bg-slate-100 rounded-tl-lg rounded-tr-lg'>
                             <Image 
                                 src={userImg?.image ? userImg.image : userLogo}
+                                priority={true}
+                                unoptimized={false}
                                 alt="Uploaded Image" width={500} height={333} 
                                 className='w-[100px] h-auto object-fit'
                             />

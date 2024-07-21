@@ -12,7 +12,8 @@ export const products: Product[] = [
         quantity: 0,
         switcher: false,
         updatedAt: new Date,
-        createdAt: new Date
+        createdAt: new Date,
+        authorId: null
     },
     {
         id: 2,
@@ -25,7 +26,8 @@ export const products: Product[] = [
         quantity: 0,
         switcher: false,
         updatedAt: new Date,
-        createdAt: new Date
+        createdAt: new Date,
+        authorId: null
     },
     {
         id: 3,
@@ -38,7 +40,8 @@ export const products: Product[] = [
         quantity: 0,
         switcher: false,
         updatedAt: new Date,
-        createdAt: new Date
+        createdAt: new Date,
+        authorId: null
     },
     {
         id: 4,
@@ -51,7 +54,8 @@ export const products: Product[] = [
         quantity: 0,
         switcher: false,
         updatedAt: new Date,
-        createdAt: new Date
+        createdAt: new Date,
+        authorId: null
     },
     {
         id: 5,
@@ -64,7 +68,8 @@ export const products: Product[] = [
         quantity: 0,
         switcher: false,
         updatedAt: new Date,
-        createdAt: new Date
+        createdAt: new Date,
+        authorId: null
     },
     {
         id: 6,
@@ -77,7 +82,8 @@ export const products: Product[] = [
         quantity: 0,
         switcher: false,
         updatedAt: new Date,
-        createdAt: new Date
+        createdAt: new Date,
+        authorId: null
     },
     {
         id: 7,
@@ -90,6 +96,7 @@ export const products: Product[] = [
         quantity: 0,
         switcher: false,
         updatedAt: new Date,
-        createdAt: new Date
+        createdAt: new Date,
+        authorId: null
     }
 ];

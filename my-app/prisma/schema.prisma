@@ -23,6 +23,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   role          Role      @default(USER)
+  products      Product[]
   
   @@map("users")
 }
@@ -44,6 +45,8 @@ model Product {
   switcher          Boolean  @default(false)
   updatedAt         DateTime @updatedAt
   createdAt         DateTime @default(now())
+  author            User?     @relation(fields: [authorId], references: [id])
+  authorId          String?
 }
 
 model Email {

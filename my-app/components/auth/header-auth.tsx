@@ -22,6 +22,7 @@ const HeaderAuth = async () => {
                 email: user?.email!,
             }
         });
+        await prisma.$disconnect();
         await signOut({
             redirect: true,
             redirectTo: 'http://localhost:3000/login',
