@@ -1,4 +1,7 @@
+import { auth } from '@/auth';
+import prisma from '@/prisma/prisma';
 import React, { Suspense } from 'react';
+import { redirect } from 'next/navigation';
 import { ApiPublicIp, ApiGeolocation } from '@/utils/api-request';
 import TablePage from '@/components/TablePage';
 import MapChart from '@/components/menu-items/graphs/MapChart';
@@ -8,6 +11,27 @@ import Loader from '@/components/Loader';
 export const dynamic = "force-dynamic";
 
 export default async function GeolocationPage() {
+
+    const session = await auth();
+
+    const user = session?.user;
+
+    if (!user) {
+        return null;
+    } else if (!user.email) {
+        return null;
+    };
+
+    const admin = await prisma.user.findUnique({
+        where: {
+            email: user.email,
+            role: "ADMIN"
+        }
+    });
+
+    if (!admin) {
+        return redirect("/api/auth/signin");
+    };
 
     const ipResult = await ApiPublicIp();
     if (!ipResult) {
