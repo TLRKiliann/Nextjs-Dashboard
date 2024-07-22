@@ -13,13 +13,13 @@ export default async function EmailsAdmin() {
     const session = await auth();
     const user = session?.user;
 
-    const emailBox: EmailProps[] = await prisma.email.findMany({
+    const emailBox: EmailProps[] = await prisma.message.findMany({
         orderBy: {
             createdAt: "desc",
         },
         select: {
             id: true,
-            email: true,
+            src: true,
             message: true,
             dst: true,
             isOpen: true,
@@ -39,7 +39,7 @@ export default async function EmailsAdmin() {
 
                 <div className='absolute -z-10 w-full h-full overflow-y-scroll no-scrollbar'>
 
-                    {emailBox.map((email: EmailProps) => (
+                    {emailBox.map((email: EmailProps) =>  email.src !== "admin@prisma.io" ? (
                         <div key={email.id} className='w-full h-auto bg-white border-b border-slate-300 p-2'>
 
                             <div className='flex justify-end w-full bg-slate-900'>
@@ -59,10 +59,10 @@ export default async function EmailsAdmin() {
 
                             </div>
                             
-                            <p className='text-base font-bold pt-2'>{email.email}</p>
+                            <p className='text-base font-bold pt-2'>{email.src}</p>
                             <p className='text-sm py-2'>{String(email.createdAt).slice(0, 24)}</p>
                         </div>
-                    ))}
+                    ): null)}
                 </div>
             </div>
 
@@ -70,22 +70,22 @@ export default async function EmailsAdmin() {
 
                 <div className='absolute -z-10 w-full h-full overflow-y-scroll no-scrollbar'>
 
-                    {emailBox.map((email: EmailProps) => email.isOpen === true ? (
+                    {emailBox.map((email: EmailProps) => email.isOpen === true && email.src !== "admin@prisma.io" ? (
                         <div key={email.id} className='w-full h-auto bg-white'>
                             <div className='flex flex-row items-end justify-between w-full h-auto 
                                 text-slate-50 bg-slate-800 rounded-tl rounded-bl p-2'>
                                 <div>
-                                    <p className='text-base font-bold py-1'>{email.email}</p>
+                                    <p className='text-base font-bold py-1'>{email.src}</p>
                                     <p className='text-sm pb-1'>{String(email.createdAt).slice(0, 24)}</p>
                                 </div>
                                 <div className='py-1'>
-                                    <ResponseAdminEmail id={email.id} dst={email.email} user={user} prevMsg={email.message} /> 
+                                    <ResponseAdminEmail id={email.id} dst={email.src} user={user} prevMsg={email.message} /> 
                                 </div>
                             </div>
                             <div className='text-justify w-full h-auto bg-white border-l border-slate-200 p-4'>
                                 <div className='flex flex-col items-start justify-between'>
                                     <p className='text-lg'>{email.message}</p>
-                                    <p className='text-base font-bold text-slate-700 mt-10'>{email.email}</p>
+                                    <p className='text-base font-bold text-slate-700 mt-10'>{email.src}</p>
                                 </div>
                             </div>
                         </div>

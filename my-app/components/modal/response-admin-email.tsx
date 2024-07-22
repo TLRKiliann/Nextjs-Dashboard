@@ -3,6 +3,7 @@
 import { adminEmail } from "@/lib/actions";
 import { User } from "next-auth";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export default function ResponseAdminEmail({ id, dst, user, prevMsg }: 
   { id: string; dst: string; user: User; prevMsg: string; }) {
@@ -18,6 +19,20 @@ export default function ResponseAdminEmail({ id, dst, user, prevMsg }:
     setTextMail(event.target.value);
   };
 
+  const onSubmit = async (formData: FormData) => {
+    const response = await adminEmail(formData);
+
+    if (response.message === "Success!") {
+      toast.success("Message sent successfully!");
+      setIsShow(!isShow);
+    } else if (response.message = "There is an error!") {
+      toast.error("Error: Message not sent!")
+    }
+    else {
+      toast.error("Something went wrong!")
+    }
+  };
+
   return (
     <div key={id}>
       <div>
@@ -29,8 +44,10 @@ export default function ResponseAdminEmail({ id, dst, user, prevMsg }:
 
       {isShow === true ? (
         <div className='fixed z-40 flex items-center bg-slate-700/50 w-[80%] xl:w-[86%] right-0 top-0 bottom-0 backdrop-blur-sm'>
-          <form action={adminEmail} className='z-50 flex flex-col w-[600px] h-auto bg-slate-800 text-slate-100  
+          
+          <form action={onSubmit} className='z-50 flex flex-col w-[600px] h-auto bg-slate-800 text-slate-100  
             m-auto p-4 rounded shadow-out'>
+            
             <div className="mb-4">
               <h2 className="text-xl font-bold">Send message</h2>
             </div>
@@ -63,12 +80,14 @@ export default function ResponseAdminEmail({ id, dst, user, prevMsg }:
                 Cancel
               </button>
               <button 
-                type="submit" 
+                type="submit"
                 className="bg-blue-500 hover:bg-blue-600 active:bg-blue-700 px-4 py-1 rounded ml-4">
                 Send
               </button>
             </div>
+
           </form>
+
         </div>
       ) : null}
     </div>
