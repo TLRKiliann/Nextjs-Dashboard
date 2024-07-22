@@ -1,9 +1,11 @@
 import { auth, signOut } from "@/auth";
-import prisma from "@/prisma/prisma";
+import { PrismaClient } from "@prisma/client";
 import { redirect } from "next/navigation";
 import Link from 'next/link';
 import CartItemsQuantity from './CartItemsQuantity';
 import { FaPowerOff, FaShoppingCart } from "react-icons/fa";
+
+const prisma = new PrismaClient();
 
 const HeaderProducts = async () => {
 

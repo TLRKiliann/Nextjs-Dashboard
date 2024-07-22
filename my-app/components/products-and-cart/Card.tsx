@@ -1,4 +1,4 @@
-import { Product } from '@prisma/client';
+import type { Product } from '@prisma/client';
 import { addProductToDb } from '@/lib/actions';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -19,7 +19,7 @@ export default function Card({product}: ProductProps) {
                         <Image src={product.img}
                             width={100}
                             height={100}
-                            className="w-[120px] h-auto object-fit rounded-tl-md rounded-br-md shadow-white" 
+                            className="w-[100px] h-auto object-fit rounded-tl-md rounded-br-md shadow-white" 
                             alt="no img" 
                         />
                     </div>
@@ -40,7 +40,7 @@ export default function Card({product}: ProductProps) {
                             id={product.id}
                             name={product.name}
                             quantity={product.quantity}
-                            product={product}
+                            //product={product}
                         />
                     </form>
                 </div>

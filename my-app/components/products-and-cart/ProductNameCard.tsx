@@ -1,6 +1,6 @@
 "use client";
 
-import { Product } from '@prisma/client';
+import type { Product } from '@prisma/client';
 import React, { useState } from 'react';
 import { useStore } from '@/lib/store';
 import usePersistStore from '@/helpers/usePersistStore';
