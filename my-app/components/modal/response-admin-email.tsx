@@ -1,8 +1,8 @@
 "use client";
 
-import { adminEmail } from "@/lib/actions";
 import { User } from "next-auth";
 import { useState } from "react";
+import { adminEmail } from "@/lib/actions";
 import toast from "react-hot-toast";
 
 export default function ResponseAdminEmail({ id, dst, user, prevMsg }: 
@@ -25,6 +25,7 @@ export default function ResponseAdminEmail({ id, dst, user, prevMsg }:
     if (response.message === "Success!") {
       toast.success("Message sent successfully!");
       setIsShow(!isShow);
+      setTextMail("");
     } else if (response.message = "There is an error!") {
       toast.error("Error: Message not sent!")
     }
