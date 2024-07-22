@@ -2,7 +2,7 @@ import { auth } from '@/auth';
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
-import EmailForm from '@/components/contact/email-form';
+import ContactForm from '@/components/contact/contact-form';
 
 export const metadata: Metadata = {
     title: {
@@ -99,7 +99,7 @@ export default async function ContactPage() {
                         </h2>
                     </div>
 
-                    <EmailForm user={user} />
+                    <ContactForm user={user} />
 
                 </div>
 

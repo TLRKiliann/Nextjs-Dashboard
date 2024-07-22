@@ -2,26 +2,33 @@
 
 import prisma from "@/prisma/prisma";
 import { revalidatePath } from "next/cache";
-//import { auth } from "@/auth";
+import { auth } from "@/auth";
+import { actionClient } from "./safe-action";
+import { z } from "zod";
 
-//update card
+//update Card.tsx
 export const addProductToDb = async (formData: FormData) => {
+    const session = await auth();
+    const userSession = session?.user;
+    if (!userSession?.email) {
+        throw new Error("userSession.email not work");
+    };
     try {
         await prisma.product.update({
             data: {
-                id: Number(formData.get("id")),
                 quantity: {
                     increment: 1,
                 },
+                author: {
+                    connect: {
+                        email: userSession.email,
+                    }
+                }
             },
             where: {
                 id: Number(formData.get("id")),
-            },
-            select: {
-                id: true,
-                name: true
             }
-        });
+        }); 
     } catch (error) {
         console.log("Error: ", error)
         return "Error: prisma.product.create";
@@ -29,18 +36,32 @@ export const addProductToDb = async (formData: FormData) => {
     revalidatePath("/products");
 };
 
+
+const schema = z.object({id: z.number()});
+type Schema = z.infer<typeof schema>;
+
 // increment quantity in cartItems
-export async function addToCart(formData: FormData) {
+export const addToCart = async ({ id }: Schema) => {
+    const session = await auth();
+    const userSession = session?.user;
+    if (!userSession?.email) {
+        throw new Error("userSession.email not work");
+    };
     try {
         await prisma.product.update({
             data: {
-                id: Number(formData.get("id")),
                 quantity: {
                     increment: 1,
                 },
+                author: {
+                    connect: {
+                        email: userSession.email,
+                    }
+                }
             },
             where: {
-                id: Number(formData.get("id")),
+                //id: Number(formData.get("id")),
+                id: id,
             },
         });
     } catch (error) {
@@ -50,15 +71,26 @@ export async function addToCart(formData: FormData) {
     return {message: "Success!"};
 };
 
+
+
 // decrement quantity in cartItems
 export async function deleteFromCart(formData: FormData) {
+    const session = await auth();
+    const userSession = session?.user;
+    if (!userSession?.email) {
+        throw new Error("userSession.email not work");
+    };
     try {
         await prisma.product.update({
             data: {
-                id: Number(formData.get("id")),
                 quantity: {
                     increment: -1,
                 },
+                author: {
+                    connect: {
+                        email: userSession.email,
+                    }
+                }
             },
             where: {
                 id: Number(formData.get("id")),
@@ -73,15 +105,24 @@ export async function deleteFromCart(formData: FormData) {
 };
 
 // reinitialize quantity to 0 in cartItems
-export async function removeFromCart(id: number) {
+export async function removeFromCart(idToDelete: number) {
+    const session = await auth();
+    const userSession = session?.user;
+    if (!userSession?.email) {
+        throw new Error("userSession.email not work");
+    };
     try {
         await prisma.product.update({
             data: {
-                id: id,
                 quantity: 0,
+                author: {
+                    connect: {
+                        email: userSession.email,
+                    }
+                },
             },
             where: {
-                id: id,
+                id: idToDelete,
             },
         });
     } catch (error) {
@@ -173,11 +214,11 @@ export async function createProduct(formData: FormData) {
 };
 
 // email from /contact
-export async function emailSending(formData: FormData) {
+export async function messageSender(formData: FormData) {
     try {
-        await prisma.email.create({
+        await prisma.message.create({
             data: {
-                email: (formData.get("email") as string),
+                src: (formData.get("src") as string),
                 message: (formData.get("message") as string),
             }
         })
@@ -193,7 +234,7 @@ export async function emailSending(formData: FormData) {
 // EMAIL actions
 export async function openEmail(id: string) {
     try {
-        await prisma.email.update({
+        await prisma.message.update({
             data: {
                 id: id,
                 isOpen: true,
@@ -211,7 +252,7 @@ export async function openEmail(id: string) {
 
 export async function closeEmail(id: string) {
     try {
-        await prisma.email.update({
+        await prisma.message.update({
             data: {
                 id: id,
                 isOpen: false,
@@ -229,7 +270,7 @@ export async function closeEmail(id: string) {
 
 export async function removeEmail(id: string) {
     try {
-        await prisma.email.delete({
+        await prisma.message.delete({
             where: {
                 id: id,
             }
@@ -246,16 +287,17 @@ export async function removeEmail(id: string) {
 // admin response
 export async function adminEmail(formData: FormData) {
     try {
-        await prisma.email.create({
+        await prisma.message.create({
             data: {
-                email: (formData.get("src") as string),
+                src: (formData.get("src") as string),
                 message: (formData.get("textMail") as string),
-                dst: (formData.get("email") as string),  
+                dst: (formData.get("dst") as string),
+                isOpen: true,
             }
         })
     } catch (error) {
         return {
-            message: "There is an error"
+            message: "There is an error!"
         };
     }
     revalidatePath("/dashboard/emails-admin");
@@ -263,3 +305,5 @@ export async function adminEmail(formData: FormData) {
         message: "Success!"
     };
 };
+
+

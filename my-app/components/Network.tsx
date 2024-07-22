@@ -31,13 +31,13 @@ export default async function Network() {
                 <div className='absolute -z-10 flex flex-row items-center justify-center w-full h-full overflow-y-scroll no-scrollbar'>
 
                     <div className='px-4'>
-                        {dataIp.map((dataIp: any, index: number) => (
-                            <h3 key={index} className='text-base font-bold py-2'>Public IP: {dataIp.data.ip}</h3>
+                        {dataIp.map((dataIp: {data: {ip: string}}, index: number) => (
+                            <h3 key={index} className='text-base font-bold py-2'>📢 Public IP: {dataIp.data.ip}</h3>
                         ))}
                     </div>
 
                     <div className='px-4'>
-                        {dataBrowser.map((dataBrowser: any, index: number) => (
+                        {dataBrowser.map((dataBrowser: {browser: string}, index: number) => (
                             <h3 key={index} className='text-base font-bold py-2'>Browsers: {dataBrowser.browser}</h3>
                         ))}
                     </div>

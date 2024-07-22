@@ -1,11 +1,11 @@
 "use client";
 
-import { emailSending } from '@/lib/actions';
+import { messageSender } from '@/lib/actions';
 import { User } from 'next-auth';
 import React, { useCallback, useState } from 'react';
 import toast from 'react-hot-toast';
 
-export default function EmailForm({user}: {user: User}) {
+export default function ContactForm({user}: {user: User}) {
 
     const [textArea, setTextArea] = useState<string>("");
 
@@ -14,7 +14,7 @@ export default function EmailForm({user}: {user: User}) {
     };
 
     const onSubmit = useCallback(async (formData: FormData) => {
-        const response = await emailSending(formData);
+        const response = await messageSender(formData);
         if (response.message === "Success!") {
             toast.success("Your email was sent successfully!");
         } else if (response.message === "There is an error!") {
@@ -30,8 +30,8 @@ export default function EmailForm({user}: {user: User}) {
             <div className='mb-8'>
                 <input
                     type="email"
-                    id="email"
-                    name="email"
+                    id="src"
+                    name="src"
                     value={user.email!}
                     readOnly
                     placeholder={user.email!}
