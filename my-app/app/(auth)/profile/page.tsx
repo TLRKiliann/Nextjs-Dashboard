@@ -1,11 +1,9 @@
 import { Metadata } from "next";
 import { auth } from "@/auth";
 import prisma from "@/prisma/prisma";
-import { readFile, writeFile } from "fs/promises";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { ApiPublicIp } from "@/utils/api-request";
 import HeaderAuth from '@/components/auth/header-auth';
 import DataProfile from "@/components/auth/data-profile";
 import OsBrowserData from "@/components/auth/os-browser-data";
@@ -35,26 +33,6 @@ export default async function ProfilePage() {
                 email: user.email!,
             }
         })
-    };
-
-    // retrieve public IP
-    const ipResult = await ApiPublicIp();
-
-    if (!ipResult) {
-        throw new Error("No ip public detected");
-    } else {
-        console.log("Public IP detected");
-    };
-
-    const filename = './utils/ip-data.json';
-    try {
-        const file = await readFile(filename, { encoding: 'utf8' });
-        const previousIp = JSON.parse(file);
-        previousIp.push(ipResult);
-        await writeFile(filename, JSON.stringify(previousIp, null, 4));
-        console.log('Data has been written to ip-data.json');
-    } catch (err) {
-        throw new Error('An error occurred while writing to ip-data.json:');
     };
 
     // retrieve image from db
