@@ -1,8 +1,9 @@
-import { Product } from '@prisma/client';
-import prisma from '@/prisma/prisma';
+import { PrismaClient, Product } from '@prisma/client';
 import { Suspense } from 'react';
 import Card from '@/components/products-and-cart/Card';
 import Loader from '@/components/Loader';
+
+const prisma = new PrismaClient();
 
 export default async function AllProducts() {
 

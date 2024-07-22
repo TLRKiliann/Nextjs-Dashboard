@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 
 export const generateMetadata = async ({params}: {params: {orderId: string}}): Promise<Metadata> => {
     const title = await new Promise((resolve) => {

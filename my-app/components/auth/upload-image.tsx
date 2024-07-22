@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import userLogo from "@/public/assets/images/users/user_icon.png";
-import Link from 'next/link';
 
 export default function UploadImage() {
 
@@ -84,11 +84,11 @@ export default function UploadImage() {
                         />
                     </div>
                 </div>
-            </div>
 
-            <div className="w-full flex items-center justify-end text-blue-500 hover:text-blue-600 
-                active:text-blue-700 px-4 pb-4">
+                <div className="w-full flex items-center justify-end text-blue-500 hover:text-blue-600 
+                    active:text-blue-700 mt-4 bg-slate-100 border border-slate-200 rounded-lg px-2 py-1">
                 <Link href="/profile">Profile</Link>
+            </div>
             </div>
         </>
     )

@@ -1,6 +1,8 @@
 import { auth } from '@/auth';
-import prisma from '@/prisma/prisma';
+import { PrismaClient } from '@prisma/client';
 import Link from 'next/link';
+
+const prisma = new PrismaClient();
 
 export default async function AdminAccessLink() {
 
@@ -10,7 +12,6 @@ export default async function AdminAccessLink() {
     if (!user?.email) {
         return null;
     };
-
     const admin = await prisma.user.findUnique({
         where: {
             email: user.email,

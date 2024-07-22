@@ -1,10 +1,12 @@
 import { auth } from "@/auth";
-import prisma from '@/prisma/prisma';
+import { PrismaClient } from "@prisma/client";
 import { redirect } from "next/navigation";
 import React, { Suspense } from 'react';
 import Header from '@/components/Header';
 import Menu from '@/components/Menu';
 import Loader from '@/components/Loader';
+
+const prisma = new PrismaClient();
 
 export default async function DashboardPage() {
 

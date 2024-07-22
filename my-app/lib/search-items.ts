@@ -1,4 +1,4 @@
-import { ListOfItemsProps } from "./definitions";
+import type { ListOfItemsProps } from "@/lib/definitions";
 
 export const listOfItems: ListOfItemsProps[] = [
     {

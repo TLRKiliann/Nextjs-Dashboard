@@ -1,18 +1,50 @@
-"use client";
+//"use client";
 
-import { Product } from '@prisma/client';
-import usePersistStore from '@/helpers/usePersistStore';
-import { useStore } from '@/lib/store';
+import type { Product } from '@prisma/client';
+import { auth } from '@/auth';
+import { redirect } from 'next/navigation';
+import { PrismaClient } from '@prisma/client';
+//import usePersistStore from '@/helpers/usePersistStore';
+//import { useStore } from '@/lib/store';
 import Link from 'next/link';
 import Image from 'next/image';
 import AddItemToCart from '@/components/products-and-cart/action-cart-item/add-item-to-cart';
 import DeleteItemFromCart from '@/components/products-and-cart/action-cart-item/delete-item-from-cart';
 import RemoveItemsFromCart from '@/components/products-and-cart/action-cart-item/remove-items-from-cart';
 
-export default function ShoppingCartPage({products}: {products: Product[]}) {
+const prisma = new PrismaClient();
+
+export default async function ShoppingCartPage({products}: {products: Product[]}) {
+
+    const session = await auth();
+
+    const user = session?.user;
+
+    if (!user?.email) {
+        return redirect("/api/auth/signin");
+    };
+
+    const storeQuantity = await prisma.user.findUnique({
+        where: {
+            email: user.email,
+        },
+        include: {
+            products: {
+                select: {
+                    quantity: true,
+                } 
+            }
+        }
+    });
+
+    if (!storeQuantity) {
+        throw new Error("storeQuantity not set!");
+    };
+
+    const totalQuantity = storeQuantity.products.reduce((acc, product) => acc + product.quantity, 0);
 
     // zustand
-    const store = usePersistStore(useStore, (state) => state);
+    /* const store = usePersistStore(useStore, (state) => state);
 
     if (!store) {
         return <div>Loading...</div>;
@@ -39,12 +71,12 @@ export default function ShoppingCartPage({products}: {products: Product[]}) {
         if (findId) {
             store.removeAllById(findId.id);
         }
-    };
+    }; */
 
     return (
         <div className='w-full min-h-screen flex flex-col text-slate-500 bg-gradient-to-bl from-sky-100 from-10% to-slate-100 to-90% p-4 pt-24'>
         
-            {storeQuantity > 0 ? (
+            {totalQuantity > 0 ? (
                 products.map((product: Product) => product.quantity > 0 ? (
                     <div key={product.id} className="w-full h-20 flex items-center justify-start space-x-4 bg-white rounded-md shadow-sm-out my-1 p-2">
                         
@@ -97,8 +129,8 @@ export default function ShoppingCartPage({products}: {products: Product[]}) {
                             </p>
                         </div>
 
-
                         <div className='flex flex-row items-center justify-between w-[200px]'>
+                            
                             <div className='flex flex-row items-center justify-evenly w-[100px]'>
                                 
                                 <DeleteItemFromCart
@@ -106,13 +138,13 @@ export default function ShoppingCartPage({products}: {products: Product[]}) {
                                     quantity={product.quantity}
                                     name={product.name}
                                     stock={product.stock}
-                                    handleDeleteProduct={() => handleDeleteProduct(product.id)}
+                                    /* handleDeleteProduct={() => handleDeleteProduct(product.id)} */
                                 />
                                 
                                 <AddItemToCart 
                                     id={product.id}
                                     name={product.name}
-                                    handleAddProduct={() => handleAddProduct(product.id)}
+                                    //handleAddProduct={() => handleAddProduct(product.id)}
                                 />
 
                             </div>
@@ -120,7 +152,7 @@ export default function ShoppingCartPage({products}: {products: Product[]}) {
                                 <RemoveItemsFromCart 
                                     id={product.id}
                                     name={product.name}
-                                    handleRemoveAllProducts={() => handleRemoveAllProducts(product.id)}
+                                    //handleRemoveAllProducts={() => handleRemoveAllProducts(product.id)}
                                 />
 
                         </div>

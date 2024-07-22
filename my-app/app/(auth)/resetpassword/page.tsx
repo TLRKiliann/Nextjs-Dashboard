@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import { NewPasswordForm } from '@/components/auth/new-password-form';
 import HeaderAuth from '@/components/auth/header-auth';
 

@@ -1,6 +1,5 @@
+import { PrismaClient, type Message } from '@prisma/client';
 import { auth } from '@/auth';
-import { EmailProps } from '@/lib/definitions';
-import prisma from '@/prisma/prisma';
 import OpenEmail from './action-email/open-email';
 import CloseEmail from './action-email/close-email';
 import RemoveEmail from './action-email/remove-email';
@@ -8,12 +7,14 @@ import ResponseAdminEmail from '../modal/response-admin-email';
 
 //http://localhost:3000/dashboard/emails-admin
 
+const prisma = new PrismaClient();
+
 export default async function EmailsAdmin() {
 
     const session = await auth();
     const user = session?.user;
 
-    const emailBox: EmailProps[] = await prisma.message.findMany({
+    const emailBox: Message[] = await prisma.message.findMany({
         orderBy: {
             createdAt: "desc",
         },
@@ -39,7 +40,7 @@ export default async function EmailsAdmin() {
 
                 <div className='absolute -z-10 w-full h-full overflow-y-scroll no-scrollbar'>
 
-                    {emailBox.map((email: EmailProps) =>  email.src !== "admin@prisma.io" ? (
+                    {emailBox.map((email: Message) =>  email.src !== "admin@prisma.io" ? (
                         <div key={email.id} className='w-full h-auto bg-white border-b border-slate-300 p-2'>
 
                             <div className='flex justify-end w-full bg-slate-900'>
@@ -70,7 +71,7 @@ export default async function EmailsAdmin() {
 
                 <div className='absolute -z-10 w-full h-full overflow-y-scroll no-scrollbar'>
 
-                    {emailBox.map((email: EmailProps) => email.isOpen === true && email.src !== "admin@prisma.io" ? (
+                    {emailBox.map((email: Message) => email.isOpen === true && email.src !== "admin@prisma.io" ? (
                         <div key={email.id} className='w-full h-auto bg-white'>
                             <div className='flex flex-row items-end justify-between w-full h-auto 
                                 text-slate-50 bg-slate-800 rounded-tl rounded-bl p-2'>

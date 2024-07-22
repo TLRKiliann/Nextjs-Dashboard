@@ -1,31 +1,48 @@
 "use client";
 
+//import { useAction } from "next-safe-action/hooks"
+//import toast from 'react-hot-toast';
 import { addToCart } from '@/lib/actions';
-import { useCallback } from 'react';
-import toast from 'react-hot-toast';
 
-export default function AddItemToCart({id, name, handleAddProduct}: 
+//export default function AddItemToCart({id, name, handleAddProduct}: 
+export default function AddItemToCart({id, name}: 
     {
         id: number;
         name: string;
-        handleAddProduct: (id: number) => void;
+        //handleAddProduct: (id: number) => void;
     }) {
 
-    const onSubmit = useCallback(async (formData: FormData) => {
-        const res = await addToCart(formData);
+    //const { execute, result, isExecuting } = useAction(addToCart)
+
+    /* const onSubmit = async (id: number) => {
+        const res = await addToCart({id: props.id});
         if (res.message === "Success!") {
-            toast.success("Successfully added to cart!");
+            toast.success("Successfully deleted from cart!");
         } else if (res.message === "There is an error!") {
-            toast.error("Error: add to cart failed!");
+            toast.error("Deleted from cart failed!");
         } else {
             toast.error("An unexpected error occurred.");
         }
-    }, []);
+    }; */
 
     return (
-        <form action={onSubmit}>
-            <input type="number" id="id" name="id" value={id} hidden readOnly />
-            <button type="submit" onClick={() => handleAddProduct(id)}
+        <div key={id}>
+            {/* <input type="number" id="id" name="id" value={id} hidden readOnly /> */}
+            <button type="button" onClick={async () => {
+                await addToCart({id: id});
+                //handleAddProduct(id);
+                console.log("ok, request done")
+
+                /* console.log(values, "values");
+                if (values.validationError) {
+                    toast.error("error")
+                    return;
+                }
+                if (values.serverError) {
+                    toast.error("error")
+                    return;
+                } */
+            }}
                 className="w-[38px] h-[38px] text-slate-100 font-bold bg-blue-500 
                     hover:bg-blue-600/90 active:bg-blue-600
                     rounded-full shadow-sm-out"
@@ -33,6 +50,7 @@ export default function AddItemToCart({id, name, handleAddProduct}:
             >
                 +
             </button>
-        </form>
+        </div>
     )
 }
+

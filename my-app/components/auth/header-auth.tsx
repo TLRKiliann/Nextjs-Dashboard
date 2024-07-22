@@ -1,16 +1,18 @@
 import { auth, signOut } from "@/auth";
 import Link from 'next/link';
-import prisma from "@/prisma/prisma";
+import { PrismaClient } from "@prisma/client";
 import Image from 'next/image';
 import AdminAccessLink from "./admin-access-link";
 import { FaPowerOff } from "react-icons/fa6";
 import dashLogo from '@/public/assets/images/logo/dash-logo.png';
 
+const prisma = new PrismaClient();
+
 const HeaderAuth = async () => {
     
     const session = await auth();
     const user = session?.user;
-
+    
     const logoutAction = async () => {
         'use server';
         await prisma.user.update({

@@ -1,5 +1,5 @@
 import { auth } from '@/auth';
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import ContactForm from '@/components/contact/contact-form';

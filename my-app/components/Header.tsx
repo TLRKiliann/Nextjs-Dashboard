@@ -1,10 +1,11 @@
-import { EmailProps } from '@/lib/definitions';
+import { PrismaClient, type Message } from '@prisma/client';
 import { auth, signOut } from '@/auth';
-import prisma from '@/prisma/prisma';
 import EmailComp from './header-items/EmailComp';
 import Notifications from './header-items/Notifications';
 import Searchbar from './header-items/Searchbar';
 import { FaPowerOff } from "react-icons/fa6";
+
+const prisma = new PrismaClient();
 
 const Header = async () => {
     
@@ -16,7 +17,6 @@ const Header = async () => {
     } else if (!user.email) {
         return null;
     };
-
     const admin = await prisma.user.findUnique({
         where: {
             email: user.email,
@@ -24,7 +24,7 @@ const Header = async () => {
         }
     });
 
-    const emailBox: EmailProps[] = await prisma.message.findMany({
+    const emailBox: Message[] = await prisma.message.findMany({
         orderBy: {
             createdAt: "desc",
         },

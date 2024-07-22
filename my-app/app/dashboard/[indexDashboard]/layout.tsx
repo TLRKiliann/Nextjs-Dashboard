@@ -1,7 +1,7 @@
-import { Metadata } from 'next';
-import { Product } from '@prisma/client';
+import type { Metadata } from 'next';
+import type { Product } from '@prisma/client';
 import { notFound } from 'next/navigation';
-import prisma from '@/prisma/prisma';
+import { PrismaClient } from "@prisma/client";
 import Network from '@/components/Network';
 import EmailsAdmin from '@/components/header-items/EmailsAdmin';
 import ModifyProduct from '@/components/menu-items/admin-products/ModifyProduct';
@@ -15,6 +15,8 @@ type TitleParamsProps = {
         indexDashboard: string;
     }
 };
+
+const prisma = new PrismaClient();
 
 export const generateMetadata = async ({params}: TitleParamsProps): Promise<Metadata> => {
     const title = await new Promise((resolve) => {
@@ -31,7 +33,6 @@ export default async function DashboardIndexLayout({children, params}: {
     children: React.ReactNode;
     params: {indexDashboard: string};
 }) {
-
     const listProducts: Product[] = await prisma.product.findMany({
         orderBy: {
             id: "asc",
