@@ -5,11 +5,11 @@ import { FaCartShopping } from "react-icons/fa6";
 import { FaChartColumn } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa6";
 import { MdOutlineAttachMoney } from "react-icons/md";
-import { FaBattleNet } from "react-icons/fa";
 import { TbWorldSearch } from "react-icons/tb";
 import { FaProductHunt } from "react-icons/fa6";
 import { IoChatbubblesOutline } from "react-icons/io5";
 import { TbCircleLetterB } from "react-icons/tb";
+import { MdLogout } from "react-icons/md";
 
 export default function Menu() {
     return (
@@ -62,7 +62,7 @@ export default function Menu() {
                         active:text-sky-400/70 mb-4'>
                         <Link href="/dashboard/charts">
                             <span className='flex items-center'>
-                                <FaChartColumn size={16} /><p className='ml-2'>Charts</p>
+                                <FaChartColumn size={16} /><p className='ml-2'>Statistics</p>
                             </span>
                         </Link>
                     </li>
@@ -88,7 +88,7 @@ export default function Menu() {
                         active:text-sky-400/70 mb-4'>
                         <Link href="/dashboard/products-admin">
                             <span className='flex items-center'>
-                                <FaProductHunt size={18} /><p className='ml-2'>Products</p>
+                                <FaProductHunt size={18} /><p className='ml-2'>Admin Products</p>
                             </span>
                         </Link>
                     </li>
@@ -113,18 +113,18 @@ export default function Menu() {
 
                     <li className='list-none text-base transition durantion-200 ease-in-out text-slate-500 hover:text-slate-400/90 
                         active:text-sky-400/70 mb-4'>
-                        <Link href="/dashboard/dashboardnative/profile">
+                        <Link href="/profile">
                             <span className='flex items-center'>
-                                <FaUser size={16} /><p className='ml-2'>Comments</p>
+                                <FaUser size={16} /><p className='ml-2'>Admin Profile</p>
                             </span>
                         </Link>
                     </li>
 
                     <li className='list-none text-base transition durantion-200 ease-in-out text-slate-500 hover:text-slate-400/90 
                         active:text-sky-400/70 mb-4'>
-                        <Link href="/dashboard/charts">
+                        <Link href="/">
                             <span className='flex items-center'>
-                                <FaChartColumn size={16} /><p className='ml-2'>All Data Users</p>
+                                <MdLogout size={16} /><p className='ml-2'>Home page</p>
                             </span>
                         </Link>
                     </li>
