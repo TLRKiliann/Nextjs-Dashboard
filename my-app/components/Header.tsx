@@ -1,4 +1,4 @@
-import { EmailProps } from '@/lib/definitions';
+import type { Message } from '@prisma/client';
 import { auth, signOut } from '@/auth';
 import prisma from '@/prisma/prisma';
 import EmailComp from './header-items/EmailComp';
@@ -24,7 +24,7 @@ const Header = async () => {
         }
     });
 
-    const emailBox: EmailProps[] = await prisma.message.findMany({
+    const emailBox: Message[] = await prisma.message.findMany({
         orderBy: {
             createdAt: "desc",
         },
