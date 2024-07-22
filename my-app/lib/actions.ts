@@ -1,14 +1,17 @@
 "use server";
 
-import prisma from "@/prisma/prisma";
+import { PrismaClient } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { auth } from "@/auth";
-import { actionClient } from "./safe-action";
+//import { actionClient } from "./safe-action";
 import { z } from "zod";
+
+const prisma = new PrismaClient();
 
 //update Card.tsx
 export const addProductToDb = async (formData: FormData) => {
     const session = await auth();
+    
     const userSession = session?.user;
     if (!userSession?.email) {
         throw new Error("userSession.email not work");
@@ -18,6 +21,9 @@ export const addProductToDb = async (formData: FormData) => {
             data: {
                 quantity: {
                     increment: 1,
+                },
+                stock : {
+                    increment: -1,
                 },
                 author: {
                     connect: {
@@ -53,6 +59,9 @@ export const addToCart = async ({ id }: Schema) => {
                 quantity: {
                     increment: 1,
                 },
+                stock: {
+                    increment: -1,
+                },
                 author: {
                     connect: {
                         email: userSession.email,
@@ -86,6 +95,9 @@ export async function deleteFromCart(formData: FormData) {
                 quantity: {
                     increment: -1,
                 },
+                stock: {
+                    increment: 1,
+                },
                 author: {
                     connect: {
                         email: userSession.email,
@@ -115,6 +127,7 @@ export async function removeFromCart(idToDelete: number) {
         await prisma.product.update({
             data: {
                 quantity: 0,
+                //???
                 author: {
                     connect: {
                         email: userSession.email,

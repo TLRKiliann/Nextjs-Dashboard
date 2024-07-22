@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import userLogo from "@/public/assets/images/users/user_icon.png";
-import Link from 'next/link';
 
 export default function UploadImage() {
 

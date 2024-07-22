@@ -1,5 +1,5 @@
+import type { Product } from "@prisma/client";
 import type { GeoLocationData } from "@/lib/definitions";
-import { Product } from "@prisma/client";
 
 export const ApiPublicIp = async (): Promise<{data: {ip: string;}}> => {
     try {

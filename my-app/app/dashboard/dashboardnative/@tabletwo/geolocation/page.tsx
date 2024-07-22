@@ -1,5 +1,5 @@
 import { auth } from '@/auth';
-import prisma from '@/prisma/prisma';
+import { PrismaClient } from '@prisma/client';
 import React, { Suspense } from 'react';
 import { redirect } from 'next/navigation';
 import { ApiPublicIp, ApiGeolocation } from '@/utils/api-request';
@@ -9,6 +9,8 @@ import ButtonGoBack from '@/components/ButtonGoBack';
 import Loader from '@/components/Loader';
 
 export const dynamic = "force-dynamic";
+
+const prisma = new PrismaClient();
 
 export default async function GeolocationPage() {
 

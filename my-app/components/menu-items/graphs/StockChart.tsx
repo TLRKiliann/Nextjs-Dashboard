@@ -1,6 +1,6 @@
 "use client";
 
-import { Product } from '@prisma/client';
+import type { Product } from '@prisma/client';
 import React from 'react';
 import {
   Chart as ChartJS,

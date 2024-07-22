@@ -1,4 +1,4 @@
-import { Product } from '@prisma/client';
+import type { Product } from '@prisma/client';
 import Image from 'next/image';
 import BtnModify from './create-modify-form-content/btn-modify';
 import BtnRemove from './create-modify-form-content/btn-remove';

@@ -1,8 +1,10 @@
 import { auth } from "@/auth";
 import { NextResponse } from "next/server";
-import prisma from "@/prisma/prisma";
+import { PrismaClient } from "@prisma/client";
 import { readdir, writeFile } from "fs/promises";
 import path from 'path';
+
+const prisma = new PrismaClient();
 
 export async function GET(): Promise<NextResponse> {
     const files = await readdir("./public/assets/images/upload");
