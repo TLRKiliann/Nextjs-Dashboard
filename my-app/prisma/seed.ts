@@ -137,10 +137,93 @@ async function main() {
             isConnected: false,
         },
     })
+    const bruce = await prisma.user.upsert({
+        where: { email: 'bruce@prisma.io' },
+        update: {},
+        create: {
+            email: 'bruce@prisma.io',
+            name: 'Bruce Willis',
+            password: '$2a$12$JmalMaWc8azSJ0bPR0hLg.ccU1mYMpxksdtldwqOsJ2ycPYLEG7sy',
+            isConnected: false,
+        },
+    })
+    const celestine = await prisma.user.upsert({
+        where: { email: 'celestine@prisma.io' },
+        update: {},
+        create: {
+            email: 'celestine@prisma.io',
+            name: 'Celestine Aurora',
+            password: '$2a$12$SoUqhz31IemCxavsjuq4SOVOAHE/TXh097NkGAHh/JkphFw3W1rBu',
+            isConnected: false,
+        },
+    })
+    const jason = await prisma.user.upsert({
+        where: { email: 'jason@prisma.io' },
+        update: {},
+        create: {
+            email: 'jason@prisma.io',
+            name: 'Jason Stahtam',
+            password: '$2a$12$eoVuV/kf82DVDU9g4.AO3.argnGpvl7LxZC4hYulZC8EBAKKGnYAC',
+            isConnected: false,
+        },
+    })
+    const jean = await prisma.user.upsert({
+        where: { email: 'jean@prisma.io' },
+        update: {},
+        create: {
+            email: 'jean@prisma.io',
+            name: 'Jean Dujardin',
+            password: '$2a$12$B98OQWt75ip.nG885dDr0.qwyTLq1Bkp17KvKUaCHwS/fYIo/jcd2',
+            isConnected: false,
+        },
+    })
+    const justine = await prisma.user.upsert({
+        where: { email: 'justine@prisma.io' },
+        update: {},
+        create: {
+            email: 'justine@prisma.io',
+            name: 'Justine Spring',
+            password: '$2a$12$.tk3/ltutRCynUPESJco..5dZeQA.WUPgpaBGY6U9POf8lHLet3rS',
+            isConnected: false,
+        },
+    })
+    const maria = await prisma.user.upsert({
+        where: { email: 'maria@prisma.io' },
+        update: {},
+        create: {
+            email: 'maria@prisma.io',
+            name: 'Maria Carrey',
+            password: '$2a$12$d0gkvOVJqsB0NwRSKV8qqulp4xn3CmwzjDrXBtKAt7Qs.RVCiRDYy',
+            isConnected: false,
+        },
+    })
+    const paula = await prisma.user.upsert({
+        where: { email: 'paula@prisma.io' },
+        update: {},
+        create: {
+            email: 'paula@prisma.io',
+            name: 'Paula Peigh',
+            password: '$2a$12$JFf4gV9woeUEptl/Zy1tzOI1B3luwP.tpnfKJagGVc3EKG/fDX7lS',
+            isConnected: false,
+        },
+    })
+    const rebecca = await prisma.user.upsert({
+        where: { email: 'rebecca@prisma.io' },
+        update: {},
+        create: {
+            email: 'rebecca@prisma.io',
+            name: 'Rebecca VonMistle',
+            password: '$2a$12$dMkoKtPKkJiuWQXNMJMDIex2ahUZ/Ed2.PVBc0.U.Am4mjVXMB/ze',
+            isConnected: false,
+        },
+    })
     console.log(
         { 
-            alice, bob, admin, productOne, productTwo, productThree, 
-            productFour, productFive, productSix, productSeven 
+            productOne, productTwo, productThree, 
+            productFour, productFive, productSix, 
+            productSeven, alice, bob, admin, bruce, 
+            celestine, jason, jean, justine, maria, 
+            paula, rebecca
         })
 }
 main()
