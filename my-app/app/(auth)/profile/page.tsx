@@ -58,13 +58,13 @@ export default async function ProfilePage() {
 
                     <div className="w-full h-full border border-slate-200 rounded-lg">
 
-                        <div className='relative flex justify-end bg-slate-100 rounded-tl-lg rounded-tr-lg'>
+                        <div className='relative flex justify-end bg-slate-100 rounded-tr-lg'>
                             <Image 
                                 src={userImg?.image ? userImg.image : userLogo}
                                 priority={true}
                                 unoptimized={false}
                                 alt="Uploaded Image" width={500} height={333} 
-                                className='w-[100px] h-auto object-fit'
+                                className='w-[100px] h-auto object-fit rounded-tr-lg rounded-bl-lg'
                             />
                         </div>
 
@@ -85,7 +85,7 @@ export default async function ProfilePage() {
                     </div>
 
                     <div className="w-full flex items-center justify-end text-blue-500 hover:text-blue-600 
-                        active:text-blue-700 mt-4">
+                        active:text-blue-700 mt-4 bg-slate-100 border border-slate-200 rounded-lg px-2 py-1">
                         <Link href="/profile/settings">Settings</Link>
                     </div>
 
