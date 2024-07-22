@@ -24,13 +24,13 @@ const Header = async () => {
         }
     });
 
-    const emailBox: EmailProps[] = await prisma.email.findMany({
+    const emailBox: EmailProps[] = await prisma.message.findMany({
         orderBy: {
             createdAt: "desc",
         },
         select: {
             id: true,
-            email: true,
+            src: true,
             message: true,
             dst: true,
             isOpen: true,
