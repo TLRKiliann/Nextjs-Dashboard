@@ -60,7 +60,7 @@ export type ListOfItemsProps = {
 
 export type EmailProps = {
     id: string;
-    email: string;
+    src: string;
     message: string;
     dst: string;
     isOpen: boolean;
