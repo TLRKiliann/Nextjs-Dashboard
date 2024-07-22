@@ -128,11 +128,8 @@ export default function Menu() {
                             </span>
                         </Link>
                     </li>
-
                 </ul>
-
             </nav>
-
         </div>
     )
 };
