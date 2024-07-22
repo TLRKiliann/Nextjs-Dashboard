@@ -1,17 +1,17 @@
 1) 
-- restructure img upload and display it.
-
-2) 
+- seed user + corresponding products
+- seed data for charts
+- all-user-profiles
+- searchbar (more args)
 - charts (graphs) with data from db
 
-3) 
+2) 
 - next-safe-action to add with server action
 - retrieve data from file.json to display it in Data Table (graph)
 
-4) 
+3) 
 - order + payments (user + auth)
 - forgot password
-- all-user-profiles.tsx
 
 //react 19
 //import React, { useActionState } from 'react'
@@ -22,9 +22,11 @@
 
 $ pnpm prisma db push
 
-$ pnpm prisma studio
-
 $ pnpm prisma db seed
+
+$ pnpm prisma studio
 
 Image
 layout="fill"
+
+"/settings" => "/profile" = BUG avec navigateur + os
