@@ -49,9 +49,9 @@ model Product {
   authorId          String?
 }
 
-model Email {
+model Message {
   id            String    @id @default(uuid())
-  email         String
+  src           String
   message       String
   dst           String    @default("admin@prisma.io")
   isOpen        Boolean   @default(false)
