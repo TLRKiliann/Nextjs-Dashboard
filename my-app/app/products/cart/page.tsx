@@ -33,6 +33,9 @@ export default async function CartPage() {
         },
         include: {
             products: {
+                where: {
+                    authorId: userSession.id,
+                },
                 orderBy: {
                     id: "asc"
                 }
