@@ -76,13 +76,13 @@ export default async function ShoppingCartPage({products}: {products: Product[]}
                                 Version: {product.version}
                             </h6>
                             
-                            {product.stock === product.quantity ? (
+                            {product.stock === 0 ? (
                                 <p className='text-sm text-red-500'>
-                                    Stock: <span className='font-bold'>{product.stock - product.quantity}</span>
+                                    Stock: <span className='font-bold'>{product.stock}</span>
                                 </p>
                             ) : (
                                 <p className='text-sm text-blue-500'>
-                                    Stock: <span className='font-bold'>{product.stock - product.quantity}</span>
+                                    Stock: <span className='font-bold'>{product.stock}</span>
                                 </p>
                             )}
 
@@ -115,6 +115,7 @@ export default async function ShoppingCartPage({products}: {products: Product[]}
                                 <AddItemToCart 
                                     id={product.id}
                                     name={product.name}
+                                    stock={product.stock}
                                 />
 
                             </div>
