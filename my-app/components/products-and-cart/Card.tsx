@@ -15,11 +15,11 @@ export default function Card({product}: ProductProps) {
             <div className='w-full h-full flex flex-col items-center justify-between rounded-md'>
 
                 <div className="w-full h-auto flex flex-row items-start justify-between rounded-tl-tr-md">
-                    <div className='w-full rounded-tl-md rounded-br-md'>
+                    <div className='w-[100px] h-auto rounded-tl-md rounded-br-md'>
                         <Image src={product.img}
                             width={100}
                             height={100}
-                            className="w-[100px] h-auto object-fit rounded-tl-md rounded-br-md shadow-white" 
+                            className="object-fit rounded-tl-md rounded-br-md shadow-white" 
                             alt="no img" 
                         />
                     </div>
