@@ -1,7 +1,7 @@
+import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
-import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
-import { getProductsData } from "@/utils/api-request";
 import ProductNameCard from '@/components/products-and-cart/ProductNameCard';
+import Loader from '@/components/Loader';
 
 export default async function ProductIdPage({params}: {params: {productName: string}}) {
 
@@ -9,17 +9,9 @@ export default async function ProductIdPage({params}: {params: {productName: str
         notFound();
     };
 
-    // useQuery
-    const queryClient = new QueryClient();
-
-    await queryClient.prefetchQuery({
-        queryKey: ["products"],
-        queryFn: getProductsData,
-    });
-
     return (
-        <HydrationBoundary state={dehydrate(queryClient)}>
+        <Suspense fallback={<Loader />}>
             <ProductNameCard params={params} />
-        </HydrationBoundary>
+        </Suspense>
     )
 };
