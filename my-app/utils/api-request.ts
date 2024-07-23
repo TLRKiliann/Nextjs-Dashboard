@@ -1,4 +1,3 @@
-import type { Product } from "@prisma/client";
 import type { GeoLocationData } from "@/lib/definitions";
 
 export const ApiPublicIp = async (): Promise<{data: {ip: string;}}> => {
@@ -34,10 +33,3 @@ export const ApiGeolocation = async ({data}: {data: {ip: string;}}): Promise<Geo
     }
 };
 
-export const getProductsData = async (): Promise<Product[]> => {
-    const response = await fetch("http://localhost:3000/api/products", {
-        cache: "no-cache"
-    });
-    const products = (await response.json()) as Product[];
-    return products;
-};
