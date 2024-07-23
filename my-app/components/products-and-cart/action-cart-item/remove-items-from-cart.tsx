@@ -19,7 +19,7 @@ export default function RemoveItemsFromCart({id, name}:
         } else {
             toast.error("An unexpected error occurred.");
         }
-    }, [])
+    }, []);
 
     return (
         <form key={id} action={() => onSubmit(id)}
