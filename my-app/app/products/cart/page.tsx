@@ -26,10 +26,7 @@ export default async function CartPage() {
         return redirect("/api/auth/signin");
     };
     
-    /*
-        user is allowed to update quantity with 
-        server-action
-    */
+    // products by user
     const user: UserType | null = await prisma.user.findUnique({
         where: {
             email: userSession.email,
