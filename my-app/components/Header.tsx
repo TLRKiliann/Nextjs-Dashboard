@@ -1,5 +1,6 @@
-import { PrismaClient, type Message } from '@prisma/client';
 import { auth, signOut } from '@/auth';
+import { PrismaClient, type Message, type User } from '@prisma/client';
+import { redirect } from 'next/navigation';
 import EmailComp from './header-items/EmailComp';
 import Notifications from './header-items/Notifications';
 import Searchbar from './header-items/Searchbar';
@@ -12,12 +13,11 @@ const Header = async () => {
     const session = await auth();
     const user = session?.user;
   
-    if (!user) {
-        return null;
-    } else if (!user.email) {
-        return null;
+    if (!user?.email) {
+        return redirect("/api/auth/signin");
     };
-    const admin = await prisma.user.findUnique({
+    
+    const admin: User | null = await prisma.user.findUnique({
         where: {
             email: user.email,
             role: "ADMIN",
