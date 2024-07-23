@@ -1,30 +1,32 @@
-//"use client";
-
-import type { Product } from '@prisma/client';
+import { PrismaClient, type Product } from '@prisma/client';
 import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
-import { PrismaClient } from '@prisma/client';
-//import usePersistStore from '@/helpers/usePersistStore';
-//import { useStore } from '@/lib/store';
 import Link from 'next/link';
 import Image from 'next/image';
 import AddItemToCart from '@/components/products-and-cart/action-cart-item/add-item-to-cart';
 import DeleteItemFromCart from '@/components/products-and-cart/action-cart-item/delete-item-from-cart';
 import RemoveItemsFromCart from '@/components/products-and-cart/action-cart-item/remove-items-from-cart';
 
+type TypeProduct = {
+    quantity: number;
+};
+
+type UserType = {
+    products: TypeProduct[];
+};
+
 const prisma = new PrismaClient();
 
 export default async function ShoppingCartPage({products}: {products: Product[]}) {
 
     const session = await auth();
-
     const user = session?.user;
 
     if (!user?.email) {
         return redirect("/api/auth/signin");
     };
 
-    const storeQuantity = await prisma.user.findUnique({
+    const storeQuantity: UserType | null = await prisma.user.findUnique({
         where: {
             email: user.email,
         },
@@ -42,36 +44,6 @@ export default async function ShoppingCartPage({products}: {products: Product[]}
     };
 
     const totalQuantity = storeQuantity.products.reduce((acc, product) => acc + product.quantity, 0);
-
-    // zustand
-    /* const store = usePersistStore(useStore, (state) => state);
-
-    if (!store) {
-        return <div>Loading...</div>;
-    }
-
-    const storeQuantity: number = store.bearProducts.reduce((a: number,b: {quantity: number}) => a + b.quantity, 0);
-    
-    const handleDeleteProduct = (id: number) => {
-        const findId = store.bearProducts.find((bear) => bear.id === id);
-        if (findId) {
-            store.decreaseQuantity(findId.id);
-        }
-    };
-
-    const handleAddProduct = (id: number) => {
-        const findId = store.bearProducts.find((bear) => bear.id === id);
-        if (findId) {
-            store.increaseQuantity(findId.id);
-        }
-    };
-
-    const handleRemoveAllProducts = (id: number) => {
-        const findId = store.bearProducts.find((bear) => bear.id === id);
-        if (findId) {
-            store.removeAllById(findId.id);
-        }
-    }; */
 
     return (
         <div className='w-full min-h-screen flex flex-col text-slate-500 bg-gradient-to-bl from-sky-100 from-10% to-slate-100 to-90% p-4 pt-24'>
@@ -138,13 +110,11 @@ export default async function ShoppingCartPage({products}: {products: Product[]}
                                     quantity={product.quantity}
                                     name={product.name}
                                     stock={product.stock}
-                                    /* handleDeleteProduct={() => handleDeleteProduct(product.id)} */
                                 />
                                 
                                 <AddItemToCart 
                                     id={product.id}
                                     name={product.name}
-                                    //handleAddProduct={() => handleAddProduct(product.id)}
                                 />
 
                             </div>
@@ -152,7 +122,6 @@ export default async function ShoppingCartPage({products}: {products: Product[]}
                                 <RemoveItemsFromCart 
                                     id={product.id}
                                     name={product.name}
-                                    //handleRemoveAllProducts={() => handleRemoveAllProducts(product.id)}
                                 />
 
                         </div>
