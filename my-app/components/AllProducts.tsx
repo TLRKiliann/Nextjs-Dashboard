@@ -32,7 +32,7 @@ export default async function AllProducts() {
     };
 
     return (
-        <div className='min-h-screen grid grid-cols-3 xl:grid-cols-4 grid-rows-3 bg-gradient-to-bl from-sky-100 from-10% to-slate-100 to-90% gap-4 p-4 pt-24'>
+        <div className='min-h-screen grid grid-cols-3 xl:grid-cols-4 grid-rows-3 bg-slate-100 gap-4 p-4 pt-[12vh]'>
             <Suspense fallback={<Loader />}>
                 {products.map((product: Product) => (
                     <Card

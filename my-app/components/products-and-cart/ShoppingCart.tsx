@@ -46,7 +46,7 @@ export default async function ShoppingCartPage({products}: {products: Product[]}
     const totalQuantity = storeQuantity.products.reduce((acc, product) => acc + product.quantity, 0);
 
     return (
-        <div className='w-full min-h-screen flex flex-col text-slate-500 bg-gradient-to-bl from-sky-100 from-10% to-slate-100 to-90% p-4 pt-24'>
+        <div className='w-full min-h-screen flex flex-col text-slate-500 bg-slate-100 p-4 pt-[11vh]'>
         
             {totalQuantity > 0 ? (
                 products.map((product: Product) => product.quantity > 0 ? (
