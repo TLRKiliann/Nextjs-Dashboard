@@ -1,18 +1,39 @@
-"use client";
-
-import type { Product } from '@prisma/client';
-import { useStore } from '@/lib/store';
-import usePersistStore from '@/helpers/usePersistStore';
+import { auth } from '@/auth';
+import { PrismaClient, type Product } from '@prisma/client';
+import { redirect } from 'next/navigation';
 import Image from 'next/image';
 
-export default function OrderItems() {
+type UserType = {
+    products: Product[];
+};
 
-    // zustand
-    const store = usePersistStore(useStore, (state) => state);
+const prisma = new PrismaClient();
 
-    if (!store) {
-        return <div>Loading...</div>;
-    }
+export default async function OrderItems() {
+
+    const session = await auth();
+    const userSession = session?.user;
+
+    if (!userSession?.email) {
+        return redirect("/api/auth/signin");
+    };
+
+    const user: UserType | null = await prisma.user.findUnique({
+        where: {
+            email: userSession.email,
+        },
+        include: {
+            products: {
+                orderBy: {
+                    id: "asc"
+                }
+            }
+        }
+    });
+
+    if (!user?.products) {
+        throw new Error("Error: fetch products failed!");
+    };
 
     return (
         <div className='w-full h-full border border-slate-500/30 rounded'>
@@ -24,8 +45,12 @@ export default function OrderItems() {
                 </div>
 
                 <div className='w-full bg-slate-100 mt-4 rounded'>
-                    {store.bearProducts.map((product: Product) => (
-                        <div key={product.id} className='flex flex-row items-center justify-between bg-white m-4 p-3 rounded shadow-lg'>
+                    {user.products.map((product: Product) => (
+                        <div 
+                            key={product.id} 
+                            className='flex flex-row items-center justify-between bg-white m-4 p-3 
+                                rounded shadow-lg'
+                        >
                             <Image
                                 src={product.img}
                                 width={40}
