@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function TableGraphs({children}: {children: React.ReactNode}) {
     return (
         <div className='w-full h-full bg-slate-800 border border-slate-700/30'>

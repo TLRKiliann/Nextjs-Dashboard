@@ -1,50 +1,61 @@
-"use client";
-
-import type { Product } from '@prisma/client';
-import React, { useState } from 'react';
-import { useStore } from '@/lib/store';
-import usePersistStore from '@/helpers/usePersistStore';
-import { useQuery } from '@tanstack/react-query';
-import { getProductsData } from '@/utils/api-request';
+import { auth } from '@/auth';
+import { PrismaClient, type Product } from '@prisma/client';
+import { redirect } from 'next/navigation';
 import Image from 'next/image';
-import Loader from '@/components/Loader';
 
-export default function ProductNameCard({params}: {params: {productName: string}}) {
+type TypeProduct = {
+    quantity: number;
+};
 
-    // useQuery
-    const { data, isLoading, isError, error } = useQuery<Product[]>({
-        queryKey: ["products"],
-        queryFn: () => getProductsData(),
-        staleTime: 10 * 1000,
+type UserType = {
+    products: TypeProduct[];
+};
+
+const prisma = new PrismaClient()
+
+export default async function ProductNameCard({params}: {params: {productName: string}}) {
+
+    const session = await auth();
+
+    const user = session?.user;
+
+    if (!user?.email) {
+        return redirect("/api/auth/signin");
+    };
+
+    const products: Product[] = await prisma.product.findMany({
+        orderBy: {
+            id: "asc",
+        }
     });
 
-    if (!data) {
-        throw new Error("Error: problem with data (useQuery)");
+    if (!products) {
+        throw new Error("Error: fetch products failed!");
+    }
+
+    const storeQuantity: UserType | null = await prisma.user.findUnique({
+        where: {
+            email: user.email,
+        },
+        include: {
+            products: {
+                select: {
+                    quantity: true,
+                } 
+            }
+        }
+    });
+
+    if (!storeQuantity) {
+        throw new Error("storeQuantity not set!");
     };
 
-    if (isError) {
-        throw new Error("Error - useQuery: ", error);
-    };
-    
-    const [database] = useState<Product[]>(data!);
-
-    // zustand
-    const store = usePersistStore(useStore, (state) => state);
-    
-    if (!store) {
-        return <Loader />;
-    };
-
-    const storeQuantity: number = store.bearProducts.reduce((a: number,b: {quantity: number}) => a + b.quantity, 0);
-
-    // useQuery
-    if (isLoading) {
-        return <Loader />
-    };
+    const totalQuantity = storeQuantity.products.reduce((acc, product) => acc + product.quantity, 0);
+    console.log('Total des quantités :', totalQuantity);
 
     return (
         <div className='min-h-screen bg-gradient-to-tr from-slate-700 to-slate-950 pt-[25%]'>
-            {database.map((product: Product) => (
+            {products.map((product: Product) => (
                 String(params.productName) === product.name ? (
 
                     <div key={product.id} 
@@ -69,7 +80,7 @@ export default function ProductNameCard({params}: {params: {productName: string}
                                 <h4 className='text-lg'>Model: {product.name}</h4>
                                 <p className='text-base'>Version: {product.version}</p>
                                 <p className='text-base'>Stock: {product.stock}pces</p>
-                                <p className='text-lg'>Quantity: {storeQuantity}</p>
+                                <p className='text-lg'>Quantity: {totalQuantity}</p>
                                 <p className='text-lg font-bold'>Price: {product.quantity !== 0 
                                     ? product.quantity * product.price 
                                     : product.price}.-

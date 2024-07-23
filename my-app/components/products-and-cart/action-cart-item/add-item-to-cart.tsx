@@ -5,10 +5,11 @@
 import { addToCart } from '@/lib/actions';
 
 //export default function AddItemToCart({id, name, handleAddProduct}: 
-export default function AddItemToCart({id, name}: 
+export default function AddItemToCart({ id, name, stock }: 
     {
         id: number;
         name: string;
+        stock: number;
         //handleAddProduct: (id: number) => void;
     }) {
 
@@ -45,8 +46,9 @@ export default function AddItemToCart({id, name}:
             }}
                 className="w-[38px] h-[38px] text-slate-100 font-bold bg-blue-500 
                     hover:bg-blue-600/90 active:bg-blue-600
-                    rounded-full shadow-sm-out"
+                    rounded-full shadow-sm-out disabled:opacity-50"
                 aria-label={`Add one ${name}`}
+                disabled={stock === 0 ? true : false}
             >
                 +
             </button>

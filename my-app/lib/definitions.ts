@@ -1,5 +1,3 @@
-import { StaticImageData } from "next/image";
-
 export type State = {
     status: "success";
     message: string;} | {
@@ -25,19 +23,6 @@ export type GeoLocationData = {
     as: string; 
     is_proxy: boolean;	
 };
-
-export type CustomersProps = {
-    readonly id: number;
-    username: string;
-    lastname: string;
-    readonly img: StaticImageData | string;
-    readonly spend: number;
-    readonly artQuantity?: number;
-    readonly address?: string;
-    readonly country: string;
-    readonly city: string;
-    isConnected: boolean;
-}
 
 /* export type Product = {
     id: number;

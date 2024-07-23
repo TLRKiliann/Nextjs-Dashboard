@@ -1,11 +1,24 @@
+import { auth } from '@/auth';
 import { PrismaClient, Product } from '@prisma/client';
+import { redirect } from 'next/navigation';
 import { Suspense } from 'react';
 import Card from '@/components/products-and-cart/Card';
 import Loader from '@/components/Loader';
 
+type UserType = {
+    products: Product[]
+};
+
 const prisma = new PrismaClient();
 
 export default async function AllProducts() {
+
+    const session = await auth();
+    const userSession = session?.user;
+
+    if (!userSession?.email) {
+        return redirect("/api/auth/signin");
+    };
 
     // all products
     const products: Product[] = await prisma.product.findMany({
@@ -15,7 +28,7 @@ export default async function AllProducts() {
     });
 
     if (!products) {
-        throw new Error("Error: useQuery + server action");
+        throw new Error("Error: fetch products failed!");
     };
 
     return (

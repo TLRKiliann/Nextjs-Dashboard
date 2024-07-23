@@ -1,29 +1,48 @@
-//import type { CustomersProps } from '@/lib/definitions';
-import { PrismaClient, type User } from '@prisma/client';
+import { PrismaClient, Product, type User } from '@prisma/client';
 import Image from 'next/image';
 import TablePage from '@/components/TablePage';
+
+type ProductType = {
+    quantity: number;
+    price: number;
+};
+
+type UserType = {
+    id: string;
+    name: string;
+    image: string;
+    isConnected: boolean;
+    products: ProductType[];
+};
 
 const prisma = new PrismaClient();
 
 export default async function TableOneDefault() {
 
-    /* const response = await fetch("http://localhost:3000/api/customers");
-    if (!response) {
-        //throw new Error("Error: server cannot fetch customers");
-        console.error("Error with server, unable to obtain response for clients");
-    };
-    
-    const customers = (await response.json()) as CustomersProps[];
- */
-    const users: User[] = await prisma.user.findMany({
+    const users: User[] | null = await prisma.user.findMany({
         orderBy: {
             id: "asc"
+        },
+        include: {
+            products: {
+                select: {
+                    quantity: true,
+                    price: true,
+                }
+            }
         }
-    })
+    });
 
     if (!users) {
         throw new Error("users cannot be fetched by prisma");
-    }
+    };
+
+    function calculateUserTotals(user: any): { totalPrice: number; quantityOfProducts: number; } {
+        const quantityOfProducts = user.products.reduce((acc: number, product: { quantity: number; }) => acc + product.quantity, 0);
+        const priceOfQuantity = user.products.reduce((acc: number, product: { price: number; quantity: number; }) => acc + (product.price * product.quantity), 0);
+        const totalPrice = priceOfQuantity;
+        return { totalPrice, quantityOfProducts };
+    };
 
     return (
         <TablePage title="Members" url="" link="">
@@ -33,7 +52,9 @@ export default async function TableOneDefault() {
                 <ul className='w-full h-[100%] bg-slate-100 overflow-y-scroll no-scrollbar
                     flex flex-col items-center rounded-lg px-2 shadow-in'>
 
-                    {users.map((customer: User) => (
+                    {users.map((customer: User) => {
+                        const { totalPrice, quantityOfProducts } = calculateUserTotals(customer);
+                        return (
                         <li key={customer.id} className='w-full bg-slate-50 my-2 shadow-sm-out rounded-lg'>
 
                             <div className='flex items-center justify-between text-slate-500/90 px-2'>
@@ -62,12 +83,13 @@ export default async function TableOneDefault() {
                                         )}
                                     </div>
                                 
-                                    {/* <p className='flex items-center justify-end text-sm font-bold'>{customer.spend}.-</p> */}    
+                                    <p className='flex items-center justify-end text-sm font-bold'>{quantityOfProducts} pc</p>
+                                    <p className='flex items-center justify-end text-sm font-bold'>{totalPrice}.-</p>
                                 </div>
 
                             </div>
                         </li>
-                    ))}
+                    )})}
                 </ul>
             </div>
 
