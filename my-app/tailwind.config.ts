@@ -16,6 +16,8 @@ const config: Config = {
       boxShadow: {
         "sm-out": "0 0 7px rgba(100, 100, 100, 0.2)",
         "out": "0 0 10px rgba(0, 0, 0, 1)",
+        "card": "0 0 7px rgba(0, 0, 0, 0.8)",
+        "auth": "0 0 7px rgba(100, 100, 100, 0.4)",
         "outdarker": "0 0 7px rgba(0, 0, 0, 1)",
         "btn-dark": "0 0 10px rgba(0, 0, 0, 0.3)",
         "in": "inset 0 0 10px rgba(0, 0, 0, 0.2)",
