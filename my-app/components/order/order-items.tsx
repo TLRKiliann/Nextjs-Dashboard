@@ -25,7 +25,7 @@ export default async function OrderItems() {
         include: {
             products: {
                 orderBy: {
-                    id: "asc"
+                    id: "asc",
                 }
             }
         }
@@ -45,7 +45,7 @@ export default async function OrderItems() {
                 </div>
 
                 <div className='w-full bg-slate-100 mt-4 rounded'>
-                    {user.products.map((product: Product) => (
+                    {user.products.map((product: Product) => product.quantity !== 0 ? (
                         <div 
                             key={product.id} 
                             className='flex flex-row items-center justify-between bg-white m-4 p-3 
@@ -60,10 +60,10 @@ export default async function OrderItems() {
                             />
                             <p className='font-bold'>{product.family}</p>
                             <p>{product.name}</p>
-                            <p>{product.quantity}pces</p>
+                            <p>{product.quantity} pc(s)</p>
                             <p>{product.price}.-</p>
                         </div>
-                    ))}
+                    ) : null)}
                 </div>
             </div>
         </div>
