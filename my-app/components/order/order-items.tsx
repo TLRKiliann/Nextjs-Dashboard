@@ -60,7 +60,7 @@ export default async function OrderItems() {
                             />
                             <p className='font-bold'>{product.family}</p>
                             <p>{product.name}</p>
-                            <p>{product.quantity} pc(s)</p>
+                            <p>{product.quantity} pc</p>
                             <p>{product.price}.-</p>
                         </div>
                     ) : null)}

@@ -57,7 +57,7 @@ export default async function OrderSummary() {
             <div className='w-full bg-slate-100 mt-4 px-4 py-2'>
                 <div className='flex flex-row items-center justify-between w-full'>
                     <p className='text-base'>Items Quantity: </p>
-                    <p>{quantityOfProducts} pc(s)</p>
+                    <p>{quantityOfProducts} pc</p>
                 </div>
                 <div className='flex flex-row items-center justify-between w-full'>
                     <p className='text-lg font-bold'>Total: </p>
