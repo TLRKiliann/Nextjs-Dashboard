@@ -40,7 +40,6 @@ export default function Card({product}: ProductProps) {
                             id={product.id}
                             name={product.name}
                             quantity={product.quantity}
-                            //product={product}
                         />
                     </form>
                 </div>

@@ -1,25 +1,27 @@
-//"use client";
-
-//import { useStore } from '@/lib/store';
-//import usePersistStore from '@/helpers/usePersistStore';
-//import Loader from '../Loader';
 import { auth } from '@/auth';
 import { PrismaClient } from '@prisma/client';
 import { redirect } from 'next/navigation';
+
+type ProductType = {
+    quantity: number;
+}
+
+type UserType = {
+    products: ProductType[];
+};
 
 const prisma = new PrismaClient();
 
 export default async function CartItemsQuantity() {
 
     const session = await auth();
-
     const user = session?.user;
 
     if (!user?.email) {
         return redirect("/api/auth/signin");
     };
     
-    const storeQuantity = await prisma.user.findUnique({
+    const storeQuantity: UserType | null = await prisma.user.findUnique({
         where: {
             email: user.email,
         },
@@ -36,18 +38,8 @@ export default async function CartItemsQuantity() {
         throw new Error("storeQuantity not set!");
     };
 
-    const totalQuantity = storeQuantity.products.reduce((acc, product) => acc + product.quantity, 0);
+    const totalQuantity = storeQuantity.products.reduce((acc: number, product: {quantity: number}) => acc + product.quantity, 0);
     console.log('Total des quantités :', totalQuantity);
-
-    // zustand
-    /* const store = usePersistStore(useStore, (state) => state);
-
-    if (!store) {
-        return <Loader />;
-    };
-
-    const storeQuantity: number = store?.bearProducts.reduce((a: number,b: {quantity: number}) => a + b.quantity, 0);
-    */
 
     return (
         <div className='absolute top-0'>
