@@ -8,7 +8,7 @@ import { z } from "zod";
 
 const prisma = new PrismaClient();
 
-//update Card.tsx
+//update Products.tsx
 export const addProductToDb = async (formData: FormData) => {
     const session = await auth();
     
@@ -37,9 +37,14 @@ export const addProductToDb = async (formData: FormData) => {
         }); 
     } catch (error) {
         console.log("Error: ", error)
-        return "Error: prisma.product.create";
+        return {
+            message: "Error: prisma update!"
+        };
     }
     revalidatePath("/products");
+    return {
+        message: "Success!"
+    }
 };
 
 
@@ -123,11 +128,35 @@ export async function removeFromCart(idToDelete: number) {
     if (!userSession?.email) {
         throw new Error("userSession.email not work");
     };
+    let resetStock: number = 0;
+    switch (idToDelete) {
+        case 1:
+            resetStock = 19;
+            break;
+        case 2:
+            resetStock = 28;
+            break;
+        case 3:
+            resetStock = 23;
+            break;
+        case 4:
+            resetStock = 34;
+            break;
+        case 5:
+            resetStock = 21;
+            break;
+        case 6:
+            resetStock = 19;
+            break;
+        case 7:
+            resetStock = 17;
+            break;
+    }
     try {
         await prisma.product.update({
             data: {
                 quantity: 0,
-                //???
+                stock: resetStock,
                 author: {
                     connect: {
                         email: userSession.email,
