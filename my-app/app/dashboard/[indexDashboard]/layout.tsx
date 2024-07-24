@@ -40,6 +40,8 @@ export default async function DashboardIndexLayout({children, params}: {
         notFound();
     };
     
+    const styles = "w-full h-[90vh] text-slate-500 mt-[10vh]";
+
     return (
         <div className='flex flex-col w-full min-h-screen bg-slate-200'>
 
@@ -50,19 +52,19 @@ export default async function DashboardIndexLayout({children, params}: {
                 <div className="flex items-center justify-evenly w-full bg-slate-100">
 
                     {params.indexDashboard === "profiles" ? (
-                        <div className='w-full h-[90vh] text-slate-500 mt-[10vh] p-4'>
+                        <div className={`${styles} p-4`}>
                             <AllUserProfiles />
                         </div>
                     ) : params.indexDashboard === "network" ? (
-                        <div className='w-full h-[90vh] text-slate-500 mt-[10vh] p-4'>
+                        <div className={`${styles} p-4`}>
                             <Network />
                         </div>
                     ) : params.indexDashboard === "charts" ? (
-                        <div className='w-full h-[90vh] text-slate-500 mt-[10vh]'>
+                        <div className={`${styles}`}>
                             <GraphCharts />
                         </div>
                     ) : params.indexDashboard === "products-admin" ? (
-                        <div className='w-full h-[90vh] text-slate-500 mt-[10vh] p-4 pt-2'>
+                        <div className={`${styles} p-4 pt-2`}>
                             <ModifyProduct listProducts={listProducts} />
                             <CreateProduct />
                         </div>
