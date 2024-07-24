@@ -6,16 +6,12 @@ import { Suspense } from 'react';
 import Card from '@/components/products-and-cart/Card';
 import Loader from '@/components/Loader';
 
-type UserType = {
-    products: Product[]
-};
-
 export default async function AllProducts() {
 
     const session = await auth();
-    const userSession = session?.user;
+    const user = session?.user;
 
-    if (!userSession?.email) {
+    if (!user) {
         return redirect("/api/auth/signin");
     };
 

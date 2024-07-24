@@ -8,21 +8,21 @@ import { FaPowerOff, FaShoppingCart } from "react-icons/fa";
 const HeaderProducts = async () => {
 
     const session = await auth();
-
-    if (!session?.user) {
-        return redirect("/api/auth/signin");
-    }
     const user = session?.user;
+
+    if (!user?.id) {
+        return redirect("/api/auth/signin");
+    };
 
     const logoutAction = async () => {
         'use server';
         await prisma.user.update({
             data: {
-                email: user.email!,
+                id: user.id,
                 isConnected: false,
             },
             where: {
-                email: user.email!,
+                id: user.id,
             }
         });
         await prisma.$disconnect();

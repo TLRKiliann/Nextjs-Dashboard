@@ -17,14 +17,12 @@ export default async function GeolocationPage() {
     const user = session?.user;
 
     if (!user) {
-        return null;
-    } else if (!user.email) {
-        return null;
+        return redirect("/api/auth/signin");
     };
 
     const admin = await prisma.user.findUnique({
         where: {
-            email: user.email,
+            id: user.id,
             role: "ADMIN"
         }
     });

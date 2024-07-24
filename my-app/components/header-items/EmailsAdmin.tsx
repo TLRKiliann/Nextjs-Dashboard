@@ -1,6 +1,7 @@
 import prisma from '@/prisma/prisma';
 import type { Message } from '@prisma/client';
 import { auth } from '@/auth';
+import { redirect } from 'next/navigation';
 import OpenEmail from './action-email/open-email';
 import CloseEmail from './action-email/close-email';
 import RemoveEmail from './action-email/remove-email';
@@ -12,6 +13,10 @@ export default async function EmailsAdmin() {
 
     const session = await auth();
     const user = session?.user;
+
+    if (!user) {
+        return redirect("/api/auth/signin");
+    };
 
     const emailBox: Message[] = await prisma.message.findMany({
         orderBy: {
@@ -26,11 +31,6 @@ export default async function EmailsAdmin() {
             createdAt: true,
         }
     });
-
-    if (!user) {
-        //return console.log("There is an error!");
-        throw new Error("An error occured!");
-    };
 
     return (
         <div className='flex flex-row items-start w-full h-[90%] text-slate-800 mt-[10vh]'>

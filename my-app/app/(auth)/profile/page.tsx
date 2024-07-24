@@ -19,18 +19,18 @@ export default async function ProfilePage() {
     const session = await auth();
     const user = session?.user;
     
-    if (!user) {
+    if (!user?.email) {
         return redirect("/api/auth/signin");
     };
 
     if (user) {
         await prisma.user.update({
             data: {
-                email: user.email!,
+                email: user.email,
                 isConnected: true,
             },
             where: {
-                email: user.email!,
+                email: user.email,
             }
         })
     };
@@ -38,7 +38,7 @@ export default async function ProfilePage() {
     // retrieve image from db
     const userImg = await prisma.user.findUnique({
         where: {
-            email: user.email!,
+            email: user.email,
         },
         select: {
             image: true,

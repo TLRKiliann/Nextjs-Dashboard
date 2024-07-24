@@ -1,6 +1,7 @@
 import { auth } from '@/auth';
 import prisma from '@/prisma/prisma';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 
 export default async function AdminAccessLink() {
 

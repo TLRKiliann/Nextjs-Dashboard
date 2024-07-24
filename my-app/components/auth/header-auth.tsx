@@ -1,6 +1,7 @@
 import { auth, signOut } from "@/auth";
 import Link from 'next/link';
 import prisma from "@/prisma/prisma";
+//import { redirect } from "next/navigation";
 import Image from 'next/image';
 import AdminAccessLink from "./admin-access-link";
 import { FaPowerOff } from "react-icons/fa6";
@@ -10,7 +11,7 @@ const HeaderAuth = async () => {
     
     const session = await auth();
     const user = session?.user;
-    
+
     const logoutAction = async () => {
         'use server';
         await prisma.user.update({

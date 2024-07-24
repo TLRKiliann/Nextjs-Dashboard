@@ -15,13 +15,13 @@ export default async function CartItemsQuantity() {
     const session = await auth();
     const user = session?.user;
 
-    if (!user?.email) {
+    if (!user?.id) {
         return redirect("/api/auth/signin");
     };
     
     const storeQuantity: UserType | null = await prisma.user.findUnique({
         where: {
-            email: user.email,
+            id: user.id,
         },
         include: {
             products: {

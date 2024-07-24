@@ -15,10 +15,9 @@ type UserType = {
 export default async function ProductNameCard({params}: {params: {productName: string}}) {
 
     const session = await auth();
-
     const user = session?.user;
 
-    if (!user?.email) {
+    if (!user?.id) {
         return redirect("/api/auth/signin");
     };
 
@@ -34,7 +33,7 @@ export default async function ProductNameCard({params}: {params: {productName: s
 
     const storeQuantity: UserType | null = await prisma.user.findUnique({
         where: {
-            email: user.email,
+            id: user.id,
         },
         include: {
             products: {

@@ -21,8 +21,6 @@ export default async function CartPage() {
     const session = await auth();
     const userSession = session?.user;
     
-    console.log(userSession?.id, "*** userSession.id ***")
-
     if (!userSession?.id) {
         return redirect("/api/auth/signin");
     };
@@ -43,22 +41,10 @@ export default async function CartPage() {
             }
         },
     });
-    
-    /* const products: Product[] = await prisma.product.findMany({
-        where: {
-            authorId: userSession.id,
-        },
-        orderBy: {
-            id: "asc"
-        }
-    }); */
 
     if (!user?.products) {
         throw new Error("Error: server action in cart");
     };
-    /* if (!products) {
-        throw new Error("Error: server action in cart");
-    }; */
 
     return (
         <React.Fragment>

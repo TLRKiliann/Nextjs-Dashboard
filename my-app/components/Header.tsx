@@ -12,13 +12,13 @@ const Header = async () => {
     const session = await auth();
     const user = session?.user;
   
-    if (!user?.email) {
+    if (!user?.id) {
         return redirect("/api/auth/signin");
     };
     
     const admin: User | null = await prisma.user.findUnique({
         where: {
-            email: user.email,
+            id: user.id,
             role: "ADMIN",
         }
     });

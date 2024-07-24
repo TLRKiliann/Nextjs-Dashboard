@@ -32,11 +32,11 @@ export async function POST(request: Request): Promise<NextResponse> {
         try {
             await prisma.user.update({
                 data: {
-                    email: user.email!,
+                    id: user.id,
                     image: pathToDb,
                 },
                 where: {
-                    email: user.email!,
+                    id: user.id,
                 }
             })
         } catch (error) {

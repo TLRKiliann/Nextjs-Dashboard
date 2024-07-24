@@ -16,13 +16,13 @@ export default async function OrderSummary() {
     const session = await auth();
     const userSession = session?.user;
 
-    if (!userSession?.email) {
+    if (!userSession?.id) {
         return redirect("/api/auth/signin");
     };
 
     const user: UserType | null = await prisma.user.findUnique({
         where: {
-            email: userSession.email,
+            id: userSession.id,
         },
         include: {
             products: {
