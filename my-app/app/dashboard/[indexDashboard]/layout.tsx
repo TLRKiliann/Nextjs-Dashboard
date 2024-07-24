@@ -1,22 +1,19 @@
 import type { Metadata } from 'next';
 import type { Product } from '@prisma/client';
 import { notFound } from 'next/navigation';
-import { PrismaClient } from "@prisma/client";
+import prisma from '@/prisma/prisma';
 import Network from '@/components/Network';
 import EmailsAdmin from '@/components/header-items/EmailsAdmin';
 import ModifyProduct from '@/components/menu-items/admin-products/ModifyProduct';
 import CreateProduct from '@/components/menu-items/admin-products/CreateProduct';
-import AllUserProfiles from '@/components/menu-items/all-user-profiles';
+import AllUserProfiles from '@/components/menu-items/Members/all-user-profiles';
 import GraphCharts from '@/components/GraphCharts';
-
 
 type TitleParamsProps = {
     params: {
         indexDashboard: string;
     }
 };
-
-const prisma = new PrismaClient();
 
 export const generateMetadata = async ({params}: TitleParamsProps): Promise<Metadata> => {
     const title = await new Promise((resolve) => {
@@ -43,6 +40,8 @@ export default async function DashboardIndexLayout({children, params}: {
         notFound();
     };
     
+    const styles = "w-full h-[90vh] text-slate-500 mt-[10vh]";
+
     return (
         <div className='flex flex-col w-full min-h-screen bg-slate-200'>
 
@@ -53,19 +52,19 @@ export default async function DashboardIndexLayout({children, params}: {
                 <div className="flex items-center justify-evenly w-full bg-slate-100">
 
                     {params.indexDashboard === "profiles" ? (
-                        <div className='w-full h-[90vh] text-slate-500 mt-[10vh] p-4'>
+                        <div className={`${styles} p-4`}>
                             <AllUserProfiles />
                         </div>
                     ) : params.indexDashboard === "network" ? (
-                        <div className='w-full h-[90vh] text-slate-500 mt-[10vh] p-4'>
+                        <div className={`${styles} p-4`}>
                             <Network />
                         </div>
                     ) : params.indexDashboard === "charts" ? (
-                        <div className='w-full h-[90vh] text-slate-500 mt-[10vh]'>
+                        <div className={`${styles}`}>
                             <GraphCharts />
                         </div>
                     ) : params.indexDashboard === "products-admin" ? (
-                        <div className='w-full h-[90vh] text-slate-500 mt-[10vh] p-4 pt-2'>
+                        <div className={`${styles} p-4 pt-2`}>
                             <ModifyProduct listProducts={listProducts} />
                             <CreateProduct />
                         </div>

@@ -1,12 +1,10 @@
 import { auth } from "@/auth";
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/prisma/prisma";
 import { redirect } from "next/navigation";
 import React, { Suspense } from 'react';
 import Header from '@/components/Header';
 import Menu from '@/components/Menu';
 import Loader from '@/components/Loader';
-
-const prisma = new PrismaClient();
 
 export default async function DashboardPage() {
 
@@ -15,14 +13,12 @@ export default async function DashboardPage() {
     const user = session?.user;
 
     if (!user) {
-        return null;
-    } else if (!user.email) {
-        return null;
+        return redirect("/api/auth/signin");
     };
 
     const admin = await prisma.user.findUnique({
         where: {
-            email: user.email,
+            id: user.id,
             role: "ADMIN"
         }
     });

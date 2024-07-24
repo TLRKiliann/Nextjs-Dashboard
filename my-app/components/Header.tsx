@@ -1,25 +1,24 @@
 import { auth, signOut } from '@/auth';
-import { PrismaClient, type Message, type User } from '@prisma/client';
+import prisma from '@/prisma/prisma';
+import type { Message, User } from '@prisma/client';
 import { redirect } from 'next/navigation';
 import EmailComp from './header-items/EmailComp';
 import Notifications from './header-items/Notifications';
 import Searchbar from './header-items/Searchbar';
 import { FaPowerOff } from "react-icons/fa6";
 
-const prisma = new PrismaClient();
-
 const Header = async () => {
     
     const session = await auth();
     const user = session?.user;
   
-    if (!user?.email) {
+    if (!user?.id) {
         return redirect("/api/auth/signin");
     };
     
     const admin: User | null = await prisma.user.findUnique({
         where: {
-            email: user.email,
+            id: user.id,
             role: "ADMIN",
         }
     });

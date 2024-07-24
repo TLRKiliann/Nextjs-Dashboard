@@ -1,5 +1,6 @@
 import { auth } from '@/auth';
-import { PrismaClient, type Product } from '@prisma/client';
+import prisma from '@/prisma/prisma';
+import type { Product } from '@prisma/client';
 import { redirect } from 'next/navigation';
 import Image from 'next/image';
 
@@ -11,15 +12,12 @@ type UserType = {
     products: TypeProduct[];
 };
 
-const prisma = new PrismaClient()
-
 export default async function ProductNameCard({params}: {params: {productName: string}}) {
 
     const session = await auth();
-
     const user = session?.user;
 
-    if (!user?.email) {
+    if (!user?.id) {
         return redirect("/api/auth/signin");
     };
 
@@ -35,7 +33,7 @@ export default async function ProductNameCard({params}: {params: {productName: s
 
     const storeQuantity: UserType | null = await prisma.user.findUnique({
         where: {
-            email: user.email,
+            id: user.id,
         },
         include: {
             products: {

@@ -1,20 +1,19 @@
 "use server";
 
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/prisma/prisma";
 import { revalidatePath } from "next/cache";
 import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 //import { actionClient } from "./safe-action";
 import { z } from "zod";
-
-const prisma = new PrismaClient();
 
 //update Products.tsx
 export const addProductToDb = async (formData: FormData) => {
     const session = await auth();
     
     const userSession = session?.user;
-    if (!userSession?.email) {
-        throw new Error("userSession.email not work");
+    if (!userSession?.id) {
+        return redirect("/api/auth/signin");
     };
     try {
         await prisma.product.update({
@@ -22,19 +21,19 @@ export const addProductToDb = async (formData: FormData) => {
                 quantity: {
                     increment: 1,
                 },
-                stock : {
+                stock: {
                     increment: -1,
                 },
                 author: {
                     connect: {
-                        email: userSession.email,
+                        id: userSession.id,
                     }
                 }
             },
             where: {
                 id: Number(formData.get("id")),
             }
-        }); 
+        });
     } catch (error) {
         console.log("Error: ", error)
         return {
@@ -55,8 +54,8 @@ type Schema = z.infer<typeof schema>;
 export const addToCart = async ({ id }: Schema) => {
     const session = await auth();
     const userSession = session?.user;
-    if (!userSession?.email) {
-        throw new Error("userSession.email not work");
+    if (!userSession?.id) {
+        return redirect("/api/auth/signin");
     };
     try {
         await prisma.product.update({
@@ -69,7 +68,7 @@ export const addToCart = async ({ id }: Schema) => {
                 },
                 author: {
                     connect: {
-                        email: userSession.email,
+                        id: userSession.id,
                     }
                 }
             },
@@ -91,8 +90,8 @@ export const addToCart = async ({ id }: Schema) => {
 export async function deleteFromCart(formData: FormData) {
     const session = await auth();
     const userSession = session?.user;
-    if (!userSession?.email) {
-        throw new Error("userSession.email not work");
+    if (!userSession?.id) {
+        return redirect("/api/auth/signin");
     };
     try {
         await prisma.product.update({
@@ -105,7 +104,7 @@ export async function deleteFromCart(formData: FormData) {
                 },
                 author: {
                     connect: {
-                        email: userSession.email,
+                        id: userSession.id,
                     }
                 }
             },
@@ -125,8 +124,8 @@ export async function deleteFromCart(formData: FormData) {
 export async function removeFromCart(idToDelete: number) {
     const session = await auth();
     const userSession = session?.user;
-    if (!userSession?.email) {
-        throw new Error("userSession.email not work");
+    if (!userSession?.id) {
+        return redirect("/api/auth/signin");
     };
     let resetStock: number = 0;
     switch (idToDelete) {
@@ -159,7 +158,7 @@ export async function removeFromCart(idToDelete: number) {
                 stock: resetStock,
                 author: {
                     connect: {
-                        email: userSession.email,
+                        id: userSession.id,
                     }
                 },
             },

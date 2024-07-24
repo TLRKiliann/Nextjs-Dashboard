@@ -1,10 +1,8 @@
 import { auth } from "@/auth";
 import { NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/prisma/prisma";
 import { readdir, writeFile } from "fs/promises";
 import path from 'path';
-
-const prisma = new PrismaClient();
 
 export async function GET(): Promise<NextResponse> {
     const files = await readdir("./public/assets/images/upload");
@@ -34,11 +32,11 @@ export async function POST(request: Request): Promise<NextResponse> {
         try {
             await prisma.user.update({
                 data: {
-                    email: user.email!,
+                    id: user.id,
                     image: pathToDb,
                 },
                 where: {
-                    email: user.email!,
+                    id: user.id,
                 }
             })
         } catch (error) {

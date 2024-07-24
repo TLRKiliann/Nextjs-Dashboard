@@ -1,5 +1,5 @@
 import { auth } from '@/auth';
-import { PrismaClient } from '@prisma/client';
+import prisma from '@/prisma/prisma';
 import { redirect } from 'next/navigation';
 
 type ProductType = {
@@ -10,20 +10,18 @@ type UserType = {
     products: ProductType[];
 };
 
-const prisma = new PrismaClient();
-
 export default async function CartItemsQuantity() {
 
     const session = await auth();
     const user = session?.user;
 
-    if (!user?.email) {
+    if (!user?.id) {
         return redirect("/api/auth/signin");
     };
     
     const storeQuantity: UserType | null = await prisma.user.findUnique({
         where: {
-            email: user.email,
+            id: user.id,
         },
         include: {
             products: {

@@ -1,4 +1,5 @@
-import { PrismaClient, type Product } from '@prisma/client';
+import prisma from '@/prisma/prisma';
+import type { Product } from '@prisma/client';
 import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
@@ -15,20 +16,18 @@ type UserType = {
     products: TypeProduct[];
 };
 
-const prisma = new PrismaClient();
-
 export default async function ShoppingCartPage({products}: {products: Product[]}) {
 
     const session = await auth();
     const user = session?.user;
 
-    if (!user?.email) {
+    if (!user?.id) {
         return redirect("/api/auth/signin");
     };
 
     const storeQuantity: UserType | null = await prisma.user.findUnique({
         where: {
-            email: user.email,
+            id: user.id,
         },
         include: {
             products: {
@@ -46,7 +45,7 @@ export default async function ShoppingCartPage({products}: {products: Product[]}
     const totalQuantity = storeQuantity.products.reduce((acc, product) => acc + product.quantity, 0);
 
     return (
-        <div className='w-full min-h-screen flex flex-col text-slate-500 bg-gradient-to-bl from-sky-100 from-10% to-slate-100 to-90% p-4 pt-24'>
+        <div className='w-full min-h-screen flex flex-col text-slate-500 bg-slate-100 p-4 pt-[11vh]'>
         
             {totalQuantity > 0 ? (
                 products.map((product: Product) => product.quantity > 0 ? (

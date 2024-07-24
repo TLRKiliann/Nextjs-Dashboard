@@ -10,7 +10,7 @@ export default async function ProductsPage() {
   const userSession = session?.user;
   
   if (!userSession) {
-      return redirect("/api/auth/signin");
+    return redirect("/api/auth/signin");
   };
 
   return (

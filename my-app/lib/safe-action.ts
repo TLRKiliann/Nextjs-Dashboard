@@ -58,11 +58,11 @@ export const AuthenticatedAction = createSafeActionClient({
   },
   /* async middleware() {
     const session = await auth();
-    if (!session?.user.email) {
+    if (!session?.user.id) {
       throw new Error("Invalid session");
     }
     return {
-      userId: session.user.email
+      userId: session.user.id
     }
   } */
 });

@@ -1,14 +1,13 @@
 import NextAuth from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-//import prisma from "./prisma/prisma";
-import { PrismaClient } from "@prisma/client";
+import prisma from "./prisma/prisma";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 
-const prisma = new PrismaClient();
-
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  session: { strategy: "jwt" },
+  session: { 
+    strategy: "jwt"
+  },
   adapter: PrismaAdapter(prisma),
   pages: {
     signIn: "/login",
@@ -44,6 +43,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }),
   ],
   callbacks: {
+    session: async ({ session, token }) => {
+      if (token.sub) {
+        session.user.id = token.sub;
+      }
+      return session;
+    },
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
       const paths = ["/profile", "/products", "/order", "/contact"];

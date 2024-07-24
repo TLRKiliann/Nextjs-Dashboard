@@ -24,20 +24,6 @@ export type GeoLocationData = {
     is_proxy: boolean;	
 };
 
-/* export type Product = {
-    id: number;
-    family: string;
-    img: StaticImageData | string;
-    name: string;
-    version: string;
-    stock: number;
-    price: number;
-    quantity: number;
-    switcher?: boolean;
-    updateAt?: Date;
-    createdAt?: Date;
-} */
-
 export type ListOfItemsProps = {
     readonly id: number;
     readonly item: string;

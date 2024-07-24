@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { auth } from "@/auth";
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/prisma/prisma";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -14,25 +14,23 @@ export const metadata: Metadata = {
     description: "profile page"
 };
 
-const prisma = new PrismaClient();
-
 export default async function ProfilePage() {
 
     const session = await auth();
     const user = session?.user;
     
-    if (!user) {
+    if (!user?.email) {
         return redirect("/api/auth/signin");
     };
 
     if (user) {
         await prisma.user.update({
             data: {
-                email: user.email!,
+                email: user.email,
                 isConnected: true,
             },
             where: {
-                email: user.email!,
+                email: user.email,
             }
         })
     };
@@ -40,7 +38,7 @@ export default async function ProfilePage() {
     // retrieve image from db
     const userImg = await prisma.user.findUnique({
         where: {
-            email: user.email!,
+            email: user.email,
         },
         select: {
             image: true,

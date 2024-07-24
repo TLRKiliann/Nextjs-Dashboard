@@ -59,8 +59,8 @@ export const LoginForm = () => {
     'form-control block w-full px-4 py-3 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none';
 
   return (
-    <form onSubmit={handleSubmit(onSubmitHandler)} className="w-full bg-slate-50/30 px-20 py-10 rounded-3xl">
-      <div className="pb-6">
+    <form onSubmit={handleSubmit(onSubmitHandler)} className="w-full bg-slate-50/30 px-14 pt-5 pb-10 rounded-2xl shadow-auth">
+      <div className="pb-5">
           <h2 className="text-3xl font-bold">Login</h2>
       </div>
       {error && (
@@ -102,14 +102,14 @@ export const LoginForm = () => {
       <button
         type='submit'
         style={{ backgroundColor: `${submitting ? '#ccc' : '#3446eb'}` }}
-        className='inline-block px-7 py-4 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full'
+        className='inline-block px-7 py-4 bg-blue-600 text-white text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full'
         disabled={submitting}
       >
         {submitting ? 'loading...' : 'Sign In'}
       </button>
 
-      <div className='flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5'>
-        <p className='text-center font-semibold mx-4 mb-0'>OR</p>
+      <div className='flex items-center my-4 before:flex-1 before:border-t before:border-slate-400 before:mt-0.5 after:flex-1 after:border-t after:border-slate-400 after:mt-0.5'>
+        <p className='text-center text-slate-600/70 font-semibold mx-4 mb-0'>OR</p>
       </div>
 
       <a
@@ -119,7 +119,7 @@ export const LoginForm = () => {
         role='button'
       >
         <Image
-          className='pr-2'
+          className='pr-2 opacity-80'
           src={googleLogo}
           alt=''
           style={{ height: '2rem' }}

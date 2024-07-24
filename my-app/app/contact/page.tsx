@@ -27,7 +27,7 @@ export default async function ContactPage() {
 
             <div className='absolute top-5 right-5  z-20'>
                 <li className='list-none text-blue-500 hover:text-blue-600 active:text-blue-700'>
-                    <Link href="/">Back to Home</Link>
+                    <Link href="/products">Back to Products</Link>
                 </li>
             </div>
 

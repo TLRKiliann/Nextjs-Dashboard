@@ -1,5 +1,5 @@
 import { auth } from '@/auth';
-import { PrismaClient } from '@prisma/client';
+import prisma from '@/prisma/prisma';
 import React, { Suspense } from 'react';
 import { redirect } from 'next/navigation';
 import { ApiPublicIp, ApiGeolocation } from '@/utils/api-request';
@@ -10,8 +10,6 @@ import Loader from '@/components/Loader';
 
 export const dynamic = "force-dynamic";
 
-const prisma = new PrismaClient();
-
 export default async function GeolocationPage() {
 
     const session = await auth();
@@ -19,14 +17,12 @@ export default async function GeolocationPage() {
     const user = session?.user;
 
     if (!user) {
-        return null;
-    } else if (!user.email) {
-        return null;
+        return redirect("/api/auth/signin");
     };
 
     const admin = await prisma.user.findUnique({
         where: {
-            email: user.email,
+            id: user.id,
             role: "ADMIN"
         }
     });
