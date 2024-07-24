@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { auth } from '@/auth';
-import { PrismaClient, type Product } from '@prisma/client';
+import prisma from '@/prisma/prisma';
+import type { Product } from '@prisma/client';
 import React, { Suspense } from 'react';
 import { redirect } from 'next/navigation';
 import ShoppingCartPage from '@/components/products-and-cart/ShoppingCart';
@@ -15,21 +16,21 @@ type UserType = {
     products: Product[]
 };
 
-const prisma = new PrismaClient();
-
 export default async function CartPage() {
 
     const session = await auth();
     const userSession = session?.user;
     
-    if (!userSession?.email) {
+    console.log(userSession?.id, "*** userSession.id ***")
+
+    if (!userSession?.id) {
         return redirect("/api/auth/signin");
     };
     
     // products by user
     const user: UserType | null = await prisma.user.findUnique({
         where: {
-            email: userSession.email,
+            id: userSession.id,
         },
         include: {
             products: {
@@ -43,14 +44,27 @@ export default async function CartPage() {
         },
     });
     
+    /* const products: Product[] = await prisma.product.findMany({
+        where: {
+            authorId: userSession.id,
+        },
+        orderBy: {
+            id: "asc"
+        }
+    }); */
+
     if (!user?.products) {
         throw new Error("Error: server action in cart");
     };
+    /* if (!products) {
+        throw new Error("Error: server action in cart");
+    }; */
 
     return (
         <React.Fragment>
             <Suspense fallback={<Loader />}>
                 <ShoppingCartPage products={user.products} />
+                {/* <ShoppingCartPage products={products} /> */}
             </Suspense>
         </React.Fragment>
     )
