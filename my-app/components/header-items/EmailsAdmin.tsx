@@ -1,4 +1,5 @@
-import { PrismaClient, type Message } from '@prisma/client';
+import prisma from '@/prisma/prisma';
+import type { Message } from '@prisma/client';
 import { auth } from '@/auth';
 import OpenEmail from './action-email/open-email';
 import CloseEmail from './action-email/close-email';
@@ -6,8 +7,6 @@ import RemoveEmail from './action-email/remove-email';
 import ResponseAdminEmail from '../modal/response-admin-email';
 
 //http://localhost:3000/dashboard/emails-admin
-
-const prisma = new PrismaClient();
 
 export default async function EmailsAdmin() {
 

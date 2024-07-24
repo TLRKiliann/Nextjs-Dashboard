@@ -1,4 +1,5 @@
-import { PrismaClient, Product, type User } from '@prisma/client';
+import prisma from '@/prisma/prisma';
+import type { Product, User } from '@prisma/client';
 import Image from 'next/image';
 import TablePage from '@/components/TablePage';
 
@@ -14,8 +15,6 @@ type UserType = {
     isConnected: boolean;
     products: ProductType[];
 };
-
-const prisma = new PrismaClient();
 
 export default async function TableOneDefault() {
 

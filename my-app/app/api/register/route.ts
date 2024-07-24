@@ -1,6 +1,6 @@
 import { hash } from "bcryptjs";
 import { NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/prisma/prisma";
 import { createUserSchema } from "@/lib/user-schema";
 import { ZodError } from "zod";
 import { cookies } from "next/headers";
@@ -8,8 +8,6 @@ import jwt from 'jsonwebtoken';
 import { serialize } from 'v8';
 
 const SECRET_KEY = process.env.SECRET_KEY || 'your-secret-key';
-
-const prisma = new PrismaClient();
 
 export async function POST(req: Request): Promise<NextResponse> {
   try {

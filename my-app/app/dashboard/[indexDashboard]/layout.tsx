@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import type { Product } from '@prisma/client';
 import { notFound } from 'next/navigation';
-import { PrismaClient } from "@prisma/client";
+import prisma from '@/prisma/prisma';
 import Network from '@/components/Network';
 import EmailsAdmin from '@/components/header-items/EmailsAdmin';
 import ModifyProduct from '@/components/menu-items/admin-products/ModifyProduct';
@@ -9,14 +9,11 @@ import CreateProduct from '@/components/menu-items/admin-products/CreateProduct'
 import AllUserProfiles from '@/components/menu-items/all-user-profiles';
 import GraphCharts from '@/components/GraphCharts';
 
-
 type TitleParamsProps = {
     params: {
         indexDashboard: string;
     }
 };
-
-const prisma = new PrismaClient();
 
 export const generateMetadata = async ({params}: TitleParamsProps): Promise<Metadata> => {
     const title = await new Promise((resolve) => {

@@ -1,5 +1,5 @@
 import { auth } from '@/auth';
-import { PrismaClient } from '@prisma/client';
+import prisma from '@/prisma/prisma';
 import { redirect } from 'next/navigation';
 
 type ProductType = {
@@ -9,8 +9,6 @@ type ProductType = {
 type UserType = {
     products: ProductType[];
 };
-
-const prisma = new PrismaClient();
 
 export default async function CartItemsQuantity() {
 

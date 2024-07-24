@@ -1,8 +1,6 @@
 import { auth } from '@/auth';
-import { PrismaClient } from '@prisma/client';
+import prisma from '@/prisma/prisma';
 import Link from 'next/link';
-
-const prisma = new PrismaClient();
 
 export default async function AdminAccessLink() {
 

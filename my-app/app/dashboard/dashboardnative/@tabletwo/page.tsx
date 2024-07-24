@@ -1,11 +1,10 @@
-import { PrismaClient, Product } from '@prisma/client';
+import prisma from '@/prisma/prisma';
+import type { Product } from '@prisma/client';
 import React, { Suspense } from 'react';
 import TablePage from '@/components/TablePage';
 import BestSellersChart from '@/components/menu-items/graphs/BestSellersChart';
 import StockChart from '@/components/menu-items/graphs/StockChart';
 import Loader from '@/components/Loader';
-
-const prisma = new PrismaClient();
 
 export default async function TableTwoPage() {
 

@@ -1,4 +1,5 @@
-import { PrismaClient, type Product } from '@prisma/client';
+import prisma from '@/prisma/prisma';
+import type { Product } from '@prisma/client';
 import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
@@ -15,20 +16,18 @@ type UserType = {
     products: TypeProduct[];
 };
 
-const prisma = new PrismaClient();
-
 export default async function ShoppingCartPage({products}: {products: Product[]}) {
 
     const session = await auth();
     const user = session?.user;
 
-    if (!user?.email) {
+    if (!user?.id) {
         return redirect("/api/auth/signin");
     };
 
     const storeQuantity: UserType | null = await prisma.user.findUnique({
         where: {
-            email: user.email,
+            id: user.id,
         },
         include: {
             products: {

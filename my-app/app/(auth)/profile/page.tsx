@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { auth } from "@/auth";
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/prisma/prisma";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -13,8 +13,6 @@ export const metadata: Metadata = {
     title: "Profile",
     description: "profile page"
 };
-
-const prisma = new PrismaClient();
 
 export default async function ProfilePage() {
 

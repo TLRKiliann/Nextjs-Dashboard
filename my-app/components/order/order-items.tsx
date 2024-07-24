@@ -1,13 +1,12 @@
 import { auth } from '@/auth';
-import { PrismaClient, type Product } from '@prisma/client';
+import prisma from '@/prisma/prisma';
+import type { Product } from '@prisma/client';
 import { redirect } from 'next/navigation';
 import Image from 'next/image';
 
 type UserType = {
     products: Product[];
 };
-
-const prisma = new PrismaClient();
 
 export default async function OrderItems() {
 
