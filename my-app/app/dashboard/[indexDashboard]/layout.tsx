@@ -6,7 +6,7 @@ import Network from '@/components/Network';
 import EmailsAdmin from '@/components/header-items/EmailsAdmin';
 import ModifyProduct from '@/components/menu-items/admin-products/ModifyProduct';
 import CreateProduct from '@/components/menu-items/admin-products/CreateProduct';
-import AllUserProfiles from '@/components/menu-items/all-user-profiles';
+import AllUserProfiles from '@/components/menu-items/Members/all-user-profiles';
 import GraphCharts from '@/components/GraphCharts';
 
 type TitleParamsProps = {
