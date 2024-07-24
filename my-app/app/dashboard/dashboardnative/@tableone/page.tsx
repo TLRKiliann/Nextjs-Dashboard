@@ -60,12 +60,13 @@ export default async function TableOnePage() {
                                 
                                 <div className='flex flex-row items-center justify-start'>
                                     <Image priority src={String(customer.image)} width={500} height={333} alt="no-img" 
-                                        className='w-[50px] h-auto border border-slate-500 object-cover my-1 rounded-full'/>
+                                        className='w-[50px] h-[50px] border border-slate-500 object-cover my-1 rounded-full'/>
 
                                     <div className='w-[80px] mx-2'>
                                         <p className='text-base font-bold'>{customer.name}</p>
                                         {/* <p className='text-xs'>{customer.country}</p> */}
                                     </div>
+                                    
                                 </div>
 
                                 <div className='w-[50%] flex flex-row items-center justify-between'>
