@@ -1,4 +1,4 @@
-import type { Product } from '@prisma/client';
+/* import type { Product } from '@prisma/client';
 
 export const products: Product[] = [
     {
@@ -99,4 +99,4 @@ export const products: Product[] = [
         createdAt: new Date,
         authorId: null
     }
-];
+]; */
