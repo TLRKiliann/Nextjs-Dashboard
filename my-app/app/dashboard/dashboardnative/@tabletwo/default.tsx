@@ -14,9 +14,6 @@ export default async function TableTwoDefault() {
             id: "asc",
         }
     });
-    
-    /* const response = await fetch("http://localhost:3000/api/products");
-    const products = (await response.json()) as Product[]; */
 
     return (
         <TablePage title="Best Sellers" url="/dashboard/dashboardnative/geolocation" link="Geolocation">
@@ -29,7 +26,6 @@ export default async function TableTwoDefault() {
                         <BestSellersChart products={products} />
                     </Suspense>
                 </div>
-                
 
                 <div className='w-[95%] h-[48%] m-auto bg-slate-100 
                     rounded-lg shadow-sm-out'>

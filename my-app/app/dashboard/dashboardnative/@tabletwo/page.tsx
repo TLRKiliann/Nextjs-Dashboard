@@ -15,9 +15,6 @@ export default async function TableTwoPage() {
         }
     });
 
-    /* const response = await fetch("http://localhost:3000/api/products");
-    const products = (await response.json()) as Product[]; */
-
     return (
         <TablePage title="Best Sellers" url="/dashboard/dashboardnative/geolocation" link="Geolocation">
 
