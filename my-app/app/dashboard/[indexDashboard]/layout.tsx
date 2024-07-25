@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import type { Product } from '@prisma/client';
 import { notFound } from 'next/navigation';
 import prisma from '@/prisma/prisma';
-import Network from '@/components/Network';
+import Network from '@/components/menu-items/Network';
 import EmailsAdmin from '@/components/header-items/EmailsAdmin';
 import ModifyProduct from '@/components/menu-items/admin-products/ModifyProduct';
 import CreateProduct from '@/components/menu-items/admin-products/CreateProduct';
@@ -56,7 +56,7 @@ export default async function DashboardIndexLayout({children, params}: {
                             <AllUserProfiles />
                         </div>
                     ) : params.indexDashboard === "network" ? (
-                        <div className={`${styles} bg-slate-800 p-4`}>
+                        <div className={`${styles} bg-slate-700 p-4`}>
                             <Network />
                         </div>
                     ) : params.indexDashboard === "charts" ? (
