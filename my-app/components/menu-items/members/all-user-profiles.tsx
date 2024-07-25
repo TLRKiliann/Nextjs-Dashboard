@@ -33,7 +33,7 @@ export default async function AllUserProfiles() {
                   width={500}
                   height={333}
                   alt="no img"
-                  className="w-[60px] h-[60px] object-fit rounded-full"
+                  className="w-[60px] h-[60px] object-cover rounded-full"
                 />
               </div>
 
@@ -44,7 +44,7 @@ export default async function AllUserProfiles() {
                   <h4 className="text-sm font-bold text-slate-700 mb-2">{user.email}</h4>
                 </div>
 
-                <QuantityPrice id={user.id} />
+                <QuantityPrice id={user.id} styles="text-slate-300 bg-slate-700" />
 
                 <div className="text-slate-400 p-2 rounded">
 
