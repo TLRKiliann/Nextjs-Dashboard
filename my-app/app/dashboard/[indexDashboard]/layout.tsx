@@ -56,7 +56,7 @@ export default async function DashboardIndexLayout({children, params}: {
                             <AllUserProfiles />
                         </div>
                     ) : params.indexDashboard === "network" ? (
-                        <div className={`${styles} p-4`}>
+                        <div className={`${styles} bg-slate-800 p-4`}>
                             <Network />
                         </div>
                     ) : params.indexDashboard === "charts" ? (
