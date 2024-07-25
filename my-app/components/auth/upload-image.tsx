@@ -68,7 +68,7 @@ export default function UploadImage() {
                         alt="Uploaded Image"
                         width={500}
                         height={333}
-                        className='w-[100px] h-auto object-fit'/>
+                        className='w-[100px] h-auto object-cover'/>
                 </div>
             ) : null}
 
@@ -80,7 +80,7 @@ export default function UploadImage() {
                             priority={false}
                             unoptimized={false}
                             alt="Uploaded Image" width={500} height={333} 
-                            className='w-[100px] h-auto object-fit'
+                            className='w-[100px] h-auto object-cover'
                         />
                     </div>
                 </div>

@@ -64,7 +64,7 @@ export default async function ProfilePage() {
                                 priority={true}
                                 unoptimized={false}
                                 alt="Uploaded Image" width={500} height={333} 
-                                className='w-[100px] h-auto object-fit rounded-tr-lg rounded-bl-lg'
+                                className='w-[100px] h-auto object-cover rounded-tr-lg rounded-bl-lg'
                             />
                         </div>
 

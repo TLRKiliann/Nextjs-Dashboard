@@ -27,7 +27,7 @@ export default async function ProductsToModify({listProducts}: {listProducts: Pr
                                 src={product.img} 
                                 width={100}
                                 height={100}
-                                className='w-[60px] h-[60px] object-fit rounded-lg shadow-sm-out'
+                                className='w-[60px] h-[60px] object-cover rounded-lg shadow-sm-out'
                                 alt="no img" 
                             />
                         </div>

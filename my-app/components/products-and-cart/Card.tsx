@@ -19,7 +19,7 @@ export default function Card({product}: ProductProps) {
                         <Image src={product.img}
                             width={100}
                             height={100}
-                            className="object-fit rounded-tl-md rounded-br-md shadow-white" 
+                            className="object-cover rounded-tl-md rounded-br-md shadow-white" 
                             alt="no img" 
                         />
                     </div>

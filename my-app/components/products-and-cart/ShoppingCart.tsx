@@ -56,7 +56,7 @@ export default async function ShoppingCartPage({products}: {products: Product[]}
                             <Image src={product.img}
                                 width={70}
                                 height={70}
-                                className="w-full h-auto object-fit rounded-tl-md rounded-br-md" 
+                                className="w-full h-auto object-cover rounded-tl-md rounded-br-md" 
                                 alt="no img" 
                             />
                         </div>

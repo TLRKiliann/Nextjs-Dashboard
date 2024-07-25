@@ -39,7 +39,7 @@ const HeaderAuth = async () => {
                     width={70}
                     height={50}
                     alt="no logo"
-                    className="w-[60px] h-auto object-fit rounded"
+                    className="w-[60px] h-auto object-cover rounded"
                 />
             </div>
 
