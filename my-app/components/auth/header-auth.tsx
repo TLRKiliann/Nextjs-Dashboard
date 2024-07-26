@@ -1,7 +1,6 @@
 import { auth, signOut } from "@/auth";
 import Link from 'next/link';
 import prisma from "@/prisma/prisma";
-//import { redirect } from "next/navigation";
 import Image from 'next/image';
 import AdminAccessLink from "./admin-access-link";
 import { FaPowerOff } from "react-icons/fa6";
@@ -31,8 +30,9 @@ const HeaderAuth = async () => {
     };
 
     return (
-        <div className='absolute top-0 z-10 flex flex-row items-center justify-between w-full h-[10vh] 
-            text-base font-bold text-slate-50 bg-slate-50/30 shadow-auth pr-10'>
+        <div className='absolute top-0 z-10 flex flex-row items-center justify-between w-full h-[70px] 
+            text-lg font-semibold text-slate-50 bg-slate-50/30 shadow-auth pr-10'>
+
             <div className="ml-2 rounded">
                 <Image 
                     src={dashLogo}
