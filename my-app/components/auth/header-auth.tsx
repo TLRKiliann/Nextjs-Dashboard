@@ -15,11 +15,11 @@ const HeaderAuth = async () => {
         'use server';
         await prisma.user.update({
             data: {
-                email: user?.email!,
+                id: user?.id,
                 isConnected: false,
             },
             where: {
-                email: user?.email!,
+                id: user?.id,
             }
         });
         await prisma.$disconnect();
