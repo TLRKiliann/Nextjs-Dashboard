@@ -44,13 +44,13 @@ export default async function DashboardIndexLayout({children, params}: {
     const styles = "w-full h-[90vh] text-slate-500 mt-[10vh]";
 
     return (
-        <div className='flex flex-col w-full min-h-screen bg-slate-200'>
+        <div className='flex flex-col w-full min-h-screen bg-slate-50'>
 
             <div className='flex flex-row w-full h-[100vh]'>
                 
                 {children}
 
-                <div className="flex items-center justify-evenly w-full bg-slate-100">
+                <div className="flex items-center justify-evenly w-full">
 
                     {params.indexDashboard === "profiles" ? (
                         <div className={`${styles} p-4`}>
@@ -65,7 +65,7 @@ export default async function DashboardIndexLayout({children, params}: {
                             <GraphCharts />
                         </div>
                     ) : params.indexDashboard === "bilan" ? (
-                        <div className={`${styles} p-4 pt-2`}>
+                        <div className={`${styles} p-4`}>
                             <Bilan />
                         </div>
                     ) : params.indexDashboard === "products-admin" ? (
