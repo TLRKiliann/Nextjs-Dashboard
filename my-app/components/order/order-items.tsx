@@ -55,7 +55,7 @@ export default async function OrderItems() {
                                 width={40}
                                 height={40}
                                 alt="no img" 
-                                className="w-[40px] h-[40px] object-fit"
+                                className="w-[40px] h-[40px] object-cover"
                             />
                             <p className='font-bold'>{product.family}</p>
                             <p>{product.name}</p>

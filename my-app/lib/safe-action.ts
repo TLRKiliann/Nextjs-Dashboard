@@ -4,28 +4,27 @@ import { z } from 'zod';
 
 export class ActionError extends Error{};
 
+//export const actionClient = createSafeActionClient();
 export const actionClient = createSafeActionClient({
-  defaultValidationErrorsShape: "flattened",
+  //defaultValidationErrorsShape: "flattened",
   defineMetadataSchema() {
     return z.object({
       id: z.number(),
     });
   },
-  handleReturnedServerError(e) {
+  handleReturnedServerError(e: ActionError) {
     if (e instanceof ActionError) {
       return {
         serverError: e.message,
       }
     }
-    return DEFAULT_SERVER_ERROR_MESSAGE 
+    //return DEFAULT_SERVER_ERROR_MESSAGE 
     //return "Oh no, something went wrong!";
-
-    /* return {
+    return {
       serverError: "Something went wrong!"
-    } */
+    }
   },
 });
-
 
 /* export const actionClient = createSafeActionClient({
   //defaultValidationErrorsShape: "flattened",
@@ -45,7 +44,7 @@ export const actionClient = createSafeActionClient({
 }); */
 
 
-export const AuthenticatedAction = createSafeActionClient({
+/* export const AuthenticatedAction = createSafeActionClient({
   handleReturnedServerError(e) {
     if (e instanceof ActionError) {
       return {
@@ -56,13 +55,13 @@ export const AuthenticatedAction = createSafeActionClient({
       serverError: "Something went wrong!"
     }
   },
-  /* async middleware() {
+  async middleware(): Promise<{userId: string}> {
     const session = await auth();
-    if (!session?.user.id) {
+    if (!session?.user?.id) {
       throw new Error("Invalid session");
     }
     return {
       userId: session.user.id
     }
-  } */
-});
+  }
+}); */

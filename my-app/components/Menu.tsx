@@ -68,7 +68,7 @@ export default function Menu() {
 
                     <li className='list-none text-base transition durantion-200 ease-in-out text-slate-500 hover:text-slate-400/90 
                         active:text-sky-400/70 mb-4'>
-                        <Link href="/">
+                        <Link href="/dashboard/bilan">
                             <span className='flex items-center'>
                                 <MdOutlineAttachMoney size={20} /><p className='ml-2'>Bilan</p>
                             </span>

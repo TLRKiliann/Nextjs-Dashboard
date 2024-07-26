@@ -1,9 +1,9 @@
 import React from 'react';
 import TableGraphs from './TableGraphs';
-import LineChart from './menu-items/graphs/LineChart';
-import BarChartOs from './menu-items/graphs/BarChartOs';
-import BarChartBrowser from './menu-items/graphs/BarChartBrowser';
-import DoughnutChart from './menu-items/graphs/DoughnutChart';
+import LineChart from './graphs/LineChart';
+import BarChartOs from './graphs/BarChartOs';
+import BarChartBrowser from './graphs/BarChartBrowser';
+import DoughnutChart from './graphs/DoughnutChart';
 
 export default function GraphCharts() {
     return (

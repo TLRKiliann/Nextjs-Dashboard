@@ -1,4 +1,4 @@
-import { auth } from './auth';
+import { auth } from '@/auth';
 
 export default auth((req) => {
   const publicPaths = ["/login", "/register", "/resetpassword"];

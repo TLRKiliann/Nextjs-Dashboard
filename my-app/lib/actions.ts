@@ -4,11 +4,12 @@ import prisma from "@/prisma/prisma";
 import { revalidatePath } from "next/cache";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
-//import { actionClient } from "./safe-action";
+import { actionClient } from "./safe-action";
 import { z } from "zod";
 
 //update Products.tsx
 export const addProductToDb = async (formData: FormData) => {
+
     const session = await auth();
     
     const userSession = session?.user;
@@ -46,12 +47,13 @@ export const addProductToDb = async (formData: FormData) => {
     }
 };
 
-
-const schema = z.object({id: z.number()});
+const schema = z.object({
+    id: z.number()
+});
 type Schema = z.infer<typeof schema>;
 
 // increment quantity in cartItems
-export const addToCart = async ({ id }: Schema) => {
+export const addToCart = async ({id}: Schema) => {
     const session = await auth();
     const userSession = session?.user;
     if (!userSession?.id) {
@@ -73,7 +75,6 @@ export const addToCart = async ({ id }: Schema) => {
                 }
             },
             where: {
-                //id: Number(formData.get("id")),
                 id: id,
             },
         });
@@ -83,7 +84,6 @@ export const addToCart = async ({ id }: Schema) => {
     revalidatePath("/products/cart");
     return {message: "Success!"};
 };
-
 
 
 // decrement quantity in cartItems
@@ -346,5 +346,4 @@ export async function adminEmail(formData: FormData) {
         message: "Success!"
     };
 };
-
 

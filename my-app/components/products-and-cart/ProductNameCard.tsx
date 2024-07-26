@@ -68,7 +68,7 @@ export default async function ProductNameCard({params}: {params: {productName: s
                                     src={product.img}
                                     width={100}
                                     height={100}
-                                    className="object-fit rounded-md"
+                                    className="object-cover rounded-md"
                                     alt="no img"
                                 />
                             </div>

@@ -15,19 +15,19 @@ export default async function ProductsToModify({listProducts}: {listProducts: Pr
     return (
         <div className='relative mt-0 h-[50%] z-10'>
             
-            <div className='absolute -z-10 w-full h-full overflow-y-scroll no-scrollbar pb-2'>
+            <div className='absolute -z-10 w-full h-full overflow-y-scroll no-scrollbar m-auto px-3'>
 
                 {listProducts.map((product: Product) => (
                     <div key={product.id} 
                         className='flex flex-row items-center justify-between w-full h-[80px] bg-white 
-                            rounded-lg shadow-sm-out p-4 m-2'>
+                            rounded-lg shadow-sm-out p-4 m-auto my-2'>
 
                         <div className='w-[60px] h-[60px]'>
                             <Image 
                                 src={product.img} 
                                 width={100}
                                 height={100}
-                                className='w-[60px] h-[60px] object-fit rounded-lg shadow-sm-out'
+                                className='w-[60px] h-[60px] object-cover rounded-lg shadow-sm-out'
                                 alt="no img" 
                             />
                         </div>

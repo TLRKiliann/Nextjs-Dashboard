@@ -1,5 +1,3 @@
-// reusable component for form-create-content.tsx
-
 type LblInputCreateProps = {
     id: string;
     type: string;
@@ -7,10 +5,11 @@ type LblInputCreateProps = {
     htmlFor: string; 
     value: string | undefined;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    placeholdervalue: string;
     children: React.ReactNode;
 };
 
-export default function LblInputCreate({id, type, name, htmlFor, value, onChange, children}: LblInputCreateProps) {
+export default function LblInputCreate({id, type, name, htmlFor, value, onChange, placeholdervalue, children}: LblInputCreateProps) {
     return (
         <div className='flex flex-row items-center justify-between mb-3'>
                     
@@ -22,7 +21,9 @@ export default function LblInputCreate({id, type, name, htmlFor, value, onChange
                 name={name} 
                 value={value} 
                 onChange={onChange} 
-                className='bg-slate-50 border border-slate-500/70 outline-none ring-none
+                placeholder={placeholdervalue}
+                className='text-slate-800 bg-slate-50 border border-slate-500/70 outline-none ring-none
+                placeholder:text-slate-500/80
                 focus:border focus:outline focus:ring focus:border-blue-400 focus:outline-blue-200 
                 focus:ring-blue-300 focus:bg-white rounded px-2 py-0 xl:py-1'
                 required

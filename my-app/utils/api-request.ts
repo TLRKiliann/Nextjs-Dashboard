@@ -32,4 +32,3 @@ export const ApiGeolocation = async ({data}: {data: {ip: string;}}): Promise<Geo
         throw error;
     }
 };
-
