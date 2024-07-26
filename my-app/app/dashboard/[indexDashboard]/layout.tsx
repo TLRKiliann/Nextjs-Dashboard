@@ -7,7 +7,8 @@ import EmailsAdmin from '@/components/header-items/EmailsAdmin';
 import ModifyProduct from '@/components/menu-items/admin-products/ModifyProduct';
 import CreateProduct from '@/components/menu-items/admin-products/CreateProduct';
 import AllUserProfiles from '@/components/menu-items/members/all-user-profiles';
-import GraphCharts from '@/components/GraphCharts';
+import GraphCharts from '@/components/menu-items/GraphCharts';
+import Bilan from '@/components/menu-items/Bilan';
 
 type TitleParamsProps = {
     params: {
@@ -62,6 +63,10 @@ export default async function DashboardIndexLayout({children, params}: {
                     ) : params.indexDashboard === "charts" ? (
                         <div className={`${styles}`}>
                             <GraphCharts />
+                        </div>
+                    ) : params.indexDashboard === "bilan" ? (
+                        <div className={`${styles} p-4 pt-2`}>
+                            <Bilan />
                         </div>
                     ) : params.indexDashboard === "products-admin" ? (
                         <div className={`${styles} p-4 pt-2`}>
