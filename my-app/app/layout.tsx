@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-//import { session } from '@/auth';
 import { SessionProvider } from 'next-auth/react'
 import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
