@@ -19,26 +19,32 @@ export default async function ProfilePage() {
     const session = await auth();
     const user = session?.user;
     
-    if (!user?.email) {
+    if (!user?.id) {
         return redirect("/api/auth/signin");
     };
 
+
     if (user) {
+        const currentDate = new Date();
         await prisma.user.update({
-            data: {
-                email: user.email,
-                isConnected: true,
-            },
             where: {
-                email: user.email,
-            }
-        })
+                id: user.id,
+            },
+            data: {
+                isConnected: true,
+                connections: {
+                    create: {
+                        createdAt: currentDate,
+                    },
+                },
+            },
+        });
     };
 
     // retrieve image from db
     const userImg = await prisma.user.findUnique({
         where: {
-            email: user.email,
+            id: user.id,
         },
         select: {
             image: true,
