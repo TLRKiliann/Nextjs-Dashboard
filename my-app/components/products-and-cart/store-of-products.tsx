@@ -1,5 +1,4 @@
 import type { Product } from '@prisma/client';
-//import { addProductToDb } from '@/lib/actions';
 import Link from 'next/link';
 import Image from 'next/image';
 import MainBtnAdd from './main-btn-add';
