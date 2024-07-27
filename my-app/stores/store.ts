@@ -5,7 +5,7 @@ import { persist } from 'zustand/middleware';
 // State types
 type States = {
   bearProducts: Product[];
-  //setProducts: (products: Product[]) => void;
+  setProducts: (products: Product[]) => void;
 };
 
 // Action types
@@ -16,12 +16,12 @@ type Actions = {
   decreaseQuantity: (productId: number) => void;
   removeAllById: (productId: number) => void;
 };
- 
+
 // useBearStore
 export const useStore = create<States & Actions>()(
   persist((set, get) => ({
       bearProducts: [],
-      //setProducts: (products) => set({ bearProducts: products }),
+      setProducts: (products) => set({ bearProducts: products }),
       addProducts: (product) => {
         const itemExists = get().bearProducts.find((cartItem) => cartItem.id === product.id)
         if (itemExists) {
