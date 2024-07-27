@@ -1,41 +1,58 @@
-import { auth } from '@/auth';
-import prisma from '@/prisma/prisma';
+"use client";
+
+import { useEffect, useState } from 'react';
 import type { Product } from '@prisma/client';
-import { redirect } from 'next/navigation';
-import { Suspense } from 'react';
-import Card from '@/components/products-and-cart/Card';
+import { useQuery } from '@tanstack/react-query';
+import { fetchDataFromApi } from '@/utils/api-request';
+import StoreOfProducts from '@/components/products-and-cart/store-of-products';
 import Loader from '@/components/Loader';
+import usePersistStore from '@/helpers/usePersistStore';
+import { useStore } from '@/stores/store';
 
-export default async function AllProducts() {
-
-    const session = await auth();
-    const user = session?.user;
-
-    if (!user) {
-        return redirect("/api/auth/signin");
-    };
-
-    // all products
-    const products: Product[] = await prisma.product.findMany({
-        orderBy: {
-            id: "asc",
-        }
+export default function AllProducts() {
+    
+    // zustand
+    const store = usePersistStore(useStore, (state) => state);
+    
+    const { data, isLoading, isError, error } = useQuery({
+        queryKey: ["products"],
+        queryFn: () => fetchDataFromApi(),
+        staleTime: 10 * 1000,
     });
 
-    if (!products) {
-        throw new Error("Error: fetch products failed!");
+    useEffect(() => {
+        const callerData = () => {
+            if (data) {
+                store?.setProducts(data)
+                console.log("Data products found!");
+            } else {
+                console.log("No data products found!");
+            }
+        }
+        callerData();
+        return () => console.log("clean-up");
+    }, [data]);
+
+    if (!store || !data) {
+        return <Loader />
+    };
+
+    if (isLoading) {
+        return <Loader />;
+    };
+
+    if (isError) {
+        throw new Error("Error - useQuery: ", error);
     };
 
     return (
         <div className='min-h-screen grid grid-cols-3 xl:grid-cols-4 grid-rows-3 bg-slate-100 gap-4 p-4 pt-[12vh]'>
-            <Suspense fallback={<Loader />}>
-                {products.map((product: Product) => (
-                    <Card
-                        key={product.id}
-                        product={product}
-                    /> 
-                ))}
-            </Suspense>
+            {store.bearProducts.map((product: Product) => (
+                <StoreOfProducts
+                    key={product.id}
+                    product={product}
+                /> 
+            ))}
         </div>
     )
 };
