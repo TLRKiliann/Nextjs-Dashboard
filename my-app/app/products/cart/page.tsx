@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
+import type { Product } from '@prisma/client';
 import { auth } from '@/auth';
 import prisma from '@/prisma/prisma';
-import type { Product } from '@prisma/client';
 import React, { Suspense } from 'react';
 import { redirect } from 'next/navigation';
 import ShoppingCartPage from '@/components/products-and-cart/ShoppingCart';
@@ -24,7 +24,7 @@ export default async function CartPage() {
     if (!userSession?.id) {
         return redirect("/api/auth/signin");
     };
-    
+
     // products by user
     const user: UserType | null = await prisma.user.findUnique({
         where: {
@@ -50,7 +50,6 @@ export default async function CartPage() {
         <React.Fragment>
             <Suspense fallback={<Loader />}>
                 <ShoppingCartPage products={user.products} />
-                {/* <ShoppingCartPage products={products} /> */}
             </Suspense>
         </React.Fragment>
     )
