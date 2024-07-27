@@ -1,5 +1,4 @@
 import type { Product } from '@prisma/client';
-import { addProductToDb } from '@/lib/actions';
 import Link from 'next/link';
 import Image from 'next/image';
 import MainBtnAdd from './main-btn-add';
@@ -8,7 +7,7 @@ type ProductProps = {
     product: Product;
 };
 
-export default function Card({product}: ProductProps) {
+export default function StoreOfProducts({ product }: ProductProps) {
     return (
         <div key={product.id} className="w-full h-full text-slate-100/90 bg-gradient-to-tr from-slate-700 to-slate-950 rounded-md shadow-card">
             
@@ -37,6 +36,8 @@ export default function Card({product}: ProductProps) {
                         <MainBtnAdd
                             id={product.id}
                             name={product.name}
+                            quantity={product.quantity}
+                            product={product}
                         />
                     </div>
                 </div>

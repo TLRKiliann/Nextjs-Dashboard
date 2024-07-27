@@ -1,18 +1,30 @@
 "use client";
 
+import type { Product } from '@prisma/client';
 import { addProductToDb } from "@/lib/actions";
-import { useCallback, useState } from "react";
+import { useStore } from "@/stores/store";
+import usePersistStore from '@/helpers/usePersistStore';
 import toast from "react-hot-toast";
 
-export default function MainBtnAdd({ id, name }: { 
-    id: number;
-    name: string;}) {
+type MainBtnTypes = { 
+    id: number; 
+    name: string; 
+    product: Product;
+    quantity: number;
+};
 
-    const [count, setCount] = useState<number>(0);
+export default function MainBtnAdd({ id, name, product, quantity }: MainBtnTypes) {
 
-    const onSubmit = useCallback(async (formData: FormData) => {
-        const res = await addProductToDb(formData);
-        setCount((prev) => prev += 1);
+    // zustand
+    const store = usePersistStore(useStore, (state) => state);
+
+    if (!store) {
+        return <h2>Loading...</h2>
+    };
+
+    const onSubmit = async (id: number) => {
+        const res = await addProductToDb({id});
+        store.addProducts(product);
         if (res.message === "Success!") {
             toast.success("Successfully add to cart!");
         } else if (res.message === "There is an error!") {
@@ -20,19 +32,17 @@ export default function MainBtnAdd({ id, name }: {
         } else {
             toast.error("An unexpected error occurred.");
         }
-    }, []);
+    };
 
     return (
-        <form key={id} action={onSubmit} className='flex items-center justify-center mt-4'>
-            <input type="number" id="id" name="id" value={id} readOnly hidden />
+        <form key={id} action={() => onSubmit(id)} className='flex items-center justify-center mt-4'>
             <button type="submit" 
                 className='w-[120px] h-[38px] text-sm font-bold bg-blue-500 hover:bg-blue-600 
                     active:bg-blue-700 rounded disabled:opacity-50 m-auto'
                 aria-label={`Add one more ${name}`}
-                //disabled={quantity > 0 ? true : false}
-                disabled={count === 1 ? true : false}
+                disabled={quantity === 1 ? true : false}
             >
-                {count === 1 ? "Go to Cart ⬆" : "Add to Cart"}
+                {quantity === 1 ? "Go to Cart ⬆" : "Add to Cart"}
             </button>
         </form>
     )

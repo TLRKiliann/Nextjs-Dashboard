@@ -1,7 +1,9 @@
 "use client";
 
+import usePersistStore from '@/helpers/usePersistStore';
 import { removeFromCart } from '@/lib/actions';
-import { useCallback } from 'react';
+import { useStore } from '@/stores/store';
+//import { useCallback } from 'react';
 import toast from 'react-hot-toast';
 
 export default function RemoveItemsFromCart({id, name}:
@@ -9,9 +11,16 @@ export default function RemoveItemsFromCart({id, name}:
         id: number;
         name: string;
     }) {
+        
+    const store = usePersistStore(useStore, (state) => state);
 
-    const onSubmit = useCallback(async (id: number) => {
-        const res = await removeFromCart(id);
+    if (!store) {
+        return <h2>Loading...</h2>
+    };
+
+    const onSubmit = async (id: number) => {
+        const res = await removeFromCart({id});
+        store.removeAllById(id);
         if (res.message === "Success!") {
             toast.success("Successfully removed from cart!");
         } else if (res.message === "There is an error!") {
@@ -19,7 +28,7 @@ export default function RemoveItemsFromCart({id, name}:
         } else {
             toast.error("An unexpected error occurred.");
         }
-    }, []);
+    };
 
     return (
         <form key={id} action={() => onSubmit(id)}

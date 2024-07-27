@@ -7,12 +7,17 @@ import { redirect } from "next/navigation";
 import { actionClient } from "./safe-action";
 import { z } from "zod";
 
-//update Products.tsx
-export const addProductToDb = async (formData: FormData) => {
 
+const schema = z.object({
+    id: z.number(),
+});
+type Schema = z.infer<typeof schema>;
+
+//add product
+export const addProductToDb = async ({ id }: Schema) => {
     const session = await auth();
-    
     const userSession = session?.user;
+
     if (!userSession?.id) {
         return redirect("/api/auth/signin");
     };
@@ -32,7 +37,8 @@ export const addProductToDb = async (formData: FormData) => {
                 }
             },
             where: {
-                id: Number(formData.get("id")),
+                //id: Number(formData.get("id")),
+                id: id,
             }
         });
     } catch (error) {
@@ -47,13 +53,8 @@ export const addProductToDb = async (formData: FormData) => {
     }
 };
 
-const schema = z.object({
-    id: z.number()
-});
-type Schema = z.infer<typeof schema>;
-
 // increment quantity in cartItems
-export const addToCart = async ({id}: Schema) => {
+export const addToCart = async ({ id }: Schema) => {
     const session = await auth();
     const userSession = session?.user;
     if (!userSession?.id) {
@@ -87,7 +88,7 @@ export const addToCart = async ({id}: Schema) => {
 
 
 // decrement quantity in cartItems
-export async function deleteFromCart(formData: FormData) {
+export async function deleteFromCart({ id }: Schema) {
     const session = await auth();
     const userSession = session?.user;
     if (!userSession?.id) {
@@ -109,7 +110,8 @@ export async function deleteFromCart(formData: FormData) {
                 }
             },
             where: {
-                id: Number(formData.get("id")),
+                //id: Number(formData.get("id")),
+                id: id,
             },
         });
     } catch (error) {
@@ -121,14 +123,14 @@ export async function deleteFromCart(formData: FormData) {
 };
 
 // reinitialize quantity to 0 in cartItems
-export async function removeFromCart(idToDelete: number) {
+export async function removeFromCart({ id }: Schema) {
     const session = await auth();
     const userSession = session?.user;
     if (!userSession?.id) {
         return redirect("/api/auth/signin");
     };
     let resetStock: number = 0;
-    switch (idToDelete) {
+    switch (id) {
         case 1:
             resetStock = 19;
             break;
@@ -163,7 +165,7 @@ export async function removeFromCart(idToDelete: number) {
                 },
             },
             where: {
-                id: idToDelete,
+                id: id,
             },
         });
     } catch (error) {
@@ -233,7 +235,7 @@ export async function handleRemove(id: number) {
 };
 
 // /dashboard/products-admin (CreateProduct)
-export async function createProduct(formData: FormData) {
+export const createProduct = async(formData: FormData) => {
     try {
         await prisma.product.create({
             data: {
