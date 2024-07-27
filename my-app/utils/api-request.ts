@@ -1,17 +1,16 @@
 import type { GeoLocationData } from "@/lib/definitions";
 import { Product } from "@prisma/client";
 
-
 export const ApiPublicIp = async (): Promise<{data: {ip: string;}}> => {
     try {
         const response = await fetch("https://jsonip.com/");
         if (!response.ok) {
-            throw new Error('Failed to fetch public ip');
+            throw new Error('Error: response failed (ApiPublicIp call)!');
         }
         const data = await response.json();
         return { data: { ip: data.ip } };
     } catch (error: unknown) {
-        console.error('Error fetching public IP:', error);
+        console.error('Error to fetch public IP:', error);
         throw error;
     }
 };
@@ -25,7 +24,7 @@ export const ApiGeolocation = async ({data}: {data: {ip: string;}}): Promise<Geo
             }
         });
         if (!geoRes.ok) {
-            throw new Error('Error: geoRes.ok failed (GeoLocationData API call)!');
+            throw new Error('Error: geoRes failed (GeoLocationData API call)!');
         }
         const geoData = await geoRes.json();
         return geoData;
@@ -37,11 +36,11 @@ export const ApiGeolocation = async ({data}: {data: {ip: string;}}): Promise<Geo
 
 export const fetchDataFromApi = async () => {
     try {
-        const response = await fetch("/api/products");
-        if (!response.ok) {
-            throw new Error('Error: response.ok failed (products API call)!');
+        const resDataProd = await fetch("http://localhost:3000/api/products");
+        if (!resDataProd.ok) {
+            throw new Error('Error: resDataProd failed (products API call)!');
         }
-        const products = (await response.json()) as Product[]
+        const products = (await resDataProd.json()) as Product[];
         return products;
     } catch (error: unknown) {
         console.log('Failed to fetch products from API!', error);
