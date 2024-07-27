@@ -1,48 +1,25 @@
-import { auth } from '@/auth';
-import prisma from '@/prisma/prisma';
-import { redirect } from 'next/navigation';
+"use client";
 
-type ProductType = {
-    quantity: number;
-}
+import usePersistStore from '@/helpers/usePersistStore';
+import { useStore } from '@/stores/store';
+import Loader from '../Loader';
 
-type UserType = {
-    products: ProductType[];
-};
+export default function CartItemsQuantity() {
 
-export default async function CartItemsQuantity() {
+    // zustand
+    const store = usePersistStore(useStore, (state) => state);
 
-    const session = await auth();
-    const user = session?.user;
-
-    if (!user?.id) {
-        return redirect("/api/auth/signin");
-    };
-    
-    const storeQuantity: UserType | null = await prisma.user.findUnique({
-        where: {
-            id: user.id,
-        },
-        include: {
-            products: {
-                select: {
-                    quantity: true,
-                } 
-            }
-        }
-    });
-
-    if (!storeQuantity) {
-        throw new Error("storeQuantity not set!");
+    if (!store) {
+        return <Loader />;
     };
 
-    const totalQuantity = storeQuantity.products.reduce((acc: number, product: {quantity: number}) => acc + product.quantity, 0);
-    
+    const storeQuantity: number = store?.bearProducts.reduce((a: number,b: {quantity: number}) => a + b.quantity, 0);
+
     return (
         <div className='absolute top-0'>
-            <p className={`${totalQuantity > 0 ? "opacity-100" : "opacity-0"} flex items-center justify-center 
+            <p className={`${storeQuantity > 0 ? "opacity-100" : "opacity-0"} flex items-center justify-center 
                 border-none w-[24px] h-[24px] text-sm font-bold text-white bg-blue-500 rounded-full mt-[20px] ml-[12px]`}>
-                {totalQuantity}
+                {storeQuantity}
             </p>
         </div>
     )
