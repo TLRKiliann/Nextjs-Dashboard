@@ -5,7 +5,7 @@ import { FaChartColumn } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa6";
 import { MdOutlineAttachMoney } from "react-icons/md";
 import { TbWorldSearch } from "react-icons/tb";
-import { FaProductHunt } from "react-icons/fa6";
+import { FaStore } from "react-icons/fa6";
 import { IoChatbubblesOutline } from "react-icons/io5";
 import { TbCircleLetterB } from "react-icons/tb";
 import { MdLogout } from "react-icons/md";
@@ -15,7 +15,7 @@ export default function Menu() {
         <div className='flex flex-col items-center justify-start w-auto h-full text-slate-500'>
             
             <h2 className='w-full text-lg text-center text-slate-400/70 mt-5'>
-                Dashboard
+                Admin Dashboard
             </h2>
             
             <nav className="flex items-center justify-center h-full">
@@ -87,7 +87,7 @@ export default function Menu() {
                         active:text-sky-400/70 mb-4'>
                         <Link href="/dashboard/products-admin">
                             <span className='flex items-center'>
-                                <FaProductHunt size={18} /><p className='ml-2'>Admin Products</p>
+                                <FaStore size={18} /><p className='ml-2'>Store</p>
                             </span>
                         </Link>
                     </li>
