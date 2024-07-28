@@ -63,7 +63,7 @@ const data = {
 
 const DoughnutChart = () => (
     <div className='flex flex-col items-center justify-center w-full h-[100%]'>
-        <h2 className='text-base text-slate-500 mt-10'>Satisfaction</h2>
+        <h2 className='text-base font-serif text-slate-500 mt-10'>Satisfaction</h2>
         <Doughnut options={options} data={data} className='w-auto h-[100%] -mt-10'/> 
     </div>
 );

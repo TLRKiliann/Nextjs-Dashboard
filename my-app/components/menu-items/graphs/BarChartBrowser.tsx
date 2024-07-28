@@ -44,7 +44,7 @@ export const options = {
   scales: {
     x: {
       grid: {
-        color: 'rgba(120, 120, 120, 0.1)',
+        color: 'rgba(255, 255, 255, 0.1)',
       },
       ticks: {
         color: 'rgba(100, 116, 139, 1)',
@@ -55,7 +55,7 @@ export const options = {
     },
     y: {
       grid: {
-        color: 'rgba(120, 120, 120, 0.1)',
+        color: 'rgba(255, 255, 255, 0.1)',
       },
       ticks: {
         color: 'rgba(100, 116, 139, 1)',
@@ -92,8 +92,8 @@ export const data = {
 
 const BarChart = () => {
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full">
-      <h2 className="text-base text-slate-500 -mt-8 mb-2">Browsers</h2>
+    <div className="flex flex-col items-center justify-center w-[95%] h-full">
+      <h2 className="text-base font-serif text-slate-500 -mt-8 mb-2">Browsers</h2>
       <Bar options={options} data={data} className="w-full h-full px-2 -mb-10" />
     </div>
   );

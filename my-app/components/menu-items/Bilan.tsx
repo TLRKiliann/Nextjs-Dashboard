@@ -1,7 +1,7 @@
 import prisma from '@/prisma/prisma';
 import TableGraphs from './TableGraphs';
 import QuantityByUsers from './graphs/QuantityByUser';
-import SalesByProduct from './graphs/SalesByProduct';
+import QuantityByProduct from './graphs/QuantityByProduct';
 import BilanContentBox from './bilan-content-box';
 
 interface UserType {
@@ -56,7 +56,7 @@ export default async function Bilan() {
             <div className='w-full h-3/6 grid grid-cols-2 grid-rows-1 gap-4 mb-4'>
     
                 <TableGraphs>
-                    <SalesByProduct productsTotalPriceByName={productsTotalPriceByName} />
+                    <QuantityByProduct productsTotalPriceByName={productsTotalPriceByName} />
                 </TableGraphs>
 
                 <TableGraphs>

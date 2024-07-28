@@ -22,7 +22,7 @@ ChartJS.register(
 );
 
 export const options = {
-  indexAxis: 'y' as const,
+  indexAxis: 'x' as const,
   elements: {
     bar: {
       borderWidth: 2,
@@ -47,7 +47,6 @@ export const options = {
         color: 'rgba(255, 255, 255, 0.2)',
       },
       ticks: {
-        stepSize: 10,
         color: 'rgba(255, 255, 255, 0.8)',
         font: {
           size: 12,
@@ -60,6 +59,7 @@ export const options = {
       },
       ticks: {
         color: 'rgba(255, 255, 255, 0.8)',
+        setpSize: 10,
         font: {
           size: 12,
         },
@@ -68,35 +68,38 @@ export const options = {
   },
 };
 
-const QuantityByUsers: React.FC<{productsQuantityByUser: { [key: string]: number }}> = ({productsQuantityByUser}): JSX.Element => {
+const SalesByProduct: React.FC<{productsTotalPriceByName: { [key: string]: number }}> = ({productsTotalPriceByName}): JSX.Element => {
 
-    //const labels = Object.keys(productsQuantityByUser);
-    //const quantity = Object.values(productsQuantityByUser);
-
-    const productsQuantityArray = Object.entries(productsQuantityByUser);
+    const productsQuantityArray = Object.entries(productsTotalPriceByName);
 
     productsQuantityArray.sort((a, b) => b[1] - a[1]);
     
-    const users = productsQuantityArray.map(([userName, totalQuantity]) => userName);
+    const products = productsQuantityArray.map(([name, totalQuantity]) => name);
     const quantity = productsQuantityArray.map(([userName, totalQuantity]) => totalQuantity);
 
     const data = {
-        labels: users,
+        labels: products,
         datasets: [
+          /* {
+            label: 'Girls',
+            data: dataset1Values,
+            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+          }, */
           {
-            label: 'Quantity/User',
+            label: 'Quantity/Product',
             data: quantity,
             borderColor: 'rgb(53, 162, 235)',
             backgroundColor: 'rgba(53, 162, 235, 0.5)',
-          }
+          },
         ],
       };
 
     return (
         <div className="flex flex-col items-center justify-center w-[95%] h-full">
-            <h2 className="text-base font-serif text-slate-100 -mt-8 mb-2">Quantity By User</h2>
+            <h2 className="text-base font-serif text-slate-100 -mt-8 mb-2">Quantity By Product</h2>
             <Bar options={options} data={data} className="w-full h-full px-2 -mb-10" />
         </div>
     );
 }
-export default QuantityByUsers;
+export default SalesByProduct;
