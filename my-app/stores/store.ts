@@ -81,7 +81,7 @@ export const useStore = create<States & Actions>()(
         if (itemExists) {
           if (typeof itemExists.quantity === "number") {
             const updatedbearProducts = get().bearProducts.filter(
-              (product) => product.id !== productId
+              (product) => product.quantity === 0
             );
             set({ bearProducts: updatedbearProducts });
           }
