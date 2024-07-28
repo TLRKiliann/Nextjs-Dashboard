@@ -2,7 +2,7 @@ import { auth } from '@/auth';
 import prisma from '@/prisma/prisma';
 import React, { Suspense } from 'react';
 import { redirect } from 'next/navigation';
-import { ApiPublicIp, ApiGeolocation } from '@/utils/api-request';
+import { ApiGeolocation, ApiPublicIp } from '@/utils/api-request';
 import TablePage from '@/components/TablePage';
 import MapChart from '@/components/menu-items/graphs/MapChart';
 import ButtonGoBack from '@/components/ButtonGoBack';
@@ -43,7 +43,11 @@ export default async function GeolocationPage() {
         throw new Error("No geolocation available");
     } else {
         console.log("Geolocation available");
-    }
+    };
+
+    if (!geoResult) {
+        throw new Error("Error: latitude & longitude not fetched");
+    };
 
     return (
         <TablePage title='Geolocation' url="" link="">
