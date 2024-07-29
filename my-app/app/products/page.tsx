@@ -1,7 +1,9 @@
 import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
+import prisma from '@/prisma/prisma';
+import type { Product } from '@prisma/client';
 import AllProducts from '@/components/AllProducts';
-import { fetchDataFromApi } from '@/utils/api-request';
+//import { fetchDataFromApi } from '@/utils/api-request';
 import Loader from '@/components/Loader';
 import { Suspense } from 'react';
 
@@ -14,7 +16,16 @@ export default async function ProductsPage() {
     return redirect("/api/auth/signin");
   };
 
-  const products = await fetchDataFromApi();
+  //const products = await fetchDataFromApi();
+  const products: Product[] | null = await prisma.product.findMany({
+    orderBy: {
+      id: "asc"
+    }
+  });
+
+  if (!products) {
+    throw new Error("Error: prisma user.products")
+  }
 
   return (
     <Suspense fallback={<Loader />}>
