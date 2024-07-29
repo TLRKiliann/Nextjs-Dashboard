@@ -35,6 +35,10 @@ export default async function Bilan() {
         }
     });
 
+    if (allUserProducts.length === 0) {
+        throw new Error("Error: all");
+    }
+
     allUserProducts.forEach((user: UserType) => {
         let totalQuantity = 0;
         user.products.forEach((product: {quantity: number}) => {

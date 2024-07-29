@@ -1,11 +1,11 @@
 "use client";
 
 import type { Product } from '@prisma/client';
-import StoreOfProducts from '@/components/products-and-cart/store-of-products';
-import Loader from '@/components/Loader';
 import usePersistStore from '@/helpers/usePersistStore';
 import { useStore } from '@/stores/store';
 import { useEffect } from 'react';
+import StoreOfProducts from '@/components/products-and-cart/store-of-products';
+import Loader from '@/components/Loader';
 
 export default function AllProducts({ products }: { products: Product[] }): JSX.Element {
 
