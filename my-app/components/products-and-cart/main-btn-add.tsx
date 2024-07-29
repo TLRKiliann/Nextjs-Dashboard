@@ -1,6 +1,7 @@
 "use client";
 
 import type { Product } from '@prisma/client';
+import { useState } from 'react';
 import { addProductToDb } from "@/lib/actions";
 import { useStore } from "@/stores/store";
 import usePersistStore from '@/helpers/usePersistStore';
@@ -10,13 +11,14 @@ type MainBtnTypes = {
     id: number; 
     name: string; 
     product: Product;
-    quantity: number;
 };
 
-export default function MainBtnAdd({ id, name, product, quantity }: MainBtnTypes) {
+export default function MainBtnAdd({ id, name, product }: MainBtnTypes) {
 
     // zustand
     const store = usePersistStore(useStore, (state) => state);
+
+    const [show, setShow] = useState<boolean>(false);
 
     if (!store) {
         return <h2>Loading...</h2>
@@ -25,6 +27,7 @@ export default function MainBtnAdd({ id, name, product, quantity }: MainBtnTypes
     const onSubmit = async (id: number) => {
         const res = await addProductToDb({id});
         store.addProducts(product);
+        setShow(!show);
         if (res.message === "Success!") {
             toast.success("Successfully add to cart!");
         } else if (res.message === "There is an error!") {
@@ -40,9 +43,9 @@ export default function MainBtnAdd({ id, name, product, quantity }: MainBtnTypes
                 className='w-[120px] h-[38px] text-sm font-bold bg-blue-500 hover:bg-blue-600 
                     active:bg-blue-700 rounded disabled:opacity-50 m-auto'
                 aria-label={`Add one more ${name}`}
-                disabled={quantity === 1 ? true : false}
+                disabled={show === true ? true : false}
             >
-                {quantity === 1 ? "Go to Cart ⬆" : "Add to Cart"}
+                {show === true ? "Go to Cart ⬆" : "Add to Cart"}
             </button>
         </form>
     )
