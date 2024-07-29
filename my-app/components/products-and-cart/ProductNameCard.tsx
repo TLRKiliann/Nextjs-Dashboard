@@ -1,6 +1,6 @@
+import type { Product } from '@prisma/client';
 import { auth } from '@/auth';
 import prisma from '@/prisma/prisma';
-import type { Product } from '@prisma/client';
 import { redirect } from 'next/navigation';
 import Image from 'next/image';
 

@@ -22,7 +22,7 @@ ChartJS.register(
 );
 
 export const options = {
-  indexAxis: 'x' as const,
+  indexAxis: 'y' as const,
   elements: {
     bar: {
       borderWidth: 2,
@@ -33,7 +33,7 @@ export const options = {
     legend: {
       position: 'top' as const,
       labels: {
-        color: 'rgba(100, 116, 139, 1)',
+        color: 'rgba(255, 255, 255, 0.8)',
       }
     },
     title: {
@@ -44,10 +44,11 @@ export const options = {
   scales: {
     x: {
       grid: {
-        color: 'rgba(120, 120, 120, 0.1)',
+        color: 'rgba(255, 255, 255, 0.2)',
       },
       ticks: {
-        color: 'rgba(100, 116, 139, 1)',
+        stepSize: 1,
+        color: 'rgba(255, 255, 255, 0.8)',
         font: {
           size: 12,
         },
@@ -55,10 +56,10 @@ export const options = {
     },
     y: {
       grid: {
-        color: 'rgba(120, 120, 120, 0.1)',
+        color: 'rgba(255, 255, 255, 0.2)',
       },
       ticks: {
-        color: 'rgba(100, 116, 139, 1)',
+        color: 'rgba(255, 255, 255, 0.8)',
         font: {
           size: 12,
         },
@@ -67,38 +68,35 @@ export const options = {
   },
 };
 
-const SalesByProduct: React.FC<{productsTotalPriceByName: { [key: string]: number }}> = ({productsTotalPriceByName}): JSX.Element => {
+const QuantityByUsers: React.FC<{productsQuantityByUser: { [key: string]: number }}> = ({productsQuantityByUser}): JSX.Element => {
 
-    const productsQuantityArray = Object.entries(productsTotalPriceByName);
+    //const labels = Object.keys(productsQuantityByUser);
+    //const quantity = Object.values(productsQuantityByUser);
+
+    const productsQuantityArray = Object.entries(productsQuantityByUser);
 
     productsQuantityArray.sort((a, b) => b[1] - a[1]);
     
-    const products = productsQuantityArray.map(([name, totalQuantity]) => name);
+    const users = productsQuantityArray.map(([userName, totalQuantity]) => userName);
     const quantity = productsQuantityArray.map(([userName, totalQuantity]) => totalQuantity);
 
     const data = {
-        labels: products,
+        labels: users,
         datasets: [
-          /* {
-            label: 'Girls',
-            data: dataset1Values,
-            borderColor: 'rgb(255, 99, 132)',
-            backgroundColor: 'rgba(255, 99, 132, 0.5)',
-          }, */
           {
-            label: 'Product/Total Price',
+            label: 'Quantity/User',
             data: quantity,
             borderColor: 'rgb(53, 162, 235)',
             backgroundColor: 'rgba(53, 162, 235, 0.5)',
-          },
+          }
         ],
       };
 
     return (
-        <div className="flex flex-col items-center justify-center w-full h-full">
-            <h2 className="text-base font-serif text-slate-600/70 -mt-8 mb-2">Sales By Product</h2>
+        <div className="flex flex-col items-center justify-center w-[95%] h-full">
+            <h2 className="text-base font-serif text-slate-100 -mt-8 mb-2">Quantity By User</h2>
             <Bar options={options} data={data} className="w-full h-full px-2 -mb-10" />
         </div>
     );
 }
-export default SalesByProduct;
+export default QuantityByUsers;

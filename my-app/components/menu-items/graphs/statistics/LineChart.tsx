@@ -38,7 +38,7 @@ export const options = {
     y: {
       grid: {
         drawBorder: true,
-        color: 'rgba(120, 120, 120, 0.1)',
+        color: 'rgba(255, 255, 255, 0.1)',
       },
       ticks: {
         beginAtZero: true,
@@ -54,7 +54,7 @@ export const options = {
     x: {
       grid: {
         drawBorder: true,
-        color: 'rgba(120, 120, 120, 0.1)',
+        color: 'rgba(255, 255, 255, 0.1)',
       },
       ticks: {
         beginAtZero: false,
@@ -86,8 +86,8 @@ const LineChart: React.FC<{dataForChart: {date: string, connections: number}[]}>
   };
 
   return (
-    <div className="flex flex-col items-center justify-center w-[100%] h-[70%] text-slate-500">
-      <h2 className="text-base font-serif text-slate-600/70 -mt-8 mb-2">Daily Traffic</h2>
+    <div className="flex flex-col items-center justify-center w-[95%] h-[70%] text-slate-500">
+      <h2 className="text-base font-serif text-slate-500 -mt-8 mb-2">Daily Traffic</h2>
       <Line options={options} data={data} className="w-[100%] h-[70%] -mb-10 m-2" />
     </div>
   );

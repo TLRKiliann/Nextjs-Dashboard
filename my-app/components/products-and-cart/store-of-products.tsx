@@ -36,7 +36,6 @@ export default function StoreOfProducts({ product }: ProductProps) {
                         <MainBtnAdd
                             id={product.id}
                             name={product.name}
-                            quantity={product.quantity}
                             product={product}
                         />
                     </div>

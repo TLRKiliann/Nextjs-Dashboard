@@ -7,7 +7,7 @@ import DailyTraffic from './graphs/daily-traffic';
 
 export default function GraphCharts() {
     return (
-        <div className='w-full h-full grid grid-cols-2 grid-rows-2'>
+        <div className='w-full h-full grid grid-cols-2 grid-rows-2 gap-4 p-4'>
 
             <TableGraphs>
                 <DailyTraffic />

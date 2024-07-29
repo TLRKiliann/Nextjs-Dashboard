@@ -3,7 +3,7 @@ type BoxValuesTypes = {
     str_2: string;
     str_3: string;
     str_4: string;
-    value_1: number;
+    value_1: number | string;
     value_2: number;
     value_3: number;
     value_4: string | number;

@@ -1,8 +1,11 @@
 import prisma from '@/prisma/prisma';
 import TableGraphs from './TableGraphs';
-import QuantityByUsers from './graphs/QuantityByUser';
-import SalesByProduct from './graphs/SalesByProduct';
-import BilanContentBox from './bilan-content-box';
+import QuantityByUsers from './bilan-components/QuantityByUser';
+import TotalSalesByProduct from './bilan-components/TotalSalesByProduct';
+import BilanConnections from './bilan-components/bilan-connections';
+import BilanSales from './bilan-components/bilan-sales';
+import BilanSatisfaction from './bilan-components/bilan-satisfaction';
+import BilanEmails from './bilan-components/bilan-emails';
 
 interface UserType {
     id: string;
@@ -32,6 +35,10 @@ export default async function Bilan() {
         }
     });
 
+    if (allUserProducts.length === 0) {
+        throw new Error("Error: all");
+    }
+
     allUserProducts.forEach((user: UserType) => {
         let totalQuantity = 0;
         user.products.forEach((product: {quantity: number}) => {
@@ -56,7 +63,7 @@ export default async function Bilan() {
             <div className='w-full h-3/6 grid grid-cols-2 grid-rows-1 gap-4 mb-4'>
     
                 <TableGraphs>
-                    <SalesByProduct productsTotalPriceByName={productsTotalPriceByName} />
+                    <TotalSalesByProduct productsTotalPriceByName={productsTotalPriceByName} />
                 </TableGraphs>
 
                 <TableGraphs>
@@ -69,53 +76,17 @@ export default async function Bilan() {
 
                 <div className='w-full flex flex-row items-center gap-4'>
                     
-                    <BilanContentBox 
-                        str_1="Nb of connection per day"
-                        str_2="Nb of connection per week"
-                        str_3="Nb of connection per month"
-                        str_4="Nb of connection per year"
-                        value_1={0}
-                        value_2={0}
-                        value_3={0}
-                        value_4={0}
-                    />
+                    <BilanConnections />
 
-                    <BilanContentBox 
-                        str_1="Total Sales"
-                        str_2="Total Quantity"
-                        str_3="Total Stock"
-                        str_4="Best Seller"
-                        value_1={0}
-                        value_2={0}
-                        value_3={0}
-                        value_4={"product name"}
-                    />
+                    <BilanSales />
 
                 </div>
 
                 <div className='w-full flex flex-row items-center gap-4'>
                     
-                    <BilanContentBox 
-                        str_1="Very satisfied"
-                        str_2="Good"
-                        str_3="Neutral"
-                        str_4="Unsatisfied"
-                        value_1={0}
-                        value_2={0}
-                        value_3={0}
-                        value_4={0}
-                    />
+                    <BilanSatisfaction />
 
-                    <BilanContentBox 
-                        str_1="Email per day"
-                        str_2="Email per week"
-                        str_3="Email per month"
-                        str_4="Email per year"
-                        value_1={0}
-                        value_2={0}
-                        value_3={0}
-                        value_4={0}
-                    />
+                    <BilanEmails />
 
                 </div>
 

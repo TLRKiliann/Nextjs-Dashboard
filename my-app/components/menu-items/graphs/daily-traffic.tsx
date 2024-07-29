@@ -34,7 +34,7 @@ export default async function DailyTraffic() {
                 ? connectionsByDay[formattedDate] + 1 
                 : 1;
         });
-    
+
         // convert data for LineChart.tsx to [{date: string, connections: number}]
         const dataForChart: {date: string, connections: number}[] = Object.keys(connectionsByDay).map((date) => (
             { date, connections: connectionsByDay[date] }
