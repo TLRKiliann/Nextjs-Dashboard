@@ -1,48 +1,13 @@
-import prisma from '@/prisma/prisma';
 import type { Product } from '@prisma/client';
-import { auth } from '@/auth';
-import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import AddItemToCart from '@/components/products-and-cart/action-cart-item/add-item-to-cart';
 import DeleteItemFromCart from '@/components/products-and-cart/action-cart-item/delete-item-from-cart';
 import RemoveItemsFromCart from '@/components/products-and-cart/action-cart-item/remove-items-from-cart';
 
-type TypeProduct = {
-    quantity: number;
-};
-
-type UserType = {
-    products: TypeProduct[];
-};
-
 export default async function ShoppingCartPage({products}: {products: Product[]}) {
 
-    const session = await auth();
-    const user = session?.user;
-
-    if (!user?.id) {
-        return redirect("/api/auth/signin");
-    };
-
-    const storeQuantity: UserType | null = await prisma.user.findUnique({
-        where: {
-            id: user.id,
-        },
-        include: {
-            products: {
-                select: {
-                    quantity: true,
-                } 
-            }
-        }
-    });
-
-    if (!storeQuantity) {
-        throw new Error("storeQuantity not set!");
-    };
-
-    const totalQuantity = storeQuantity.products.reduce((acc, product) => acc + product.quantity, 0);
+    const totalQuantity = products.reduce((acc, product) => acc + product.quantity, 0);
 
     return (
         <div className='w-full min-h-screen flex flex-col text-slate-500 bg-slate-100 p-4 pt-[11vh]'>
