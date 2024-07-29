@@ -11,7 +11,7 @@ export default async function AllUserProfiles() {
     }
   });
 
-  if (!users) {
+  if (users.length === 0) {
     throw new Error("Error: fetch users failed!");
   };
 
