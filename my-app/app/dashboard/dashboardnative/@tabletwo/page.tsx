@@ -14,6 +14,10 @@ export default async function TableTwoPage() {
         }
     });
 
+    if (products.length === 0) {
+        throw new Error("Error: products fetch failed!");
+    };
+
     return (
         <TablePage title="Best Sellers" url="/dashboard/dashboardnative/geolocation" link="Geolocation">
 
