@@ -25,6 +25,7 @@ model User {
   role            Role      @default(USER)
   products        Product[]
   connections     Connection[]
+  payments        Payment[]
 
   @@map("users")
 }
@@ -64,6 +65,18 @@ model Connection {
   user        User?     @relation(fields: [userId], references: [id])
   userId      String
   createdAt   DateTime  @default(now())
+}
+
+model Payment {
+  id            Int       @id @default(autoincrement())
+  address       String
+  city          String
+  npa           String
+  country       String
+  username      User      @relation(fields: [usernameId], references: [id])
+  usernameId    String
+  method        String    @default("method")
+  createdAt     DateTime  @default(now())
 }
 
 model Account {
