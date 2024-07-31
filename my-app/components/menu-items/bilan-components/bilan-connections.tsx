@@ -1,5 +1,5 @@
 import { subDays, startOfDay, format, endOfMonth, startOfMonth, startOfYear, endOfYear } from 'date-fns';
-import { getConnections } from '@/lib/getConnections';
+import { getConnections } from '@/lib/functions';
 import BilanContentBox from './bilan-content-box';
 
 export default async function BilanConnections() {
@@ -20,6 +20,14 @@ export default async function BilanConnections() {
 
         // connections for last 7
         const connections = await getConnections(new Date(sevenDaysAgo), new Date(today));
+
+        if (connections.length === 0) {
+            return (
+                <div className='flex items-center justify-center w-full h-full bg-white rounded-md shadow-md'>
+                    <p className='bg-slate-100/70 p-2'>No connections in the last 7 days!</p>
+                </div>
+            )
+        };
 
         /* 
             1) timezone milliseconds initialzed to 0 (392Z (postgresql) to 000Z (date-fns))
