@@ -4,8 +4,8 @@ type BoxValuesTypes = {
     str_3: string;
     str_4: string;
     value_1: number | string;
-    value_2: number;
-    value_3: number;
+    value_2: number | string;
+    value_3: number | string;
     value_4: string | number;
 };
 
