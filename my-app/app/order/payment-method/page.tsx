@@ -1,7 +1,9 @@
 "use client";
 
+import { recordMethod } from '@/lib/actions';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
+import toast from 'react-hot-toast';
 
 type MethodProps = {
     paypalMethod: boolean;
@@ -9,7 +11,7 @@ type MethodProps = {
     onDeliveryMethod: boolean;
 }
 
-export default function PaymentPage() {
+export default function PaymentMethodPage() {
 
     const router = useRouter();
 
@@ -28,7 +30,7 @@ export default function PaymentPage() {
             onDeliveryMethod: false
         })
         setPathMethod("Paypal");
-    }
+    };
 
     const handleStripe = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPaymentMethod({
@@ -37,7 +39,7 @@ export default function PaymentPage() {
             onDeliveryMethod: false
         })
         setPathMethod("Stripe");
-    }
+    };
 
     const handleDelivery = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPaymentMethod({
@@ -46,12 +48,28 @@ export default function PaymentPage() {
             onDeliveryMethod: event.currentTarget.checked,
         })
         setPathMethod("On_Delivery");
-    }
+    };
+
+    const onSubmit = async (pathMethod: string) => {
+        const response = await recordMethod(pathMethod);
+        if (response.message === "Payment Success!") {
+            toast.success("Payment method done!");
+            router.push("/order/payment-method/payment")
+        } else if (response.message === "Error with payment method!") {
+            toast.error("Payment method failed!")
+        } else {
+            toast.error("Error with payment method");
+        }    
+    };
 
     return (
-        <div className='flex flex-col items-center justify-center w-full min-h-screen text-slate-800 bg-slate-100'>
+        <div 
+            className='flex flex-col items-center justify-center w-full min-h-screen text-slate-800 bg-slate-100'>
 
-            <div className='flex flex-col items-start justify-between w-[360px] h-full bg-white px-4 py-6 rounded shadow-lg'>
+            <form
+                action={() => onSubmit(pathMethod)} 
+                className='flex flex-col items-start justify-between w-[360px] h-full bg-white px-4 py-6 
+                rounded shadow-lg'>
 
                 <div className='flex items-center w-full h-[40px] mb-4 pl-4'>
                     <h1 className='text-lg font-bold text-slate-500'>
@@ -71,7 +89,6 @@ export default function PaymentPage() {
                                 onChange={(e) => handlePaypal(e)}
                                 className='mr-5'
                             />
-                    
                             Paypal
                         </label>
                     </div>
@@ -117,18 +134,15 @@ export default function PaymentPage() {
                         Back
                     </button>
                     <button 
-                        type="button"
-                        onClick={() => router.push(`/order/payment/${pathMethod}`)}
+                        type="submit"
                         disabled={!pathMethod ? true : false}
-                        className={`${!pathMethod ? "opacity-50" : "opacity-100"} text-base text-slate-50 font-bold bg-blue-500 
-                            hover:bg-blue-600 active:bg-blue-700
-                            px-6 py-[5px] rounded shadow-lg`}>
+                        className={`${!pathMethod ? "opacity-50" : "opacity-100"} text-base text-slate-50 
+                            font-bold bg-blue-500 hover:bg-blue-600 active:bg-blue-700 px-6 py-[5px] 
+                            rounded shadow-lg`}>
                         Next
                     </button>
                 </div>
-            
-            </div>
-
+            </form>
         </div>
     )
 }

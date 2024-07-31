@@ -1,7 +1,6 @@
-import React from 'react'
 import { subDays, startOfDay, format, endOfMonth, startOfMonth, startOfYear, endOfYear } from 'date-fns';
+import { getMessages } from '@/lib/functions';
 import BilanContentBox from './bilan-content-box';
-import { getMessages } from '@/lib/getConnections';
 
 export default async function BilanEmails() {
     try {
@@ -21,14 +20,21 @@ export default async function BilanEmails() {
 
         // connections for last 7
         const messages = await getMessages(new Date(sevenDaysAgo), new Date(today));
-
+        
+        if (messages.length === 0) {
+            return (
+                <div className='flex items-center justify-center w-full h-full bg-white rounded-md shadow-md'>
+                    <p className='bg-slate-100/70 p-2'>No messages in the last 7 days!</p>
+                </div>
+            )
+        };
         /* 
             1) timezone milliseconds initialzed to 0 (392Z (postgresql) to 000Z (date-fns))
             2) if no connection (equal to undefined) + 1 (next date)
         */
         const messagesByDay: {[key: string]: number} = {};
-        messages.forEach((connection) => {
-            const date = new Date(connection.createdAt);
+        messages.forEach((message) => {
+            const date = new Date(message.createdAt);
             date.setMilliseconds(0);
             const formattedDate = format(date, 'yyyy-MM-dd');
             messagesByDay[formattedDate] = messagesByDay[formattedDate] 
@@ -36,21 +42,22 @@ export default async function BilanEmails() {
                 : 1;
         });
 
-        const totalMessages = Object.values(messagesByDay).reduce((acc, val) => acc + val, 0);
+        const totalMessages: number = Object.values(messagesByDay).reduce((acc, val) => acc + val, 0);
         const averageMessages: number = totalMessages > 0 ? totalMessages / 7 : 0;
 
         const averagePerDay: { averageMessages: number } = { averageMessages };
-
+        
         // connectionsPerMonth
         const messagesPerMonth = await getMessages(new Date(startOfMonthDate), new Date(endOfMonthDate)); 
+        console.log("ok messagesPerMonth")
 
         const messagesByMonth: {[key: string]: number} = {};
-        messagesPerMonth.forEach((connection) => {
-            const date = new Date(connection.createdAt);
+        messagesPerMonth.forEach((message) => {
+            const date = new Date(message.createdAt);
             date.setMilliseconds(0);
-            const formattedDate = format(date, 'yyyy-MM-dd');
-            messagesByMonth[formattedDate] = messagesByMonth[formattedDate] 
-                ? messagesByMonth[formattedDate] + 1 
+            const formattedDatePerMonth = format(date, 'yyyy-MM-dd');
+            messagesByMonth[formattedDatePerMonth] = messagesByMonth[formattedDatePerMonth] 
+                ? messagesByMonth[formattedDatePerMonth] + 1 
                 : 1;
         });
 
@@ -58,13 +65,14 @@ export default async function BilanEmails() {
 
         // connectionsPerYear
         const messagesPerYear = await getMessages(new Date(startOfYearDate), new Date(endOfYearDate));
+        console.log("messagesPerYear");
 
         const nbMessagesPerYear: {[key: string]: number} = {};
-        messagesPerYear.forEach((connection) => {
-            const date = new Date(connection.createdAt);
-            const formattedMonth = format(date, 'yyyy-MM');
-            nbMessagesPerYear[formattedMonth] = nbMessagesPerYear[formattedMonth] 
-                ? nbMessagesPerYear[formattedMonth] + 1 
+        messagesPerYear.forEach((message) => {
+            const date = new Date(message.createdAt);
+            const formattedPerYear = format(date, 'yyyy-MM');
+            nbMessagesPerYear[formattedPerYear] = nbMessagesPerYear[formattedPerYear] 
+                ? nbMessagesPerYear[formattedPerYear] + 1 
                 : 1;
         });
 
@@ -83,7 +91,7 @@ export default async function BilanEmails() {
             />
         )
     } catch (error) {
-        console.error("Error: bilan-emails error!");
+        console.error("Error: bilan-emails error!", error);
         return <div>Error loading data</div>;
     }
 }

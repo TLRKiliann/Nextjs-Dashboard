@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import ContactForm from '@/components/contact/contact-form';
 
+
 export const metadata: Metadata = {
     title: {
       absolute: "Contact"
@@ -17,9 +18,9 @@ export default async function ContactPage() {
 
     const user = session?.user;
 
-    if (!user) {
+    if (!user?.email) {
         return redirect("/api/auth/signin");
-    }
+    };
 
     return (
         <div className='flex flex-row items-center justify-around w-full min-h-screen bg-gradient-to-bl 

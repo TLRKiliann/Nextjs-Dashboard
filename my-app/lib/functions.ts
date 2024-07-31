@@ -33,14 +33,15 @@ export const getMessages = async (startDate: Date, endDate: Date): Promise<Messa
                 }
             }
         });
+        console.log(messages);
     
         if (messages.length === 0) {
-            throw new Error("Error: prisma connection failed!");
+            console.log("no message retrived");
         };
 
         return messages;
     } catch (error) {
-        console.log("Error: connections fetch failed (getConnections())", error);
-        throw new Error("Error: connections fetch failed (getConnections())");
+        console.log("Error: connections fetch failed (getMessages())", error);
+        throw new Error("Error: connections fetch failed (getMessages())");
     }
 };

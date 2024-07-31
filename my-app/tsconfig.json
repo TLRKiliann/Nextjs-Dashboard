@@ -34,7 +34,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "helpers/usePersistStore",
-    "app/order/payment/order"
+    "app/order/payment-method/order"
   ],
   "exclude": [
     "node_modules"

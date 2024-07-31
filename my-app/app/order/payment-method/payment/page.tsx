@@ -1,13 +1,45 @@
-import { notFound } from 'next/navigation';
+import { auth } from '@/auth';
+import prisma from '@/prisma/prisma';
+import { redirect } from 'next/navigation';
+import Link from 'next/link';
 import OrderItems from '@/components/order/order-items';
 import OrderSummary from '@/components/order/order-summary';
 import OrderShipping from '@/components/order/order-shipping';
 import OrderPayment from '@/components/order/order-payment';
 
-export default function OrderPage({params}: {params: {orderId: string}}) {
+export default async function OrderPage() {
 
-    if (!params.orderId) {
-        notFound();
+    const session = await auth();
+    const user = session?.user;
+
+    if (!user?.id) {
+        return redirect("/api/auth/signin");
+    };
+
+    const paymentMethod = await prisma.user.findUnique({
+        where: {
+            id: user.id
+        },
+        include: {
+            payments: {
+                select: {
+                    usernameId: true,
+                    method: true
+                }
+            }
+        }
+    });
+
+    if (!paymentMethod?.payments.map((meth) => meth.method)) {
+        throw new Error("Error: payment method fetch failed!");
+    }
+
+    const findMethod = paymentMethod?.payments.find((meth) => meth.usernameId === user.id ? {...meth, method: meth.method}: meth);
+    
+    if (findMethod) {
+        console.log(findMethod, "findMethod")
+    } else {
+        throw new Error("Error: no method")
     };
 
     return (
@@ -32,7 +64,7 @@ export default function OrderPage({params}: {params: {orderId: string}}) {
 
                     <div className='flex flex-col items-start justify-evenly w-full h-full p-4'>
 
-                        <OrderPayment params={params} />
+                        <OrderPayment findMethod={findMethod} />
 
                     </div>
 
@@ -54,18 +86,14 @@ export default function OrderPage({params}: {params: {orderId: string}}) {
                     </div>
 
                     <div className='flex flex-col items-center justify-center w-[92%]'>
-                        <button type="submit" className='w-full text-base font-bold text-slate-50 bg-blue-500 
-                            hover:bg-blue-600 active:bg-blue-700 py-2 rounded'>
+                        <Link href={`/order/payment-method/payment/${findMethod.method}`}
+                            className='w-full text-base text-center font-bold text-slate-50 bg-blue-500 
+                            hover:bg-blue-600 active:bg-blue-700 transition-colors py-2 rounded'>
                             Place Order
-                        </button>
+                        </Link>
                     </div>
-
-
                 </div>
-
             </div>
-
-
         </div>
     )
-}
+};

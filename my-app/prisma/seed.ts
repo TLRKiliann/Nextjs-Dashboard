@@ -215,12 +215,13 @@ async function main() {
             name: 'Rebecca VonMistle',
             password: '$2a$12$dMkoKtPKkJiuWQXNMJMDIex2ahUZ/Ed2.PVBc0.U.Am4mjVXMB/ze',
             isConnected: false,
-        },
+        }
     })
-    const connectionOne = await prisma.connection.upsert({
+    /*const connectionOne = await prisma.connection.upsert({
         where: {id: '24b167ce-b9f2-4947-85e5-6e8cbc718c35'},
         update: {},
         create: { 
+            id: '24b167ce-b9f2-4947-85e5-6e8cbc718c35',
             userId: 'f675efe7-eaab-48fb-a882-d90aad291e38',
             createdAt: "2024-07-20T20:06:00.392Z"
         },
@@ -256,12 +257,12 @@ async function main() {
             userId: 'f675efe7-eaab-48fb-a882-d90aad291e38',
             createdAt: "2024-07-23T21:45:00.392Z"
         },
-    })
+    })*/
     console.log(
         { 
             productOne, productTwo, productThree, productFour, productFive, productSix, productSeven, 
             alice, bob, admin, bruce, celestine, jason, jean, justine, maria, paula, rebecca,
-            connectionOne, connectionTwo, connectionThree, connectionFour, connectionFive
+            //connectionOne, connectionTwo, connectionThree, connectionFour, connectionFive
         }
     )
 }
