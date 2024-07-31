@@ -349,3 +349,75 @@ export async function adminEmail(formData: FormData) {
     };
 };
 
+// address recoder
+export const saveAddress = async (formData: FormData) => {
+    const session = await auth();
+    const user = session?.user;
+
+    if (!user?.id) {
+        return redirect("/api/auth/signin");
+    };
+
+    try {
+        await prisma.payment.create({
+            data: {
+                usernameId: String(user.id),
+                address: (formData.get("address") as string),
+                city: (formData.get("city") as string),
+                npa: (formData.get("npa") as string),
+                country: (formData.get("country") as string)
+            }
+        })
+        
+    } catch (error) {
+        return {
+            message: "Error with address register!"
+        };
+    }
+    revalidatePath("/order/address")
+    return {
+        message: "Address Successfully Registered!"
+    };
+}
+
+//payment method
+export const recordMethod = async (pathMethod: string) => {
+    const session = await auth();
+    const user = session?.user;
+
+    if (!user?.id) {
+        return redirect("/api/auth/signin");
+    };
+
+    try {
+        const lastPayment = await prisma.payment.findFirst({
+            where: {
+                usernameId: user.id,
+            },
+            orderBy: {
+                createdAt: 'desc',
+            },
+        });
+        if (!lastPayment) {
+            return {
+                message: "No payment found for this user!"
+            };
+        }
+        await prisma.payment.update({
+            data: {
+                method: pathMethod,
+            },
+            where: {
+                id: lastPayment.id,
+            }
+        });
+    } catch (error) {
+        return {
+            message: "Error with payment method!"
+        };
+    }
+    revalidatePath("/order/payment-method")
+    return {
+        message: "Payment Success!"
+    };
+};
