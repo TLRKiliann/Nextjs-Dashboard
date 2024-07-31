@@ -11,6 +11,7 @@ export default async function AdminAccessLink() {
     if (!user?.email) {
         return null;
     };
+    
     const admin = await prisma.user.findUnique({
         where: {
             email: user.email,

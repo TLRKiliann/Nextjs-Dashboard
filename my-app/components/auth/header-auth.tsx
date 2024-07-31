@@ -29,9 +29,10 @@ const HeaderAuth = async () => {
         });
     };
 
+    //bg-slate-50/30
     return (
         <div className='absolute top-0 z-10 flex flex-row items-center justify-between w-full h-[70px] 
-            text-lg font-semibold text-slate-50 bg-slate-50/30 shadow-auth pr-10'>
+            text-lg font-semibold text-slate-50 bg-gradient-to-l from-cyan-500 to-blue-500  shadow-auth pr-10'>
 
             <div className="ml-2 rounded">
                 <Image 
