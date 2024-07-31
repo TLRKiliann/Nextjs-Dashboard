@@ -26,7 +26,7 @@ export default async function AdminAccessLink() {
     return (
         <>
         {admin ? (
-            <li className="list-none text-violet-500/70 hover:text-violet-500 active:text-violet-400">
+            <li className="list-none text-lime-200 hover:text-lime-300 active:text-lime-400">
                 <Link href="/dashboard/dashboardnative">Dashboard (admin)</Link>
             </li>
         ) : null}

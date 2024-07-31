@@ -101,8 +101,9 @@ export const LoginForm = () => {
       </div>
       <button
         type='submit'
-        style={{ backgroundColor: `${submitting ? '#ccc' : '#3446eb'}` }}
-        className='inline-block px-7 py-4 bg-blue-600 text-white text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full'
+        className='inline-block px-7 h-[48px] leading-snug bg-blue-600 text-white text-sm uppercase rounded shadow-md 
+          focus:shadow-lg focus:outline-none focus:ring-0 hover:bg-blue-700 hover:shadow-lg active:bg-blue-800 active:shadow-lg transition 
+          duration-150 ease-in-out w-full'
         disabled={submitting}
       >
         {submitting ? 'loading...' : 'Sign In'}
@@ -113,8 +114,9 @@ export const LoginForm = () => {
       </div>
 
       <a
-        className='px-7 py-2 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center mb-3'
-        style={{ backgroundColor: '#3b5998' }}
+        className='px-7 py-2 text-white font-medium text-sm leading-snug uppercase rounded shadow-md 
+          bg-blue-800/90 hover:bg-blue-800 active:bg-blue-900 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition 
+          duration-150 ease-in-out w-full flex justify-center items-center mb-3'
         onClick={() => signIn('google', { callbackUrl })}
         role='button'
       >
@@ -129,8 +131,10 @@ export const LoginForm = () => {
         Continue with Google
       </a>
       <a
-        className='px-7 py-2 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center'
-        style={{ backgroundColor: '#55acee' }}
+        className='px-7 py-2 text-white font-medium text-sm leading-snug uppercase rounded shadow-md 
+          bg-sky-700/50 hover:bg-sky-800/50 active:bg-sky-700/60
+          hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition 
+          duration-150 ease-in-out w-full flex justify-center items-center'
         onClick={() => signIn('github', { callbackUrl })}
         role='button'
       >

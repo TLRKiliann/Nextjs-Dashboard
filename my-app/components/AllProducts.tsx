@@ -27,7 +27,7 @@ export default function AllProducts({ products }: { products: Product[] }): JSX.
         return <Loader />
     };
     return (
-        <div className='min-h-screen grid grid-cols-3 xl:grid-cols-4 grid-rows-3 bg-slate-100 gap-4 p-4 pt-[12vh]'>
+        <div className='min-h-screen grid grid-cols-3 xl:grid-cols-4 grid-rows-3 bg-slate-50 gap-4 p-4 pt-[12vh]'>
             {store.bearProducts.map((product: Product) => (
                 <StoreOfProducts
                     key={product.id}
