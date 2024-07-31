@@ -27,15 +27,33 @@ export default function ContactForm({user}: {user: User}) {
 
     return (
         <form action={onSubmit}>
-            <div className='mb-8'>
+
+            <div className='flex flex-row items-center mb-4'>
+                <label className="w-2/5" htmlFor="src">Send from:</label>
                 <input
                     type="email"
                     id="src"
                     name="src"
-                    value={user.email!}
+                    value={user.email ?? "user email"}
                     readOnly
-                    placeholder={user.email!}
-                    className='form-control block w-full px-2 py-3 text-sm font-normal text-gray-700 
+                    placeholder={user.email ?? "user email"}
+                    className='form-control block w-3/5 px-2 py-2 text-sm font-normal text-gray-700 
+                        bg-white bg-clip-padding border border-solid border-gray-300 rounded transition 
+                        ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 
+                        focus:outline-none'
+                    required
+                />
+            </div>
+
+            <div className='flex flex-row items-center'>
+                <label className="w-2/5" htmlFor="dst">Send to:</label>
+                <input
+                    type="email"
+                    id="dst"
+                    name="dst"
+                    readOnly
+                    placeholder="admin@prisma.io"
+                    className='form-control block w-3/5 px-2 py-2 text-sm font-normal text-gray-500/70 
                         bg-white bg-clip-padding border border-solid border-gray-300 rounded transition 
                         ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 
                         focus:outline-none'
