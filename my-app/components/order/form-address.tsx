@@ -1,9 +1,9 @@
 "use client";
 
 import { saveAddress } from '@/lib/actions';
+import { useAction } from 'next-safe-action/hooks';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 
 type AddressProps = {
@@ -15,7 +15,17 @@ type AddressProps = {
 
 export default function FormAddress() {
 
-    const router = useRouter();
+    // next-safe-action
+    const { execute } = useAction(saveAddress, {
+        onSuccess: () => {
+            toast.success("Address Successfully Registered!");
+            console.log("Address Successfully Registered!");
+        },
+        onError: () => {
+            toast.error("Error with message!");
+            console.log("Error with message!");
+        }
+    });
 
     const [allStatesAddress, setAllStateAddress] = useState<AddressProps>({
         addressData: "",
@@ -45,23 +55,11 @@ export default function FormAddress() {
             !allStatesAddress.npaData || !allStatesAddress.countryData;
     };
 
-    const onSubmit = useCallback(async (formData: FormData) => {
-        const res = await saveAddress(formData);
-        if (res.message === "Address Successfully Registered!") {
-            toast.success("Address Successfully Registered!");
-            router.push("/order/payment-method");
-        } else if (res.message === "Error with address register!") {
-            toast.error("Error: address not saved!");
-        } else {
-            toast.error("Error unknown: save address failed!");
-        }
-    }, [router]);
-
     return (
         <div className='flex flex-col items-center justify-center w-full min-h-screen text-slate-500 bg-slate-100'>
 
             <form 
-                action={onSubmit} 
+                action={execute} 
                 className='flex flex-col items-start justify-center w-[440px] h-full bg-white px-4 py-6 rounded shadow-lg'>
             
                 <div className='pl-4'>

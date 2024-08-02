@@ -4,9 +4,22 @@ import { User } from "next-auth";
 import { useState } from "react";
 import { adminEmail } from "@/lib/actions";
 import toast from "react-hot-toast";
+import { useAction } from "next-safe-action/hooks";
 
 export default function ResponseAdminEmail({ id, dst, user, prevMsg }: 
   { id: string; dst: string; user: User; prevMsg: string; }) {
+
+  // next-safe-action
+  const { execute } = useAction(adminEmail, {
+    onSuccess: () => {
+      toast.success("Message sent successfully!");
+      console.log("Message sent successfully!");
+    },
+    onError: () => {
+      toast.error("Error with message!");
+      console.log("Error with message!");
+    }
+  });
 
   const [isShow, setIsShow] = useState<boolean>(false);
   const [textMail, setTextMail] = useState<string>("");
@@ -17,21 +30,6 @@ export default function ResponseAdminEmail({ id, dst, user, prevMsg }:
 
   const handleTextArea = (event: React.ChangeEvent<HTMLTextAreaElement>): void => {
     setTextMail(event.target.value);
-  };
-
-  const onSubmit = async (formData: FormData) => {
-    const response = await adminEmail(formData);
-
-    if (response.message === "Success!") {
-      toast.success("Message sent successfully!");
-      setIsShow(!isShow);
-      setTextMail("");
-    } else if (response.message = "There is an error!") {
-      toast.error("Error: Message not sent!")
-    }
-    else {
-      toast.error("Something went wrong!")
-    }
   };
 
   return (
@@ -46,7 +44,7 @@ export default function ResponseAdminEmail({ id, dst, user, prevMsg }:
       {isShow === true ? (
         <div className='fixed z-40 flex items-center bg-slate-700/50 w-[80%] xl:w-[86%] right-0 top-0 bottom-0 backdrop-blur-sm'>
           
-          <form action={onSubmit} className='z-50 flex flex-col w-[600px] h-auto bg-slate-800 text-slate-100  
+          <form action={execute} className='z-50 flex flex-col w-[600px] h-auto bg-slate-800 text-slate-100  
             m-auto p-4 rounded shadow-out'>
             
             <div className="mb-4">

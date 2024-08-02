@@ -5,21 +5,22 @@ import toast from 'react-hot-toast';
 import { FaTrashCan } from 'react-icons/fa6';
 
 export default function RemoveEmail({id}: {id: string;}) {
-    const revalidateEmail = async (id: string) => {
-        const res = await removeEmail(id);
-        if (res.message === "Success!") {
-            toast.success("Email deleted !");
-        } else if (res.message === "There is an error!") {
-            toast.error("Error to delete email");
-        } else {
-            toast.error("An error occured!");
-        }
-    };
-
     return (
-        <button 
+        <button
+            key={id}
             type="button"
-            onClick={() => revalidateEmail(id)}
+            onClick={async () => {
+                const value = await removeEmail({id});
+
+                if (value?.validationErrors) {
+                    toast.error("Error to delete email");
+                };
+                if (value?.serverError) {
+                    toast.error("An error occured!");
+                };
+
+                toast.success("Email deleted !");
+            }}
             className='absolute text-rose-500 hover:text-rose-600 active:text-rose-700'>
             <FaTrashCan size={16} />
         </button>

@@ -5,22 +5,21 @@ import toast from 'react-hot-toast';
 import { MdMarkEmailUnread } from 'react-icons/md';
 
 export default function OpenEmail({id}: {id: string;}) {
-
-    const revalidateEmail = async (id: string) => {
-        const res = await openEmail(id);
-        if (res.message === "Success!") {
-            toast.success("Email opened !");
-        } else if (res.message === "There is an error!") {
-            toast.error("Error to open email");
-        } else {
-            toast.error("An error occured!");
-        }
-    };
-
     return (
         <button 
+            key={id}
             type="button"
-            onClick={() => revalidateEmail(id)}
+            onClick={async () => {
+                const value = await openEmail({id})
+
+                if (value?.validationErrors) {
+                    toast.error("Error to open message");
+                };
+                if (value?.serverError) {
+                    toast.error("Server error !");
+                };
+                toast.success("Message opened !");
+            }}
             className='absolute text-sky-500 hover:text-sky-600 active:text-sky-700 mr-8'>
             <MdMarkEmailUnread size={18} />
         </button>

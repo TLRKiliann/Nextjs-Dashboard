@@ -24,22 +24,24 @@ export default function MainBtnAdd({ id, name, product }: MainBtnTypes) {
         return <h2>Loading...</h2>
     };
 
-    const onSubmit = async (id: number) => {
-        const res = await addProductToDb({id});
-        store.addProducts(product);
-        setShow(!show);
-        if (res.message === "Success!") {
-            toast.success("Successfully add to cart!");
-        } else if (res.message === "There is an error!") {
-            toast.error("Error: prisma update!");
-        } else {
-            toast.error("An unexpected error occurred.");
-        }
-    };
-
     return (
-        <form key={id} action={() => onSubmit(id)} className='flex items-center justify-center mt-4'>
-            <button type="submit" 
+        <div key={id} className='flex items-center justify-center mt-4'>
+            <button 
+                type="button"
+                onClick={async () => {
+                    const res = await addProductToDb({id});
+                    store.addProducts(product);
+                    if (res?.validationErrors) {
+                        toast.error("Add product failed!");
+                        return;
+                    };
+                    if (res?.serverError) {
+                        toast.error("Add product failed!");
+                        return;
+                    };
+                    toast.success("Successfully add to cart!");
+                    setShow(!show);
+                }} 
                 className='w-[120px] h-[38px] text-sm font-bold text-slate-50 transform transition ease-in-out duration-200 
                     bg-blue-600 hover:bg-blue-700 hover:scale-105 active:bg-blue-800 rounded active:scale-95
                     disabled:opacity-50 m-auto shadow-sm-out'
@@ -48,6 +50,6 @@ export default function MainBtnAdd({ id, name, product }: MainBtnTypes) {
             >
                 {show === true ? "Go to Cart ⬆" : "Add to Cart"}
             </button>
-        </form>
+        </div>
     )
-}
+};
