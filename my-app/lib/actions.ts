@@ -467,6 +467,5 @@ export const recordMethod = actionClient
             throw new ActionError("Error with payment method!");
         }
     revalidatePath("/order/payment-method");
-    console.log("Payment Success!");
     redirect("/order/payment-method/payment");
 });
