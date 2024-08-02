@@ -10,11 +10,11 @@ export default async function ShoppingCartPage({products}: {products: Product[]}
     const totalQuantity = products.reduce((acc, product) => acc + product.quantity, 0);
 
     return (
-        <div className='w-full min-h-screen flex flex-col text-slate-500 bg-slate-100 p-4 pt-[11vh]'>
+        <div className='w-full min-h-screen flex flex-col text-slate-500 bg-slate-50 p-4 pt-[11vh]'>
         
             {totalQuantity > 0 ? (
                 products.map((product: Product) => product.quantity > 0 ? (
-                    <div key={product.id} className="w-full h-20 flex items-center justify-start space-x-4 bg-white rounded-md shadow-sm-out my-1 p-2">
+                    <div key={product.id} className="w-full h-20 flex items-center justify-start space-x-4 bg-white rounded-md shadow-md my-1 p-2">
                         
                         <div className='w-[70px] flex items-center justify-center border-none rounded-tl-md 
                             rounded-br-md'>

@@ -1,18 +1,19 @@
 import prisma from '@/prisma/prisma';
-import { subDays, startOfDay, format } from 'date-fns';
+import { subDays, startOfDay, format, endOfDay } from 'date-fns';
 import LineChart from './statistics/LineChart';
 
 export default async function DailyTraffic() {
     try {
         // ISO 8601 format (createdAt)
-        const today = startOfDay(new Date()).toISOString();
+        //const today = startOfDay(new Date()).toISOString();
+        const endOfToday = endOfDay(new Date()).toISOString();
         const sevenDaysAgo = subDays(startOfDay(new Date()), 7).toISOString();
         
         const connections = await prisma.connection.findMany({
             where: {
                 createdAt: {
                     gte: new Date(sevenDaysAgo),
-                    lte: new Date(today),
+                    lte: new Date(endOfToday),
                 }
             }
         });

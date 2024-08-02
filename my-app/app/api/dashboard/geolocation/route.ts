@@ -2,7 +2,6 @@ import { GeoLocationData } from "@/lib/definitions";
 
 export async function POST(req: Request) {
     const dataIp = await req.json();
-    console.log(dataIp, "data ip route");
     const secApiKey = process.env.SECRET_API_KEY;
     try {
         const geoRes = await fetch(`https://api.ip2location.io/?key=${secApiKey}&ip=${dataIp}`, {

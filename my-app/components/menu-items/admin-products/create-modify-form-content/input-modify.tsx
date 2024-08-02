@@ -2,14 +2,16 @@
 
 type InputModifyProps = {
     type: string;
+    id: string;
+    name: string;
     value: string | number;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     placeholder: string; 
 };
 
-export default function InputModify({type, value, onChange, placeholder}: InputModifyProps) {
+export default function InputModify({id, name, type, value, onChange, placeholder}: InputModifyProps) {
     return (
-        <input type={type} value={value} onChange={onChange} 
+        <input type={type} id={id} name={name} value={value} onChange={onChange} 
             placeholder={placeholder}
             required
             className='w-[15%] bg-slate-50 border border-slate-500/70 outline-none ring-none  

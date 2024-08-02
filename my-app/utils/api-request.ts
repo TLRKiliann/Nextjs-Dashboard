@@ -34,7 +34,7 @@ export const ApiGeolocation = async ({data}: {data: {ip: string;}}): Promise<Geo
     }
 };
 
-export const fetchDataFromApi = async () => {
+export const fetchDataFromApi = async (): Promise<Product[]> => {
     try {
         const resDataProd = await fetch("http://localhost:3000/api/products");
         if (!resDataProd.ok) {

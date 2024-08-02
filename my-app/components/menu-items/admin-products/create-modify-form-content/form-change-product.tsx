@@ -3,20 +3,30 @@
 import { handleSaveProduct } from '@/lib/actions';
 import React, { useState } from 'react';
 import InputModify from './input-modify';
+import toast from 'react-hot-toast';
+import { useAction } from 'next-safe-action/hooks';
 
 type AllStateProps = {
+    id?: number;
     family: string;
     name: string;
     stock: number;
     price: number;
-}
+};
 
-export default function FormChangeProduct({ id, family, name, stock, price }: {
-    id: number;
-    family: string;
-    name: string;
-    stock: number;
-    price: number; }) {
+export default function FormChangeProduct({id, family, name, stock, price}: AllStateProps) {
+
+    // next-safe-action
+    const { execute } = useAction(handleSaveProduct, {
+        onSuccess: () => {
+            toast.success("Successfully changed!");
+            console.log("Successfully changed!");
+        },
+        onError: () => {
+            toast.error("Error catch!");
+            console.log("Error catch!");
+        }
+    });
 
     const [allState, setAllState] = useState<AllStateProps>({
         family: family,
@@ -42,12 +52,17 @@ export default function FormChangeProduct({ id, family, name, stock, price }: {
     };
 
     return (
-        <div key={id}
+        <form
+            key={id}
+            action={execute}
             className='w-full flex flex-row items-center justify-between'    
         >
+            <input type="number" id="id" name="id" value={id} hidden readOnly />
 
             <InputModify 
                 type="text"
+                id="family"
+                name="family"
                 value={allState.family}
                 onChange={(e)=> handleFamily(e)}
                 placeholder={family} 
@@ -55,31 +70,33 @@ export default function FormChangeProduct({ id, family, name, stock, price }: {
 
             <InputModify 
                 type="text"
+                id="name"
+                name="name"
                 value={allState.name}
                 onChange={(e)=> handleName(e)}
                 placeholder={name} 
             />
 
             <InputModify 
-                type="text"
+                type="number"
+                id="stock"
+                name="stock"
                 value={allState.stock}
                 onChange={(e)=> handleStock(e)}
                 placeholder={String(stock)} 
             />
 
             <InputModify 
-                type="text"
+                type="number"
+                id="price"
+                name="price"
                 value={allState.price}
                 onChange={(e)=> handlePrice(e)}
                 placeholder={String(price)} 
             />
 
             <button 
-                type="button"
-                onClick={async () => (
-                    await handleSaveProduct(id, allState.family, allState.name, 
-                        allState.stock, allState.price)
-                )}
+                type="submit"
                 className='flex items-center justify-center text-sm text-slate-50 bg-blue-500
                     transition transform duration-100 ease-in-out 
                     hover:bg-blue-500 active:bg-blue-600 px-6 py-2 rounded shadow-md
@@ -88,6 +105,6 @@ export default function FormChangeProduct({ id, family, name, stock, price }: {
                 Save
             </button>
 
-        </div>
+        </form>
     )
 };

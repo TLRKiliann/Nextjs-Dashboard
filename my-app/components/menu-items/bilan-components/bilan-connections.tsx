@@ -1,11 +1,12 @@
-import { subDays, startOfDay, format, endOfMonth, startOfMonth, startOfYear, endOfYear } from 'date-fns';
+import { subDays, startOfDay, format, endOfMonth, startOfMonth, startOfYear, endOfYear, endOfDay } from 'date-fns';
 import { getConnections } from '@/lib/functions';
 import BilanContentBox from './bilan-content-box';
 
 export default async function BilanConnections() {
     try {
         // connections for last 7 days & connection average of last 7 days
-        const today = startOfDay(new Date()).toISOString();
+        //const today = startOfDay(new Date()).toISOString();
+        const endOfToday = endOfDay(new Date()).toISOString();
         const sevenDaysAgo = subDays(startOfDay(new Date()), 7).toISOString();
 
         // totalConnectionsPerMonth
@@ -19,7 +20,7 @@ export default async function BilanConnections() {
         const endOfYearDate = endOfYear(currentYear).toISOString();
 
         // connections for last 7
-        const connections = await getConnections(new Date(sevenDaysAgo), new Date(today));
+        const connections = await getConnections(new Date(sevenDaysAgo), new Date(endOfToday));
 
         if (connections.length === 0) {
             return (

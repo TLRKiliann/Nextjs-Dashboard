@@ -2,10 +2,23 @@
 
 import { messageSender } from '@/lib/actions';
 import { User } from 'next-auth';
-import React, { useCallback, useState } from 'react';
+import { useAction } from 'next-safe-action/hooks';
+import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 
 export default function ContactForm({user}: {user: User}) {
+
+    // next-safe-action
+    const { execute } = useAction(messageSender, {
+        onSuccess: () => {
+            toast.success("Message sent successfully!");
+            console.log("Message sent successfully!");
+        },
+        onError: () => {
+            toast.error("Error with message!");
+            console.log("Error with message!");
+        }
+    });
 
     const [textArea, setTextArea] = useState<string>("");
 
@@ -13,20 +26,8 @@ export default function ContactForm({user}: {user: User}) {
         setTextArea(event.target.value);
     };
 
-    const onSubmit = useCallback(async (formData: FormData) => {
-        const response = await messageSender(formData);
-        if (response.message === "Success!") {
-            toast.success("Your email was sent successfully!");
-        } else if (response.message === "There is an error!") {
-            toast.error("A problem has occurred when sending the e-mail!");
-        } else {
-            toast.error("An error as occured!");
-        }
-        setTextArea("");
-    }, []);
-
     return (
-        <form action={onSubmit}>
+        <form action={execute}>
 
             <div className='flex flex-row items-center mb-4'>
                 <label className="w-2/5" htmlFor="src">Send from:</label>

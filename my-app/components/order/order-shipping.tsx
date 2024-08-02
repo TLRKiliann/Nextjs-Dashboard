@@ -1,6 +1,41 @@
+import prisma from '@/prisma/prisma';
+import { User } from 'next-auth';
 import Link from 'next/link';
 
-export default function OrderShipping() {
+type PaymentType = {
+    address: string,
+    city: string,
+    npa: string,
+    country: string,
+}
+
+type UserType = {
+    payments: PaymentType[];
+};
+
+export default async function OrderShipping({user}: {user: User}) {
+
+    const shipping: UserType | null = await prisma.user.findUnique({
+        where: {
+            id: user.id
+        },
+        include: {
+            payments: {
+                select: {
+                    address: true,
+                    city: true,
+                    npa: true,
+                    country: true,
+                }
+            }
+        }       
+    });
+
+    const lastAddress = shipping?.payments.map((ship) => ship.address);
+    const lastCity = shipping?.payments.map((ship) => ship.city);
+    const lastNpa = shipping?.payments.map((ship) => ship.npa);
+    const lastCountry = shipping?.payments.map((ship) => ship.country);
+
     return (
         <div className='w-full h-full border border-slate-500/30 p-4 rounded'>
 
@@ -12,39 +47,23 @@ export default function OrderShipping() {
 
                 <div className='flex flex-row items-center justify-between w-full py-2'>
                     <label className="text-lg text-slate-600/90" htmlFor='address'>Address:</label>
-                    <input
-                        type="text"
-                        id="address"
-                        className='w-[200px] bg-slate-100 px-3 py-1'
-                    />
+                    <p>{lastAddress ? lastAddress[lastAddress.length - 1] : undefined}</p>
                 </div>
                 <div className='flex flex-row items-center justify-between w-full py-2'>
                     <label className="text-lg text-slate-600/90" htmlFor='city'>City:</label>
 
-                    <input 
-                        type="text" 
-                        id="city"
-                        className='w-[200px] bg-slate-100 px-3 py-1'
-                    />
+                    <p>{lastCity ? lastCity[lastCity.length - 1] : undefined}</p>
                 </div>
 
                 <div className='flex flex-row items-center justify-between w-full py-2'>
                     <label className="text-lg text-slate-600/90" htmlFor='npa'>NPA:</label>
-                    <input 
-                        type="text" 
-                        id="npa"
-                        className='w-[200px] bg-slate-100 px-3 py-1'
-                    />
+                    <p>{lastNpa ? lastNpa[lastNpa.length - 1] : undefined}</p>
                 </div>
 
                 <div className='flex flex-row items-center justify-between w-full py-2'>
 
                     <label className="text-lg text-slate-600/90" htmlFor='country'>Country:</label>
-                    <input 
-                        type="text" 
-                        id="country"
-                        className='w-[200px] bg-slate-100 px-3 py-1'
-                    />
+                    <p>{lastCountry ? lastCountry[lastCountry.length - 1] : undefined}</p>
 
                 </div>
                 

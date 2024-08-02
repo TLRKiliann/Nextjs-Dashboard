@@ -33,7 +33,6 @@ export const getMessages = async (startDate: Date, endDate: Date): Promise<Messa
                 }
             }
         });
-        console.log(messages);
     
         if (messages.length === 0) {
             console.log("no message retrived");

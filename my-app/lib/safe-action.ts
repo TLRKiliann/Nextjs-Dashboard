@@ -1,17 +1,14 @@
-//import { auth } from '@/auth';
-import { createSafeActionClient, DEFAULT_SERVER_ERROR_MESSAGE  } from 'next-safe-action';
-import { z } from 'zod';
+import { auth } from '@/auth';
+import { createSafeActionClient } from 'next-safe-action';
+//import { createSafeActionClient, DEFAULT_SERVER_ERROR_MESSAGE  } from 'next-safe-action';
+import { zodAdapter } from "next-safe-action/adapters/zod";
+import { cookies } from 'next/headers';
 
 export class ActionError extends Error{};
 
-//export const actionClient = createSafeActionClient();
 export const actionClient = createSafeActionClient({
+  validationAdapter: zodAdapter(),
   //defaultValidationErrorsShape: "flattened",
-  defineMetadataSchema() {
-    return z.object({
-      id: z.number(),
-    });
-  },
   handleReturnedServerError(e: ActionError) {
     if (e instanceof ActionError) {
       return {
@@ -19,49 +16,26 @@ export const actionClient = createSafeActionClient({
       }
     }
     //return DEFAULT_SERVER_ERROR_MESSAGE 
-    //return "Oh no, something went wrong!";
     return {
       serverError: "Something went wrong!"
     }
   },
 });
 
-/* export const actionClient = createSafeActionClient({
-  //defaultValidationErrorsShape: "flattened",
-  handleReturnedServerError(e) {
-    if (e instanceof ActionError) {
-      return {
-        serverError: e.message,
-      }
-    }
-    return DEFAULT_SERVER_ERROR_MESSAGE 
-    //return "Oh no, something went wrong!";
+export const authActionClient = actionClient
+  // Define authorization middleware.
+  .use(async ({ next }) => {
+    const session = cookies().get("session")?.value;
 
-    return {
-      serverError: "Something went wrong!"
+    if (!session) {
+      throw new Error("Session not found!");
     }
-  },
-}); */
+    //const userId = await getUserIdFromSessionId(session);
+    const userSession = await auth();
+    if (!userSession?.user?.id) {
+      throw new Error("Session is not valid!");
+    }
 
-
-/* export const AuthenticatedAction = createSafeActionClient({
-  handleReturnedServerError(e) {
-    if (e instanceof ActionError) {
-      return {
-        serverError: e.message,
-      }
-    }
-    return {
-      serverError: "Something went wrong!"
-    }
-  },
-  async middleware(): Promise<{userId: string}> {
-    const session = await auth();
-    if (!session?.user?.id) {
-      throw new Error("Invalid session");
-    }
-    return {
-      userId: session.user.id
-    }
-  }
-}); */
+    // Return the next middleware with `userId` value in the context
+    return next({ ctx: { userSession } });
+  });

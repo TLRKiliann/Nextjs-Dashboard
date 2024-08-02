@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useCallback, useState } from 'react';
-import toast from 'react-hot-toast';
+import React, { useState } from 'react';
+import { useAction } from "next-safe-action/hooks";
 import { createProduct } from '@/lib/actions';
+import toast from 'react-hot-toast';
 import LblInputCreate from './lbl-input-create';
 
 type AllProductsProps = {
@@ -13,7 +14,19 @@ type AllProductsProps = {
     priceProduct: string | undefined;
 };
 
-export default function FormCreateContent() {
+export default function FormCreateContent() { 
+
+    // next-safe-action
+    const { execute } = useAction(createProduct, {
+        onSuccess: () => {
+            toast.success("Successfully created!");
+            console.log("Successfully created!");
+        },
+        onError: () => {
+            toast.error("Error catch during creation!");
+            console.log("Error catch during creation!");
+        }
+    });
 
     // all state in one
     const [allProductStates, setAllProductStates] = useState<AllProductsProps>({
@@ -43,27 +56,9 @@ export default function FormCreateContent() {
     const handlePriceProduct = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setAllProductStates((prev: AllProductsProps) => ({...prev, priceProduct: e.target.value}));
     };
-
-    const onSubmit = useCallback(async (formData: FormData) => {
-        const res = await createProduct(formData);
-        if (res.message === "Success!") {
-            toast.success("Successfully created!")
-        } else if (res.message === "There is an error!") {
-            toast.error("Error catch during creation!")
-        } else {
-            toast.error("An unexpected error occurred.");
-        }
-        setAllProductStates((prev: AllProductsProps) => ({...prev, 
-            familyProduct: "",
-            nameProduct: "",
-            versionProduct: "",
-            stockProduct: "",
-            priceProduct: ""
-        }));
-    }, []);
     
     return (
-        <form action={onSubmit} className='flex flex-col items-center justify-center text-slate-100 bg-slate-800 w-full h-[400px]'>
+        <form action={execute} className='flex flex-col items-center justify-center text-slate-100 bg-slate-800 w-full h-[400px]'>
 
             <div className='flex items-center justify-center h-[20%] w-full'>
                 <h2 className='text-xl lg:text-2xl xl:text-3xl font-bold text-center -mt-2 xl:mb-3'>
@@ -134,6 +129,12 @@ export default function FormCreateContent() {
                 </LblInputCreate>
 
             </div>
+
+            {/* {status === "hasSucceeded" ? (
+                <p className='flex items-center justify-center w-full text-white'>
+                    {result.data}
+                </p>
+            ) : null} */}
 
             <div className='flex items-center justify-center w-full'>
                 <input id="id" name="id" value={8} readOnly hidden />

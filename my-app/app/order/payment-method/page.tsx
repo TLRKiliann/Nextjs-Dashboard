@@ -9,7 +9,7 @@ type MethodProps = {
     paypalMethod: boolean;
     stripeMethod: boolean;
     onDeliveryMethod: boolean;
-}
+};
 
 export default function PaymentMethodPage() {
 
@@ -50,25 +50,11 @@ export default function PaymentMethodPage() {
         setPathMethod("On_Delivery");
     };
 
-    const onSubmit = async (pathMethod: string) => {
-        const response = await recordMethod(pathMethod);
-        if (response.message === "Payment Success!") {
-            toast.success("Payment method done!");
-            router.push("/order/payment-method/payment")
-        } else if (response.message === "Error with payment method!") {
-            toast.error("Payment method failed!")
-        } else {
-            toast.error("Error with payment method");
-        }    
-    };
-
     return (
         <div 
             className='flex flex-col items-center justify-center w-full min-h-screen text-slate-800 bg-slate-100'>
 
-            <form
-                action={() => onSubmit(pathMethod)} 
-                className='flex flex-col items-start justify-between w-[360px] h-full bg-white px-4 py-6 
+            <div className='flex flex-col items-start justify-between w-[360px] h-full bg-white px-4 py-6 
                 rounded shadow-lg'>
 
                 <div className='flex items-center w-full h-[40px] mb-4 pl-4'>
@@ -134,15 +120,27 @@ export default function PaymentMethodPage() {
                         Back
                     </button>
                     <button 
-                        type="submit"
-                        disabled={!pathMethod ? true : false}
+                        type="button"
+                        onClick={async () => {
+                            const response = await recordMethod({pathMethod});
+
+                            if (response?.validationErrors) {
+                                toast.error("Payment method failed!");
+                            };
+                            if (response?.serverError) {
+                                toast.error("Error with payment method");
+                            };
+                            toast.success("Payment method done!");
+                        }}
                         className={`${!pathMethod ? "opacity-50" : "opacity-100"} text-base text-slate-50 
                             font-bold bg-blue-500 hover:bg-blue-600 active:bg-blue-700 px-6 py-[5px] 
-                            rounded shadow-lg`}>
+                            rounded shadow-lg`}
+                        disabled={!pathMethod ? true : false}    
+                    >
                         Next
                     </button>
                 </div>
-            </form>
+            </div>
         </div>
     )
 }

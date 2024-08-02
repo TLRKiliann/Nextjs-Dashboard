@@ -9,7 +9,7 @@ type ProductProps = {
 
 export default function StoreOfProducts({ product }: ProductProps) {
     return (
-        <div key={product.id} className="w-full h-full text-slate-100/90 bg-gradient-to-tr from-slate-700 to-slate-950 rounded-md shadow-card">
+        <div key={product.id} className="w-full h-full text-slate-500 bg-white rounded-md shadow-card">
             
             <div className='w-full h-full flex flex-col items-center justify-between rounded-md'>
 
@@ -42,7 +42,8 @@ export default function StoreOfProducts({ product }: ProductProps) {
                 </div>
 
                 <div className='text-center my-4'>
-                    <li className='list-none text-blue-400/80 hover:text-blue-600 active:text-blue-700'>
+                    <li className='list-none text-blue-400/80 hover:text-blue-500/80 active:text-blue-600/80
+                        transition-colors'>
                         <Link href={`/products/${product.name}`}>
                             View product
                         </Link>

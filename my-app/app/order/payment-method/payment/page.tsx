@@ -30,17 +30,17 @@ export default async function OrderPage() {
         }
     });
 
-    if (!paymentMethod?.payments.map((meth) => meth.method)) {
+    if (!paymentMethod) {
         throw new Error("Error: payment method fetch failed!");
-    }
-
-    const findMethod = paymentMethod?.payments.find((meth) => meth.usernameId === user.id ? {...meth, method: meth.method}: meth);
-    
-    if (findMethod) {
-        console.log(findMethod, "findMethod")
-    } else {
-        throw new Error("Error: no method")
     };
+
+    const findMethod = paymentMethod?.payments.map((meth) => meth.method);
+    
+    if (!findMethod) {
+        throw new Error("Error: no method");
+    };
+
+    const methodOfPayment: string = findMethod[findMethod.length - 1];
 
     return (
         <div className='w-full min-h-screen text-slate-700 bg-slate-50 p-4'>
@@ -56,7 +56,7 @@ export default async function OrderPage() {
                     
                     <div className='flex flex-col items-start justify-evenly w-full h-full p-4'>
 
-                        <OrderShipping />
+                        <OrderShipping user={user} />
 
                     </div>
 
@@ -64,7 +64,7 @@ export default async function OrderPage() {
 
                     <div className='flex flex-col items-start justify-evenly w-full h-full p-4'>
 
-                        <OrderPayment findMethod={findMethod} />
+                        <OrderPayment methodOfPayment={methodOfPayment} />
 
                     </div>
 
@@ -86,7 +86,7 @@ export default async function OrderPage() {
                     </div>
 
                     <div className='flex flex-col items-center justify-center w-[92%]'>
-                        <Link href={`/order/payment-method/payment/${findMethod.method}`}
+                        <Link href={`/order/payment-method/payment/${methodOfPayment}`}
                             className='w-full text-base text-center font-bold text-slate-50 bg-blue-500 
                             hover:bg-blue-600 active:bg-blue-700 transition-colors py-2 rounded'>
                             Place Order
