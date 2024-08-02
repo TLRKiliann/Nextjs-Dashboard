@@ -26,7 +26,7 @@ export default function RemoveItemsFromCart({id, name}:
                     const value = await removeFromCart({id});
                     store.removeAllById(id);
                     if (value?.validationErrors) {
-                        toast.error("Delete item from cart failed!");
+                        toast.error("Remove item from cart failed!");
                     };
                     if (value?.serverError) {
                         toast.error("An unexpected error occurred.");

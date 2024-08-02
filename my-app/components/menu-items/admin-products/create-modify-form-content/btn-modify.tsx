@@ -17,7 +17,7 @@ export default function BtnModify({id, switcher}: BtnModifyProps) {
                 const values = await handleModify({id, switcher});
 
                 if (values?.validationErrors) {
-                    toast.error("Something went wrong!");
+                    toast.error("Value error!");
                 }
                 if (values?.serverError) {
                     toast.error("Server error!")

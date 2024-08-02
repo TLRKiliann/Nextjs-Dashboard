@@ -28,7 +28,7 @@ export default function AddItemToCart({ id, name, stock }:
                     store.increaseQuantity(id);
 
                     if (res?.validationErrors) {
-                        toast.error("Insert to cart failed!");
+                        toast.error("Add to cart failed!");
                     };
                     if (res?.serverError) {
                         toast.error("An unexpected error occurred.");

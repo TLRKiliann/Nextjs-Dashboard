@@ -7,19 +7,20 @@ import toast from 'react-hot-toast';
 import { useAction } from 'next-safe-action/hooks';
 
 type AllStateProps = {
+    id?: number;
     family: string;
     name: string;
     stock: number;
     price: number;
 };
 
-export default function FormChangeProduct({family, name, stock, price}: AllStateProps, {id}: {id: number}) {
+export default function FormChangeProduct({id, family, name, stock, price}: AllStateProps) {
 
     // next-safe-action
     const { execute } = useAction(handleSaveProduct, {
         onSuccess: () => {
-            toast.success("Successfully saved!");
-            console.log("Successfully saved!");
+            toast.success("Successfully changed!");
+            console.log("Successfully changed!");
         },
         onError: () => {
             toast.error("Error catch!");
@@ -51,14 +52,17 @@ export default function FormChangeProduct({family, name, stock, price}: AllState
     };
 
     return (
-        <form 
-            key={id} 
+        <form
+            key={id}
             action={execute}
             className='w-full flex flex-row items-center justify-between'    
         >
+            <input type="number" id="id" name="id" value={id} hidden readOnly />
 
             <InputModify 
                 type="text"
+                id="family"
+                name="family"
                 value={allState.family}
                 onChange={(e)=> handleFamily(e)}
                 placeholder={family} 
@@ -66,20 +70,26 @@ export default function FormChangeProduct({family, name, stock, price}: AllState
 
             <InputModify 
                 type="text"
+                id="name"
+                name="name"
                 value={allState.name}
                 onChange={(e)=> handleName(e)}
                 placeholder={name} 
             />
 
             <InputModify 
-                type="text"
+                type="number"
+                id="stock"
+                name="stock"
                 value={allState.stock}
                 onChange={(e)=> handleStock(e)}
                 placeholder={String(stock)} 
             />
 
             <InputModify 
-                type="text"
+                type="number"
+                id="price"
+                name="price"
                 value={allState.price}
                 onChange={(e)=> handlePrice(e)}
                 placeholder={String(price)} 
