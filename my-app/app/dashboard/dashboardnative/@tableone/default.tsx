@@ -3,6 +3,7 @@ import type { User } from '@prisma/client';
 import Image from 'next/image';
 import TablePage from '@/components/TablePage';
 import QuantityPrice from '@/components/menu-items/members/quantity-price';
+import imgLogo from "@/public/assets/images/users/user_icon.png";
 
 export default async function TableOneDefault() {
 
@@ -38,7 +39,7 @@ export default async function TableOneDefault() {
                             <div className='flex items-center justify-between text-slate-500/90 px-2'>
                                 
                                 <div className='flex flex-row items-center justify-start'>
-                                    <Image priority src={String(customer.image)} width={500} height={333} alt="no-img" 
+                                    <Image priority src={customer.image ? String(customer.image) : imgLogo} width={500} height={333} alt="no-img" 
                                         className='w-[50px] h-[50px] object-cover my-1 rounded-full'/>
 
                                     <div className='w-[100px] mx-2'>
