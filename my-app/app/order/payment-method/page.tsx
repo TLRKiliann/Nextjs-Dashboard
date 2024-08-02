@@ -132,10 +132,11 @@ export default function PaymentMethodPage() {
                             };
                             toast.success("Payment method done!");
                         }}
-                        disabled={!pathMethod ? true : false}
                         className={`${!pathMethod ? "opacity-50" : "opacity-100"} text-base text-slate-50 
                             font-bold bg-blue-500 hover:bg-blue-600 active:bg-blue-700 px-6 py-[5px] 
-                            rounded shadow-lg`}>
+                            rounded shadow-lg`}
+                        disabled={!pathMethod ? true : false}    
+                    >
                         Next
                     </button>
                 </div>

@@ -30,7 +30,7 @@ export default async function OrderPage() {
         }
     });
 
-    if (!paymentMethod?.payments.map((meth) => meth.method)) {
+    if (!paymentMethod) {
         throw new Error("Error: payment method fetch failed!");
     }
 

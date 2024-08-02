@@ -1,9 +1,9 @@
 export default function MethodPage() {
 
     return (
-        <div>
+        <div className="flex items-center justify-center w-full h-[80vh]">
 
-            <h1>Products</h1>
+            <span className="text-5xl">➡️</span>
 
         </div>
     )
