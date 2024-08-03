@@ -26,6 +26,7 @@ model User {
   products        Product[]
   connections     Connection[]
   payments        Payment[]
+  carts           Cart[]
 
   @@map("users")
 }
@@ -49,6 +50,25 @@ model Product {
   createdAt         DateTime @default(now())
   author            User?    @relation(fields: [authorId], references: [id])
   authorId          String?
+  carts             Cart[]
+}
+
+model Cart {
+  id                Int       @id @default(autoincrement())
+  family            String
+  img               String
+  name              String
+  version           String
+  stock             Int
+  price             Int
+  quantity          Int
+  switcher          Boolean   @default(false)
+  updatedAt         DateTime  @updatedAt
+  createdAt         DateTime  @default(now())
+  user              User?     @relation(fields: [userId], references: [id])
+  userId            String?
+  product           Product   @relation(fields: [productId], references: [id])
+  productId         Int
 }
 
 model Message {
