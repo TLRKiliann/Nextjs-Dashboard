@@ -23,7 +23,7 @@ export const addProductToDb = actionClient
             return redirect("/api/auth/signin");
         };
         try {
-            await prisma.product.update({
+            await prisma.cart.update({
                 data: {
                     quantity: {
                         increment: 1,
@@ -31,11 +31,11 @@ export const addProductToDb = actionClient
                     stock: {
                         increment: -1,
                     },
-                    author: {
+                    user: {
                         connect: {
                             id: userSession.id,
                         }
-                    }
+                    },
                 },
                 where: {
                     id: parsedInput.id,
@@ -59,7 +59,7 @@ export const addToCart = actionClient
             return redirect("/api/auth/signin");
         };
         try {
-            await prisma.product.update({
+            await prisma.cart.update({
                 data: {
                     quantity: {
                         increment: 1,
@@ -67,7 +67,7 @@ export const addToCart = actionClient
                     stock: {
                         increment: -1,
                     },
-                    author: {
+                    user: {
                         connect: {
                             id: userSession.id,
                         }
@@ -95,7 +95,7 @@ export const deleteFromCart = actionClient
             return redirect("/api/auth/signin");
         };
         try {
-            await prisma.product.update({
+            await prisma.cart.update({
                 data: {
                     quantity: {
                         increment: -1,
@@ -103,7 +103,7 @@ export const deleteFromCart = actionClient
                     stock: {
                         increment: 1,
                     },
-                    author: {
+                    user: {
                         connect: {
                             id: userSession.id,
                         }
@@ -155,11 +155,11 @@ export const removeFromCart = actionClient
                 break;
         }
         try {
-            await prisma.product.update({
+            await prisma.cart.update({
                 data: {
                     quantity: 0,
                     stock: resetStock,
-                    author: {
+                    user: {
                         connect: {
                             id: userSession.id,
                         }
@@ -208,7 +208,7 @@ const schemaSaveProd = zfd.formData({
     name: zfd.text(z.string()),
     stock: zfd.numeric(z.number()),
     price: zfd.numeric(z.number())
-})
+});
 
 // /dashboard/products-admin (ProductToModify)
 export const handleSaveProduct = actionClient
