@@ -8,7 +8,7 @@ type ProductType = {
 
 type UserType = {
     id: string;
-    products: ProductType[];
+    carts: ProductType[];
 };
 
 export default async function CartItemsQuantity() {
@@ -24,7 +24,7 @@ export default async function CartItemsQuantity() {
             id: user.id,
         },
         include: {
-            products: {
+            carts: {
                 select: {
                     quantity: true,
                 } 
@@ -36,7 +36,7 @@ export default async function CartItemsQuantity() {
         throw new Error("storeQuantity not set!");
     };
 
-    const totalQuantity = storeQuantity.products.reduce((acc: number, product: {quantity: number}) => acc + product.quantity, 0);
+    const totalQuantity = storeQuantity.carts.reduce((acc: number, product: {quantity: number}) => acc + product.quantity, 0);
 
     return (
         <div className='absolute top-0'>
