@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 type UserType = {
-    carts: Cart[]
+    carts: Cart[];
 };
 
 export default async function CartPage() {
