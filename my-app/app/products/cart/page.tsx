@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import type { Product } from '@prisma/client';
+import type { Cart } from '@prisma/client';
 import { auth } from '@/auth';
 import prisma from '@/prisma/prisma';
 import React, { Suspense } from 'react';
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 type UserType = {
-    products: Product[]
+    carts: Cart[];
 };
 
 export default async function CartPage() {
@@ -31,9 +31,9 @@ export default async function CartPage() {
             id: userSession.id,
         },
         include: {
-            products: {
+            carts: {
                 where: {
-                    authorId: userSession.id,
+                    userId: userSession.id,
                 },
                 orderBy: {
                     id: "asc"
@@ -42,14 +42,14 @@ export default async function CartPage() {
         },
     });
 
-    if (!user?.products) {
+    if (!user?.carts) {
         throw new Error("Error: server action in cart");
     };
 
     return (
         <React.Fragment>
             <Suspense fallback={<Loader />}>
-                <ShoppingCartPage products={user.products} />
+                <ShoppingCartPage carts={user.carts} />
             </Suspense>
         </React.Fragment>
     )

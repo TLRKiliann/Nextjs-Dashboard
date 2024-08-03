@@ -8,7 +8,7 @@ type ProductType = {
 }
 
 type UserType = {
-    products: ProductType[];
+    carts: ProductType[];
 };
 
 export default async function OrderSummary() {
@@ -25,7 +25,7 @@ export default async function OrderSummary() {
             id: userSession.id,
         },
         include: {
-            products: {
+            carts: {
                 select: {
                     quantity: true,
                     price: true,
@@ -35,13 +35,13 @@ export default async function OrderSummary() {
     });
     await prisma.$disconnect();
 
-    if (!user?.products) {
+    if (!user?.carts) {
         throw new Error("Error: fetch products failed!");
     };
 
-    const quantityOfProducts: number = user.products.reduce((acc: number, product: ProductType) => acc + product.quantity, 0);
+    const quantityOfProducts: number = user.carts.reduce((acc: number, product: ProductType) => acc + product.quantity, 0);
 
-    const priceOfQuantity: number = user.products.reduce((acc: number, product: ProductType) => acc + (product.price * product.quantity), 0);
+    const priceOfQuantity: number = user.carts.reduce((acc: number, product: ProductType) => acc + (product.price * product.quantity), 0);
 
     const totalPrice: number = priceOfQuantity;
 

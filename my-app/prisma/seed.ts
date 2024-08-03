@@ -2,6 +2,118 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function main() {
+    const cartOne = await prisma.cart.upsert({
+        where: {id: 1},
+        update: {},
+        create: { 
+            id: 1,
+            family: "CPU",
+            img: "/assets/images/cpu/cpu_i3.jpg",
+            name: "i3",
+            version: "7897432",
+            stock: 20,
+            price: 1044,
+            quantity: 0,
+            switcher: false,
+            productId: 1
+        }
+    })
+    const cartTwo = await prisma.cart.upsert({
+        where: {id: 2},
+        update: {},
+        create: { 
+            id: 2,
+            family: "CPU",
+            img: "/assets/images/cpu/cpu_i5.jpg",
+            name: "i5",
+            version: "1297432",
+            stock: 30,
+            price: 1244,
+            quantity: 0,
+            switcher: false,
+            productId: 2
+        }
+    })
+    const cartThree = await prisma.cart.upsert({
+        where: {id: 3},
+        update: {},
+        create: { 
+            id: 3,
+            family: "CPU",
+            img: "/assets/images/cpu/cpu_i7.jpg",
+            name: "i7",
+            version: "2897433",
+            stock: 25,
+            price: 1200,
+            quantity: 0,
+            switcher: false,
+            productId: 3
+        }
+    })
+    const cartFour = await prisma.cart.upsert({
+        where: {id: 4},
+        update: {},
+        create: { 
+            id: 4,
+            family: "CPU",
+            img: "/assets/images/cpu/cpu_i9.jpg",
+            name: "i9",
+            version: "1897111",
+            stock: 35,
+            price: 1380,
+            quantity: 0,
+            switcher: false,
+            productId: 4
+        }
+    })
+    const cartFive = await prisma.cart.upsert({
+        where: {id: 5},
+        update: {},
+        create: { 
+            id: 5,
+            family: "RAM",
+            img: "/assets/images/ram/msi_ram.png",
+            name: "MSI",
+            version: "7866432",
+            stock: 22,
+            price: 1480,
+            quantity: 0,
+            switcher: false,
+            productId: 5
+        }
+    })
+    const cartSix = await prisma.cart.upsert({
+        where: {id: 6},
+        update: {},
+        create: { 
+            id: 6,
+            family: "RAM",
+            img: "/assets/images/ram/asus_ram.png",
+            name: "Asus",
+            version: "7866432",
+            stock: 22,
+            price: 2000,
+            quantity: 0,
+            switcher: false,
+            productId: 6
+        }
+    })
+    const cartSeven = await prisma.cart.upsert({
+        where: {id: 7},
+        update: {},
+        create: { 
+            id: 7,
+            family: "RAM",
+            img: "/assets/images/ram/patriot_ram.png",
+            name: "Patriot",
+            version: "2992777",
+            stock: 38,
+            price: 1230,
+            quantity: 0,
+            switcher: false,
+            productId: 7
+        }
+    })
     const productOne = await prisma.product.upsert({
         where: {id: 1},
         update: {},
@@ -261,6 +373,7 @@ async function main() {
     console.log(
         { 
             productOne, productTwo, productThree, productFour, productFive, productSix, productSeven, 
+            cartOne, cartTwo, cartThree, cartFour, cartFive, cartSix, cartSeven, 
             alice, bob, admin, bruce, celestine, jason, jean, justine, maria, paula, rebecca,
             //connectionOne, connectionTwo, connectionThree, connectionFour, connectionFive
         }

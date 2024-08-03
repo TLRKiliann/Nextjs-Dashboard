@@ -9,13 +9,12 @@ import { Suspense } from 'react';
 export default async function ProductsPage() {
 
   const session = await auth();
-  const userSession = session?.user;
+  const user = session?.user;
   
-  if (!userSession) {
+  if (!user) {
     return redirect("/api/auth/signin");
   };
 
-  //const products = await fetchDataFromApi();
   const products: Product[] | null = await prisma.product.findMany({
     orderBy: {
       id: "asc"
@@ -23,12 +22,12 @@ export default async function ProductsPage() {
   });
 
   if (products.length === 0) {
-    throw new Error("Error: prisma user.products")
+    throw new Error("Error: prisma product fetch failed!");
   }
 
   return (
     <Suspense fallback={<Loader />}>
-      <AllProducts products={products} />
+      <AllProducts products={products} user={user} />
     </Suspense>
   )
 };

@@ -1,19 +1,19 @@
-import type { Product } from '@prisma/client';
+import type { Cart } from '@prisma/client';
 import Link from 'next/link';
 import Image from 'next/image';
 import AddItemToCart from '@/components/products-and-cart/action-cart-item/add-item-to-cart';
 import DeleteItemFromCart from '@/components/products-and-cart/action-cart-item/delete-item-from-cart';
 import RemoveItemsFromCart from '@/components/products-and-cart/action-cart-item/remove-items-from-cart';
 
-export default async function ShoppingCartPage({products}: {products: Product[]}) {
+export default async function ShoppingCartPage({carts}: {carts: Cart[]}) {
 
-    const totalQuantity = products.reduce((acc, product) => acc + product.quantity, 0);
+    const totalQuantity = carts.reduce((acc, product) => acc + product.quantity, 0);
 
     return (
         <div className='w-full min-h-screen flex flex-col text-slate-500 bg-slate-50 p-4 pt-[11vh]'>
         
             {totalQuantity > 0 ? (
-                products.map((product: Product) => product.quantity > 0 ? (
+                carts.map((product: Cart) => product.quantity > 0 ? (
                     <div key={product.id} className="w-full h-20 flex items-center justify-start space-x-4 bg-white rounded-md shadow-md my-1 p-2">
                         
                         <div className='w-[70px] flex items-center justify-center border-none rounded-tl-md 

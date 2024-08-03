@@ -8,6 +8,7 @@ import HeaderAuth from '@/components/auth/header-auth';
 import DataProfile from "@/components/auth/data-profile";
 import OsBrowserData from "@/components/auth/os-browser-data";
 import userLogo from "@/public/assets/images/users/user_icon.png";
+import ConsentDataCollection from "@/components/auth/consent-data-collection";
 
 export const metadata: Metadata = {
     title: "Profile",
@@ -58,6 +59,9 @@ export default async function ProfilePage() {
     return (
         <>
             <HeaderAuth />
+            
+            <ConsentDataCollection />
+
             <div className='flex flex-col justify-center w-[380px] xl:w-[500px] h-full m-auto text-slate-500 bg-white rounded-lg'>
 
                 <div className='w-full flex flex-col items-center justify-center rounded-lg p-4 shadow-whitecustom'>
