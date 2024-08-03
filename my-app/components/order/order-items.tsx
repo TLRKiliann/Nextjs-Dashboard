@@ -1,11 +1,11 @@
 import { auth } from '@/auth';
 import prisma from '@/prisma/prisma';
-import type { Product } from '@prisma/client';
+import type { Cart } from '@prisma/client';
 import { redirect } from 'next/navigation';
 import Image from 'next/image';
 
 type UserType = {
-    products: Product[];
+    carts: Cart[];
 };
 
 export default async function OrderItems() {
@@ -22,7 +22,7 @@ export default async function OrderItems() {
             id: userSession.id,
         },
         include: {
-            products: {
+            carts: {
                 orderBy: {
                     id: "asc",
                 }
@@ -30,8 +30,8 @@ export default async function OrderItems() {
         }
     });
 
-    if (!user?.products) {
-        throw new Error("Error: fetch products failed!");
+    if (!user?.carts) {
+        throw new Error("Error: fetch carts failed!");
     };
 
     return (
@@ -44,7 +44,7 @@ export default async function OrderItems() {
                 </div>
 
                 <div className='w-full bg-slate-100 mt-4 rounded'>
-                    {user.products.map((product: Product) => product.quantity !== 0 ? (
+                    {user.carts.map((product: Cart) => product.quantity !== 0 ? (
                         <div 
                             key={product.id} 
                             className='flex flex-row items-center justify-between bg-white m-4 p-3 
