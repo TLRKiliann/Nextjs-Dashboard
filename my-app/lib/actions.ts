@@ -2,26 +2,31 @@
 
 import prisma from "@/prisma/prisma";
 import { revalidatePath } from "next/cache";
-import { auth } from "@/auth";
 import { redirect } from "next/navigation";
-import { actionClient, ActionError } from "./safe-action";
+import { actionClient, authActionClient, ActionError } from "./safe-action";
 import { z } from "zod";
 import { zfd } from "zod-form-data";
 
+// Resusable zod schema
 const schemaId = z.object({
     id: z.number(),
 });
 
 //add product
-export const addProductToDb = actionClient
+export const addProductToDb = authActionClient
     .schema(schemaId)
-    .action(async ({ parsedInput }) => {
-        const session = await auth();
-        const userSession = session?.user;
+    .action(async ({ parsedInput, ctx: { userId }}) => {
 
-        if (!userSession?.id) {
-            return redirect("/api/auth/signin");
+        const user = await prisma.user.findUnique({
+            where: { 
+                id: String(userId)
+            },
+        });
+        
+        if (!user) {
+            throw new ActionError("User not found!");
         };
+
         try {
             await prisma.cart.update({
                 data: {
@@ -33,7 +38,7 @@ export const addProductToDb = actionClient
                     },
                     user: {
                         connect: {
-                            id: userSession.id,
+                            id: String(userId),
                         }
                     },
                 },
@@ -50,14 +55,20 @@ export const addProductToDb = actionClient
 });
 
 // increment quantity in cartItems
-export const addToCart = actionClient
+export const addToCart = authActionClient
     .schema(schemaId)
-    .action(async ({ parsedInput }) => {
-        const session = await auth();
-        const userSession = session?.user;
-        if (!userSession?.id) {
-            return redirect("/api/auth/signin");
+    .action(async ({ parsedInput, ctx: { userId }}) => {
+
+        const user = await prisma.user.findUnique({
+            where: { 
+                id: String(userId)
+            },
+        });
+        
+        if (!user) {
+            throw new ActionError("User not found!");
         };
+
         try {
             await prisma.cart.update({
                 data: {
@@ -69,7 +80,7 @@ export const addToCart = actionClient
                     },
                     user: {
                         connect: {
-                            id: userSession.id,
+                            id: String(userId),
                         }
                     }
                 },
@@ -86,14 +97,20 @@ export const addToCart = actionClient
 
 
 // decrement quantity in cartItems
-export const deleteFromCart = actionClient
+export const deleteFromCart = authActionClient
     .schema(schemaId)
-    .action(async ({ parsedInput }) => {
-        const session = await auth();
-        const userSession = session?.user;
-        if (!userSession?.id) {
-            return redirect("/api/auth/signin");
+    .action(async ({ parsedInput, ctx: { userId }}) => {
+
+        const user = await prisma.user.findUnique({
+            where: { 
+                id: String(userId)
+            },
+        });
+        
+        if (!user) {
+            throw new ActionError("User not found!");
         };
+
         try {
             await prisma.cart.update({
                 data: {
@@ -105,7 +122,7 @@ export const deleteFromCart = actionClient
                     },
                     user: {
                         connect: {
-                            id: userSession.id,
+                            id: String(userId),
                         }
                     }
                 },
@@ -122,14 +139,20 @@ export const deleteFromCart = actionClient
 });
 
 // reinitialize quantity to 0 in cartItems
-export const removeFromCart = actionClient
+export const removeFromCart = authActionClient
     .schema(schemaId)
-    .action(async ({ parsedInput }) => {
-        const session = await auth();
-        const userSession = session?.user;
-        if (!userSession?.id) {
-            return redirect("/api/auth/signin");
+    .action(async ({ parsedInput, ctx: { userId }}) => {
+
+        const user = await prisma.user.findUnique({
+            where: { 
+                id: String(userId)
+            },
+        });
+        
+        if (!user) {
+            throw new ActionError("User not found!");
         };
+
         let resetStock: number = 0;
         switch (parsedInput.id) {
             case 1:
@@ -161,7 +184,7 @@ export const removeFromCart = actionClient
                     stock: resetStock,
                     user: {
                         connect: {
-                            id: userSession.id,
+                            id: String(userId),
                         }
                     },
                 },
@@ -402,20 +425,24 @@ const schemaSaveAddress = zfd.formData({
 });
 
 // address recoder
-export const saveAddress = actionClient
+export const saveAddress = authActionClient
     .schema(schemaSaveAddress)
-    .action(async ({ parsedInput }) => {
-        const session = await auth();
-        const user = session?.user;
+    .action(async ({ parsedInput, ctx: { userId }}) => {
 
-        if (!user?.id) {
-            return redirect("/api/auth/signin");
+        const user = await prisma.user.findUnique({
+            where: { 
+                id: String(userId)
+            },
+        });
+        
+        if (!user) {
+            throw new ActionError("User not found!");
         };
 
         try {
             await prisma.payment.create({
                 data: {
-                    usernameId: String(user.id),
+                    usernameId: String(userId),
                     address: parsedInput.address,
                     city: parsedInput.city,
                     npa: parsedInput.npa,
@@ -431,20 +458,24 @@ export const saveAddress = actionClient
 });
 
 //payment method
-export const recordMethod = actionClient 
+export const recordMethod = authActionClient 
     .schema(z.object({pathMethod: z.string()}))
-    .action(async ({ parsedInput }) => {
-        const session = await auth();
-        const user = session?.user;
+    .action(async ({ parsedInput, ctx: { userId }}) => {
 
-        if (!user?.id) {
-            return redirect("/api/auth/signin");
+        const user = await prisma.user.findUnique({
+            where: { 
+                id: String(userId)
+            },
+        });
+        
+        if (!user) {
+            throw new ActionError("User not found!");
         };
 
         try {
             const lastPayment = await prisma.payment.findFirst({
                 where: {
-                    usernameId: user.id,
+                    usernameId: String(userId),
                 },
                 orderBy: {
                     createdAt: 'desc',
