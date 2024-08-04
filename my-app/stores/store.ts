@@ -1,4 +1,4 @@
-import { $Enums, type Product } from '@prisma/client';
+import type { Product } from '@prisma/client';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
