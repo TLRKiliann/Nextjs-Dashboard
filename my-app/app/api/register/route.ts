@@ -49,6 +49,15 @@ export async function POST(req: Request): Promise<NextResponse> {
     // Set COOKIE with TOKEN
     const cookie = cookies();
     cookie.set('Set-Cookie', `auth-token=${token}; ${serialize(cookieOptions)}`, { sameSite: 'strict' });
+    const expiresDate = new Date();
+
+    await prisma.session.create({
+      data: {
+        sessionToken: token,
+        userId: newUser.id,
+        expires: expiresDate
+      },
+    });
 
     return NextResponse.json(
       {
