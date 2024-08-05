@@ -1,5 +1,5 @@
+import type { Cart } from '@prisma/client';
 import prisma from '@/prisma/prisma';
-import type { Product } from '@prisma/client';
 import React, { Suspense } from 'react';
 import TablePage from '@/components/TablePage';
 import BestSellersChart from '@/components/menu-items/graphs/BestSellersChart';
@@ -8,7 +8,7 @@ import Loader from '@/components/Loader';
 
 export default async function TableTwoPage() {
 
-    const products: Product[] = await prisma.product.findMany({
+    const products: Cart[] = await prisma.cart.findMany({
         orderBy: {
             id: "asc",
         }
