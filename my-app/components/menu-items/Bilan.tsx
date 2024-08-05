@@ -15,7 +15,7 @@ interface UserType {
     emailVerified: Date | null;
     image: string | null;
     isConnected: boolean | null;
-    products: { price: number; quantity: number; name: string; }[];
+    carts: { price: number; quantity: number; name: string; }[];
 };
 
 export default async function Bilan() {
@@ -25,7 +25,7 @@ export default async function Bilan() {
 
     const allUserProducts: UserType[] = await prisma.user.findMany({
         include: {
-            products: {
+            carts: {
                 select: {
                     name: true,
                     quantity: true,
@@ -41,14 +41,14 @@ export default async function Bilan() {
 
     allUserProducts.forEach((user: UserType) => {
         let totalQuantity = 0;
-        user.products.forEach((product: {quantity: number}) => {
+        user.carts.forEach((product: {quantity: number}) => {
             totalQuantity += product.quantity;
         });
         productsQuantityByUser[user.name] = totalQuantity;
     });
 
     allUserProducts.forEach((user) => {
-        user.products.forEach((product) => {
+        user.carts.forEach((product) => {
             if (productsTotalPriceByName[product.name]) {
                 productsTotalPriceByName[product.name] += product.price * product.quantity;
             } else {
