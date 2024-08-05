@@ -238,7 +238,7 @@ export const handleSaveProduct = actionClient
     .schema(schemaSaveProd)
     .action(async ({ parsedInput }) => {
         try {
-            await prisma.product.update({
+            const productModified = await prisma.product.update({
                 data: {
                     id: parsedInput.id,
                     family: parsedInput.family,
@@ -250,10 +250,27 @@ export const handleSaveProduct = actionClient
                 where: {
                     id: parsedInput.id,
                 }
-            })
+            });
+
+            if (!productModified) {
+                throw new ActionError("Error: handleSaveProduct fn(1)");
+            };
+            await prisma.cart.update({
+                data: {
+                    id: parsedInput.id,
+                    family: parsedInput.family,
+                    name: parsedInput.name,
+                    stock: parsedInput.stock,
+                    price: parsedInput.price,
+                    switcher: false,
+                },
+                where: {
+                    id: parsedInput.id,
+                }
+            });
         } catch (error) {
             console.log("Error: ", error)
-            throw new ActionError("Error: handleSaveProduct fn()");
+            throw new ActionError("Error: handleSaveProduct fn(2)");
         }
     revalidatePath("/dashboard/products-admin");
 });
@@ -263,14 +280,24 @@ export const handleRemove = actionClient
     .schema(schemaId)
     .action(async ({ parsedInput }) => {
         try {
-            await prisma.product.delete({
+            const productRm = await prisma.cart.delete({
                 where: {
                     id: parsedInput.id,
                 }
             })
+
+            if (!productRm) {
+                throw new ActionError("Error: handleRemove fn(1)");
+            };
+
+            await prisma.product.delete({
+                where: {
+                    id: productRm.id,
+                }
+            });
         } catch (error) {
             console.log("Error: ", error)
-            throw new ActionError("Error: handleRemove fn()");
+            throw new ActionError("Error: handleRemove fn(2)");
         }
     revalidatePath("/dashboard/products-admin");
 });
@@ -289,7 +316,7 @@ export const createProduct = actionClient
     .schema(schemaProduct)
     .action(async({ parsedInput }) => {
         try {
-            await prisma.product.create({
+            const newProduct = await prisma.product.create({
                 data: {
                     id: parsedInput.id,
                     family: parsedInput.family,
@@ -300,6 +327,24 @@ export const createProduct = actionClient
                     stock: parsedInput.stock,
                     price: parsedInput.price,
                 } 
+            });
+
+            if (!newProduct) {
+                throw new ActionError("Error during creation of product!");
+            };
+            
+            await prisma.cart.create({
+                data: {
+                    id: newProduct.id,
+                    family: parsedInput.family,
+                    name: parsedInput.name,
+                    img: "/assets/images/cpu/cpu_i3.jpg",
+                    version: parsedInput.version,
+                    quantity: 0,
+                    stock: parsedInput.stock,
+                    price: parsedInput.price,
+                    productId: newProduct.id
+                }
             })
         } catch (error) {
             throw new ActionError("Error during creation of product!");
