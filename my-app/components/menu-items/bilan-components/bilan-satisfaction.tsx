@@ -1,5 +1,4 @@
-import React from 'react'
-import { subDays, startOfDay, format, endOfMonth, startOfMonth, startOfYear, endOfYear } from 'date-fns';
+import React from 'react';
 import BilanContentBox from './bilan-content-box';
 
 export default async function BilanSatisfaction() {

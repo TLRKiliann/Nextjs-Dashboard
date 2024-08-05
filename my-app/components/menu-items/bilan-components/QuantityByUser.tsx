@@ -77,8 +77,8 @@ const QuantityByUsers: React.FC<{productsQuantityByUser: { [key: string]: number
 
     productsQuantityArray.sort((a, b) => b[1] - a[1]);
     
-    const users = productsQuantityArray.map(([userName, totalQuantity]) => userName);
-    const quantity = productsQuantityArray.map(([userName, totalQuantity]) => totalQuantity);
+    const users = productsQuantityArray.slice(0, 8).map(([userName, totalQuantity]) => userName);
+    const quantity = productsQuantityArray.slice(0, 8).map(([userName, totalQuantity]) => totalQuantity);
 
     const data = {
         labels: users,
