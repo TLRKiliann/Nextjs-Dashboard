@@ -15,6 +15,14 @@ export const listOfItems: ListOfItemsProps[] = [
     },
     {
         id: 4,
-        item: "product"
+        item: "products"
+    },
+    {
+        id: 5,
+        item: "contact"
+    },
+    {
+        id: 6,
+        item: "chat"
     }
 ];

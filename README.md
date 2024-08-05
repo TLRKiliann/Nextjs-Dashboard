@@ -11,7 +11,7 @@ Nextjs 14 - TypeScript - Tailwind - PostgreSQL
 > Login as User or Admin with NextAuth V5 without api (GitHub & Google)
 
 - Administrator can access to dashboard.
-- User can access to products & payment.
+- User & Admin can access to products & payment.
 
 **User:**
 - main page
@@ -27,10 +27,11 @@ Nextjs 14 - TypeScript - Tailwind - PostgreSQL
 - statistics
 - users
 - products (best sellers & stock)
+- bilan
 
 ---
 
-**Fetch the public IP from :**
+**Fetch the public IP from user**
 
 > Retrieve the public IP & determine the location by latitude & longitude with react-leaflet map.
 
@@ -54,30 +55,57 @@ I had some problems, many times, with a **window is undefined** error. To solve 
 
 *Useful link:* [window.navigator.userAgent](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/userAgent)
 
+Data are written into:
+
+- `/app/api/profile/browseros/route.ts`
+
+Data are saved into:
+
+- `/utils/browseros-data.json`
+- `/utils/ip-data.json`
+
 ---
 
 > Manage products from store as ADMIN with server-actions & postgresql (prisma)
+
+**dashboard (admin)**
 
 1. Upadate/Modify
 2. Delete
 3. Create
 
-`Products.tsx`
-
-`CreateProduct.tsx`
+- `/components/menu-items/admin-products/ModifyProduct.tsx`
+- `/components/menu-items/admin-products/CreateProduct.tsx`
 
 <sub><sup>(They have the same route)</sup></sub>
 
 ---
 
-> User can send maessage to Admin & management system message for Admin
+## Messages
 
-- contact (user)
-- dashboard (admin)
+> User can send message to Admin & management system message for Admin
+
+**contact (user)**
+
+- Write & send a message to admin.
+
+**dashboard (admin)**
+
+- Open/close messages
+- Read & write message to response to users.
+
+---
+
+## Data
 
 > Retrieve data from db & data.json to display values in charts
 
-- dashboard (admin)
+**dashboard (admin)**
+
+- Network
+- Statistics (nb connection to site per day, os, browser, satisfaction)
+- Store of products (create - delete - update)
+- Bilan
 
 #### Configuration in .env
 
@@ -98,36 +126,42 @@ NEXTAUTH_URL=http://localhost:3000
 AUTH_TRUST_HOST=true
 ```
 
----
-
-#### Configuration in .gitignore
+Don't forget to configure .gitignore to avoid share sensitive data.
 
 add `.env` into .gitignore & save the file.
 
 ---
 
-#### Files required
+## Authentication with next-auth@beta
 
-All files in app/(auth)/...
+I wanted build a system login without external API like Google or GitHub to give different access as user or admin.
+
+All files that include NextAuth V5:
 
 - app/api/auth/[...nextauth]/route.ts
 
-- auth.ts
+- /app/auth/...
 
 - middleware.ts
 
 - prisma/prisma.ts
 
-- zod
 
 ---
 
-***under development***
+## Security
 
-1. Switch User connection Offline to Online ✅
-2. Allow user & admin to change image of profile (upload, save & display) ✅
-3. Catch public IP + OS + browser when User is logged in & write data in data.json file. ✅
-4. use next-safe-action 
+Use next-safe-action with zod & zod-form-data, to secure request of server action (avoid to display sensitive data).
+
+- `/lib/actions.ts`
+- `/lib/safe-action.ts`
+
+---
+
+## Extra
+
+I create a shop as an e-commerce to combine zustand with prisma request. Just to understood how works prisma table (in this ctx) & how to initialize products in the zustand store.
+I don't used stripe, because that wasn't my goal.
 
 ---
 
@@ -135,9 +169,9 @@ All files in app/(auth)/...
 
 `$ pnpm add sharp`
 
-`$ pnpm add chart.js react-chartjs-2`
-
 `$ pnpm add react-icons`
+
+`$ pnpm add chart.js react-chartjs-2`
 
 `$ pnpm add leaflet`
 
@@ -161,6 +195,8 @@ All files in app/(auth)/...
 
 `$ pnpm add @hookform/error-message`
 
+`$ pnpm add next-auth@beta @auth/prisma-adapter`
+
 `$ pnpm add @prisma/client`
 
 `$ pnpm add -D prisma`
@@ -171,7 +207,9 @@ All files in app/(auth)/...
 
 `$ pnpm prisma migrate dev --name init`
 
-`$ pnpm add next-auth@beta @auth/prisma-adapter`
+(pnpm prisma db push (schema))
+
+(pnpm prisma db seed (seed.ts))
 
 `$ pnpm add bcryptjs`
 
@@ -197,13 +235,13 @@ All files in app/(auth)/...
 
 ---
 
-## Ref:
+## Ref
 
 - NextAuth V5:
 
 [auth.ts](https://authjs.dev/getting-started/migrating-to-v5)
 
-- If you get some trouble with prisma migration schema:
+- If you get some trouble with prisma migration schema, follow this link:
 
 [prisma-migrate](https://www.prisma.io/docs/orm/prisma-migrate/workflows/data-migration)
 

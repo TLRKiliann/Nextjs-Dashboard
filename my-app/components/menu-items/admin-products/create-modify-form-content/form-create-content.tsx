@@ -14,7 +14,7 @@ type AllProductsProps = {
     priceProduct: string | undefined;
 };
 
-export default function FormCreateContent() { 
+export default function FormCreateContent({ idOfProduct }: { idOfProduct: number }) { 
 
     // next-safe-action
     const { execute } = useAction(createProduct, {
@@ -137,7 +137,7 @@ export default function FormCreateContent() {
             ) : null} */}
 
             <div className='flex items-center justify-center w-full'>
-                <input id="id" name="id" value={8} readOnly hidden />
+                <input id="id" name="id" value={idOfProduct} readOnly hidden />
                 <button type="submit"
                     className='flex items-center justify-center w-full text-slate-50 font-bold 
                         bg-blue-500 hover:bg-blue-600 active:bg-blue-700 rounded mx-4 mt-3 py-2'

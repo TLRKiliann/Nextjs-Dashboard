@@ -2,7 +2,7 @@ import React from 'react';
 import BilanContentBox from './bilan-content-box';
 import prisma from '@/prisma/prisma';
 
-type ProductTypes = {
+type CartTypes = {
     name: string;
     quantity: number;
     stock: number;
@@ -11,7 +11,7 @@ type ProductTypes = {
 
 export default async function BilanSales() {
     
-    const sales = await prisma.product.findMany({
+    const sales: CartTypes[] | null = await prisma.cart.findMany({
         select: {
             name: true,
             quantity: true,
@@ -20,6 +20,14 @@ export default async function BilanSales() {
         }
     });
 
+    if (sales.length === 0) {
+        return (
+            <div className="flex items-center justify-center w-full h-full">
+                <h3>No products in cart!</h3>
+            </div>
+        )
+    };
+
     const totalPrice = sales.reduce((acc: number, item: {quantity: number; price: number;}) => acc + (item.quantity * item.price), 0);
     const totalSales = sales.reduce((acc: number, item: {quantity: number;}) => acc + item.quantity, 0);
     const totalStock = sales.reduce((acc: number, item: {stock: number;}) => acc + item.stock, 0);
@@ -27,7 +35,7 @@ export default async function BilanSales() {
     const sortedProducts = sales.sort((a, b) => b.quantity - a.quantity);
 
     // Extract labels and dataset values from sorted products
-    const findBestSellerProduct = sortedProducts.map((product: ProductTypes) => product.name);
+    const findBestSellerProduct = sortedProducts.map((product: CartTypes) => product.name);
     const bestSellerName = findBestSellerProduct[0];
 
     return (

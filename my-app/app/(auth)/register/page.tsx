@@ -12,7 +12,7 @@ export default function RegisterPage() {
     return (
         <>
             <HeaderAuth />
-            <div className='flex flex-col items-center justify-center pt-10'>
+            <div className='flex flex-col items-center justify-center w-full pt-10'>
                 <RegisterForm />
                 <div className="flex flex-col items-center justify-center">
                     <li className="list-none text-sm text-blue-600/80 hover:text-blue-700/80 active:text-blue-800 mt-4">

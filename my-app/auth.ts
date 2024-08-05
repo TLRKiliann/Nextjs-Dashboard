@@ -1,8 +1,9 @@
 import NextAuth from "next-auth";
-import { PrismaAdapter } from "@auth/prisma-adapter";
-import prisma from "@/prisma/prisma";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
+import { NextResponse } from "next/server";
+import { PrismaAdapter } from "@auth/prisma-adapter";
+import prisma from "@/prisma/prisma";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   session: { 
@@ -46,8 +47,14 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     session: async ({ session, token }) => {
       if (token.sub) {
         session.user.id = token.sub;
+      }    
+        return session;
+    },
+    async jwt({ token, user }) {
+      if (user) {
+        token.sub = user.id;
       }
-      return session;
+      return token;
     },
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
@@ -58,7 +65,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       if (isProtected && !isLoggedIn) {
         const redirectUrl = new URL("/api/auth/signin", nextUrl.origin);
         redirectUrl.searchParams.append("callbackUrl", nextUrl.href);
-        return Response.redirect(redirectUrl);
+        return NextResponse.redirect(redirectUrl);
       };
       return true;
     },

@@ -19,7 +19,6 @@ export default function Searchbar() {
                 const mapping = listOfItems.filter((list: ListOfItemsProps) => (
                     list.item.toLowerCase().includes(derivatedSearchWord.toLowerCase()))
                 );
-                console.log(mapping)
                 setDataUrl(mapping);
             }
         }
@@ -39,9 +38,9 @@ export default function Searchbar() {
             <input type="text" 
                 value={searchWord} 
                 onChange={(e) => handleChange(e)}
-                className='w-[100%] text-base border bg-slate-50 
-                    focus:w-[400px] focus:ring-1 focus:ring-blue-500 focus:border-none 
-                    focus:outline-none focus:text-slate-600 shadow-inner rounded-full pl-8 py-1'
+                className='w-[100%] text-base border bg-slate-50 focus:ring-1 
+                    focus:ring-blue-500 focus:border-none focus:outline-none focus:text-slate-600 
+                    shadow-inner rounded-full pl-8 py-1'
                 placeholder="Search"
             />
 

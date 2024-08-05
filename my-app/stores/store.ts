@@ -18,73 +18,79 @@ type Actions = {
 
 // useBearStore
 export const useStore = create<States & Actions>()(
-  persist((set, get) => ({
+  persist((set) => ({
       bearProducts: [],
       addProducts: (product) => {
-        const itemExists = get().bearProducts.find((cartItem) => cartItem.id === product.id)
-        if (itemExists) {
-          if (typeof itemExists.quantity === "number") {
-            itemExists.quantity++;
-          }
-          set({ bearProducts: [...get().bearProducts] })
-        } else {
-          set({ bearProducts: [...get().bearProducts, { ...product, quantity: 1 }] })
-        }
-      },
-      deleteProducts: (product) => {
-        const itemExists = get().bearProducts.find((cartItem) => cartItem.id === product.id)
-        if (itemExists) {
-          if (typeof itemExists.quantity === "number") {
-            itemExists.quantity--;
-          }
-          set({ bearProducts: [...get().bearProducts] })
-        } else {
-          set({ bearProducts: [...get().bearProducts, { ...product, quantity: 1 }] })
-        }
-      },
-      increaseQuantity: (productId) => {
-        const itemExists = get().bearProducts.find(
-          (cartItem) => cartItem.id === productId
-        );
-
-        if (itemExists) {
-          if (typeof itemExists.quantity === "number") {
-            itemExists.quantity++;
-          }
-          set({ bearProducts: [...get().bearProducts] });
-        }
-      },
-      decreaseQuantity: (productId) => {
-        const itemExists = get().bearProducts.find(
-          (cartItem) => cartItem.id === productId
-        );
-        if (itemExists) {
-          if (typeof itemExists.quantity === "number") {
-            if (itemExists.quantity === 1) {
-              const updatedbearProducts = get().bearProducts.filter(
-                (item) => item.id !== productId
-              );
-              set({ bearProducts: updatedbearProducts });
-            } else {
-              itemExists.quantity--;
-              set({ bearProducts: [...get().bearProducts] });
+        set((state) => {
+          const itemExists = state.bearProducts.find((cartItem) => cartItem.id === product.id)
+          if (itemExists) {
+            return {
+              bearProducts: state.bearProducts.map((cartItem) => cartItem.id === product.id
+                ? { ...cartItem, quantity: cartItem.quantity + 1 }
+                : cartItem
+              ),
             }
           }
+          return {
+            bearProducts: [...state.bearProducts, { ...product, quantity: 1 }],
+          };
         }
-      },
-      removeAllById: (productId) => {
-        const itemExists = get().bearProducts.find(
-          (product) => product.id === productId
-        );
-        if (itemExists) {
-          if (typeof itemExists.quantity === "number") {
-            const updatedbearProducts = get().bearProducts.filter(
-              (product) => product.id !== itemExists.id
-            );
-            set({ bearProducts: updatedbearProducts });
+      )},
+      deleteProducts: (product) => {
+        set((state) => {
+          const itemExists = state.bearProducts.find((cartItem) => cartItem.id === product.id)
+          if (itemExists) {
+            return {
+              bearProducts: state.bearProducts.map((cartItem) => cartItem.id === product.id
+                ? { ...cartItem, quantity: cartItem.quantity - 1 }
+                : cartItem
+              ),
+            }
           }
+          return {
+            bearProducts: [...state.bearProducts, { ...product, quantity: 1 }],
+          };
         }
-      },
+      )},
+      increaseQuantity: (productId) => {
+        set((state) => {
+          const itemExists = state.bearProducts.find((cartItem) => cartItem.id === productId);
+          if (itemExists) {
+            return {
+              bearProducts: state.bearProducts.map((cartItem) => cartItem.id === productId
+                ? { ...cartItem, quantity: (cartItem.quantity || 0) + 1 }
+                : cartItem
+              ),
+            }
+          }
+          return state;
+        }
+      )},
+      decreaseQuantity: (productId) => {
+        set((state) => {
+          const itemExists = state.bearProducts.find((cartItem) => cartItem.id === productId);
+          if (itemExists) {
+            return {
+              bearProducts: state.bearProducts.map((cartItem) => cartItem.id === productId
+                ? { ...cartItem, quantity: (cartItem.quantity || 0) - 1 }
+                : cartItem
+              ),
+            }
+          }
+          return state;
+        }
+      )},
+      removeAllById: (productId) => {
+        set((state) => {
+          const itemExists = state.bearProducts.find((product) => product.id === productId);
+          if (itemExists) {
+            return {
+              bearProducts: state.bearProducts.filter((cartItem) => cartItem.id === productId),
+            }
+          }
+          return state;
+        }
+      )}
     }),
     {
       name: "cart-items",
