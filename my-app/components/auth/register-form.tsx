@@ -70,9 +70,9 @@ export const RegisterForm = () => {
                     className={`${input_style}`}
                 />
                 {errors["name"] && (
-                <span className="text-red-500 text-xs pt-1 block">
-                    {errors["name"]?.message as string}
-                </span>
+                    <span className="text-red-500 text-xs pt-1 block">
+                        {errors["name"]?.message as string}
+                    </span>
                 )}
             </div>
             <div className="mb-6">
@@ -85,9 +85,9 @@ export const RegisterForm = () => {
                     className={`${input_style}`}
                 />
                 {errors["email"] && (
-                <span className="text-red-500 text-xs pt-1 block">
-                    {errors["email"]?.message as string}
-                </span>
+                    <span className="text-red-500 text-xs pt-1 block">
+                        {errors["email"]?.message as string}
+                    </span>
                 )}
             </div>
             <div className="mb-6">
@@ -105,9 +105,9 @@ export const RegisterForm = () => {
                     className={`${input_style}`}
                 />
                 {errors["password"] && (
-                <span className="text-red-500 text-xs pt-1 block">
-                    {errors["password"]?.message as string}
-                </span>
+                    <span className="text-red-500 text-xs pt-1 block">
+                        {errors["password"]?.message as string}
+                    </span>
                 )}
             </div>
             <div className="mb-6">
@@ -127,9 +127,9 @@ export const RegisterForm = () => {
                     className={`${input_style}`}
                 />
                 {errors["passwordConfirm"] && (
-                <span className="text-red-500 text-xs pt-1 block">
-                    {errors["passwordConfirm"]?.message as string}
-                </span>
+                    <span className="text-red-500 text-xs pt-1 block">
+                        {errors["passwordConfirm"]?.message as string}
+                    </span>
                 )}
             </div>
             <button
