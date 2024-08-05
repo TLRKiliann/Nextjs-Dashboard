@@ -26,7 +26,9 @@ export const RegisterForm = () => {
                     "Content-Type": "application/json",
                 },
             });
-
+            if (res.ok) {
+                toast.success("Registered successfully!")
+            };
             if (!res.ok) {
                 const errorData = await res.json();
                 if (Array.isArray(errorData.errors) && errorData.errors.length > 0) {
@@ -50,7 +52,7 @@ export const RegisterForm = () => {
     "form-control block w-full px-4 py-3 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none";
 
     return (
-        <form onSubmit={handleSubmit(onSubmitHandler)} className="w-full bg-slate-50/30 px-14 pt-6 pb-7 rounded-2xl shadow-auth">
+        <form onSubmit={handleSubmit(onSubmitHandler)} className="w-[400px] bg-slate-50/30 px-14 pt-6 pb-7 rounded-2xl shadow-auth">
             <div className="pb-6">
                 <h2 className="text-3xl font-bold">Register</h2>
             </div>
@@ -132,8 +134,9 @@ export const RegisterForm = () => {
             </div>
             <button
                 type="submit"
-                style={{ backgroundColor: `${submitting ? "#ccc" : "#3446eb"}` }}
-                className="inline-block px-7 py-4 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full"
+                className='inline-block px-7 h-[48px] leading-snug bg-blue-600 text-white text-sm uppercase rounded shadow-md 
+                focus:shadow-lg focus:outline-none focus:ring-0 hover:bg-blue-700 hover:shadow-lg active:bg-blue-800 active:shadow-lg transition 
+                duration-150 ease-in-out w-full'
                 disabled={submitting}
             >
                 {submitting ? "loading..." : "Sign Up"}
