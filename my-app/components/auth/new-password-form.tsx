@@ -1,8 +1,9 @@
 "use client";
 
+import { useSession } from "next-auth/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import toast from 'react-hot-toast';
 import { NewPasswordSchema, newPasswordSchema } from "@/lib/user-schema";
@@ -12,12 +13,9 @@ export default function NewPasswordForm() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const callbackUrl = searchParams.get('callbackUrl') || '/profile';
-    //const token = searchParams.get("token");
-    
-    /* useEffect(() => {
-        console.log(token, "token");
-        return () => console.log("clean-up!");
-    }, [token]) */
+
+    const { data: session } = useSession();
+    const token = session?.user?.id; 
 
     const [error, setError] = useState<string>("");
     const [success, setSuccess] = useState<string>("");
@@ -35,18 +33,16 @@ export default function NewPasswordForm() {
     const { reset, handleSubmit, register, formState: { errors } } = form;
 
     const onSubmitHandler: SubmitHandler<NewPasswordSchema> = async (values) => {
-        console.log('onSubmitHandler triggered');
-        /* if (!token) {
+        if (!token) {
             setError("Token is missing");
             console.log("Token is missing");
             return;
-        }; */
+        };
         try {
             setSubmitting(true);
             setError("");
             setSuccess("");
-            const res = await fetch(`/api/newpassword`, {
-            //const res = await fetch(`/api/newpassword?token=${token}`, {
+            const res = await fetch(`/api/newpassword?token=${token}`, {
                 method: "POST",
                 body: JSON.stringify({ 
                     email: values.email,
@@ -141,9 +137,6 @@ export default function NewPasswordForm() {
                     {errors.newPassword.message}
                 </span>}
             </div>
-
-
-
 
             {error && <span className='text-red-500 text-xs pt-1 block'>{error}</span>}
             {success && <span className='text-green-500 text-xs pt-1 block'>{success}</span>}
