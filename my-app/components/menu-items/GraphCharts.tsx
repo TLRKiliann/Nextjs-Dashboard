@@ -1,9 +1,9 @@
 import React from 'react';
 import TableGraphs from './TableGraphs';
-import BarChartOs from './graphs/BarChartOs';
-import BarChartBrowser from './graphs/BarChartBrowser';
 import DoughnutChart from './graphs/DoughnutChart';
 import DailyTraffic from './graphs/daily-traffic';
+import OsFormatter from './graphs/os-formatter';
+import BrowsersFormatter from './graphs/browsers-formatter';
 
 export default function GraphCharts() {
     return (
@@ -18,11 +18,11 @@ export default function GraphCharts() {
             </TableGraphs>
 
             <TableGraphs>
-                <BarChartOs />
+                <OsFormatter />
             </TableGraphs>
 
             <TableGraphs>
-                <BarChartBrowser />
+                <BrowsersFormatter />
             </TableGraphs>
 
         </div>
