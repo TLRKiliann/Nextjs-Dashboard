@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { NewPasswordForm } from '@/components/auth/new-password-form';
+import NewPasswordForm from '@/components/auth/new-password-form';
 import HeaderAuth from '@/components/auth/header-auth';
 
 export const metadata: Metadata = {

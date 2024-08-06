@@ -2,19 +2,22 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import toast from 'react-hot-toast';
 import { NewPasswordSchema, newPasswordSchema } from "@/lib/user-schema";
 
-export const NewPasswordForm = () => {
+export default function NewPasswordForm() {
 
     const router = useRouter();
     const searchParams = useSearchParams();
     const callbackUrl = searchParams.get('callbackUrl') || '/profile';
-    const token = searchParams.get("token");
+    //const token = searchParams.get("token");
     
-    console.log(token, "token value");
+    /* useEffect(() => {
+        console.log(token, "token");
+        return () => console.log("clean-up!");
+    }, [token]) */
 
     const [error, setError] = useState<string>("");
     const [success, setSuccess] = useState<string>("");
@@ -23,6 +26,8 @@ export const NewPasswordForm = () => {
     const form = useForm<NewPasswordSchema>({
         resolver: zodResolver(newPasswordSchema),
         defaultValues: {
+            email: "",
+            password: "",
             newPassword: "",
         },
     });
@@ -31,18 +36,23 @@ export const NewPasswordForm = () => {
 
     const onSubmitHandler: SubmitHandler<NewPasswordSchema> = async (values) => {
         console.log('onSubmitHandler triggered');
-        if (!token) {
+        /* if (!token) {
             setError("Token is missing");
+            console.log("Token is missing");
             return;
-        };
+        }; */
         try {
             setSubmitting(true);
             setError("");
             setSuccess("");
-            //const res = await fetch(`/api/newpassword`, {
-            const res = await fetch(`/api/newpassword?token=${token}`, {
+            const res = await fetch(`/api/newpassword`, {
+            //const res = await fetch(`/api/newpassword?token=${token}`, {
                 method: "POST",
-                body: JSON.stringify({ newPassword: values.newPassword }),
+                body: JSON.stringify({ 
+                    email: values.email,
+                    password: values.password,
+                    newPassword: values.newPassword 
+                }),
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -72,6 +82,46 @@ export const NewPasswordForm = () => {
 
             <h2 className="text-3xl font-bold">Reset Password</h2>
 
+            <div className="flex flex-col w-full">
+                <label htmlFor="email" className="text-base text-blue-500/80 pt-4 pb-2">
+                    Email
+                </label>
+                <input 
+                    id="email"
+                    type="email"
+                    {...register("email")}
+                    disabled={submitting}
+                    placeholder="email@prisma.io"
+                    className="form-control block w-full px-4 py-3 text-sm font-normal text-gray-700 
+                        bg-white border border-solid border-gray-300 rounded 
+                        transition ease-in-out m-0 focus:text-gray-700 focus:bg-white 
+                        focus:border-blue-600 focus:outline-none disabled:opacity-50"
+                />
+                {errors.email && <span className='text-red-500 text-xs pt-1 block'>
+                    {errors.email.message}
+                </span>}
+            </div>
+
+            <div className="flex flex-col w-full">
+                <label htmlFor="password" className="text-base text-blue-500/80 pt-4 pb-2">
+                    Password
+                </label>
+                <input 
+                    id="password"
+                    type="password"
+                    {...register("password")}
+                    disabled={submitting}
+                    placeholder="******"
+                    className="form-control block w-full px-4 py-3 text-sm font-normal text-gray-700 
+                        bg-white border border-solid border-gray-300 rounded 
+                        transition ease-in-out m-0 focus:text-gray-700 focus:bg-white 
+                        focus:border-blue-600 focus:outline-none disabled:opacity-50"
+                />
+                {errors.newPassword && <span className='text-red-500 text-xs pt-1 block'>
+                    {errors.newPassword.message}
+                </span>}
+            </div>
+
             <div className="flex flex-col w-full mb-8">
                 <label htmlFor="newpasswd" className="text-base text-blue-500/80 pt-4 pb-2">
                     New Password
@@ -85,12 +135,15 @@ export const NewPasswordForm = () => {
                     className="form-control block w-full px-4 py-3 text-sm font-normal text-gray-700 
                         bg-white border border-solid border-gray-300 rounded 
                         transition ease-in-out m-0 focus:text-gray-700 focus:bg-white 
-                        focus:border-blue-600 focus:outline-none"
+                        focus:border-blue-600 focus:outline-none disabled:opacity-50"
                 />
                 {errors.newPassword && <span className='text-red-500 text-xs pt-1 block'>
                     {errors.newPassword.message}
                 </span>}
             </div>
+
+
+
 
             {error && <span className='text-red-500 text-xs pt-1 block'>{error}</span>}
             {success && <span className='text-green-500 text-xs pt-1 block'>{success}</span>}
@@ -100,7 +153,7 @@ export const NewPasswordForm = () => {
                 className='px-7 h-[48px] leading-snug bg-blue-600 text-white text-sm 
                     uppercase rounded shadow-md focus:shadow-lg focus:outline-none focus:ring-0 
                     hover:bg-blue-700 hover:shadow-lg active:bg-blue-800 active:shadow-lg transition 
-                    duration-150 ease-in-out w-full'
+                    duration-150 ease-in-out w-full disabled:opacity-50'
                 disabled={submitting}
             >
                 Reset password
