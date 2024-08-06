@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import userLogo from "@/public/assets/images/users/user_icon.png";
 
-export default function UploadImage() {
+export default function Settings() {
 
     const [image, setImage] = useState<File | null>(null);
     const [imageUrl, setImageUrl] = useState<string | null>(null);
@@ -85,10 +85,11 @@ export default function UploadImage() {
                     </div>
                 </div>
 
-                <div className="w-full flex items-center justify-end text-blue-500 hover:text-blue-600 
+                <div className="w-full flex flex-row items-center justify-between text-blue-500 hover:text-blue-600 
                     active:text-blue-700 mt-4 bg-slate-100 border border-slate-200 rounded-lg px-2 py-1">
-                <Link href="/profile">Profile</Link>
-            </div>
+                    <Link href="/resetpassword">Reset Password</Link>
+                    <Link href="/profile">Profile</Link>
+                </div>
             </div>
         </>
     )

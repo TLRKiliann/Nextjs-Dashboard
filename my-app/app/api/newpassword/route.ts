@@ -9,7 +9,9 @@ export async function POST(req: Request): Promise<NextResponse> {
         const { email, password, newPassword } = newPasswordSchema.parse(await req.json());
 
         const user = await prisma.user.findUnique({
-            where: { email: email.toLowerCase() },
+            where: {
+                email: email.toLowerCase(),
+            },
         });
 
         if (!user || !user.password) {
@@ -29,7 +31,7 @@ export async function POST(req: Request): Promise<NextResponse> {
                     status: "fail",
                     message: "Current password is incorrect",
                 },
-                { status: 401 } // HTTP 401 Unauthorized
+                { status: 401 }
             );
         }
 
