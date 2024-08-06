@@ -67,35 +67,28 @@ export const options = {
   },
 };
 
-const labels = ['Window', 'Mac', 'Linux'];
+const BarChart:React.FC<{linux: number; mac: number; windows: number;}> = ({linux, mac, windows}) => {
+    
+  const osNames = ["Linux", "Mac", "Windows"];
+  const operationSystem = [linux, mac, windows];
 
-const dataset1Values = [300, 200, 100];
-const dataset2Values = [350, 250, 150];
+  const data = {
+    labels: osNames,
+    datasets: [
+      {
+        label: 'Men',
+        data: operationSystem,
+        borderColor: 'rgb(53, 162, 235)',
+        backgroundColor: 'rgba(53, 162, 235, 0.5)',
+      },
+    ],
+  };  
 
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: 'Girls',
-      data: dataset1Values,
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    },
-    {
-      label: 'Men',
-      data: dataset2Values,
-      borderColor: 'rgb(53, 162, 235)',
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
-    },
-  ],
-};
-
-const BarChart = () => {
-    return (
-        <div className="flex flex-col items-center justify-center w-[95%] h-full">
-            <h2 className="text-base font-serif text-slate-500 -mt-8 mb-2">Platform OS</h2>
-            <Bar options={options} data={data} className="w-full h-full px-2 -mb-10" />
-        </div>
-    );
+  return (
+    <div className="flex flex-col items-center justify-center w-[95%] h-full">
+        <h2 className="text-base font-serif text-slate-500 -mt-8 mb-2">Platform OS</h2>
+        <Bar options={options} data={data} className="w-full h-full px-2 -mb-10" />
+    </div>
+  );
 }
 export default BarChart;

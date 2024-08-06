@@ -1,10 +1,50 @@
+import prisma from '@/prisma/prisma';
 import React from 'react';
 import { GiReceiveMoney } from "react-icons/gi";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { GiMoneyStack } from "react-icons/gi";
 import { GiPayMoney } from "react-icons/gi";
 
-export default function SquarePage() {
+type CartType = {
+    quantity: number;
+    stock: number;
+    price: number;
+};
+
+export default async function SquarePage() {
+
+    const sales: CartType[] | null = await prisma.cart.findMany({
+        select: {
+            quantity: true,
+            stock: true,
+            price: true
+        }
+    });
+
+    if (sales.length === 0) {
+        console.log("no expenses");
+    };
+
+    const calculationOfQuantity = sales.reduce((
+        acc: number, prod: {quantity: number;}
+    ) => acc + prod.quantity, 0);
+
+    const calculationOfStock = sales.reduce((
+        acc: number, prod: {stock: number; price: number;}
+    ) => acc + (prod.stock * prod.price), 0);
+
+    const calcPriceQuantity = sales.reduce((
+        acc: number, prod: {quantity: number; price: number;}
+    ) => acc + (prod.quantity * prod.price), 0);
+
+    const earnings = calcPriceQuantity;
+
+    // initial budget calculation
+    const budget = calcPriceQuantity + calculationOfStock;
+
+    // initial budget - sales
+    const debts = budget - calcPriceQuantity;
+
     return (
         <div className='flex flex-row items-center justify-evenly w-full'>
             
@@ -18,11 +58,11 @@ export default function SquarePage() {
                     </div>
 
                     <div className="flex flex-col items-center justify-center">
-                        <div className="">
-                            <p className='text-xl text-slate-500/80 font-bold'>7777.-</p>
+                        <div>
+                            <p className='text-xl text-slate-500/80 font-bold'>{calcPriceQuantity}.-</p>
                         </div>
                         <div>
-                            <h6 className='text-sm text-slate-500/80'>Earnings</h6>
+                            <h6 className='text-sm text-slate-500/80'>Sales</h6>
                         </div>
                     </div>
 
@@ -39,11 +79,11 @@ export default function SquarePage() {
                     </div>
 
                     <div className="flex flex-col items-center justify-center">
-                        <div className="">
-                            <p className='text-xl text-slate-500/80 font-bold'>978.-</p>
+                        <div>
+                            <p className='text-xl text-slate-500/80 font-bold'>{budget}.-</p>
                         </div>
                         <div>
-                            <h6 className='text-sm text-slate-500/80'>Spend</h6>
+                            <h6 className='text-sm text-slate-500/80'>Investment</h6>
                         </div>
                     </div>
 
@@ -60,11 +100,11 @@ export default function SquarePage() {
                     </div>
 
                     <div className="flex flex-col items-center justify-center">
-                        <div className="">
-                            <p className='text-xl text-slate-500/80 font-bold'>1277pc</p>
+                        <div>
+                            <p className='text-xl text-slate-500/80 font-bold'>{calculationOfQuantity}pc</p>
                         </div>
                         <div>
-                            <h6 className='text-sm text-slate-500/80'>Sales</h6>
+                            <h6 className='text-sm text-slate-500/80'>Quantity</h6>
                         </div>
                     </div>
 
@@ -81,8 +121,8 @@ export default function SquarePage() {
                     </div>
 
                     <div className="flex flex-col items-center justify-center">
-                        <div className="">
-                            <p className='text-xl text-slate-500/80 font-bold'>0.-</p>
+                        <div>
+                            <p className='text-xl text-slate-500/80 font-bold'>{debts}.-</p>
                         </div>
                         <div>
                             <h6 className='text-sm text-slate-500/80'>Debts</h6>
@@ -93,4 +133,4 @@ export default function SquarePage() {
             </div>
         </div>
     )
-}
+};
