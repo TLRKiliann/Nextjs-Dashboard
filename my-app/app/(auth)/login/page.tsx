@@ -21,7 +21,7 @@ export default async function LoginPage() {
                         <Link href="/register">Don&apos;t have an account ?</Link>
                     </li>
                     <li className="list-none text-sm text-blue-600/80 hover:text-blue-700/80 active:text-blue-800 mt-2">
-                        <Link href="/resetpassword">Forgot password ?</Link>
+                        <Link href="/resetpassword">Reset password ?</Link>
                     </li>
                 </div>
             </div>        
