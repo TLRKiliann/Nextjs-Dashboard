@@ -31,8 +31,9 @@ const HeaderAuth = async () => {
 
     return (
         <div className='absolute top-0 z-10 flex flex-row items-center justify-between w-full h-[70px] 
-            text-lg font-semibold text-slate-50 bg-gradient-to-l from-cyan-500 to-blue-500/50 shadow-auth pr-10'>
-
+            text-lg font-semibold text-slate-50 bg-gradient-to-l from-cyan-500 to-blue-500/50 
+            shadow-auth pr-10'
+        >
             <div className="ml-2 rounded">
                 <Image 
                     src={dashLogo}
