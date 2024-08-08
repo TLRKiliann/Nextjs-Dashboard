@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import HeaderAuth from '@/components/auth/header-auth';
+import HeaderAuth from "@/components/auth/header-auth";
 import { LoginForm } from "@/components/auth/login-form";
 
 export const metadata: Metadata = {
