@@ -1,24 +1,43 @@
 "use client";
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const ConsentDataCollection = (): JSX.Element => {
 
     const [inputValidate, setInputValidate] = useState<boolean>(false);
     const [isOpen, setIsOpen] = useState<boolean>(true);
+    const [alreadyConsent, setAlreadyConsent] = useState<string | null>(null);
 
     const handleInputValidation = () => {
         setInputValidate(!inputValidate);
     };
+    
+
+
+    useEffect(() => {
+        const caller = () => {
+            if (typeof window !== 'undefined') {
+                const consent = localStorage.getItem('consent-key');
+                setAlreadyConsent(consent);
+            };
+        }
+        caller();
+        return () => console.log("clean-up!");
+    }, []);
 
     const handleConsent = () => {
-        inputValidate === true ? setIsOpen(false) : null;
+        if (inputValidate) {
+            localStorage.setItem('consent-key', 'true');
+            setIsOpen(false); 
+        }
     };
+
+    console.log(alreadyConsent, "already consent")
 
     return (
         <>
-            {isOpen === true ? (
+            {alreadyConsent !== "true" && isOpen ? (
                 <div className="absolute z-20 w-full h-screen flex items-center justify-center bg-slate-50/10 backdrop-blur-sm">
 
                     <div className="relative z-30 flex items-center justify-center w-[80%] h-[80%] bg-white text-base font-sans text-neutral-700 rounded-md">
