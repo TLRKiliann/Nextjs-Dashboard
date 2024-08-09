@@ -72,7 +72,7 @@ export default async function Bilan() {
 
             </div>
 
-            <div className='w-full h-3/6 grid grid-cols-1 grid-rows-2 text-slate-600/70 gap-4'>
+            <div className='w-full h-3/6 grid grid-cols-1 grid-rows-2 text-slate-50 gap-4'>
 
                 <div className='w-full flex flex-row items-center gap-4'>
                     
