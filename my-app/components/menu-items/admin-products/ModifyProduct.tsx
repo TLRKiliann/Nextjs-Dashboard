@@ -15,7 +15,7 @@ export default async function ProductsToModify({listProducts}: {listProducts: Pr
     return (
         <div className='relative mt-0 h-[100%] z-10'>
             
-            <div className='absolute -z-10 w-full h-full overflow-y-scroll no-scrollbar m-auto px-3 pb-2'>
+            <div className='absolute -z-10 w-full h-full overflow-y-scroll no-scrollbar m-auto px-3'>
 
                 {listProducts.map((product: Product) => (
                     <div key={product.id} 

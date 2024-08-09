@@ -69,7 +69,7 @@ export default async function DashboardIndexLayout({children, params}: {
                             <Bilan />
                         </div>
                     ) : params.indexDashboard === "products-admin" ? (
-                        <div className={`${styles} pt-2`}>
+                        <div className={`${styles} py-2`}>
                             <ModifyProduct listProducts={listProducts} />
                             <CreateProduct />
                         </div>
