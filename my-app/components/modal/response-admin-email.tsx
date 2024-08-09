@@ -36,7 +36,7 @@ export default function ResponseAdminEmail({ id, dst, user, prevMsg }:
     <div key={id}>
       <div>
         <button type="button" onClick={handleShow}
-          className="bg-blue-500 hover:bg-blue-600 active:bg-blue-700 px-4 py-1 rounded">
+          className="text-sm bg-blue-500 hover:bg-blue-600 active:bg-blue-700 px-2 py-1 rounded">
           Send email
         </button>
       </div>

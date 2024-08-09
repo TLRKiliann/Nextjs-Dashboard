@@ -73,7 +73,7 @@ export default async function EmailsAdmin() {
                     {emailBox.map((email: Message) => email.isOpen === true && email.src !== "admin@prisma.io" ? (
                         <div key={email.id} className='w-full h-auto bg-white'>
                             <div className='flex flex-row items-end justify-between w-full h-auto 
-                                text-slate-50 bg-slate-800 rounded-tl rounded-bl p-2'>
+                                text-slate-50 bg-gradient-to-r from-slate-900 to-cyan-900 rounded-tl rounded-bl p-2'>
                                 <div>
                                     <p className='text-base font-bold py-1'>{email.src}</p>
                                     <p className='text-sm pb-1'>{String(email.createdAt).slice(0, 24)}</p>
