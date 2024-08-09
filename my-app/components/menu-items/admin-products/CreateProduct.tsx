@@ -23,12 +23,12 @@ export default async function CreateProduct() {
     const idOfProduct: number = nbOfProducts.length + 1;
 
     return (
-        <div className='relative z-50 flex flex-col items-center justify-center w-full h-[50%] bg-slate-800 rounded'>
-            <div className='h-full flex flex-col items-center justify-center mx-4'>
-                <div className='flex flex-col items-center justify-center w-[460px] h-full rounded-lg'>
+        /* <div className='relative z-50 flex flex-col items-center justify-center w-full h-[50%] bg-gradient-to-bl from-slate-900 to-cyan-900'>
+            <div className='h-full flex flex-col items-center justify-center'>
+                <div className='flex flex-col items-center justify-center w-[460px] h-full'> */
                     <FormCreateContent idOfProduct={idOfProduct} />
-                </div>
+                /* </div>
             </div>
-        </div>
+        </div> */
     )
 }
