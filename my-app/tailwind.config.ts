@@ -18,6 +18,7 @@ const config: Config = {
         "out": "0 0 10px rgba(0, 0, 0, 1)",
         "card": "0 0 5px rgba(0, 0, 0, 0.2)",
         "auth": "0 0 7px rgba(100, 100, 100, 0.4)",
+        "medium-darker": "0 0 5px rgba(0, 0, 0, 0.7)",
         "outdarker": "0 0 7px rgba(0, 0, 0, 1)",
         "btn-dark": "0 0 10px rgba(0, 0, 0, 0.3)",
         "in": "inset 0 0 10px rgba(0, 0, 0, 0.2)",
