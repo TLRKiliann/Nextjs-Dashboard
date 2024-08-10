@@ -1,5 +1,5 @@
 import { readFile } from "fs/promises";
-import BarChartOs from './BarChartOs';
+import BarChartOs from './statistics/BarChartOs';
 
 export default async function OsFormatter() {
 

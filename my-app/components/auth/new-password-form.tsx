@@ -74,7 +74,7 @@ export default function NewPasswordForm() {
     return (
         <form onSubmit={handleSubmit(onSubmitHandler)} 
             className="flex flex-col items-start justify-between w-[400px] h-auto bg-slate-50/30 px-10 pt-5 
-                pb-8 rounded-2xl shadow-auth">
+                pb-8 rounded-2xl shadow-sm-out">
 
             <h2 className="text-3xl font-bold">Reset Password</h2>
 

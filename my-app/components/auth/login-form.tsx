@@ -59,7 +59,7 @@ export const LoginForm = () => {
     'form-control block w-full px-4 py-3 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none';
 
   return (
-    <form onSubmit={handleSubmit(onSubmitHandler)} className="w-full bg-slate-50/30 px-14 pt-5 pb-10 rounded-2xl shadow-auth">
+    <form onSubmit={handleSubmit(onSubmitHandler)} className="w-full bg-slate-50/30 px-14 pt-5 pb-10 rounded-2xl shadow-sm-out">
       <div className="pb-5">
           <h2 className="text-3xl font-bold">Login</h2>
       </div>

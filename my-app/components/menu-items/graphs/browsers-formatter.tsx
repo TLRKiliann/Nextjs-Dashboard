@@ -1,5 +1,5 @@
 import { readFile } from "fs/promises";
-import BarChartBrowser from './BarChartBrowser';
+import BarChartBrowser from './statistics/BarChartBrowser';
 
 export default async function BrowsersFormatter() {
 

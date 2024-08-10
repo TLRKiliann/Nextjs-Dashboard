@@ -25,7 +25,7 @@ export default async function AllUserProfiles() {
           {users.map((user: User) => (
             <div key={user.id} className="flex flex-row w-[320px] h-[260px] m-auto 
               bg-gradient-to-tr from-slate-600 from-10% to-slate-900 to-90%
-            bg-slate-300 rounded-lg shadow-sm-out">
+            bg-slate-300 rounded-lg shadow-sm-out-light">
               
               <div className="absolute mt-4 ml-4">
                 <Image

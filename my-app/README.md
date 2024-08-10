@@ -1,21 +1,17 @@
+# Todo
+
 1) 
-- seed user + corresponding products
-- seed data for charts
-- all-user-profiles
-- searchbar (more args)
-- charts (graphs) with data from db
+- notifications ??? (to be replaced)
+- /utils/api-requests
+- Next/UI login (drop-down)
 
 2) 
-- next-safe-action to add with server action
-- retrieve data from file.json to display it in Data Table (graph)
-
-3) 
-- order + payments (user + auth)
-- forgot password
+- test (vitetest)
+- stripe ???
 
 //react 19
 //import React, { useActionState } from 'react'
-    //const [error, action, isPending] = useActionState(removeFromCart, null);
+//const [error, action, isPending] = useActionState(removeFromCart, null);
 
 // Don't use useQuery in NextJS
 // Don't use auth in layout.tsx
@@ -29,4 +25,9 @@ $ pnpm prisma studio
 Image
 layout="fill"
 
-"/settings" => "/profile" = BUG avec navigateur + os
+          /* {
+            label: 'Girls',
+            data: dataset1Values,
+            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+          }, */
