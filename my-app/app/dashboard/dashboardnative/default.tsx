@@ -13,7 +13,7 @@ export default function DashboardDefault() {
                 </Suspense>
             </div>
 
-            <div className='flex-none w-[20%] xl:w-[14%] h-full bg-gradient-to-bl from-slate-900 to-cyan-950'>
+            <div className='flex-none w-[20%] xl:w-[14%] min-h-screen bg-gradient-to-bl from-slate-900 to-cyan-950'>
                 <Suspense fallback={<Loader />}>
                     <Menu />
                 </Suspense>
