@@ -14,7 +14,7 @@ export default function Menu() {
     return (
         <div className='flex flex-col items-center justify-start w-auto h-full text-slate-500'>
             
-            <h2 className='w-full text-lg text-center text-slate-400/70 mt-5'>
+            <h2 className='text-base italic font-semibold 2xl:text-xl text-center bg-clip-text text-transparent bg-gradient-to-r from-yellow-200 to-orange-600 md:mt-5 2xl:mt-10'>
                 Admin Dashboard
             </h2>
             
