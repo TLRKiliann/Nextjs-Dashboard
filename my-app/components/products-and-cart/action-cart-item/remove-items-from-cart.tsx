@@ -35,7 +35,7 @@ export default function RemoveItemsFromCart({id, name}:
                     toast.success("Successfully removed from cart!");
                 }}
                 className="text-slate-50 bg-red-500 hover:bg-red-600/90 active:bg-red-700
-                    disabled:opacity-50 rounded-full shadow-sm-out px-4 py-1"
+                    disabled:opacity-50 rounded-full shadow-sm-out-light px-4 py-1"
                 aria-label={`Remove all ${name}`}
                 disabled={!name ? true : false}
             >

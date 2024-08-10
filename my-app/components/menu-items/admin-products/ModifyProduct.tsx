@@ -20,14 +20,14 @@ export default async function ProductsToModify({listProducts}: {listProducts: Pr
                 {listProducts.map((product: Product) => (
                     <div key={product.id} 
                         className='flex flex-row items-center justify-between w-full h-[80px] bg-white 
-                            rounded-lg shadow-sm-out p-4 m-auto my-2'>
+                            rounded-lg shadow-sm-out-light p-4 m-auto my-2'>
 
                         <div className='w-[60px] h-[60px]'>
                             <Image 
                                 src={product.img} 
                                 width={100}
                                 height={100}
-                                className='w-[60px] h-[60px] object-cover rounded-lg shadow-sm-out'
+                                className='w-[60px] h-[60px] object-cover rounded-lg shadow-sm-out-light'
                                 alt="no img" 
                             />
                         </div>

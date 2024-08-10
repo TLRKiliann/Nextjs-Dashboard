@@ -38,7 +38,7 @@ export default function AddItemToCart({ id, name, stock }:
                 }}
                 className="w-[38px] h-[38px] text-slate-100 font-bold bg-blue-500 
                     hover:bg-blue-600/90 active:bg-blue-600
-                    rounded-full shadow-sm-out disabled:opacity-50"
+                    rounded-full shadow-sm-out-light disabled:opacity-50"
                 aria-label={`Add one ${name}`}
                 disabled={stock === 0 ? true : false}
             >

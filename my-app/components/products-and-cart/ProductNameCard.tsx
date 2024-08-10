@@ -61,7 +61,7 @@ export default async function ProductNameCard({params}: {params: {productName: s
                         shadow-indarker p-4'>
 
                         <div className='flex flex-row items-start justify-between
-                            bg-gradient-to-tr from-slate-700 to-slate-950 rounded-md shadow-outdarker p-4'>
+                            bg-gradient-to-tr from-slate-700 to-slate-950 rounded-md shadow-out-dark p-4'>
                             
                             <div>
                                 <Image

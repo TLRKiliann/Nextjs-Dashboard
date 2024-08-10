@@ -44,7 +44,7 @@ export const options = {
 const StockChart: React.FC<{products: Cart[]}> = ({products}): JSX.Element => {
 
   // Sort products by stock in descending order
-  const sortedProducts = products.sort((a, b) => b.stock - a.stock);
+  const sortedProducts = products.sort((a, b) => a.stock - b.stock);
 
   // Extract labels and dataset values from sorted products
   const labels = sortedProducts.slice(0, 5).map((product: Cart) => product.name);

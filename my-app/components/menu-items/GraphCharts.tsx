@@ -1,6 +1,6 @@
 import React from 'react';
 import TableGraphs from './TableGraphs';
-import DoughnutChart from './graphs/DoughnutChart';
+import DoughnutChart from './graphs/statistics/DoughnutChart';
 import DailyTraffic from './graphs/daily-traffic';
 import OsFormatter from './graphs/os-formatter';
 import BrowsersFormatter from './graphs/browsers-formatter';

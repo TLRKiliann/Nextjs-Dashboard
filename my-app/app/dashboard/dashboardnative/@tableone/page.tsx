@@ -2,7 +2,7 @@ import prisma from '@/prisma/prisma';
 import type { User } from '@prisma/client';
 import Image from 'next/image';
 import TablePage from '@/components/TablePage';
-import QuantityPrice from '@/components/menu-items/members/quantity-price';
+import QuantityPrice from '@/components/members/quantity-price';
 import imgLogo from "@/public/assets/images/users/user_icon.png";
 
 export default async function TableOnePage() {
@@ -30,11 +30,11 @@ export default async function TableOnePage() {
 
             <div className='relative top-0 h-[80%] z-10'>
 
-                <ul className='w-full h-[100%] bg-slate-50 overflow-y-scroll no-scrollbar
+                <ul className='w-full h-[100%] bg-white overflow-y-scroll no-scrollbar
                     flex flex-col items-center rounded-lg px-2 shadow-in'>
 
                     {users.map((customer: User) => (
-                        <li key={customer.id} className='w-full bg-white my-2 shadow-sm-out rounded-lg'>
+                        <li key={customer.id} className='w-full bg-white my-2 shadow-md rounded-lg'>
 
                             <div className='flex items-center justify-between text-slate-500/90 px-2'>
                                 
@@ -43,7 +43,7 @@ export default async function TableOnePage() {
                                         className='w-[50px] h-[50px] object-cover my-1 rounded-full'/>
 
                                     <div className='w-[100px] mx-2'>
-                                        <p className='text-xs xl:text-base font-bold'>{customer.name}</p>
+                                        <p className='text-xs xl:text-base font-bold text-gray-500'>{customer.name}</p>
                                     </div>
                                     
                                 </div>
@@ -61,7 +61,7 @@ export default async function TableOnePage() {
                                 </div>
                             
                                 <div className='w-[200px]'>
-                                    <QuantityPrice id={customer.id} styles="text-slate-500/90 bg-slate-50" />
+                                    <QuantityPrice id={customer.id} styles="text-gray-500/90 bg-slate-100/70 border border-slate-200" />
                                 </div>
 
                             </div>
