@@ -63,7 +63,7 @@ const StockChart: React.FC<{products: Cart[]}> = ({products}): JSX.Element => {
   };
 
     return (
-        <div className="flex flex-col items-center justify-center w-full h-full bg-slate-50 rounded-lg">
+        <div className="flex flex-col items-center justify-center w-full h-full rounded-lg">
             <Bar options={options} data={data} className="w-auto h-[100%] pb-4 rounded-lg" />
         </div>
     );

@@ -38,16 +38,16 @@ export default async function QuantityPrice({id, styles}: {id: string; styles: s
         product: { price: number; quantity: number; }) => acc + (product.price * product.quantity), 0);
 
     return (
-        <div key={id} className="w-[80%] m-auto mt-4 mb-2">
+        <div key={id} className="w-[80%] text-xs xl:text-base m-auto mt-4 mb-2">
 
             <div className={`flex flex-row items-center justify-between ${styles} mb-2 p-2 rounded`}>
-                <p className="text-base font-bold">Quantity:&nbsp;</p>
-                <p className="text-base">{prodQuantity} pc</p>
+                <p className="font-bold">Quantity:&nbsp;</p>
+                <p>{prodQuantity} pc</p>
             </div>
 
             <div className={`flex flex-row items-center justify-between ${styles} p-2 rounded`}>
-                <p className="text-base font-bold">Total:&nbsp;</p>
-                <p className="text-base">{prodPrice}.-</p>
+                <p className="font-bold">Total:&nbsp;</p>
+                <p>{prodPrice}.-</p>
             </div>
 
       </div>

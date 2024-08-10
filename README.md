@@ -14,15 +14,18 @@ Nextjs 14 - TypeScript - Tailwind - PostgreSQL
 - User & Admin can access to products & payment.
 
 **User:**
+
 - main page
 - products
 - contact (possibility to send message to admin)
 
 **Admin:**
-- main page
-- dashboard 
 
-**Dashboard with multiple management system:** 
+- main page
+- dashboard
+
+**Dashboard with multiple management system:**
+
 - message
 - statistics
 - users
@@ -47,6 +50,8 @@ I had some problems, many times, with a **window is undefined** error. To solve 
 
 `export const dynamic = "force-dynamic";`
 
+Data are displayed under Network link in Dashboard.
+
 ---
 
 **Retrieve Browser & OS from users**
@@ -64,7 +69,10 @@ Data are saved into:
 - `/utils/browseros-data.json`
 - `/utils/ip-data.json`
 
----
+Data are displayed in charts
+
+- `components/menu-items/graphs/BarChartBrowser.tsx`
+- `components/menu-items/graphs/BarChartOs.tsx`
 
 > Manage products from store as ADMIN with server-actions & postgresql (prisma)
 
@@ -102,6 +110,7 @@ Data are saved into:
 
 **dashboard (admin)**
 
+- Messages
 - Network
 - Statistics (nb connection to site per day, os, browser, satisfaction)
 - Store of products (create - delete - update)
@@ -139,19 +148,15 @@ I wanted build a system login without external API like Google or GitHub to give
 All files that include NextAuth V5:
 
 - app/api/auth/[...nextauth]/route.ts
-
 - /app/auth/...
-
 - middleware.ts
-
 - prisma/prisma.ts
-
 
 ---
 
 ## Security
 
-Use next-safe-action with zod & zod-form-data, to secure request of server action (avoid to display sensitive data).
+Use `next-safe-action` with zod & zod-form-data, to secure request of server action (avoid to display sensitive data).
 
 - `/lib/actions.ts`
 - `/lib/safe-action.ts`
@@ -160,7 +165,7 @@ Use next-safe-action with zod & zod-form-data, to secure request of server actio
 
 ## Extra
 
-I create a shop as an e-commerce to combine zustand with prisma request. Just to understood how works prisma table (in this ctx) & how to initialize products in the zustand store.
+I create a shop as an e-commerce to combine zustand with prisma request. Just to understand how works prisma table (in this ctx) & how to initialize products in the zustand store.
 I don't used stripe, because that wasn't my goal.
 
 ---
@@ -245,7 +250,6 @@ I don't used stripe, because that wasn't my goal.
 
 [prisma-migrate](https://www.prisma.io/docs/orm/prisma-migrate/workflows/data-migration)
 
-
 ---
 
-Enjoy it ! :koala:
+Enjoy it ! 🐨:
