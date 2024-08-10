@@ -31,7 +31,7 @@ export default function Searchbar() {
     };
 
     return (
-        <div className='relative w-full z-10 border border-slate-200'>
+        <div className='relative w-full z-10'>
     
             <FaSearch className='absolute my-2 ml-2 z-20' size={18} />
 

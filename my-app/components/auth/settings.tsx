@@ -85,10 +85,13 @@ export default function Settings() {
                     </div>
                 </div>
 
-                <div className="w-full flex flex-row items-center justify-between text-blue-500 hover:text-blue-600 
-                    active:text-blue-700 mt-4 bg-slate-100 border border-slate-200 rounded-lg px-2 py-1">
-                    <Link href="/resetpassword">Reset Password</Link>
-                    <Link href="/profile">Profile</Link>
+                <div className="w-full flex flex-row items-center justify-between mt-4 bg-slate-100 border border-slate-200 rounded-lg px-2 py-1">
+                    <li className="list-none text-blue-500 hover:text-blue-600 active:text-blue-700">
+                        <Link href="/resetpassword">Reset Password</Link>
+                    </li>
+                    <li className="list-none text-blue-500 hover:text-blue-600 active:text-blue-700">
+                        <Link href="/profile">Profile</Link>
+                    </li>
                 </div>
             </div>
         </>

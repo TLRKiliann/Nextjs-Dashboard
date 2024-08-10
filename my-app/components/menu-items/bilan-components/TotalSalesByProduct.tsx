@@ -90,9 +90,9 @@ const TotalSalesByProduct: React.FC<{productsTotalPriceByName: { [key: string]: 
     };
 
     return (
-        <div className="flex flex-col items-center justify-center w-[95%] h-full">
-            <h2 className="text-base font-serif text-slate-100 -mt-8 mb-2">Total Sales by Product</h2>
-            <Bar options={options} data={data} className="w-full h-full px-2 -mb-10" />
+        <div className="flex flex-col items-center justify-center w-full h-full p-4">
+            <h2 className="text-base font-serif text-slate-100 -mt-10 mb-8">Total Sales by Product</h2>
+            <Bar options={options} data={data} className="w-full h-full px-2 -mb-16" />
         </div>
     );
 }
