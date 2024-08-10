@@ -6,7 +6,7 @@ type ProductType = {
 };
 
 type UserType = {
-    products: ProductType[];
+    carts: ProductType[];
 };
 
 export default async function QuantityPrice({id, styles}: {id: string; styles: string;}) {
@@ -16,9 +16,9 @@ export default async function QuantityPrice({id, styles}: {id: string; styles: s
             id: id,
         },
         include: {
-            products: {
+            carts: {
                 where: {
-                    authorId: id,
+                    userId: id,
                 },
                 select: {
                     quantity: true,
@@ -32,9 +32,9 @@ export default async function QuantityPrice({id, styles}: {id: string; styles: s
         throw new Error("Error: unique user fetch failed!");
     };
 
-    const prodQuantity = userProducts.products.reduce((acc: number, 
+    const prodQuantity = userProducts.carts.reduce((acc: number, 
         prod: { quantity: number; }) => acc + prod.quantity, 0);
-    const prodPrice = userProducts.products.reduce((acc: number, 
+    const prodPrice = userProducts.carts.reduce((acc: number, 
         product: { price: number; quantity: number; }) => acc + (product.price * product.quantity), 0);
 
     return (
