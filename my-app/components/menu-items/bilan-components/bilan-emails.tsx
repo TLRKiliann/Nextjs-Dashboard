@@ -5,7 +5,7 @@ import BilanContentBox from './bilan-content-box';
 export default async function BilanEmails() {
     try {
         // connections for last 7 days & connection average of last 7 days
-        //const today = startOfDay(new Date()).toISOString();
+        // const today = startOfDay(new Date()).toISOString();
         const endOfToday = endOfDay(new Date()).toISOString();
         const sevenDaysAgo = subDays(startOfDay(new Date()), 7).toISOString();
 
@@ -25,7 +25,7 @@ export default async function BilanEmails() {
         if (messages.length === 0) {
             return (
                 <div className='flex items-center justify-center w-full h-full bg-white rounded-md shadow-md'>
-                    <p className='bg-slate-100/70 p-2'>No messages in the last 7 days!</p>
+                    <p className='text-red-500 bg-slate-100/70 p-2'>No messages in the last 7 days!</p>
                 </div>
             )
         };
@@ -93,6 +93,10 @@ export default async function BilanEmails() {
         )
     } catch (error) {
         console.error("Error: bilan-emails error!", error);
-        return <div>Error loading data</div>;
+        return (
+            <div className="text-red-500">
+                <p>Error loading data</p>
+            </div>
+        )
     }
 }
