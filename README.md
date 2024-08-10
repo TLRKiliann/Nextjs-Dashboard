@@ -2,7 +2,7 @@
 
 Handicraft Dashboard
 
-Nextjs 14 - TypeScript - Tailwind - PostgreSQL
+Nextjs 15 (rc) - TypeScript - Tailwind - PostgreSQL
 
 ![Dashboard Img](https://github.com/TLRKiliann/Nextjs-Dashboard/blob/master/my-app/public/assets/images/bg/wallpaper.png)
 
