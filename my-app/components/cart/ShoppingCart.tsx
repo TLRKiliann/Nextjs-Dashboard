@@ -1,9 +1,9 @@
 import type { Cart } from '@prisma/client';
 import Link from 'next/link';
 import Image from 'next/image';
-import AddItemToCart from '@/components/products-and-cart/action-cart-item/add-item-to-cart';
-import DeleteItemFromCart from '@/components/products-and-cart/action-cart-item/delete-item-from-cart';
-import RemoveItemsFromCart from '@/components/products-and-cart/action-cart-item/remove-items-from-cart';
+import AddItemToCart from '@/components/cart/action-cart-item/add-item-to-cart';
+import DeleteItemFromCart from '@/components/cart/action-cart-item/delete-item-from-cart';
+import RemoveItemsFromCart from '@/components/cart/action-cart-item/remove-items-from-cart';
 
 export default async function ShoppingCartPage({carts}: {carts: Cart[]}) {
 

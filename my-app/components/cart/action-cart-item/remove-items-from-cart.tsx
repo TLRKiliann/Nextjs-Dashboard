@@ -1,7 +1,7 @@
 "use client";
 
 import usePersistStore from '@/helpers/usePersistStore';
-import { removeFromCart } from '@/lib/actions';
+import { removeFromCart } from '@/lib/actions/cart';
 import { useStore } from '@/stores/store';
 import toast from 'react-hot-toast';
 

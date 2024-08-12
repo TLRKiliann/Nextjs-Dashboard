@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useAction } from "next-safe-action/hooks";
-import { createProduct } from '@/lib/actions';
+import { createProduct } from '@/lib/actions/admin';
 import toast from 'react-hot-toast';
 import LblInputCreate from './lbl-input-create';
 

@@ -1,7 +1,7 @@
 "use client";
 
 import type { Cart, Product } from '@prisma/client';
-import { addProductToDb } from "@/lib/actions";
+import { addProductToDb } from "@/lib/actions/products";
 import { useStore } from "@/stores/store";
 import usePersistStore from '@/helpers/usePersistStore';
 import toast from "react-hot-toast";

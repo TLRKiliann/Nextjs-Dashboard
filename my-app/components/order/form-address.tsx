@@ -1,6 +1,6 @@
 "use client";
 
-import { saveAddress } from '@/lib/actions';
+import { saveAddress } from '@/lib/actions/payment';
 import { useAction } from 'next-safe-action/hooks';
 import Link from 'next/link';
 import React, { useState } from 'react';

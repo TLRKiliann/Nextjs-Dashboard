@@ -1,6 +1,6 @@
 "use client";
 
-import { handleModify } from '@/lib/actions';
+import { handleModify } from '@/lib/actions/admin';
 import toast from 'react-hot-toast';
 
 type BtnModifyProps = {

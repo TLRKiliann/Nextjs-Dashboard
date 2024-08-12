@@ -1,6 +1,6 @@
 "use client";
 
-import { removeEmail } from '@/lib/actions';
+import { removeEmail } from '@/lib/actions/admin';
 import toast from 'react-hot-toast';
 import { FaTrashCan } from 'react-icons/fa6';
 
