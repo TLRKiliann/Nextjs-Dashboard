@@ -12,7 +12,7 @@ export default async function DashboardNativeLayout({children, tableone, squares
     squares: React.ReactNode;
 }) {
     return (
-        <div className='flex flex-col w-full min-h-screen bg-white'>
+        <div className='flex flex-col w-full min-h-screen bg-slate-50'>
 
             <div className='flex flex-row w-full h-[100vh]'>
 
