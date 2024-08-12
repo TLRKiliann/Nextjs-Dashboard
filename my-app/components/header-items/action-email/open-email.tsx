@@ -1,6 +1,6 @@
 "use client";
 
-import { openEmail } from '@/lib/actions';
+import { openEmail } from '@/lib/actions/admin';
 import toast from 'react-hot-toast';
 import { MdMarkEmailUnread } from 'react-icons/md';
 

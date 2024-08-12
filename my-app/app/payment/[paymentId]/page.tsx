@@ -1,4 +1,4 @@
-export default function MethodPage() {
+export default function PaymentIdPage() {
 
     return (
         <div className="flex items-center justify-center w-full h-[80vh]">

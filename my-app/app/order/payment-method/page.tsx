@@ -1,6 +1,6 @@
 "use client";
 
-import { recordMethod } from '@/lib/actions';
+import { recordMethod } from '@/lib/actions/payment';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import toast from 'react-hot-toast';

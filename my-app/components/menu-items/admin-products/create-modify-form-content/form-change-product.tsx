@@ -1,6 +1,6 @@
 "use client";
 
-import { handleSaveProduct } from '@/lib/actions';
+import { handleSaveProduct } from '@/lib/actions/admin';
 import React, { useState } from 'react';
 import InputModify from './input-modify';
 import toast from 'react-hot-toast';

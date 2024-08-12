@@ -2,14 +2,14 @@ import type { Metadata } from 'next';
 
 type ParamsProps = {
     params: {
-        productName: string;
+        productId: string;
     }
 };
 
 export const generateMetadata = async ({params}: ParamsProps): Promise<Metadata> => {
     const title = await new Promise((resolve) => {
         setTimeout(() => {
-            resolve(`Prod: ${params.productName}`)
+            resolve(`Prod: ${params.productId}`)
         }, 300)
     })
     return {
@@ -17,7 +17,7 @@ export const generateMetadata = async ({params}: ParamsProps): Promise<Metadata>
     }
 };
 
-export default function ProductNameLayout({children}: {children: React.ReactNode}) {
+export default function ProductIdLayout({children}: {children: React.ReactNode}) {
     return (
         <div>
             {children}

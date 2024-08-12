@@ -7,7 +7,7 @@ import OrderSummary from '@/components/order/order-summary';
 import OrderShipping from '@/components/order/order-shipping';
 import OrderPayment from '@/components/order/order-payment';
 
-export default async function OrderPage() {
+export default async function PaymentPage() {
 
     const session = await auth();
     const user = session?.user;
@@ -86,7 +86,7 @@ export default async function OrderPage() {
                     </div>
 
                     <div className='flex flex-col items-center justify-center w-[92%]'>
-                        <Link href={`/order/payment-method/payment/${methodOfPayment}`}
+                        <Link href={`/payment/${methodOfPayment}`}
                             className='w-full text-base text-center font-bold text-slate-50 bg-blue-500 
                             hover:bg-blue-600 active:bg-blue-700 transition-colors py-2 rounded'>
                             Place Order

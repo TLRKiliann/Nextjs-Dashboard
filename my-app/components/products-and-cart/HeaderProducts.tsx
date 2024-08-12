@@ -2,7 +2,7 @@ import { auth, signOut } from "@/auth";
 import prisma from "@/prisma/prisma";
 import { redirect } from "next/navigation";
 import Link from 'next/link';
-import CartItemsQuantity from './CartItemsQuantity';
+import CartItemsQuantity from '../cart/CartItemsQuantity';
 import { FaPowerOff, FaShoppingCart } from "react-icons/fa";
 
 const HeaderProducts = async () => {
@@ -52,7 +52,7 @@ const HeaderProducts = async () => {
                     <li className='relative flex items-center justify-center w-[40px] h-[40px] transform 
                         duration-200 ease-in-out hover:text-white hover:bg-blue-200 
                         active:bg-blue-400 rounded-full mr-6'>
-                        <Link href="/products/cart">
+                        <Link href="/cart">
                             <FaShoppingCart size={18}/>
                             <CartItemsQuantity />
                         </Link>

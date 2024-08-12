@@ -1,6 +1,6 @@
 "use client";
 
-import { messageSender } from '@/lib/actions';
+import { messageSender } from '@/lib/actions/contact';
 import { User } from 'next-auth';
 import { useAction } from 'next-safe-action/hooks';
 import React, { useState } from 'react';

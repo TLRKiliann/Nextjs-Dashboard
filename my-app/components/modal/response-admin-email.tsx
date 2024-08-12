@@ -2,7 +2,7 @@
 
 import { User } from "next-auth";
 import { useState } from "react";
-import { adminEmail } from "@/lib/actions";
+import { adminEmail } from "@/lib/actions/admin";
 import toast from "react-hot-toast";
 import { useAction } from "next-safe-action/hooks";
 

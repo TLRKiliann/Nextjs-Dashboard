@@ -1,6 +1,6 @@
 "use client";
 
-import { saveAddress } from '@/lib/actions';
+import { saveAddress } from '@/lib/actions/payment';
 import { useAction } from 'next-safe-action/hooks';
 import Link from 'next/link';
 import React, { useState } from 'react';
@@ -127,7 +127,7 @@ export default function FormAddress() {
                 <div className='flex flex-row items-center justify-between w-5/6 m-auto mt-4 mb-2'>
 
                     <li className='list-none'>
-                        <Link href="/products/cart" className='text-slate-50 font-bold bg-blue-500 
+                        <Link href="/cart" className='text-slate-50 font-bold bg-blue-500 
                             hover:bg-blue-600 active:bg-blue-700
                             px-4 py-2 rounded shadow-md'>
                             Cart

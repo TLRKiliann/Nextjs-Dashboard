@@ -1,6 +1,6 @@
 "use client";
 
-import { handleRemove } from "@/lib/actions";
+import { handleRemove } from "@/lib/actions/admin";
 import toast from "react-hot-toast";
 
 export default function BtnRemove({id}: {id: number}) {

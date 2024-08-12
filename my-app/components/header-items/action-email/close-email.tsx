@@ -1,6 +1,6 @@
 "use client";
 
-import { closeEmail } from '@/lib/actions';
+import { closeEmail } from '@/lib/actions/admin';
 import toast from 'react-hot-toast';
 import { MdMarkEmailRead } from 'react-icons/md';
 

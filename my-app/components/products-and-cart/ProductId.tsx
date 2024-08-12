@@ -12,7 +12,7 @@ type UserType = {
     products: TypeProduct[];
 };
 
-export default async function ProductNameCard({params}: {params: {productName: string}}) {
+export default async function ProductId({params}: {params: {productId: string}}) {
 
     const session = await auth();
     const user = session?.user;
@@ -54,7 +54,7 @@ export default async function ProductNameCard({params}: {params: {productName: s
     return (
         <div className='min-h-screen bg-gradient-to-tr from-slate-700 to-slate-950 pt-[25%]'>
             {products.map((product: Product) => (
-                String(params.productName) === product.name ? (
+                String(params.productId) === product.name ? (
 
                     <div key={product.id} 
                         className='w-[360px] m-auto bg-gradient-to-tr from-slate-200 to-slate-300 rounded-md 
