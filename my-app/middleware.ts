@@ -3,15 +3,28 @@ import type { NextRequest } from 'next/server';
 
 export function middleware(req: NextRequest) {
 
+  if (!req || !req.nextUrl) {
+    console.error('Invalid request object:', req);
+    return NextResponse.error();
+  };
+
   const protectedPaths = ["/profile", "/products", "/order", "/contact"];
+  
+  const isAuthenticated = req.cookies.get('authjs.session-token');
 
-    const isAuthenticated = req.cookies.get('authjs.session-token');
-    //console.log('Session Cookie:', isAuthenticated); // Debugging
+  // Debugging
+  //console.log('Session Cookie:', isAuthenticated);
+  //console.log('Requested Path:', req.nextUrl.pathname);
 
-    if (!isAuthenticated && protectedPaths.some(path => req.nextUrl.pathname.startsWith(path))) {
-      const newUrl = new URL("/login", req.nextUrl.origin);
-      return NextResponse.redirect(newUrl);
-    };
+  if (!isAuthenticated && protectedPaths.some(path => req.nextUrl.pathname.startsWith(path))) {
+    const newUrl = new URL("/login", req.nextUrl.origin);
+    return NextResponse.redirect(newUrl);
+  };
+
+  if (isAuthenticated && req.nextUrl.pathname === "/login") {
+    const newUrl = new URL("/profile", req.nextUrl.origin);
+    return NextResponse.redirect(newUrl);
+  };
 
   return NextResponse.next();
 };
