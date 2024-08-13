@@ -2,8 +2,8 @@ import type { Cart } from '@prisma/client';
 import prisma from '@/prisma/prisma';
 import React, { Suspense } from 'react';
 import TablePage from '@/components/TablePage';
-import BestSellersChart from '@/components/menu-items/graphs/BestSellersChart';
-import StockChart from '@/components/menu-items/graphs/StockChart';
+import BestSellersChart from '@/components/table-two-graphs/BestSellersChart';
+import StockChart from '@/components/table-two-graphs/StockChart';
 import Loader from '@/components/Loader';
 
 export default async function TableTwoPage() {

@@ -44,7 +44,7 @@ export const options = {
   scales: {
     x: {
       grid: {
-        color: 'rgba(255, 255, 255, 0.2)',
+        color: 'rgba(255, 255, 255, 0.1)',
       },
       ticks: {
         stepSize: 1,
@@ -56,7 +56,7 @@ export const options = {
     },
     y: {
       grid: {
-        color: 'rgba(255, 255, 255, 0.2)',
+        color: 'rgba(255, 255, 255, 0.1)',
       },
       ticks: {
         color: 'rgba(255, 255, 255, 0.8)',

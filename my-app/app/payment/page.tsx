@@ -2,10 +2,10 @@ import { auth } from '@/auth';
 import prisma from '@/prisma/prisma';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
-import OrderItems from '@/components/order/order-items';
-import OrderSummary from '@/components/order/order-summary';
-import OrderShipping from '@/components/order/order-shipping';
-import OrderPayment from '@/components/order/order-payment';
+import OrderItems from '@/components/payment/order-items';
+import OrderSummary from '@/components/payment/order-summary';
+import OrderShipping from '@/components/payment/order-shipping';
+import OrderPayment from '@/components/payment/order-payment';
 
 export default async function PaymentPage() {
 
