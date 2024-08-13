@@ -62,11 +62,11 @@ export default function FormCreateContent({ idOfProduct }: { idOfProduct: number
     const handleClick = () => {
         setIsOpen(!isOpen);
     };
-    
-    return (
-        <div className='fixed z-40 bottom-0 w-full'>
 
-            <div className={`relative p-4 z-50 ${isOpen === true ? "-mb-[65px]" : "mb-0"}`}>
+    return (
+        <div className="fixed z-20 bottom-0 w-full">
+
+            <div className={`relative p-2 z-30 w-[100px] ${isOpen === true ? "-mb-[52px]" : "mb-0"}`}>
                 <button
                     type="button"
                     onClick={handleClick}
