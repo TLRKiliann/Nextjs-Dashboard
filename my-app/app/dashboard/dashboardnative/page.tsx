@@ -30,7 +30,7 @@ export default async function DashboardPage() {
     return (
         <React.Fragment>
             <div className='absolute z-40 right-0 flex flex-row items-center w-[80%] xl:w-[86%] h-[10vh] 
-                bg-gradient-to-r from-slate-900 to-cyan-900 border-b border-slate-300/20 shadow-md'>
+                bg-gradient-to-r from-slate-900 to-cyan-900 border-b border-cyan-950 shadow-out'>
                 <Suspense fallback={<Loader />}>
                     <Header />
                 </Suspense>
