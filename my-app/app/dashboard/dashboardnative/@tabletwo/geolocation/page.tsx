@@ -5,7 +5,6 @@ import { redirect } from 'next/navigation';
 import { ApiGeolocation, ApiPublicIp } from '@/utils/api-request';
 import TablePage from '@/components/TablePage';
 import MapChart from '@/components/menu-items/graphs/MapChart';
-import ButtonGoBack from '@/components/ButtonGoBack';
 import Loader from '@/components/Loader';
 
 export const dynamic = "force-dynamic";
@@ -50,7 +49,7 @@ export default async function GeolocationPage() {
     };
 
     return (
-        <TablePage title='Geolocation' url="" link="">
+        <TablePage title='Geolocation' url="/dashboard/dashboardnative" link="Sales">
 
             {geoResult ? (
                 <div className='w-[98%] h-[80%] m-auto rounded-lg'>
@@ -59,7 +58,6 @@ export default async function GeolocationPage() {
                     </Suspense>
                 </div>
             ): null}
-            <ButtonGoBack text="Sales" />
             
         </TablePage>
     )
