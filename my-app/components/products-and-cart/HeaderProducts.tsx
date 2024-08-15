@@ -33,25 +33,26 @@ const HeaderProducts = async () => {
     };
 
     return (
-        <div className="fixed z-20 top-0 w-full h-[10vh] text-lg font-bold text-slate-600/70 bg-white border-none shadow-md">
+        <div className="fixed z-20 top-0 w-full h-[10vh] text-lg font-bold text-slate-100 
+            bg-gradient-to-r from-sky-300 to-blue-500/90 border-none shadow-md">
             <nav className="w-full h-full">
                 <ul className='w-full h-full flex flex-row items-center justify-end'>
 
-                    <li className='transform duration-200 ease-in-out hover:text-gray-600/80 active:text-gray-400 mr-6'>
+                    <li className='transform duration-200 ease-in-out hover:text-cyan-200 active:text-cyan-400 mr-6'>
                         <Link href="/">Home</Link>
                     </li>
 
-                    <li className='transform duration-200 ease-in-out hover:text-gray-600/80 active:text-gray-400 mr-6'>
+                    <li className='transform duration-200 ease-in-out hover:text-cyan-200 active:text-cyan-400 mr-6'>
                         <Link href="/products">Shop</Link>
                     </li>
 
-                    <li className='transform duration-200 ease-in-out hover:text-gray-600/80 active:text-gray-400 mr-4'>
+                    <li className='transform duration-200 ease-in-out hover:text-cyan-200 active:text-cyan-400 mr-4'>
                         <Link href="/contact">Contact</Link>
                     </li>
 
                     <li className='relative flex items-center justify-center w-[40px] h-[40px] transform 
-                        duration-200 ease-in-out hover:text-white hover:bg-blue-200 
-                        active:bg-blue-400 rounded-full mr-6'>
+                        duration-200 ease-in-out hover:text-white hover:bg-cyan-500
+                        active:bg-cyan-500/70 rounded-full mr-6'>
                         <Link href="/cart">
                             <FaShoppingCart size={18}/>
                             <CartItemsQuantity />
@@ -60,7 +61,7 @@ const HeaderProducts = async () => {
 
                     {user && (
                         <form title="logout" action={logoutAction}>
-                            <li className='flex items-center transform duration-200 ease-in-out hover:text-gray-600/80 active:text-gray-400 mr-8'>
+                            <li className='flex items-center transform duration-200 ease-in-out hover:text-cyan-200 active:text-cyan-400 mr-8'>
                                 <button><FaPowerOff size={16} /></button>
                             </li>
                         </form>
