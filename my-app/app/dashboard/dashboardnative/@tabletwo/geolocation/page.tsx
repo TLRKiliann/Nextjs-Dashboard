@@ -2,7 +2,7 @@ import { auth } from '@/auth';
 import prisma from '@/prisma/prisma';
 import React, { Suspense } from 'react';
 import { redirect } from 'next/navigation';
-import { ApiGeolocation, ApiPublicIp } from '@/utils/api-request';
+import { ApiGeolocation } from '@/utils/api-request';
 import TablePage from '@/components/TablePage';
 import MapChart from '@/components/menu-items/graphs/MapChart';
 import Loader from '@/components/Loader';
@@ -30,22 +30,15 @@ export default async function GeolocationPage() {
         return redirect("/api/auth/signin");
     };
 
-    const ipResult = await ApiPublicIp();
-    if (!ipResult) {
+    const resIp = await fetch("http://localhost:3000/api/dashboard/publicip");
+    if (!resIp.ok) {
         throw new Error("No ip public detected");
-    } else {
-        console.log("Public IP detected");
-    }
+    };
+    const ipResult = await resIp.json();
 
     const geoResult = await ApiGeolocation(ipResult);
     if (!geoResult) {
         throw new Error("No geolocation available");
-    } else {
-        console.log("Geolocation available");
-    };
-
-    if (!geoResult) {
-        throw new Error("Error: latitude & longitude not fetched");
     };
 
     return (

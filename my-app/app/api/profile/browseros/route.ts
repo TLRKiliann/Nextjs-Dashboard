@@ -1,4 +1,4 @@
-import { ApiPublicIp } from "@/utils/api-request";
+//import { ApiPublicIp } from "@/utils/api-request";
 import { readFile, writeFile } from "fs/promises";
 import { NextResponse } from "next/server";
 
@@ -23,8 +23,8 @@ export async function POST(request: Request) {
     };
 
     try {
-        const ipResult = await ApiPublicIp();
-
+        const res = await fetch("http://localhost:3000/api/dashboard/publicip");
+        const ipResult = await res.json();
         if (!ipResult) {
             throw new Error("No ip public detected");
         } else {

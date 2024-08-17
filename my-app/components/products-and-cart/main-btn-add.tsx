@@ -31,7 +31,7 @@ export default function MainBtnAdd({ id, name, storeQuantity, product }: MainBtn
     const searchQuantity = productInCart ? productInCart.quantity : 0;
 
     return (
-        <div key={id} className='flex items-center justify-center mt-4'>
+        <div key={id} className='flex items-center justify-center'>
             <button 
                 type="button"
                 onClick={async () => {
