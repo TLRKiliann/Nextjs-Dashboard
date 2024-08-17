@@ -34,7 +34,7 @@ const HeaderProducts = async () => {
 
     return (
         <div className="fixed z-20 top-0 w-full h-[10vh] text-lg font-bold text-slate-100 
-            bg-gradient-to-r from-sky-300 to-blue-500/90 border-none shadow-md">
+            bg-gradient-to-l from-slate-900 to-cyan-900 border-none shadow-md">
             <nav className="w-full h-full">
                 <ul className='w-full h-full flex flex-row items-center justify-end'>
 
