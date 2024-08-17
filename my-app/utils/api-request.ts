@@ -1,5 +1,4 @@
 import type { GeoLocationData } from "@/lib/definitions";
-import { Product } from "@prisma/client";
 
 export const ApiPublicIp = async (): Promise<{data: {ip: string;}}> => {
     try {
@@ -30,20 +29,6 @@ export const ApiGeolocation = async ({data}: {data: {ip: string;}}): Promise<Geo
         return geoData;
     } catch (error: unknown) {
         console.error('Error fetching geo IP:', error);
-        throw error;
-    }
-};
-
-export const fetchDataFromApi = async (): Promise<Product[]> => {
-    try {
-        const resDataProd = await fetch("http://localhost:3000/api/products");
-        if (!resDataProd.ok) {
-            throw new Error('Error: resDataProd failed (products API call)!');
-        }
-        const products = (await resDataProd.json()) as Product[];
-        return products;
-    } catch (error: unknown) {
-        console.log('Failed to fetch products from API!', error);
         throw error;
     }
 };
