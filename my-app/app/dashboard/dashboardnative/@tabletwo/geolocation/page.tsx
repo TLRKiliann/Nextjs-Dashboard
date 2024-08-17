@@ -54,4 +54,4 @@ export default async function GeolocationPage() {
             
         </TablePage>
     )
-}
+};

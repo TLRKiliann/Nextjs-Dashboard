@@ -10,28 +10,26 @@ type MapOptionsProps = {
     maxZoom: number;
     minZoom: number;
     scrollWheelZoom: boolean;
-}
+};
 
-type MyComponentProps = {};
+const isBrowser = () => typeof window !== 'undefined';
 
 const leafletUrl: string = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 
-const getUndefined = () => typeof window !== 'undefined';
-
-const MyComponent: React.FC<MyComponentProps> = () => {
+const MyComponent: React.FC = () => {
     
     const map = useMapEvents({
         click: () => {
             map.locate();
         },
-        locationfound: (location: { latlng: { lat: number; lng: number;} }) => {
+        locationfound: (location: { latlng: { lat: number; lng: number; } }) => {
             console.log('location found:', location.latlng);
         },
     });
     return null;
 };
 
-const MapChart: React.FC<{ latitude: number; longitude: number;}> = ({latitude, longitude}) => {
+const MapChart: React.FC<{ latitude: number; longitude: number; }> = ({ latitude, longitude }) => {
 
     const [mapOptions, setMapOptions] = useState<MapOptionsProps>({
         center: [latitude, longitude],
@@ -42,7 +40,7 @@ const MapChart: React.FC<{ latitude: number; longitude: number;}> = ({latitude, 
     });
 
     useEffect(() => {
-        if (getUndefined()) {
+        if (isBrowser()) {
             setMapOptions({
                 center: [latitude, longitude],
                 zoom: 13,
@@ -58,12 +56,12 @@ const MapChart: React.FC<{ latitude: number; longitude: number;}> = ({latitude, 
         <MapContainer {...mapOptions} 
             style={{width: "100%", height: "100%", borderRadius: "7px"}}>
             <TileLayer
-                /*attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' */
+                //attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url={leafletUrl}
             />
             <MyComponent />
         </MapContainer>
     )
-}
+};
 export default MapChart;
 
