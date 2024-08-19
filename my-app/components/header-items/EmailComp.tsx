@@ -34,7 +34,7 @@ export default function EmailComp({emailBox}: {emailBox: EmailProps[]}) {
                 <div  
                     className='absolute w-[130px] h-auto text-slate-500/90 bg-slate-200 mt-0 -ml-12
                         rounded-bl-md rounded-br-md'>
-                    <Link href="/dashboard/emails-admin"
+                    <Link href="/dashboard/emails"
                         className='flex flex-row items-center w-auto cursor-pointer hover:text-slate-500 
                             hover:bg-slate-300 icon-hover-container px-2 py-2'>
                         <IoIosMailOpen size={16} className='text-slate-500/70 icon-hover' />

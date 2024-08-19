@@ -23,7 +23,7 @@ export const generateMetadata = async ({params}: TitleParamsProps): Promise<Meta
         }, 300);
     })
     return {
-        title: `Dashboard ${title}`
+        title: `Dash ${title}`
     };
 };
 
@@ -68,12 +68,12 @@ export default async function DashboardIndexLayout({children, params}: {
                         <div className={`${styles} p-4`}>
                             <Bilan />
                         </div>
-                    ) : params.indexDashboard === "products-admin" ? (
+                    ) : params.indexDashboard === "products" ? (
                         <div className={`${styles} py-2`}>
                             <ModifyProduct listProducts={listProducts} />
                             <CreateProduct />
                         </div>
-                    ) : params.indexDashboard === "emails-admin" ? (
+                    ) : params.indexDashboard === "emails" ? (
                         <EmailsAdmin />
                     ) : null}
                     
