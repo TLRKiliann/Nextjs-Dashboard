@@ -29,7 +29,7 @@ export default function ContactForm({user}: {user: User}) {
     return (
         <form action={execute}>
 
-            <div className='flex flex-row items-center mb-4'>
+            <div className='flex flex-row items-center my-4 px-10'>
                 <label className="w-2/5" htmlFor="src">Send from:</label>
                 <input
                     type="email"
@@ -46,7 +46,7 @@ export default function ContactForm({user}: {user: User}) {
                 />
             </div>
 
-            <div className='flex flex-row items-center'>
+            <div className='flex flex-row items-center px-10'>
                 <label className="w-2/5" htmlFor="dst">Send to:</label>
                 <input
                     type="email"
@@ -62,8 +62,8 @@ export default function ContactForm({user}: {user: User}) {
                 />
             </div>
 
-            <div className='my-8'>
-                <textarea name="message" id="message" cols={26} rows={8}
+            <div className='my-4'>
+                <textarea name="message" id="message" cols={30} rows={8}
                     value={textArea}
                     onChange={(e) => handleTextArea(e)}
                     placeholder="Enter your message here..."
@@ -73,7 +73,7 @@ export default function ContactForm({user}: {user: User}) {
                 </textarea>
             </div>
 
-            <div className='w-full mb-8'>
+            <div className='w-full mt-4'>
                 <button
                     type="submit"
                     className='w-full text-base font-bold text-slate-50 bg-blue-500 hover:bg-blue-600 
