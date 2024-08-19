@@ -32,7 +32,7 @@ export default function Menu() {
 
                     <li className='list-none text-base transition durantion-200 ease-in-out text-slate-500 hover:text-slate-400/90 
                         active:text-sky-400/70 mb-4'>
-                        <Link href="/dashboard/products-admin">
+                        <Link href="/dashboard/products">
                             <span className='flex items-center'>
                                 <FaStore size={18} /><p className='ml-2'>Store</p>
                             </span>
