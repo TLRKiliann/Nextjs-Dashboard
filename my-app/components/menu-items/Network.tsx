@@ -4,10 +4,16 @@ export default async function Network() {
     
     const filenameBrowser = './utils/browseros-data.json';
     const file = await readFile(filenameBrowser, { encoding: 'utf8' });
+    if (!file) {
+        throw new Error("Something went wrong with browser data.");
+    };
     const dataBrowser = JSON.parse(file);
 
     const filenameIp = './utils/ip-data.json';
     const fileIp = await readFile(filenameIp, { encoding: 'utf8' });
+    if (!fileIp) {
+        throw new Error("Something went wrong with public ip");
+    };
     const dataIp = JSON.parse(fileIp);
 
     return (
