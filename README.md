@@ -188,6 +188,8 @@ I don't used stripe, because that wasn't my goal.
 
 `$ pnpm add @tanstack/react-query`
 
+`$ pnpm add @tanstack/react-query-devtools`
+
 `$ pnpm add jsonwebtoken`
 
 `$ pnpm add @types/jsonwebtoken`
