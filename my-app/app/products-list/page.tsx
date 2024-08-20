@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export default function ProductsListPage() {
 
-    const query = useQuery<Product[]>({
+    const {data, isLoading, isError} = useQuery<Product[]>({
         queryKey: ["products"],
         queryFn: async () => {
             const res = await fetch("/api/products");
@@ -17,24 +17,24 @@ export default function ProductsListPage() {
         },
     });
 
-    if (query.status === "pending") {
+    if (isLoading) {
         return <Loader />
     };
 
-    if (query.status === "error") {
+    if (isError) {
         <p>Error occured while loading products!</p>
     };
 
     return (
-        <div className="flex flex-col items-center justify-center w-full min-h-screen text-slate-400 bg-gradient-to-bl from-slate-900 to-cyan-950 px-10 py-4">
-            {query.data?.map((prod: Product) => (
+        <div className="flex flex-col items-center justify-center w-full min-h-screen text-sky-400 bg-gradient-to-bl from-slate-900 to-cyan-950 px-10 py-4">
+            {data?.map((prod: Product) => (
                 <div key={prod.id}>
                     <div className="flex flex-row items-center justify-start py-4">
                         <p className="w-[50px]">{prod.id}</p>
                         <p className="w-[140px]">{prod.name}</p>
                         <p className="w-[140px]">{prod.family}</p>
-                        <p className="w-[140px] text-orange-500">Stock: {prod.stock}</p>
-                        <p className="w-[140px] text-cyan-400">Price: {prod.price}</p>
+                        <p className="w-[140px] text-orange-400">Stock: {prod.stock}</p>
+                        <p className="w-[140px] text-green-400">Price: {prod.price}</p>
                         <p className="w-[200px]">Version: {prod.version}</p>
                     </div>
                     <hr className="border-solid border-slate-500"/>

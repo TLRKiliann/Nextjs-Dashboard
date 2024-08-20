@@ -7,7 +7,7 @@ import RemoveItemsFromCart from '@/components/cart/action-cart-item/remove-items
 
 export default async function ShoppingCartPage({carts}: {carts: Cart[]}) {
 
-    const totalQuantity = carts.reduce((acc, product) => acc + product.quantity, 0);
+    const totalQuantity: number = carts.reduce((acc, product) => acc + product.quantity, 0);
 
     return (
         <div className='w-full min-h-screen flex flex-col text-slate-500 bg-slate-50 p-4 pt-[11vh]'>
@@ -122,4 +122,4 @@ export default async function ShoppingCartPage({carts}: {carts: Cart[]}) {
             )}
         </div>
     )
-}
+};

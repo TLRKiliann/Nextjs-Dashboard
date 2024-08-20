@@ -8,7 +8,7 @@ export function middleware(req: NextRequest) {
     return NextResponse.error();
   };
 
-  const protectedPaths = ["/profile", "/products", "/order", "/contact"];
+  const protectedPaths = ["/profile", "/products", "/cart", "/order", "/contact", "/payment"];
   
   const isAuthenticated = req.cookies.get('authjs.session-token');
 
