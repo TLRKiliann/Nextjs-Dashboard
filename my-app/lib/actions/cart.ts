@@ -48,7 +48,6 @@ export const addToCart = authActionClient
             throw new ActionError("Error to add product to cart");
         }
     revalidatePath("/cart");
-    console.log("Add product to cart done!");
 });
 
 
@@ -91,7 +90,6 @@ export const deleteFromCart = authActionClient
             throw new ActionError("Error to delete product!");
         }
     revalidatePath("/cart");
-    console.log("Delete from cart done!")
 });
 
 // reinitialize quantity to 0 in cartItems
@@ -152,5 +150,4 @@ export const removeFromCart = authActionClient
             throw new ActionError("Remove product failed");
         }
     revalidatePath("/cart");
-    console.log("Remove product done!");
 });

@@ -162,7 +162,6 @@ export const createProduct = actionClient
             throw new ActionError("Error during creation of product!");
         }
     revalidatePath("/dashboard/products-admin");
-    console.log("Product created!");
 });
 
 // EMAIL actions
@@ -219,7 +218,6 @@ export const removeEmail = actionClient
             throw new ActionError("removeEmail failed!");
         }
     revalidatePath("/dashboard/emails-admin");
-    console.log("removeEmail done!");
 });
 
 // deleteMany()
@@ -247,6 +245,5 @@ export const adminEmail = actionClient
             throw new ActionError("Error message!");
         }
     revalidatePath("/dashboard/emails-admin");
-    console.log("Message sent");
 });
 
