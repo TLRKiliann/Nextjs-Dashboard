@@ -28,39 +28,39 @@ export default async function ShoppingCartPage({carts}: {carts: Cart[]}) {
 
                         <div className='flex flex-row items-center justify-around w-full h-full px-4'>
                             
-                            <h3 className='sm:text-base lg:text-xl font-bold sm:-ml-10 xl:-ml-16'>
+                            <h3 className='w-[100px] text-base font-bold sm:-ml-10 xl:-ml-16'>
                                 {product.family}
                             </h3>
 
-                            <h4 className='text-center sm:text-base lg:text-lg'>
+                            <h4 className='w-[80px] text-center text-base'>
                                 {product.name}
                             </h4>
                             
-                            <h6 className='text-xs'>
+                            <h6 className='w-[140px] text-xs'>
                                 Version: {product.version}
                             </h6>
                             
                             {product.stock === 0 ? (
-                                <p className='text-sm text-red-500'>
+                                <p className='w-[90px] text-sm text-red-500'>
                                     Stock: <span className='font-bold'>{product.stock}</span>
                                 </p>
                             ) : (
-                                <p className='text-sm text-blue-500'>
+                                <p className='w-[90px] text-sm text-blue-500'>
                                     Stock: <span className='font-bold'>{product.stock}</span>
                                 </p>
                             )}
 
-                            <p className='sm:text-sm lg:text-base font-bold'>
+                            <p className='w-[70px] text-end sm:text-sm lg:text-base font-bold'>
                                 {product.price}.-
                             </p>
 
-                            <li className='list-none text-xs text-center text-blue-500 hover:text-blue-600 
+                            <li className='w-[80px] list-none text-xs text-center text-blue-500 hover:text-blue-600 
                                 active:text-blue-700'>
                                 <Link href={`/products/${product.name}`}>View more</Link>
                             </li>
 
 
-                            <p className='text-sm text-center text-blue-500'>
+                            <p className='w-[100px] text-sm text-center text-blue-500'>
                                 Quantity: <span className='font-bold'>{product.quantity}</span>
                             </p>
                         </div>
@@ -94,7 +94,7 @@ export default async function ShoppingCartPage({carts}: {carts: Cart[]}) {
                         <div className='absolute z-50 h-20 right-0 bottom-0 -left-4 flex items-center justify-center bg-white -ml-4 shadow-xs-out'>
                 
                             <li className="list-none">
-                                <Link href="/order/address" className='text-base font-bold text-slate-50 bg-blue-600/90
+                                <Link href="/address" className='text-base font-bold text-slate-50 bg-blue-600/90
                                     hover:bg-blue-600 active:bg-blue-700 px-6 py-2 rounded'>
                                     Payment
                                 </Link>
