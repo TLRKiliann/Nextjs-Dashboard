@@ -1,12 +1,9 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import { SessionProvider } from 'next-auth/react'
 import ReactQueryProvider from "./ReactQueryProvider";
-
 import { Toaster } from "react-hot-toast";
-
-//import { Inter } from "next/font/google";
 import "./globals.css";
-
+//import { Inter } from "next/font/google";
 //const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -26,12 +23,12 @@ export default function RootLayout({
     <SessionProvider>
       <html lang="en">
         <body>
-          <ReactQueryProvider>
-            <main>
+          <main>
+            <ReactQueryProvider>
               {children}
-            </main>
-          </ReactQueryProvider>
-          <Toaster position="bottom-center" /> 
+            </ReactQueryProvider>
+            <Toaster position="bottom-center" /> 
+          </main>
         </body>
       </html>
     </SessionProvider>

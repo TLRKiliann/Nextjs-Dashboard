@@ -43,8 +43,7 @@ export const saveAddress = authActionClient
         } catch (error) {
             throw new ActionError("Error with address register!");
         }
-    revalidatePath("/order/address");
-    redirect("/order/payment-method");
+    redirect("/payment");
 });
 
 //payment method
@@ -75,7 +74,7 @@ export const recordMethod = authActionClient
                 return {
                     message: "No payment found for this user!"
                 };
-            }
+            };
             await prisma.payment.update({
                 data: {
                     method: parsedInput.pathMethod,
@@ -87,6 +86,5 @@ export const recordMethod = authActionClient
         } catch (error) {
             throw new ActionError("Error with payment method!");
         }
-    revalidatePath("/order/payment-method");
-    redirect("/payment");
+    redirect("/order");
 });

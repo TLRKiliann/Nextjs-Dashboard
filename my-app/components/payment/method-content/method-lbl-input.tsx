@@ -11,11 +11,11 @@ type MethodProps = {
 export default function MethodLblInput({id, value, paymentMethod, handlePaypal, children}: MethodProps) {
     return (
         <div className='flex flex-row items-center justify-sart'>
-            <label htmlFor="paypal">
+            <label htmlFor={id}>
                 <input 
                     type="radio" 
                     id={id} 
-                    value={value} 
+                    value={value}
                     checked={paymentMethod}
                     onChange={(e) => handlePaypal(e)}
                     className='mr-5'

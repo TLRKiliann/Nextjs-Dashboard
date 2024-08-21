@@ -66,7 +66,7 @@ export default function MethodPage() {
                         id="paypal"
                         value="option1"
                         paymentMethod={paymentMethod.paypalMethod}
-                        handlePaypal={handlePaypal}
+                        handlePaypal={(e) => handlePaypal(e)}
                     >
                         Paypal
                     </MethodLblInput>
@@ -75,7 +75,7 @@ export default function MethodPage() {
                         id="stripe"
                         value="option2"
                         paymentMethod={paymentMethod.stripeMethod}
-                        handlePaypal={handleStripe}
+                        handlePaypal={(e) => handleStripe(e)}
                     >
                         Stripe
                     </MethodLblInput>
@@ -84,7 +84,7 @@ export default function MethodPage() {
                         id="ondelivery"
                         value="option3"
                         paymentMethod={paymentMethod.onDeliveryMethod}
-                        handlePaypal={handleDelivery}
+                        handlePaypal={(e) => handleDelivery(e)}
                     >
                         Cash One Delivery
                     </MethodLblInput>

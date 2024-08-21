@@ -49,5 +49,4 @@ export const addProductToDb = authActionClient
             throw new ActionError("Error to add product (main)!");
         }
     revalidatePath("/products");
-    console.log("Add product successfully!");
 });

@@ -11,7 +11,6 @@ export async function GET() {
             return Response.json({error: "Unauthorized"}, {status: 401});
         };
 
-
         const products: Product[] = await prisma.product.findMany({
             orderBy: {
                 id: "asc",
@@ -22,4 +21,4 @@ export async function GET() {
         console.log(error);
         return Response.json({error: "internal server error (products)"}, {status: 500});
     }
-}
+};

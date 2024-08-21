@@ -15,7 +15,7 @@ export default function OrderPayment({methodOfPayment}: {methodOfPayment: string
             <div>
                 <li className='list-none'>
                     <Link 
-                        href="/order/payment-method" 
+                        href="/payment" 
                         className='text-slate-50 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 px-4 py-1 rounded shadow-md'>
                         Edit
                     </Link>

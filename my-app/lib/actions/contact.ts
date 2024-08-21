@@ -27,5 +27,4 @@ export const messageSender = actionClient
             throw new ActionError("Error with message!");
         }
     revalidatePath("/contact");
-    console.log("Message sent!");
 });

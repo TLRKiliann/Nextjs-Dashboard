@@ -3,10 +3,10 @@ import React from 'react';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 
-export const generateMetadata = async ({params}: {params: {paymentId: string}}): Promise<Metadata> => {
+export const generateMetadata = async ({params}: {params: {orderId: string}}): Promise<Metadata> => {
     const title = await new Promise((resolve) => {
         setTimeout(() => {
-            resolve(`: ${params.paymentId}`)
+            resolve(`: ${params.orderId}`)
         }, 300)
     })
     return {
@@ -14,9 +14,9 @@ export const generateMetadata = async ({params}: {params: {paymentId: string}}):
     }
 };
 
-export default function PaymentIdLayout({params, children}: {params: {paymentId: string}, children: React.ReactNode}) {
+export default function OrderIdLayout({params, children}: {params: {orderId: string}, children: React.ReactNode}) {
     
-    if (!params.paymentId) {
+    if (!params.orderId) {
         notFound();
     }
     
@@ -27,8 +27,8 @@ export default function PaymentIdLayout({params, children}: {params: {paymentId:
                 {children}
             </div>
             <div className='flex flex-col items-center justify-center w-[45%] h-[80vh] bg-white p-4 rounded-md shadow-md'>
-                <p className='text-3xl'>Method {params.paymentId}</p>
-                <Link href="/" className='text-blue-500 hover:text-blue-600 active:text-blue-700 transition-colors'>Back to Home</Link>
+                <p className='text-3xl'>Method {params.orderId}</p>
+                <Link href="/cart" className='text-blue-500 hover:text-blue-600 active:text-blue-700 transition-colors'>Back to Cart</Link>
             </div>
 
         </div>

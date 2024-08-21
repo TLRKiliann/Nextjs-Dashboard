@@ -9,6 +9,7 @@ import CreateProduct from '@/components/menu-items/admin-products/CreateProduct'
 import AllUserProfiles from '@/components/members/all-user-profiles';
 import GraphCharts from '@/components/menu-items/GraphCharts';
 import Bilan from '@/components/menu-items/Bilan';
+import Tasks from '@/components/menu-items/Tasks';
 
 type TitleParamsProps = {
     params: {
@@ -40,11 +41,11 @@ export default async function DashboardIndexLayout({children, params}: {
     if (!params.indexDashboard) {
         notFound();
     };
-    
-    const styles = "w-full h-[90vh] text-slate-500 mt-[10vh]";
+
+    const styles = "w-full h-[90vh] text-slate-500 mt-[10vh] bg-slate-50";
 
     return (
-        <div className='flex flex-col w-full min-h-screen bg-slate-50'>
+        <div className='flex flex-col w-full min-h-screen'>
 
             <div className='flex flex-row w-full h-[100vh]'>
                 
@@ -75,6 +76,10 @@ export default async function DashboardIndexLayout({children, params}: {
                         </div>
                     ) : params.indexDashboard === "emails" ? (
                         <EmailsAdmin />
+                    ) : params.indexDashboard === "tasks" ? (
+                        <div className={`${styles} p-4`}>
+                            <Tasks />
+                        </div>
                     ) : null}
                     
                 </div>

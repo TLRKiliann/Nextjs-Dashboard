@@ -9,15 +9,7 @@ import Loader from '@/components/Loader';
 
 export const dynamic = "force-dynamic";
 
-const isBrowser = () => typeof window !== "undefined";
-
 export default async function GeolocationPage() {
-
-    if (!isBrowser) {
-        console.log("Pbm with window");
-    } else {
-        console.log("no pbm with window");
-    };
 
     const session = await auth();
 
