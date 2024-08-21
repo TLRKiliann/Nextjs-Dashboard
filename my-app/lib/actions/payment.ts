@@ -43,7 +43,7 @@ export const saveAddress = authActionClient
         } catch (error) {
             throw new ActionError("Error with address register!");
         }
-    redirect("/order");
+    redirect("/payment");
 });
 
 //payment method
@@ -86,5 +86,5 @@ export const recordMethod = authActionClient
         } catch (error) {
             throw new ActionError("Error with payment method!");
         }
-    redirect("/payment");
+    redirect("/order");
 });
