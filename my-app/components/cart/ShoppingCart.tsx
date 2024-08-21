@@ -94,7 +94,7 @@ export default async function ShoppingCartPage({carts}: {carts: Cart[]}) {
                         <div className='absolute z-50 h-20 right-0 bottom-0 -left-4 flex items-center justify-center bg-white -ml-4 shadow-xs-out'>
                 
                             <li className="list-none">
-                                <Link href="/address" className='text-base font-bold text-slate-50 bg-blue-600/90
+                                <Link href="/shipping" className='text-base font-bold text-slate-50 bg-blue-600/90
                                     hover:bg-blue-600 active:bg-blue-700 px-6 py-2 rounded'>
                                     Payment
                                 </Link>
