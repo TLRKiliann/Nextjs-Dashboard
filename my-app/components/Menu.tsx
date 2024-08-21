@@ -7,7 +7,7 @@ import { MdOutlineAttachMoney } from "react-icons/md";
 import { TbWorldSearch } from "react-icons/tb";
 import { FaStore } from "react-icons/fa6";
 import { IoChatbubblesOutline } from "react-icons/io5";
-import { TbCircleLetterB } from "react-icons/tb";
+import { FaTasks } from "react-icons/fa";
 import { MdLogout } from "react-icons/md";
 
 export default function Menu() {
@@ -104,9 +104,9 @@ export default function Menu() {
 
                     <li className='list-none text-base transition durantion-200 ease-in-out text-slate-500 hover:text-slate-400/90 
                         active:text-sky-400/70 mb-4'>
-                        <Link href="/dashboard/datatables">
+                        <Link href="/dashboard/tasks">
                             <span className='flex items-center'>
-                                <TbCircleLetterB size={20} /><p className='ml-2'>Blog</p>
+                                <FaTasks size={18} /><p className='ml-2'>Tasks</p>
                             </span>
                         </Link>
                     </li>
