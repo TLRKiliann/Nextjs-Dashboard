@@ -1,5 +1,3 @@
-import { StaticImageData } from "next/image";
-
 export type State = {
     status: "success";
     message: string;} | {
