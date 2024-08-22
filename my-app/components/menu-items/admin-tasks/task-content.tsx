@@ -16,40 +16,41 @@ export default function TasksContent() {
     const [newTodosArray, setNewTodosArray] = useState<TodosArrayTypes[]>([]);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-        setTodo(event.target.value);
+        const value = event.target.value;
+        setTodo(value);
     };
 
     const handleClick = (): void | null => {
         if (todo !== undefined) {
-            setNewTodosArray((prev) => ([...prev, {id: Date.now(), task: todo, display: false}]));
+            setNewTodosArray((prev: TodosArrayTypes[]) => ([...prev, {id: Date.now(), task: todo, display: false}]));
             setTodo("");
         };
         return null;
     };
 
     const handleNewTodo = (event: React.ChangeEvent<HTMLInputElement>, id: number): void => {
-        const findId: TodosArrayTypes[] = newTodosArray.map((item) => item.id === id 
+        const findId: TodosArrayTypes[] = newTodosArray.map((item: TodosArrayTypes) => item.id === id 
             ? {...item, id: item.id, task: event.target.value} 
             : item);
         setNewTodosArray(findId);
     };
 
     const handleModify = (id: number): void => {
-        const findIdModify: TodosArrayTypes[] = newTodosArray.map((totask) => totask.id === id 
+        const findIdModify: TodosArrayTypes[] = newTodosArray.map((totask: TodosArrayTypes) => totask.id === id 
             ? {...totask, id: totask.id, display: true} 
             : totask);
         setNewTodosArray(findIdModify);
     };
 
     const handleSave = (id: number): void => {
-        const findIdSave: TodosArrayTypes[] = newTodosArray.map((totask) => totask.id === id 
+        const findIdSave: TodosArrayTypes[] = newTodosArray.map((totask: TodosArrayTypes) => totask.id === id 
             ? {...totask, id: totask.id, display: false} 
             : totask);
         setNewTodosArray(findIdSave);
     };
 
     const handleDelete = (id: number): void => {
-        const findByIdDelete: TodosArrayTypes[] = newTodosArray.filter((toTask) => toTask.id !== id);
+        const findByIdDelete: TodosArrayTypes[] = newTodosArray.filter((toTask: TodosArrayTypes) => toTask.id !== id);
         setNewTodosArray(findByIdDelete);
     };
     
