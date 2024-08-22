@@ -8,8 +8,6 @@ export default function TasksContent() {
 
     const [todo, setTodo] = useState<string>("");
     const [todos, setTodos] = useState<{id: number, task: string, display: boolean}[]>([]);
-    const [newTodo, setNewTodo] = useState<string>("");
-
     const [newTodosArray, setNewTodosArray] = useState<{id: number, task: string, display: boolean}[]>(todos);
 
     useEffect(() => {
@@ -19,8 +17,6 @@ export default function TasksContent() {
         caller();
         return () => console.log("clean-up!");
     }, [todos]);
-
-    let newTodoDerivated = newTodo;
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setTodo(event.target.value);
@@ -34,8 +30,9 @@ export default function TasksContent() {
         return null;
     };
 
-    const handleNewTodo = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setNewTodo(event.target.value);
+    const handleNewTodo = (event: React.ChangeEvent<HTMLInputElement>, id: number) => {
+        const findId = newTodosArray.map((item) => item.id === id ? {...item, id: item.id, task: event.target.value} : item);
+        setNewTodosArray(findId);
     };
 
     const handleModify = (id: number) => {
@@ -44,7 +41,7 @@ export default function TasksContent() {
     };
 
     const handleSave = (id: number) => {
-        const findIdSave = newTodosArray.map((totask) => totask.id === id ? {...totask, id: totask.id, task: newTodoDerivated, display: false} : totask);
+        const findIdSave = newTodosArray.map((totask) => totask.id === id ? {...totask, id: totask.id, display: false} : totask);
         setNewTodosArray(findIdSave);
     };
 
@@ -105,8 +102,8 @@ export default function TasksContent() {
                         <div key={item.id} className='flex flex-row items-center justify-between w-full'>
                             <input
                                 type="text"
-                                value={newTodo}
-                                onChange={(e) => handleNewTodo(e)} 
+                                value={item.task}
+                                onChange={(e) => handleNewTodo(e, item.id)} 
                                 className='mr-4 px-2 py-1 rounded'
                                 placeholder={item.task}
                             />
