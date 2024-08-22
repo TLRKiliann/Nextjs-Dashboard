@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 export type State = {
     status: "success";
     message: string;} | {
@@ -27,7 +29,7 @@ export type GeoLocationData = {
 export type ListOfItemsProps = {
     readonly id: number;
     readonly item: string;
-}
+};
 
 export type EmailProps = {
     id: string;
@@ -36,4 +38,4 @@ export type EmailProps = {
     dst: string;
     isOpen: boolean;
     createdAt: Date;
-}
+};
