@@ -2,8 +2,10 @@ import { auth } from '@/auth';
 import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import ContactForm from '@/components/contact/contact-form';
 import ContactInfo from '@/components/contact/contact-info';
+import imgWorld from '@/public/assets/images/bg/world-map.jpg';
 
 export const metadata: Metadata = {
     title: "Contact",
@@ -21,8 +23,15 @@ export default async function ContactPage() {
     };
 
     return (
-        <div className='flex flex-row items-center justify-around w-full min-h-screen bg-gradient-to-bl 
-            from-sky-100 from-10% text-slate-700 to-slate-100 to-90%'>
+        <div className='flex flex-row items-center justify-around w-full min-h-screen to-90%'>
+
+            <Image 
+                src={imgWorld} 
+                alt="no-img" 
+                width={1920} 
+                height={1200} 
+                className="fixed -z-10 w-full h-full object-cover"
+            />
 
             <div className='absolute top-3 right-3 z-20'>
                 <li className='list-none text-orange-500 hover:text-orange-600 active:text-orange-700 rounded'>
@@ -32,9 +41,9 @@ export default async function ContactPage() {
 
             <div className='flex items-center justify-center w-full h-screen px-20 2xl:px-[22%]'>
 
-                <div className='flex flex-row items-center justify-around w-full bg-gradient-to-bl from-slate-700 to-cyan-800 p-10 gap-10 rounded-lg shadow-out'>
+                <div className='flex flex-row items-center justify-between w-[930px] bg-gradient-to-bl from-slate-700/50 to-cyan-800/50 p-10 rounded-lg shadow-out'>
 
-                    <div className='flex flex-col items-center w-[45%] min-w-[400px] max-w-[400px] h-auto p-8 pt-4 bg-white rounded-lg shadow-in'>
+                    <div className='flex flex-col items-center justify-between w-[45%] min-w-[400px] max-w-[400px] h-[500px] p-8 pt-4 bg-amber-50 rounded-lg shadow-in'>
                         
                         <div className='flex items-start justify-start w-full'>
                             <h2 className="text-3xl text-slate-700/70">
@@ -46,7 +55,7 @@ export default async function ContactPage() {
 
                     </div>
 
-                    <div className='flex flex-col items-center w-[45%] min-w-[400px] max-w-[400px] h-auto p-8 pt-4 bg-white rounded-lg shadow-in'>
+                    <div className='flex flex-col items-center w-[45%] min-w-[400px] max-w-[400px] h-[500px] p-8 pt-4 bg-amber-50 rounded-lg shadow-in'>
                     
                         <div className='flex items-start justify-start w-full'>
                             <h2 className="text-3xl text-slate-700/70">
