@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image';
 import imgTask from '@/public/assets/images/bg/task.png';
 
@@ -13,24 +13,15 @@ type TodosArrayTypes = {
 export default function TasksContent() {
 
     const [todo, setTodo] = useState<string | undefined>(undefined);
-    const [todos, setTodos] = useState<TodosArrayTypes[]>([]);
-    const [newTodosArray, setNewTodosArray] = useState<TodosArrayTypes[]>(todos);
+    const [newTodosArray, setNewTodosArray] = useState<TodosArrayTypes[]>([]);
 
-    useEffect(() => {
-        const caller = (): void => {
-            setNewTodosArray(todos);
-        };
-        caller();
-        return () => console.log("clean-up!");
-    }, [todos]);
-
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         setTodo(event.target.value);
     };
 
     const handleClick = (): void | null => {
         if (todo !== undefined) {
-            setTodos((prev) => ([...prev, {id: Date.now(), task: todo, display: false}]));
+            setNewTodosArray((prev) => ([...prev, {id: Date.now(), task: todo, display: false}]));
             setTodo("");
         };
         return null;
