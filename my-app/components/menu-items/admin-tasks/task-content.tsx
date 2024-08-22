@@ -10,13 +10,13 @@ type TodosArrayTypes = {
     display: boolean;
 };
 
-export default function TasksContent() {
+export default function TasksContent(): JSX.Element {
 
     const [todo, setTodo] = useState<string | undefined>(undefined);
     const [newTodosArray, setNewTodosArray] = useState<TodosArrayTypes[]>([]);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-        const value = event.target.value;
+        const value: string = event.target.value;
         setTodo(value);
     };
 
@@ -29,8 +29,9 @@ export default function TasksContent() {
     };
 
     const handleNewTodo = (event: React.ChangeEvent<HTMLInputElement>, id: number): void => {
+        const value: string = event.target.value;
         const findId: TodosArrayTypes[] = newTodosArray.map((item: TodosArrayTypes) => item.id === id 
-            ? {...item, id: item.id, task: event.target.value} 
+            ? {...item, id: item.id, task: value} 
             : item);
         setNewTodosArray(findId);
     };
@@ -67,7 +68,9 @@ export default function TasksContent() {
                 />
             </div>
 
-            <h1 className='text-3xl font-bold text-blue-500/80'>Tasks</h1>
+            <h1 className='text-3xl font-bold text-blue-500/80'>
+                Tasks
+            </h1>
             <div className='flex flex-row items-center justify-center w-4/5 bg-gradient-to-l from-orange-400 to-yellow-100 border border-orange-100 m-auto my-4 py-2 rounded-full'>
                 <input
                     type="text"
@@ -103,7 +106,8 @@ export default function TasksContent() {
                             <button 
                                 type="button" 
                                 onClick={() => handleModify(item.id)} 
-                                className='font-bold text-slate-50 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 mr-4 px-4 py-1 rounded'
+                                className='text-sm font-bold text-slate-50 bg-blue-500 transition ease-in-out duration-100 hover:bg-blue-600 hover:scale-105
+                                active:bg-blue-700 active:scale-95 mr-4 px-4 py-[6px] rounded'
                             >
                                 Modify
                             </button>
@@ -121,7 +125,8 @@ export default function TasksContent() {
                             <button
                                 type="button" 
                                 onClick={() => handleSave(item.id)} 
-                                className='font-bold text-slate-50 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 mr-4 px-4 py-1 rounded'
+                                className='text-sm font-bold text-slate-50 bg-blue-500 transition ease-in-out duration-100 
+                                hover:bg-blue-600 hover:scale-105 active:bg-blue-700 active:scale-95 mr-6 px-4 py-[6px] rounded'
                             >
                                 Save
                             </button>
@@ -131,7 +136,8 @@ export default function TasksContent() {
                     <button
                         type="button" 
                         onClick={() => handleDelete(item.id)} 
-                        className='font-bold text-slate-50 bg-red-500 hover:bg-red-600 active:bg-red-700 px-4 py-1 rounded'
+                        className='text-sm font-bold text-slate-50 bg-red-500 transition ease-in-out duration-100 hover:bg-red-600 
+                        hover:scale-105 active:bg-red-700 active:scale-95 px-4 py-[6px] rounded'
                     >
                         Delete
                     </button>
