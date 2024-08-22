@@ -6,7 +6,6 @@ import { FaUser } from "react-icons/fa6";
 import { MdOutlineAttachMoney } from "react-icons/md";
 import { TbWorldSearch } from "react-icons/tb";
 import { FaStore } from "react-icons/fa6";
-import { IoChatbubblesOutline } from "react-icons/io5";
 import { FaTasks } from "react-icons/fa";
 import { MdLogout } from "react-icons/md";
 
@@ -89,15 +88,6 @@ export default function Menu() {
                         <Link href="/products">
                             <span className='flex items-center'>
                                 <FaCartShopping size={16} /><p className='ml-2'>Marketplace</p>
-                            </span>
-                        </Link>
-                    </li>
-
-                    <li className='list-none text-base transition durantion-200 ease-in-out text-slate-500 hover:text-slate-400/90 
-                        active:text-sky-400/70 mb-4'>
-                        <Link href="/">
-                            <span className='flex items-center'>
-                                <IoChatbubblesOutline size={18} /><p className='ml-2'>Chat</p>
                             </span>
                         </Link>
                     </li>
