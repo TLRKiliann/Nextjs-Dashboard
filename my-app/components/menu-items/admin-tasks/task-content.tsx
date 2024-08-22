@@ -86,8 +86,7 @@ export default function TasksContent(): JSX.Element {
                     type="button"
                     onClick={handleClick}
                     className='absolute flex items-center justify-center w-[30px] h-[30px] ml-[250px] text-xl font-bold text-slate-50 bg-blue-500 
-                    transition ease-in-out duration-100 hover:bg-blue-600 hover:scale-105 active:bg-blue-700 
-                    active:scale-95 rounded-full'
+                    transition ease-in-out duration-100 hover:bg-blue-600 hover:scale-105 active:bg-blue-700 active:scale-95 rounded-full'
                 >
                     +
                 </button>
