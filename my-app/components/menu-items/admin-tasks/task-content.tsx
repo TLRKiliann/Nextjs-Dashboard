@@ -16,7 +16,7 @@ export default function TasksContent(): JSX.Element {
     const [newTodosArray, setNewTodosArray] = useState<TodosArrayTypes[]>([]);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-        const value: string = event.target.value;
+        const { value }: HTMLInputElement = event.currentTarget;
         setTodo(value);
     };
 
@@ -29,7 +29,7 @@ export default function TasksContent(): JSX.Element {
     };
 
     const handleNewTodo = (event: React.ChangeEvent<HTMLInputElement>, id: number): void => {
-        const value: string = event.target.value;
+        const { value }: HTMLInputElement = event.currentTarget;
         const findId: TodosArrayTypes[] = newTodosArray.map((item: TodosArrayTypes) => item.id === id 
             ? {...item, id: item.id, task: value} 
             : item);
