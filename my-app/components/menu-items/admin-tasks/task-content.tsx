@@ -4,14 +4,20 @@ import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
 import imgTask from '@/public/assets/images/bg/task.png';
 
+type TodosArrayTypes = {
+    id: number; 
+    task: string; 
+    display: boolean;
+};
+
 export default function TasksContent() {
 
-    const [todo, setTodo] = useState<string>("");
-    const [todos, setTodos] = useState<{id: number, task: string, display: boolean}[]>([]);
-    const [newTodosArray, setNewTodosArray] = useState<{id: number, task: string, display: boolean}[]>(todos);
+    const [todo, setTodo] = useState<string | undefined>(undefined);
+    const [todos, setTodos] = useState<TodosArrayTypes[]>([]);
+    const [newTodosArray, setNewTodosArray] = useState<TodosArrayTypes[]>(todos);
 
     useEffect(() => {
-        const caller = () => {
+        const caller = (): void => {
             setNewTodosArray(todos);
         };
         caller();
@@ -22,31 +28,37 @@ export default function TasksContent() {
         setTodo(event.target.value);
     };
 
-    const handleClick = () => {
-        if (todo) {
-            setTodos([...todos, {id: Date.now(), task: todo, display: false}]);
+    const handleClick = (): void | null => {
+        if (todo !== undefined) {
+            setTodos((prev) => ([...prev, {id: Date.now(), task: todo, display: false}]));
             setTodo("");
-        }
+        };
         return null;
     };
 
-    const handleNewTodo = (event: React.ChangeEvent<HTMLInputElement>, id: number) => {
-        const findId = newTodosArray.map((item) => item.id === id ? {...item, id: item.id, task: event.target.value} : item);
+    const handleNewTodo = (event: React.ChangeEvent<HTMLInputElement>, id: number): void => {
+        const findId: TodosArrayTypes[] = newTodosArray.map((item) => item.id === id 
+            ? {...item, id: item.id, task: event.target.value} 
+            : item);
         setNewTodosArray(findId);
     };
 
-    const handleModify = (id: number) => {
-        const findIdModify = newTodosArray.map((totask) => totask.id === id ? {...totask, id: totask.id, display: true} : totask);
+    const handleModify = (id: number): void => {
+        const findIdModify: TodosArrayTypes[] = newTodosArray.map((totask) => totask.id === id 
+            ? {...totask, id: totask.id, display: true} 
+            : totask);
         setNewTodosArray(findIdModify);
     };
 
-    const handleSave = (id: number) => {
-        const findIdSave = newTodosArray.map((totask) => totask.id === id ? {...totask, id: totask.id, display: false} : totask);
+    const handleSave = (id: number): void => {
+        const findIdSave: TodosArrayTypes[] = newTodosArray.map((totask) => totask.id === id 
+            ? {...totask, id: totask.id, display: false} 
+            : totask);
         setNewTodosArray(findIdSave);
     };
 
-    const handleDelete = (id: number) => {
-        const findByIdDelete = newTodosArray.filter((toTask) => toTask.id !== id);
+    const handleDelete = (id: number): void => {
+        const findByIdDelete: TodosArrayTypes[] = newTodosArray.filter((toTask) => toTask.id !== id);
         setNewTodosArray(findByIdDelete);
     };
     
@@ -78,17 +90,23 @@ export default function TasksContent() {
                 <button
                     type="button"
                     onClick={handleClick}
-                    className='absolute w-[30px] h-[30px] ml-[250px] text-xl font-bold text-slate-50 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 rounded-full'
+                    className='absolute flex items-center justify-center w-[30px] h-[30px] ml-[250px] text-xl font-bold text-slate-50 bg-blue-500 
+                    transition ease-in-out duration-100 hover:bg-blue-600 hover:scale-105 active:bg-blue-700 
+                    active:scale-95 rounded-full'
                 >
                     +
                 </button>
             </div>
 
             {newTodosArray.map((item) => (
-                <div key={item.id} className='flex flex-row items-center justify-between w-4/5 bg-gradient-to-l from-orange-400 to-yellow-100 border border-orange-100 m-auto mb-2 p-2 rounded'>
+                <div 
+                    key={item.id} 
+                    className='flex flex-row items-center justify-between w-4/5 bg-gradient-to-l from-orange-400 to-yellow-100 border border-orange-100 m-auto mb-2 p-2 rounded'>
                     
                     {item.display === false ? (
-                        <div key={item.id} className='flex flex-row items-center justify-between w-full'>
+                        <div 
+                            key={item.id} 
+                            className='flex flex-row items-center justify-between w-full'>
                             <p>{item.task}</p>
                             <button 
                                 type="button" 
@@ -99,13 +117,14 @@ export default function TasksContent() {
                             </button>
                         </div>
                     ) : (
-                        <div key={item.id} className='flex flex-row items-center justify-between w-full'>
+                        <div 
+                            key={item.id} 
+                            className='flex flex-row items-center justify-between w-full'>
                             <input
                                 type="text"
                                 value={item.task}
                                 onChange={(e) => handleNewTodo(e, item.id)} 
                                 className='mr-4 px-2 py-1 rounded'
-                                placeholder={item.task}
                             />
                             <button
                                 type="button" 
