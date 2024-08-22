@@ -53,7 +53,7 @@ export default function Settings() {
     return (
         <>
             <form onSubmit={handleSubmit} className='flex flex-row items-center justify-between mx-4 mt-4'>
-                <input type="file" onChange={handleFileChange} />
+                <input type="file" onChange={handleFileChange} className='w-4/5' />
                 <button type="submit" className="text-slate-50 bg-blue-500 hover:bg-blue-600 
                     active:bg-blue-700 px-4 py-1 rounded"
                 >
