@@ -27,42 +27,44 @@ export default function ContactForm({user}: {user: User}) {
     };
 
     return (
-        <form action={execute}>
+        <form action={execute} className='flex flex-col items-center justify-between h-full text-slate-500'>
 
-            <div className='flex flex-row items-center my-4 px-10'>
-                <label className="w-2/5" htmlFor="src">Send from:</label>
-                <input
-                    type="email"
-                    id="src"
-                    name="src"
-                    value={user.email ?? "user email"}
-                    readOnly
-                    placeholder={user.email ?? "user email"}
-                    className='form-control block w-3/5 px-2 py-2 text-sm font-normal text-gray-700 
-                        bg-white bg-clip-padding border border-solid border-gray-300 rounded transition 
-                        ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 
-                        focus:outline-none'
-                    required
-                />
+            <div className='mt-4'>
+                <div className='flex flex-row items-center justify-center my-4 px-10'>
+                    <label className="w-2/5" htmlFor="src">Send from:</label>
+                    <input
+                        type="email"
+                        id="src"
+                        name="src"
+                        value={user.email ?? "user email"}
+                        readOnly
+                        placeholder={user.email ?? "user email"}
+                        className='form-control block w-3/5 px-2 py-2 text-sm font-normal text-gray-700 
+                            bg-white bg-clip-padding border border-solid border-gray-300 rounded transition 
+                            ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 
+                            focus:outline-none'
+                        required
+                    />
+                </div>
+
+                <div className='flex flex-row items-center px-10'>
+                    <label className="w-2/5" htmlFor="dst">Send to:</label>
+                    <input
+                        type="email"
+                        id="dst"
+                        name="dst"
+                        readOnly
+                        placeholder="admin@prisma.io"
+                        className='form-control block w-3/5 px-2 py-2 text-sm font-normal text-gray-500/70 
+                            bg-white bg-clip-padding border border-solid border-gray-300 rounded transition 
+                            ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 
+                            focus:outline-none'
+                        required
+                    />
+                </div>
             </div>
 
-            <div className='flex flex-row items-center px-10'>
-                <label className="w-2/5" htmlFor="dst">Send to:</label>
-                <input
-                    type="email"
-                    id="dst"
-                    name="dst"
-                    readOnly
-                    placeholder="admin@prisma.io"
-                    className='form-control block w-3/5 px-2 py-2 text-sm font-normal text-gray-500/70 
-                        bg-white bg-clip-padding border border-solid border-gray-300 rounded transition 
-                        ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 
-                        focus:outline-none'
-                    required
-                />
-            </div>
-
-            <div className='my-4'>
+            <div className=''>
                 <textarea name="message" id="message" cols={30} rows={8}
                     value={textArea}
                     onChange={(e) => handleTextArea(e)}
@@ -73,7 +75,7 @@ export default function ContactForm({user}: {user: User}) {
                 </textarea>
             </div>
 
-            <div className='w-full mt-4'>
+            <div className='w-full'>
                 <button
                     type="submit"
                     className='w-full text-base font-bold text-slate-50 bg-blue-500 hover:bg-blue-600 
