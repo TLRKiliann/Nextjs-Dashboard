@@ -22,10 +22,10 @@ export default function ContactInfo() {
 
             </div>
 
-            <div className='w-full bg-slate-50/30 mx-auto mt-4 px-4 py-6 rounded shadow-in'>
+            <div className='w-full bg-slate-50/30 mx-auto mt-4 px-4 py-4 rounded shadow-in'>
 
-                <div className='mb-1 pl-2'>
-                    <h3 className='text-lg font-bold text-slate-500'>
+                <div className='mb-2 pl-2'>
+                    <h3 className='text-lg text-slate-500'>
                         Opening Hours
                     </h3>
                 </div>
