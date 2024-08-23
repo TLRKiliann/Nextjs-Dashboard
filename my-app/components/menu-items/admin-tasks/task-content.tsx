@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
 import imgTask from '@/public/assets/images/bg/task.png';
+import { returnDeletedTodo } from '@/lib/functions';
 
 type TodosArrayTypes = {
     id: number; 
@@ -70,17 +71,18 @@ export default function TasksContent(): JSX.Element {
         setNewTodosArray(findIdSave);
     };
 
-    const handleDelete = (id: number): void => {
-        const findByIdDelete: TodosArrayTypes[] = newTodosArray.filter((toTask: TodosArrayTypes) => toTask.id !== id);
-        setNewTodosArray(findByIdDelete);
+    const handleDelete = (id: number) => {
+        if (newTodosArray.map((todo: TodosArrayTypes) => todo.id === id)) {
+            returnDeletedTodo({id, newTodosArray, setNewTodosArray});
+        };
     };
-    
+
     return (
         <div className='relative z-10 w-full h-[100%] border border-dashed border-slate-500 p-4 rounded'>
-            
             <div className='absolute -z-20 w-[95%] h-[95%] flex items-center justify-center'>
                 <Image
                     src={imgTask}
+                    priority={true}
                     width={500}
                     height={500}
                     alt="no-img-bg"
