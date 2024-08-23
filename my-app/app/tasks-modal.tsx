@@ -1,6 +1,6 @@
 import { auth } from '@/auth';
-import AdminTasks from './reminder-tasks/admin-tasks'
 import prisma from '@/prisma/prisma';
+import AdminTasks from '@/components/reminder-tasks/admin-tasks';
 
 export default async function TasksModal(): Promise<JSX.Element | null> {
 

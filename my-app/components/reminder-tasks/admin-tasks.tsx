@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { returnDeletedTodo } from '@/lib/functions';
+import { FaTrashCan } from 'react-icons/fa6';
 
 type TodosArrayTypes = {
     id: number; 
@@ -16,19 +17,26 @@ export default function AdminTasks(): JSX.Element | null {
 
     useEffect(() => {
         const callerTasks = () => {
-            const getTodos = localStorage.getItem("todos");
+            const getTodos: string | null = localStorage.getItem("todos");
             if (getTodos) {
-                const paresedTodo: TodosArrayTypes[] = JSON.parse(getTodos);
-                setTodos(paresedTodo);
+                try {
+                    const paresedTodo: TodosArrayTypes[] = JSON.parse(getTodos);
+                    setTodos(paresedTodo);
+                } catch (error) {
+                    console.error("Error with admin tasks", error);
+                }
             };
         };
         callerTasks();
-        return () => console.log("clean-up tasks modal");
-    }, [])
+        const timer = setInterval(callerTasks, 30000);
+        return () => clearInterval(timer);
+    }, []);
 
     useEffect(() => {
         const callSetLocal = (): void => {
-            localStorage.setItem('todos', JSON.stringify(todos));
+            if (Array.isArray(todos)) {
+                localStorage.setItem('todos', JSON.stringify(todos));
+            };
         };
         callSetLocal();
         return () => console.log("clean-up localStorage.setItem");
@@ -44,6 +52,10 @@ export default function AdminTasks(): JSX.Element | null {
         };
     };
 
+    if (todos.length === 0) {
+        return null;
+    };
+
     return (
         <div className='absolute z-50 top-0 right-0 w-[300px] h-auto'>
             
@@ -55,16 +67,21 @@ export default function AdminTasks(): JSX.Element | null {
                 Tasks
             </button>
 
-            {showTask === true && todos.length !== 0 ? (
+            {showTask === true ? (
                 <div className='text-slate-50 bg-orange-500/30 border border-orange-500 px-4 rounded-md'>
                     {todos.map((todo) => (
-                        <div key={todo.id} className='flex flex-row items-center justify-between bg-orange-400 border border-orange-600 p-2 my-4 rounded-md'>
+                        <div key={todo.id} className='flex flex-row items-center justify-between bg-gradient-to-r from-orange-400 to-red-500 border border-orange-600 p-2 my-4 rounded-md'>
 
-                            <p className="">
+                            <p className="text-base">
                                 {todo.task}
                             </p>
 
-                            <button type="button" onClick={() => handleDelete(todo.id)}>Delete</button>
+                            <span 
+                                onClick={() => handleDelete(todo.id)}
+                                className="cursor-pointer hover:text-orange-200 active:text-orange-400"    
+                            >
+                                <FaTrashCan size={16} />
+                            </span>
 
                         </div>
                     ))}
