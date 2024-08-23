@@ -41,7 +41,7 @@ export default function ContactForm({user}: {user: User}) {
                         placeholder={user.email ?? "user email"}
                         className='form-control block w-3/5 px-2 py-2 text-sm font-normal text-gray-700 
                             bg-white bg-clip-padding border border-solid border-gray-300 rounded transition 
-                            ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 
+                            ease-in-out focus:text-gray-700 focus:bg-white focus:border-cyan-700 
                             focus:outline-none'
                         required
                     />
@@ -57,7 +57,7 @@ export default function ContactForm({user}: {user: User}) {
                         placeholder="admin@prisma.io"
                         className='form-control block w-3/5 px-2 py-2 text-sm font-normal text-gray-500/70 
                             bg-white bg-clip-padding border border-solid border-gray-300 rounded transition 
-                            ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 
+                            ease-in-out focus:text-gray-700 focus:bg-white focus:border-cyan-700 
                             focus:outline-none'
                         required
                     />
@@ -70,7 +70,7 @@ export default function ContactForm({user}: {user: User}) {
                     onChange={(e) => handleTextArea(e)}
                     placeholder="Enter your message here..."
                     className='text-base font-normal text-gray-700  px-2 py-2 bg-white
-                        border border-gray-300 focus:border-blue-600 focus:outline-none
+                        border border-gray-300 focus:border-cyan-700 focus:outline-none
                         placeholder:text-sm placeholder:text-slate-400 rounded'>
                 </textarea>
             </div>

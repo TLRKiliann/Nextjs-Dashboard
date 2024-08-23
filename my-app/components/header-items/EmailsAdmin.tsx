@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation';
 import OpenEmail from './action-email/open-email';
 import CloseEmail from './action-email/close-email';
 import RemoveEmail from './action-email/remove-email';
-import ResponseAdminEmail from '../modal/response-admin-email';
+import ResponseAdminEmail from './response-admin-email';
 
 //http://localhost:3000/dashboard/emails-admin
 

@@ -3,8 +3,8 @@
 import { User } from "next-auth";
 import { useState } from "react";
 import { adminEmail } from "@/lib/actions/admin";
-import toast from "react-hot-toast";
 import { useAction } from "next-safe-action/hooks";
+import toast from "react-hot-toast";
 
 export default function ResponseAdminEmail({ id, dst, user, prevMsg }: 
   { id: string; dst: string; user: User; prevMsg: string; }) {

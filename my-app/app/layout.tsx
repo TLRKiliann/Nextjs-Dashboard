@@ -3,6 +3,7 @@ import { SessionProvider } from 'next-auth/react'
 import ReactQueryProvider from "./ReactQueryProvider";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
+import TasksModal from './tasks-modal';
 //import { Inter } from "next/font/google";
 //const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +25,7 @@ export default function RootLayout({
       <html lang="en">
         <body>
           <main>
+            <TasksModal />
             <ReactQueryProvider>
               {children}
             </ReactQueryProvider>

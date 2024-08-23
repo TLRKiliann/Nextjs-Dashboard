@@ -13,8 +13,6 @@ const ConsentDataCollection = (): JSX.Element => {
         setInputValidate(!inputValidate);
     };
     
-
-
     useEffect(() => {
         const caller = () => {
             if (typeof window !== 'undefined') {

@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
 import imgTask from '@/public/assets/images/bg/task.png';
+import { returnDeletedTodo } from '@/lib/functions';
 
 type TodosArrayTypes = {
     id: number; 
@@ -12,8 +13,28 @@ type TodosArrayTypes = {
 
 export default function TasksContent(): JSX.Element {
 
-    const [todo, setTodo] = useState<string | undefined>(undefined);
+    const [todo, setTodo] = useState<string>("");
     const [newTodosArray, setNewTodosArray] = useState<TodosArrayTypes[]>([]);
+
+    useEffect(() => {
+        const callLocal = (): void => {
+            const storedTodos = localStorage.getItem('todos');
+            if (storedTodos) {
+                const parsedTodo: TodosArrayTypes[] = JSON.parse(storedTodos);
+                setNewTodosArray(parsedTodo);
+            };
+        };
+        callLocal();
+        return () => console.log("clean-up localStorage.getItem");
+    }, []);
+
+    useEffect(() => {
+        const callSetLocal = (): void => {
+            localStorage.setItem('todos', JSON.stringify(newTodosArray));
+        };
+        callSetLocal();
+        return () => console.log("clean-up localStorage.setItem");
+    }, [newTodosArray]);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         const { value }: HTMLInputElement = event.currentTarget;
@@ -21,7 +42,7 @@ export default function TasksContent(): JSX.Element {
     };
 
     const handleClick = (): void | null => {
-        if (todo !== undefined) {
+        if (todo !== "") {
             setNewTodosArray((prev: TodosArrayTypes[]) => ([...prev, {id: Date.now(), task: todo, display: false}]));
             setTodo("");
         };
@@ -50,17 +71,18 @@ export default function TasksContent(): JSX.Element {
         setNewTodosArray(findIdSave);
     };
 
-    const handleDelete = (id: number): void => {
-        const findByIdDelete: TodosArrayTypes[] = newTodosArray.filter((toTask: TodosArrayTypes) => toTask.id !== id);
-        setNewTodosArray(findByIdDelete);
+    const handleDelete = (id: number) => {
+        if (newTodosArray.map((todo: TodosArrayTypes) => todo.id === id)) {
+            returnDeletedTodo({id, newTodosArray, setNewTodosArray});
+        };
     };
-    
+
     return (
         <div className='relative z-10 w-full h-[100%] border border-dashed border-slate-500 p-4 rounded'>
-            
             <div className='absolute -z-20 w-[95%] h-[95%] flex items-center justify-center'>
                 <Image
                     src={imgTask}
+                    priority={true}
                     width={500}
                     height={500}
                     alt="no-img-bg"
@@ -77,7 +99,7 @@ export default function TasksContent(): JSX.Element {
                     value={todo}
                     onChange={(e) => handleChange(e)}
                     placeholder='Enter a todo task here...'
-                    className="block w-[300px] text-sm font-normal text-gray-700 bg-white 
+                    className="block w-[300px] xl:w-[400px] text-sm font-normal text-gray-700 bg-white 
                         border border-solid border-gray-300 transition ease-in-out m-0 
                         focus:text-gray-700 focus:bg-white focus:border-orange-400 focus:outline-none 
                         mr-4 px-3 py-2 rounded-full"
@@ -85,7 +107,7 @@ export default function TasksContent(): JSX.Element {
                 <button
                     type="button"
                     onClick={handleClick}
-                    className='absolute flex items-center justify-center w-[30px] h-[30px] ml-[250px] text-xl font-bold text-slate-50 bg-blue-500 
+                    className='absolute flex items-center justify-center w-[30px] h-[30px] ml-[250px] xl:ml-[350px] text-xl font-bold text-slate-50 bg-blue-500 
                     transition ease-in-out duration-100 hover:bg-blue-600 hover:scale-105 active:bg-blue-700 active:scale-95 rounded-full'
                 >
                     +

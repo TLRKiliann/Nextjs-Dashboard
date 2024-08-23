@@ -44,3 +44,20 @@ export const getMessages = async (startDate: Date, endDate: Date): Promise<Messa
         throw new Error("Error: connections fetch failed (getMessages())");
     }
 };
+
+type TodosArrayTypes = {
+    id: number;
+    task: string;
+    display: boolean;
+};
+
+type DeletedProps = {
+    id: number;
+    newTodosArray: TodosArrayTypes[], 
+    setNewTodosArray: React.Dispatch<React.SetStateAction<TodosArrayTypes[]>>;
+};
+
+export const returnDeletedTodo = ({id, newTodosArray, setNewTodosArray}: DeletedProps): void => {
+    const findByIdDelete: TodosArrayTypes[] = newTodosArray.filter((toTask: TodosArrayTypes) => toTask.id !== id);
+    setNewTodosArray(findByIdDelete);
+};
