@@ -9,7 +9,7 @@ type TodosArrayTypes = {
     display: boolean;
 };
 
-export default function AdminTasks(): JSX.Element {
+export default function AdminTasks(): JSX.Element | null {
 
     const [todos, setTodos] = useState<TodosArrayTypes[]>([]);
     const [showTask, setShowTask] = useState<boolean>(false);
