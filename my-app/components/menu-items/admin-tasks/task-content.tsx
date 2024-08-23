@@ -2,8 +2,11 @@
 
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
-import imgTask from '@/public/assets/images/bg/task.png';
 import { returnDeletedTodo } from '@/lib/functions';
+import { FaTrashCan } from 'react-icons/fa6';
+import { FaPenToSquare } from "react-icons/fa6";
+import { RiSave3Fill } from "react-icons/ri";
+import imgTask from '@/public/assets/images/bg/task.png';
 
 type TodosArrayTypes = {
     id: number; 
@@ -18,22 +21,28 @@ export default function TasksContent(): JSX.Element {
 
     useEffect(() => {
         const callLocal = (): void => {
-            const storedTodos = localStorage.getItem('todos');
+            const storedTodos: string | null = localStorage.getItem('todos');
             if (storedTodos) {
-                const parsedTodo: TodosArrayTypes[] = JSON.parse(storedTodos);
-                setNewTodosArray(parsedTodo);
+                try {
+                    const parsedTodo: TodosArrayTypes[] = JSON.parse(storedTodos);
+                    setNewTodosArray(parsedTodo);
+                } catch (error) {
+                    console.error("Error with task-content");
+                }
             };
         };
         callLocal();
-        return () => console.log("clean-up localStorage.getItem");
+        return () => console.log("clean-up task-content 1");
     }, []);
 
     useEffect(() => {
         const callSetLocal = (): void => {
-            localStorage.setItem('todos', JSON.stringify(newTodosArray));
+            if (Array.isArray(newTodosArray)) {
+                localStorage.setItem('todos', JSON.stringify(newTodosArray));
+            };
         };
         callSetLocal();
-        return () => console.log("clean-up localStorage.setItem");
+        return () => console.log("clean-up task-content 2");
     }, [newTodosArray]);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -108,7 +117,7 @@ export default function TasksContent(): JSX.Element {
                     type="button"
                     onClick={handleClick}
                     className='absolute flex items-center justify-center w-[30px] h-[30px] ml-[250px] xl:ml-[350px] text-xl font-bold text-slate-50 bg-blue-500 
-                    transition ease-in-out duration-100 hover:bg-blue-600 hover:scale-105 active:bg-blue-700 active:scale-95 rounded-full'
+                    transition ease-in-out duration-100 hover:text-slate-200 hover:bg-blue-600 hover:scale-105 active:text-sky-300 active:bg-blue-700 active:scale-95 rounded-full'
                 >
                     +
                 </button>
@@ -124,14 +133,13 @@ export default function TasksContent(): JSX.Element {
                             key={item.id} 
                             className='flex flex-row items-center justify-between w-full'>
                             <p>{item.task}</p>
-                            <button 
-                                type="button" 
+                            <span
                                 onClick={() => handleModify(item.id)} 
-                                className='text-sm font-bold text-slate-50 bg-blue-500 transition ease-in-out duration-100 hover:bg-blue-600 hover:scale-105
-                                active:bg-blue-700 active:scale-95 mr-4 px-4 py-[6px] rounded'
+                                className='text-slate-50 bg-blue-500 cursor-pointer transition ease-in-out duration-100 hover:bg-blue-600 hover:text-slate-200 hover:scale-105
+                                active:text-sky-500 active:bg-blue-700 active:scale-95 mr-4 p-2 rounded'
                             >
-                                Modify
-                            </button>
+                                <FaPenToSquare size={18} />
+                            </span>
                         </div>
                     ) : (
                         <div 
@@ -143,25 +151,23 @@ export default function TasksContent(): JSX.Element {
                                 onChange={(e) => handleNewTodo(e, item.id)} 
                                 className='mr-4 px-2 py-1 rounded'
                             />
-                            <button
-                                type="button" 
+                            <span
                                 onClick={() => handleSave(item.id)} 
-                                className='text-sm font-bold text-slate-50 bg-blue-500 transition ease-in-out duration-100 
-                                hover:bg-blue-600 hover:scale-105 active:bg-blue-700 active:scale-95 mr-6 px-4 py-[6px] rounded'
+                                className='text-slate-50 bg-blue-500 cursor-pointer transition ease-in-out duration-100 
+                                hover:text-slate-200 hover:bg-blue-600 hover:scale-105 active:text-sky-500 active:bg-blue-700 active:scale-95 mr-4 p-[6px] rounded'
                             >
-                                Save
-                            </button>
+                                <RiSave3Fill size={22} />
+                            </span>
                         </div>
                     )}
 
-                    <button
-                        type="button" 
+                    <span
                         onClick={() => handleDelete(item.id)} 
-                        className='text-sm font-bold text-slate-50 bg-red-500 transition ease-in-out duration-100 hover:bg-red-600 
-                        hover:scale-105 active:bg-red-700 active:scale-95 px-4 py-[6px] rounded'
+                        className='text-slate-50 bg-red-500 cursor-pointer transition ease-in-out duration-100 hover:text-slate-200 hover:bg-red-600 
+                        hover:scale-105 active:text-orange-500 active:bg-red-700 active:scale-95 p-2 rounded'
                     >
-                        Delete
-                    </button>
+                        <FaTrashCan size={18} />
+                    </span>
 
                 </div>
             )).reverse()}
