@@ -19,7 +19,7 @@ export default async function ProductsToModify({listProducts}: {listProducts: Pr
 
                 {listProducts.map((product: Product) => (
                     <div key={product.id} 
-                        className='flex flex-row items-center justify-between w-full h-[80px] bg-white 
+                        className='animate-slice-appear flex flex-row items-center justify-between w-full h-[80px] bg-white 
                             rounded-lg shadow-sm-out-light p-4 m-auto my-2'>
 
                         <div className='w-[60px] h-[60px]'>
