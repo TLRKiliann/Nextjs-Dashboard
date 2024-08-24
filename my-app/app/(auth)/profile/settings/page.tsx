@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
-import HeaderAuth from '@/components/auth/header-auth';
 import Settings from "@/components/auth/settings";
 
 export const metadata: Metadata = {
@@ -19,15 +18,12 @@ export default async function SettingsPage() {
     };
 
     return (
-        <>
-            <HeaderAuth />
-            <div className='flex flex-col justify-center w-[380px] xl:w-[500px] h-full m-auto text-slate-500 bg-white rounded-lg'>
+        <div className='flex flex-col justify-center w-[380px] xl:w-[500px] h-full m-auto text-slate-500 bg-white rounded-lg'>
 
-                <div>
-                    <Settings />
-                </div>
-                
+            <div>
+                <Settings />
             </div>
-        </>
+            
+        </div>
     )
 }

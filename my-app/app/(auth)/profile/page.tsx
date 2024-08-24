@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import { auth } from "@/auth";
-import { Suspense } from "react";
 import prisma from "@/prisma/prisma";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import HeaderAuth from '@/components/auth/header-auth';
 import DataProfile from "@/components/auth/data-profile";
 import OsBrowserData from "@/components/auth/os-browser-data";
 import ConsentDataCollection from "@/components/auth/consent-data-collection";
@@ -59,10 +57,6 @@ export default async function ProfilePage() {
 
     return (
         <>
-            <Suspense>
-                <HeaderAuth />
-            </Suspense>
-
             <ConsentDataCollection />
 
             <div className='flex flex-col justify-center w-[380px] xl:w-[500px] h-full m-auto text-slate-500 bg-white rounded-lg'>
