@@ -8,6 +8,30 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      keyframes: {
+        upstart: {
+          '0%': { 
+            transform: 'translateY(200px)',
+            opacity: "0"
+          },
+          '100%': { 
+            transform: 'translateY(0px)',
+            opacity: "1"
+          }
+        },
+        sliceappear: {
+          "0%": {
+            opacity: "0"
+          },
+          "100%": {
+            opacity: "1"
+          }
+        },
+      },
+      animation: {
+        "up-start": "upstart 0.4s ease 1",
+        "slice-appear": "sliceappear 0.5s ease-out 1",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -32,6 +56,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 };
 export default config;

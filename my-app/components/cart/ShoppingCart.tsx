@@ -14,85 +14,89 @@ export default async function ShoppingCartPage({carts}: {carts: Cart[]}) {
         
             {totalQuantity > 0 ? (
                 carts.map((product: Cart) => product.quantity > 0 ? (
-                    <div key={product.id} className="w-full h-20 flex items-center justify-start space-x-4 bg-white rounded-md shadow-md my-1 p-2">
+                    <div key={product.id}>
                         
-                        <div className='w-[70px] flex items-center justify-center border-none rounded-tl-md 
-                            rounded-br-md'>
-                            <Image src={product.img}
-                                width={70}
-                                height={70}
-                                className="w-full h-auto object-cover rounded-tl-md rounded-br-md" 
-                                alt="no img" 
-                            />
-                        </div>
-
-                        <div className='flex flex-row items-center justify-around w-full h-full px-4'>
-                            
-                            <h3 className='w-[100px] text-base font-bold sm:-ml-10 xl:-ml-16'>
-                                {product.family}
-                            </h3>
-
-                            <h4 className='w-[80px] text-center text-base'>
-                                {product.name}
-                            </h4>
-                            
-                            <h6 className='w-[140px] text-xs'>
-                                Version: {product.version}
-                            </h6>
-                            
-                            {product.stock === 0 ? (
-                                <p className='w-[90px] text-sm text-red-500'>
-                                    Stock: <span className='font-bold'>{product.stock}</span>
-                                </p>
-                            ) : (
-                                <p className='w-[90px] text-sm text-blue-500'>
-                                    Stock: <span className='font-bold'>{product.stock}</span>
-                                </p>
-                            )}
-
-                            <p className='w-[70px] text-end sm:text-sm lg:text-base font-bold'>
-                                {product.price}.-
-                            </p>
-
-                            <li className='w-[80px] list-none text-xs text-center text-blue-500 hover:text-blue-600 
-                                active:text-blue-700'>
-                                <Link href={`/products/${product.name}`}>View more</Link>
-                            </li>
-
-
-                            <p className='w-[100px] text-sm text-center text-blue-500'>
-                                Quantity: <span className='font-bold'>{product.quantity}</span>
-                            </p>
-                        </div>
-
-                        <div className='flex flex-row items-center justify-between w-[200px]'>
-                            
-                            <div className='flex flex-row items-center justify-evenly w-[100px]'>
-                                
-                                <DeleteItemFromCart
-                                    id={product.id}
-                                    quantity={product.quantity}
-                                    name={product.name}
-                                    stock={product.stock}
+                        <div className="animate-slice-appear w-full h-20 flex items-center justify-start space-x-4 bg-white rounded-md shadow-md my-1 p-2">
+                        
+                            <div className='w-[70px] flex items-center justify-center border-none rounded-tl-md 
+                                rounded-br-md'>
+                                <Image src={product.img}
+                                    width={70}
+                                    height={70}
+                                    className="w-full h-auto object-cover rounded-tl-md rounded-br-md" 
+                                    alt="no img" 
                                 />
-                                
-                                <AddItemToCart 
-                                    id={product.id}
-                                    name={product.name}
-                                    stock={product.stock}
-                                />
-
                             </div>
+
+                            <div className='flex flex-row items-center justify-around w-full h-full px-4'>
+                                
+                                <h3 className='w-[100px] text-base font-bold sm:-ml-10 xl:-ml-16'>
+                                    {product.family}
+                                </h3>
+
+                                <h4 className='w-[80px] text-center text-base'>
+                                    {product.name}
+                                </h4>
+                                
+                                <h6 className='w-[140px] text-xs'>
+                                    Version: {product.version}
+                                </h6>
+                                
+                                {product.stock === 0 ? (
+                                    <p className='w-[90px] text-sm text-red-500'>
+                                        Stock: <span className='font-bold'>{product.stock}</span>
+                                    </p>
+                                ) : (
+                                    <p className='w-[90px] text-sm text-blue-500'>
+                                        Stock: <span className='font-bold'>{product.stock}</span>
+                                    </p>
+                                )}
+
+                                <p className='w-[70px] text-end sm:text-sm lg:text-base font-bold'>
+                                    {product.price}.-
+                                </p>
+
+                                <li className='w-[80px] list-none text-xs text-center text-blue-500 hover:text-blue-600 
+                                    active:text-blue-700'>
+                                    <Link href={`/products/${product.name}`}>View more</Link>
+                                </li>
+
+
+                                <p className='w-[100px] text-sm text-center text-blue-500'>
+                                    Quantity: <span className='font-bold'>{product.quantity}</span>
+                                </p>
+                            </div>
+
+                            <div className='flex flex-row items-center justify-between w-[200px]'>
+                                
+                                <div className='flex flex-row items-center justify-evenly w-[100px]'>
+                                    
+                                    <DeleteItemFromCart
+                                        id={product.id}
+                                        quantity={product.quantity}
+                                        name={product.name}
+                                        stock={product.stock}
+                                    />
+                                
+                                    <AddItemToCart 
+                                        id={product.id}
+                                        name={product.name}
+                                        stock={product.stock}
+                                    />
+
+                                </div>
 
                                 <RemoveItemsFromCart 
                                     id={product.id}
                                     name={product.name}
                                 />
 
+                            </div>
+
                         </div>
 
                         <div className='absolute z-50 h-20 right-0 bottom-0 -left-4 flex items-center justify-center bg-white -ml-4 shadow-xs-out'>
-                
+
                             <li className="list-none">
                                 <Link href="/shipping" className='text-base font-bold text-slate-50 bg-blue-600/90
                                     hover:bg-blue-600 active:bg-blue-700 px-6 py-2 rounded'>
@@ -103,12 +107,11 @@ export default async function ShoppingCartPage({carts}: {carts: Cart[]}) {
                         </div>
 
                     </div>
-                ): null
-            )) : (
+            ) : null)) : (
                 <div 
                     className='absolute top-10 right-0 bottom-0 left-0 flex items-center justify-center 
-                        bg-gradient-to-bl from-sky-100 from-10% to-slate-100 to-90%'
-                >
+                        bg-gradient-to-bl from-sky-100 from-10% to-slate-100 to-90%'>
+
                     <div className='rounded-md'>
                         <h3 className='text-xl text-center text-slate-700 px-2 pt-2'>
                             Cart is empty !

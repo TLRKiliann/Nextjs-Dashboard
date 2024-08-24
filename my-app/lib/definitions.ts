@@ -37,3 +37,9 @@ export type EmailProps = {
     isOpen: boolean;
     createdAt: Date;
 };
+
+export type TodosArrayTypes = {
+    id: number;
+    task: string;
+    display: boolean;
+};

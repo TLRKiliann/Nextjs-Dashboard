@@ -20,7 +20,7 @@ export default async function AllUserProfiles() {
 
       <div className='relative mt-0 h-[100%] z-10'>
 
-        <div className="absolute -z-10 overflow-y-scroll no-scrollbar w-full h-full grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 grid-rows-none gap-4">
+        <div className="animate-up-start absolute -z-10 overflow-y-scroll no-scrollbar w-full h-full grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 grid-rows-none gap-4">
           
           {users.map((user: User) => (
             <div key={user.id} className="flex flex-row w-[320px] h-[260px] m-auto 
