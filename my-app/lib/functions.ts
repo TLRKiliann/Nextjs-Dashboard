@@ -1,11 +1,6 @@
+import type { TodosArrayTypes } from "./definitions";
 import prisma from "@/prisma/prisma";
 import { Connection, Message } from "@prisma/client";
-
-type TodosArrayTypes = {
-    id: number;
-    task: string;
-    display: boolean;
-};
 
 type DeletedProps = {
     id: number;

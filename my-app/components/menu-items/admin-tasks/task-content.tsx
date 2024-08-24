@@ -1,5 +1,6 @@
 "use client";
 
+import type { TodosArrayTypes } from '@/lib/definitions';
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
 import { returnDeletedTodo } from '@/lib/functions';
@@ -7,12 +8,6 @@ import { FaTrashCan } from 'react-icons/fa6';
 import { FaPenToSquare } from "react-icons/fa6";
 import { RiSave3Fill } from "react-icons/ri";
 import imgTask from '@/public/assets/images/bg/task.png';
-
-type TodosArrayTypes = {
-    id: number; 
-    task: string; 
-    display: boolean;
-};
 
 export default function TasksContent(): JSX.Element {
 

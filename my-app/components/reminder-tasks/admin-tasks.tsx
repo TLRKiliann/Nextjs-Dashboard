@@ -1,14 +1,9 @@
 "use client";
 
+import type { TodosArrayTypes } from '@/lib/definitions';
 import React, { useEffect, useState } from 'react';
 import { returnDeletedTodo } from '@/lib/functions';
 import { FaTrashCan } from 'react-icons/fa6';
-
-type TodosArrayTypes = {
-    id: number; 
-    task: string; 
-    display: boolean;
-};
 
 export default function AdminTasks(): JSX.Element | null {
 
