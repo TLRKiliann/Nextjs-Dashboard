@@ -52,7 +52,7 @@ export const RegisterForm = () => {
     "form-control block w-full px-4 py-3 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none";
 
     return (
-        <form onSubmit={handleSubmit(onSubmitHandler)} className="w-[400px] bg-slate-50/30 px-14 pt-6 pb-7 rounded-2xl shadow-sm-out">
+        <form onSubmit={handleSubmit(onSubmitHandler)} className="animate-up-start w-[400px] bg-slate-50/30 px-14 pt-6 pb-7 rounded-2xl shadow-sm-out">
             <div className="pb-6">
                 <h2 className="text-3xl font-bold">Register</h2>
             </div>
