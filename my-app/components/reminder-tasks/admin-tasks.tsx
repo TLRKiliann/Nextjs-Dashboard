@@ -23,7 +23,7 @@ export default function AdminTasks(): JSX.Element | null {
             };
         };
         callerTasks();
-        const timer = setInterval(callerTasks, 30000);
+        const timer = setInterval(callerTasks, 1000);
         return () => clearInterval(timer);
     }, []);
 
