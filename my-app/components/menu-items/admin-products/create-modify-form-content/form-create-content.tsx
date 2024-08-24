@@ -77,7 +77,7 @@ export default function FormCreateContent({ idOfProduct }: { idOfProduct: number
             </div>
 
             {isOpen === true ? (
-                <div className="flex flex-col items-center justify-center w-full h-[50%] bg-gradient-to-bl from-slate-900 to-cyan-900">
+                <div className="animate-up-start flex flex-col items-center justify-center w-full h-[50%] bg-gradient-to-bl from-slate-900 to-cyan-900">
                     <form action={execute} className='flex flex-col items-center justify-center text-slate-50 w-[480px] h-[400px] -ml-[20%]'>
 
                         <div className='flex items-center justify-center h-[20%] w-full'>
