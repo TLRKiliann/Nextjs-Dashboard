@@ -1,35 +1,36 @@
-import { auth } from '@/auth';
-import prisma from '@/prisma/prisma';
+"use client";
+
+import { User } from 'next-auth';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
 
-export default async function AdminAccessLink() {
+export default function AdminAccessLink({user}: {user: User}) {
 
-    const session = await auth();
-    const user = session?.user;
+    const [isAdmin, setIsAdmin] = useState(false);
 
-    if (!user?.email) {
-        return null;
-    };
-    
-    const admin = await prisma.user.findUnique({
-        where: {
-            email: user.email,
-            role: "ADMIN"
-        }
-    });
+    useEffect(() => {
+        const checkAdmin = async (): Promise<void> => {
+            if (user?.email) {
+                const response = await fetch('http://localhost:3000/api/auth/checkAdmin');
+                const data = await response.json();
+                setIsAdmin(data.isAdmin);
+            }
+        };
+        checkAdmin();
+        return () => console.log("clean-up check status");
+    }, [user]);
 
-    if (!admin) {
+    if (!user?.email || !isAdmin) {
         return null;
     };
 
     return (
         <>
-        {admin ? (
+        {isAdmin ? (
             <li className="list-none text-lime-200 hover:text-lime-300 active:text-lime-400">
                 <Link href="/dashboard/dashboardnative">Dashboard (admin)</Link>
             </li>
         ) : null}
         </>
     )
-}
+};
