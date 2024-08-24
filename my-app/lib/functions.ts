@@ -1,6 +1,18 @@
 import prisma from "@/prisma/prisma";
 import { Connection, Message } from "@prisma/client";
 
+type TodosArrayTypes = {
+    id: number;
+    task: string;
+    display: boolean;
+};
+
+type DeletedProps = {
+    id: number;
+    newTodosArray: TodosArrayTypes[], 
+    setNewTodosArray: React.Dispatch<React.SetStateAction<TodosArrayTypes[]>>;
+};
+
 export const getConnections = async (startDate: Date, endDate: Date): Promise<Connection[]> => {
     try {
         const connections = await prisma.connection.findMany({
@@ -43,18 +55,6 @@ export const getMessages = async (startDate: Date, endDate: Date): Promise<Messa
         console.log("Error: connections fetch failed (getMessages())", error);
         throw new Error("Error: connections fetch failed (getMessages())");
     }
-};
-
-type TodosArrayTypes = {
-    id: number;
-    task: string;
-    display: boolean;
-};
-
-type DeletedProps = {
-    id: number;
-    newTodosArray: TodosArrayTypes[], 
-    setNewTodosArray: React.Dispatch<React.SetStateAction<TodosArrayTypes[]>>;
 };
 
 export const returnDeletedTodo = ({id, newTodosArray, setNewTodosArray}: DeletedProps): void => {
