@@ -27,8 +27,12 @@ export default function AdminAccessLink({user}: {user: User}) {
     return (
         <>
         {isAdmin ? (
-            <li className="list-none text-lime-200 hover:text-lime-300 active:text-lime-400">
-                <Link href="/dashboard/dashboardnative">Dashboard (admin)</Link>
+            <li className="list-none bg-gradient-to-bl from-blue-500/70 to-cyan-500 shadow rounded-md px-2 py-1">
+                <Link 
+                    href="/dashboard/dashboardnative"
+                    className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-200 to-orange-600 hover:text-yellow-200 active:text-orange-300">
+                        Dashboard
+                </Link>
             </li>
         ) : null}
         </>
