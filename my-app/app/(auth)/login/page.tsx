@@ -7,7 +7,6 @@ export const metadata: Metadata = {
     description: "login page"
 };
 
-
 export default async function LoginPage() {
     return (
         <div className="flex flex-col items-center pt-10">
