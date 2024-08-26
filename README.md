@@ -6,6 +6,25 @@ Nextjs 15 (rc) - TypeScript - Tailwind - PostgreSQL
 
 ![Dashboard Img](https://github.com/TLRKiliann/Nextjs-Dashboard/blob/master/my-app/public/assets/images/bg/wallpaper.png)
 
+## Introduction
+
+Although this application seems complete, I focused on the administrator dashboard features, in order to create something both useful and original. I also used NextAuth v5 to see how it's possible to log in as both user and administrator. In the real world, you'd have to use Lucia instead.
+
+I'm interested in :
+
+- capturing the public IP and then using it for geolocation.
+- how to retrieve users' browser and os system data and display them in graphs.
+
+Display :
+
+- product stocks in order from smallest to largest.
+
+- connected users.
+
+- messages, connections and sales by day, month and year.
+
+- tasks set by administrators on all pages of the application.
+
 ## Goals
 
 > Login as User or Admin with NextAuth V5 without api (GitHub & Google)
@@ -156,7 +175,7 @@ All files that include NextAuth V5:
 
 ## Security
 
-Use `next-safe-action` with zod & zod-form-data, to secure request of server action (avoid to display sensitive data).
+Use `next-safe-action` with zod & zod-form-data, to secure request of server action (avoid to display sensitive data). It's interacts with the middleware.
 
 - `/lib/actions.ts`
 - `/lib/safe-action.ts`
@@ -175,6 +194,8 @@ I don't used stripe, because that wasn't my goal.
 `$ pnpm add sharp`
 
 `$ pnpm add react-icons`
+
+`$ pnpm tailwindcss-animate`
 
 `$ pnpm add chart.js react-chartjs-2`
 

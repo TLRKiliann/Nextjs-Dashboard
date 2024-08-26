@@ -2,6 +2,7 @@
 
 import type { TodosArrayTypes } from '@/lib/definitions';
 import React, { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { returnDeletedTodo } from '@/lib/functions';
 import { FaTrashCan } from 'react-icons/fa6';
@@ -13,6 +14,8 @@ export default function TasksContent(): JSX.Element {
 
     const [todo, setTodo] = useState<string>("");
     const [newTodosArray, setNewTodosArray] = useState<TodosArrayTypes[]>([]);
+
+    const router = useRouter();
 
     useEffect(() => {
         const callLocal = (): void => {
@@ -49,6 +52,7 @@ export default function TasksContent(): JSX.Element {
         if (todo !== "") {
             setNewTodosArray((prev: TodosArrayTypes[]) => ([...prev, {id: Date.now(), task: todo, display: false}]));
             setTodo("");
+            router.refresh();
         };
         return null;
     };

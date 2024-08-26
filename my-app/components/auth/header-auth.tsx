@@ -1,32 +1,31 @@
-import { auth, signOut } from "@/auth";
+"use client";
+
+import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
-import prisma from "@/prisma/prisma";
 import Image from 'next/image';
 import AdminAccessLink from "./admin-access-link";
-import { FaPowerOff } from "react-icons/fa6";
 import dashLogo from '@/public/assets/images/logo/dash-logo.png';
+import { FaPowerOff } from "react-icons/fa6";
 
-const HeaderAuth = async () => {
+const HeaderAuth = (): JSX.Element => {
     
-    const session = await auth();
+    const {data: session} = useSession();
     const user = session?.user;
 
     const logoutAction = async () => {
-        'use server';
-        await prisma.user.update({
-            data: {
-                id: user?.id,
-                isConnected: false,
-            },
-            where: {
-                id: user?.id,
-            }
+        const response = await fetch("/api/auth/logout", {
+            method: 'POST',
         });
-        await prisma.$disconnect();
-        await signOut({
-            redirect: true,
-            redirectTo: 'http://localhost:3000/login',
-        });
+        if (response.ok) {
+            console.log("logout is ok");
+            signOut({
+                redirect: true,
+                callbackUrl: "/login"
+            })
+        } else {
+            const data = await response.json();
+            console.error(data.message);
+        }
     };
 
     return (
@@ -37,6 +36,7 @@ const HeaderAuth = async () => {
             <div className="ml-2 rounded">
                 <Image 
                     src={dashLogo}
+                    priority={true}
                     width={70}
                     height={50}
                     alt="no logo"
@@ -56,7 +56,7 @@ const HeaderAuth = async () => {
             ) : null}
 
             {user ? (
-                <form action={logoutAction} className='flex flex-row items-center justify-center space-x-8'>
+                <div className='flex flex-row items-center justify-center space-x-8'>
                     <li className="list-none transition-colors hover:text-cyan-200 active:text-cyan-300">
                         <Link href="/">Home</Link>
                     </li>
@@ -66,17 +66,17 @@ const HeaderAuth = async () => {
                     </li>
 
                     <li className="list-none transition-colors hover:text-cyan-200 active:text-cyan-300">
-                        <Link href="/products">Products (user)</Link>
+                        <Link href="/products">Products</Link>
                     </li>
 
-                    <AdminAccessLink />
+                    <AdminAccessLink user={user} />
 
                     <p>{user.name}</p>
 
-                    <li className="relative flex list-none transition-colors hover:text-cyan-200 active:text-cyan-300">
-                        <button><FaPowerOff size={16} /></button>
-                    </li>
-                </form>
+                    <form action={logoutAction} className="relative flex list-none transition-colors hover:text-cyan-200 active:text-cyan-300">
+                        <button type="submit"><FaPowerOff size={16} /></button>
+                    </form>
+                </div>
             ) : null}
         </div>
     )
