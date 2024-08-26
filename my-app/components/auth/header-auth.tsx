@@ -58,16 +58,16 @@ const HeaderAuth = (): JSX.Element => {
                     </li>
 
                     <li className="list-none transition-colors hover:text-cyan-200 active:text-cyan-300">
-                        <Link href="/products">Products (user)</Link>
+                        <Link href="/products">Products</Link>
                     </li>
 
                     <AdminAccessLink user={user} />
 
                     <p>{user.name}</p>
 
-                    <li className="relative flex list-none transition-colors hover:text-cyan-200 active:text-cyan-300">
+                    <div className="relative flex list-none transition-colors hover:text-cyan-200 active:text-cyan-300">
                         <button type="submit"><FaPowerOff size={16} /></button>
-                    </li>
+                    </div>
                 </form>
             ) : null}
         </div>
