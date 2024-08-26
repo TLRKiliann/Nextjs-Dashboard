@@ -4,20 +4,28 @@ import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import Image from 'next/image';
 import AdminAccessLink from "./admin-access-link";
-import { FaPowerOff } from "react-icons/fa6";
 import dashLogo from '@/public/assets/images/logo/dash-logo.png';
+import { FaPowerOff } from "react-icons/fa6";
 
 const HeaderAuth = (): JSX.Element => {
     
-    const { data: session } = useSession();
+    const {data: session} = useSession();
     const user = session?.user;
 
-    const logoutAction = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
-        e.preventDefault();
-        await signOut({ 
-            redirect: true, 
-            callbackUrl: '/login' 
+    const logoutAction = async () => {
+        const response = await fetch("/api/auth/logout", {
+            method: 'POST',
         });
+        if (response.ok) {
+            console.log("logout is ok");
+            signOut({
+                redirect: true,
+                callbackUrl: "/login"
+            })
+        } else {
+            const data = await response.json();
+            console.error(data.message);
+        }
     };
 
     return (
@@ -48,7 +56,7 @@ const HeaderAuth = (): JSX.Element => {
             ) : null}
 
             {user ? (
-                <form onSubmit={logoutAction} className='flex flex-row items-center justify-center space-x-8'>
+                <div className='flex flex-row items-center justify-center space-x-8'>
                     <li className="list-none transition-colors hover:text-cyan-200 active:text-cyan-300">
                         <Link href="/">Home</Link>
                     </li>
@@ -65,10 +73,10 @@ const HeaderAuth = (): JSX.Element => {
 
                     <p>{user.name}</p>
 
-                    <div className="relative flex list-none transition-colors hover:text-cyan-200 active:text-cyan-300">
+                    <form action={logoutAction} className="relative flex list-none transition-colors hover:text-cyan-200 active:text-cyan-300">
                         <button type="submit"><FaPowerOff size={16} /></button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             ) : null}
         </div>
     )
