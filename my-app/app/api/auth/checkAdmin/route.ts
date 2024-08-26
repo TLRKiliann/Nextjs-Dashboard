@@ -7,7 +7,6 @@ export async function GET() {
     const session = await auth();
     const user = session?.user;
 
-
     if (!user || !user?.email) {
         return NextResponse.json({ isAdmin: false }, {status: 401});
     };
