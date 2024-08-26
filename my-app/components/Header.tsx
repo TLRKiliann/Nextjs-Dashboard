@@ -1,11 +1,11 @@
-import { auth, signOut } from '@/auth';
+import { auth } from '@/auth';
 import prisma from '@/prisma/prisma';
 import type { Message, User } from '@prisma/client';
 import { redirect } from 'next/navigation';
 import EmailComp from './header-items/EmailComp';
 import Notifications from './header-items/Notifications';
 import Searchbar from './header-items/Searchbar';
-import { FaPowerOff } from "react-icons/fa6";
+import BtnLogout from './BtnLogout';
 
 const Header = async () => {
     
@@ -37,15 +37,6 @@ const Header = async () => {
         }
     });
 
-    const logoutAction = async () => {
-        'use server';
-        await prisma.$disconnect();
-        await signOut({
-            redirect: true,
-            redirectTo: 'http://localhost:3000/login',
-        });
-    };
-
     return (
         <div className='flex items-center justify-end w-full text-slate-400'>
 
@@ -68,14 +59,7 @@ const Header = async () => {
                             <EmailComp emailBox={emailBox} />
                         </li>
                         {admin ? (
-                            <form action={logoutAction} className='flex pr-4'>
-                                <li className='flex items-center justify-center text-base 
-                                    transition duration-200 ease-in-out hover:text-slate-500'>
-                                    <button>
-                                        <FaPowerOff size={16} />
-                                    </button>
-                                </li>
-                            </form>
+                            <BtnLogout />
                         ): null}
                     </div>
                 </ul>
