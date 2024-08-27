@@ -6,6 +6,18 @@ import AllProducts from '@/components/AllProducts';
 import Loader from '@/components/Loader';
 import { Suspense } from 'react';
 
+type ProductType = {
+  family: string;
+  name: string;
+  quantity: number;
+  price: number;
+};
+
+type UserCartType = {
+  id: string;
+  carts: ProductType[];
+};
+
 export default async function ProductsPage() {
 
   const session = await auth();
@@ -25,9 +37,29 @@ export default async function ProductsPage() {
     throw new Error("Error: prisma product fetch failed!");
   }
 
+  const userCart: UserCartType | null = await prisma.user.findUnique({
+    where: {
+        id: user.id,
+    },
+    include: {
+      carts: {
+        select: {
+          family: true,
+          name: true,
+          quantity: true,
+          price: true
+        } 
+      }
+    }
+  });
+
+  if (!userCart) {
+      throw new Error("userCart not set!");
+  };
+
   return (
     <Suspense fallback={<Loader />}>
-      <AllProducts products={products} user={user} />
+      <AllProducts products={products} user={user} userCart={userCart} />
     </Suspense>
   )
 };
