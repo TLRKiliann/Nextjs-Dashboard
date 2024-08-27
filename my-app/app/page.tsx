@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from 'next/image';
+import Carousel from "@/components/Carousel";
 import imgLand from '@/public/assets/images/bg/landscape-contact.jpg';
-import Slider from "@/components/Slider";
 
 export default function Home() {
   /*
@@ -15,7 +15,7 @@ export default function Home() {
       bg-gradient-to-br from-slate-50 to-sky-500 p-4">
 
       <div className="absolute -z-30 top-0 right-0 w-full h-full">
-        <Slider />
+        <Carousel />
       </div>
 
       <div className="absolute -z-20 w-[650px] h-[390px] flex items-center justify-center 
