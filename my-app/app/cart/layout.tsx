@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import HeaderProducts from "@/components/products-and-cart/HeaderProducts";
+import HeaderProducts from "@/components/products/HeaderProducts";
 
 export const metadata: Metadata = {
     title: "Cart",
