@@ -25,14 +25,14 @@ export default function AllProducts({ products, user, userCart }: { products: Pr
     };
 
     return (
-        <div className='relative w-full min-h-screen'>
+        <div className='w-full min-h-screen'>
 
-            <div className='w-full h-full bg-slate-50'>
+            <div className='absolute w-full h-full bg-slate-200 -z-20'>
                 <Image
                     src={imgBgProd}
                     priority={true} 
                     alt="bg products img"
-                    className='fixed w-full h-full opacity-70 -z-20 object-cover'
+                    className='fixed w-full h-full opacity-40 -z-10 object-cover'
                 />
             </div>
 
@@ -46,7 +46,7 @@ export default function AllProducts({ products, user, userCart }: { products: Pr
                 ))}
             </div>
 
-            <div className='fixed z-20 top-[10vh] right-0 w-[500px] h-auto'>
+            <div className='fixed z-20 top-0 left-0 w-[500px] h-auto'>
                 <CartProduct userCart={userCart} user={user} />
             </div>
 

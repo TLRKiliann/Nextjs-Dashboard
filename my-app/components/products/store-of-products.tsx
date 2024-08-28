@@ -45,7 +45,7 @@ export default async function StoreOfProducts({product, user}: ProductProps) {
     };
 
     return (
-        <div key={product.id} className="animate-up-start w-full h-full text-slate-100 bg-gradient-to-tr from-cyan-600 to-cyan-950 rounded-md shadow-xs-out">
+        <div key={product.id} className="animate-up-start w-full h-full text-slate-100 bg-gradient-to-tr from-cyan-600 to-cyan-950 rounded-md shadow-sm-out">
             
             <div className='w-full h-full flex flex-col items-center justify-between rounded-md'>
 
