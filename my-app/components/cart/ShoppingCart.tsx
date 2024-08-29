@@ -70,7 +70,7 @@ export default async function ShoppingCartPage({carts}: {carts: Cart[]}) {
 
                             <div className='flex flex-row items-center justify-between w-[200px]'>
                                 
-                                <div className='flex flex-row items-center justify-evenly w-[100px]'>
+                                <div className='flex flex-row items-center justify-between w-[100px]'>
                                     
                                     <DeleteItemFromCart
                                         id={product.id}
