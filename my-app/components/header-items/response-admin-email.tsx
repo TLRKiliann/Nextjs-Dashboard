@@ -14,6 +14,7 @@ export default function ResponseAdminEmail({ id, dst, user, prevMsg }:
     onSuccess: () => {
       toast.success("Message sent successfully!");
       console.log("Message sent successfully!");
+      setTextMail("");
     },
     onError: () => {
       toast.error("Error with message!");
