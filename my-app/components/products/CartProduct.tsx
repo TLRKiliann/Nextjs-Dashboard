@@ -31,9 +31,10 @@ export default function CartProduct({ userCart, user }: { userCart: UserCartType
                 <button 
                     type="button" 
                     onClick={handleShowCart} 
-                    className='text-base text-slate-50 bg-gradient-to-tr from-slate-400 to-cyan-900 
-                        hover:bg-gradient-to-tr hover:from-slate-400 hover:to-cyan-800/70 hover:scale-105
-                        active:bg-gradient-to-tr active:from-slate-400 active:to-cyan-700/70 active:scale-95 px-4 py-1 rounded-full'
+                    className='text-base text-slate-50 bg-gradient-to-tr from-cyan-600 to-cyan-950
+                        hover:bg-gradient-to-tr hover:from-cyan-600 hover:to-cyan-900/70 hover:scale-105 hover:shadow-md
+                        active:bg-gradient-to-tr active:from-cyan-900 active:to-cyan-950 active:scale-95 active:shadow-none 
+                        px-4 py-1 rounded-full'
                 >
                     Cart
                 </button>

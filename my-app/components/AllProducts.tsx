@@ -2,14 +2,13 @@ import { User } from 'next-auth';
 import type { Product } from '@prisma/client';
 import StoreOfProducts from '@/components/products/store-of-products';
 import CartProduct from '@/components/products/CartProduct';
-import Loader from '@/components/Loader';
 
 type ProductType = {
     family: string;
     name: string;
     quantity: number;
     price: number;
-  };
+};
   
 type UserCartType = {
     id: string;
@@ -18,14 +17,10 @@ type UserCartType = {
 
 export default function AllProducts({ products, user, userCart }: { products: Product[]; user: User; userCart: UserCartType }): JSX.Element {
 
-    if (!products) {
-        return <Loader />
-    };
-
     return (
         <div className='w-full min-h-screen bg-slate-50'>
 
-            <div className='w-full min-h-screen grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 grid-rows-3 gap-10 p-10 pt-[14vh]'>
+            <div className='w-full h-full grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 grid-rows-3 gap-10 p-10 pt-[14vh]'>
                 {products.map((product: Product) => (
                     <StoreOfProducts
                         key={product.id}
