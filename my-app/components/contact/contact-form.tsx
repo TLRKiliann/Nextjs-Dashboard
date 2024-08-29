@@ -13,6 +13,7 @@ export default function ContactForm({user}: {user: User}) {
         onSuccess: () => {
             toast.success("Message sent successfully!");
             console.log("Message sent successfully!");
+            setTextArea("");
         },
         onError: () => {
             toast.error("Error with message!");
@@ -64,7 +65,7 @@ export default function ContactForm({user}: {user: User}) {
                 </div>
             </div>
 
-            <div className=''>
+            <div>
                 <textarea name="message" id="message" cols={30} rows={8}
                     value={textArea}
                     onChange={(e) => handleTextArea(e)}
