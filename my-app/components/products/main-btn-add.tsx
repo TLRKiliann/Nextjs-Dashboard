@@ -49,7 +49,7 @@ export default function MainBtnAdd({ id, name, storeQuantity, product }: MainBtn
                 }} 
                 className='w-[120px] h-[38px] text-sm font-bold text-slate-50 transform transition ease-in-out duration-200 
                     bg-blue-600 hover:bg-blue-700 hover:scale-105 active:bg-blue-800 rounded active:scale-95
-                    disabled:opacity-50 m-auto shadow-sm-out-light'
+                    disabled:opacity-50 disabled:shadow-none m-auto shadow-md'
                 aria-label={`Add one more ${name}`}
                 disabled={searchQuantity > 0}
             >

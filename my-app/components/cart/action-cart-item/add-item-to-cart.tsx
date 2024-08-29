@@ -36,13 +36,11 @@ export default function AddItemToCart({ id, name, stock }:
 
                     toast.success("Successfully added to cart!");
                 }}
-                className="w-[38px] h-[38px] text-slate-100 font-bold bg-blue-500 
-                    hover:bg-blue-600/90 active:bg-blue-600
-                    rounded-full shadow-sm-out-light disabled:opacity-50"
+                className="group w-[40px] h-[40px] font-bold transform duration-100 ease-in-out disabled:opacity-50 text-slate-100 bg-blue-500 hover:scale-105 hover:text-lg hover:bg-blue-600/90 active:scale-95 active:bg-blue-600 rounded-full shadow-sm-out-light"
                 aria-label={`Add one ${name}`}
                 disabled={stock === 0 ? true : false}
             >
-                +
+                <span className="transform duration-100 ease-in-out group-hover:scale-105">⬆</span>
             </button>
         </div>
     )

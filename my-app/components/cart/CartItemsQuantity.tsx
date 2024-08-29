@@ -39,7 +39,7 @@ export default async function CartItemsQuantity() {
     const totalQuantity = storeQuantity.carts.reduce((acc: number, product: {quantity: number}) => acc + product.quantity, 0);
 
     return (
-        <div className='absolute top-0'>
+        <div className='absolute top-0 left-3'>
             <p className={`${totalQuantity > 0 ? "opacity-100" : "opacity-0"} flex items-center justify-center 
                 border-none w-[24px] h-[24px] text-sm font-bold text-white bg-blue-500 rounded-full mt-[20px] ml-[12px]`}>
                 {totalQuantity}

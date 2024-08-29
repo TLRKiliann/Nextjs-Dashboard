@@ -46,10 +46,10 @@ const HeaderAuth = (): JSX.Element => {
 
             {!user ? (
                 <div className="flex flex-row items-center space-between space-x-8">
-                    <li className="list-none transition-colors hover:text-cyan-200 active:text-cyan-300">
+                    <li className="drop-shadow-sm-text list-none transition duration-300 ease-in-out hover:drop-shadow-none active:text-cyan-400 active:drop-shadow-none active:scale-95">
                         <Link href="/login">Login</Link>
                     </li>
-                    <li className="list-none transition-colors hover:text-cyan-200 active:text-cyan-300">
+                    <li className="drop-shadow-sm-text list-none transition duration-300 ease-in-out hover:drop-shadow-none active:text-cyan-400 active:drop-shadow-none active:scale-95">
                         <Link href="/register">Register</Link>
                     </li>
                 </div>
@@ -57,24 +57,24 @@ const HeaderAuth = (): JSX.Element => {
 
             {user ? (
                 <div className='flex flex-row items-center justify-center space-x-8'>
-                    <li className="list-none transition-colors hover:text-cyan-200 active:text-cyan-300">
+                    <li className="drop-shadow-sm-text list-none transition duration-300 ease-in-out hover:drop-shadow-none active:text-cyan-400 active:drop-shadow-none active:scale-95">
                         <Link href="/">Home</Link>
                     </li>
 
-                    <li className="list-none transition-colors hover:text-cyan-200 active:text-cyan-300">
+                    <li className="drop-shadow-sm-text list-none transition duration-300 ease-in-out hover:drop-shadow-none active:text-cyan-400 active:drop-shadow-none active:scale-95">
                         <Link href="/profile">Profile</Link>
                     </li>
 
-                    <li className="list-none transition-colors hover:text-cyan-200 active:text-cyan-300">
+                    <li className="drop-shadow-sm-text list-none transition duration-300 ease-in-out hover:drop-shadow-none active:text-cyan-400 active:drop-shadow-none active:scale-95">
                         <Link href="/products">Products</Link>
                     </li>
 
                     <AdminAccessLink user={user} />
 
-                    <p>{user.name}</p>
+                    <p className='drop-shadow-sm-text'>{user.name}</p>
 
-                    <form action={logoutAction} className="relative flex list-none transition-colors hover:text-cyan-200 active:text-cyan-300">
-                        <button type="submit"><FaPowerOff size={16} /></button>
+                    <form action={logoutAction} className="relative flex">
+                        <button type="submit"><FaPowerOff size={16} className='drop-shadow-sm-text transition duration-300 ease-in-out hover:drop-shadow-none active:text-cyan-400 active:drop-shadow-none active:scale-95' /></button>
                     </form>
                 </div>
             ) : null}

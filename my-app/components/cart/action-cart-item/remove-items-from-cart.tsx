@@ -4,6 +4,7 @@ import usePersistStore from '@/helpers/usePersistStore';
 import { removeFromCart } from '@/lib/actions/cart';
 import { useStore } from '@/stores/store';
 import toast from 'react-hot-toast';
+import { FaTrashCan } from 'react-icons/fa6';
 
 export default function RemoveItemsFromCart({id, name}:
     {
@@ -34,12 +35,11 @@ export default function RemoveItemsFromCart({id, name}:
 
                     toast.success("Successfully removed from cart!");
                 }}
-                className="text-slate-50 bg-red-500 hover:bg-red-600/90 active:bg-red-700
-                    disabled:opacity-50 rounded-full shadow-sm-out-light px-4 py-1"
+                className="group transform duration-100 ease-in-out disabled:opacity-50 text-slate-50 bg-red-500 hover:bg-red-600/90 hover:scale-105 hover:text-lg active:bg-red-700 active:scale-95 rounded-full shadow-sm-out-light p-3"
                 aria-label={`Remove all ${name}`}
                 disabled={!name ? true : false}
             >
-                Remove
+                <FaTrashCan className="transform duration-100 ease-in-out group-hover:scale-105" size={16} />
             </button>
         </div>
     )

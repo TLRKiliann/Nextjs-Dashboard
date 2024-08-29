@@ -33,6 +33,10 @@ export default async function ProductsPage() {
     }
   });
 
+  if (!products) {
+    throw new Error("No products in database!");
+  };
+
   if (products.length === 0) {
     throw new Error("Error: prisma product fetch failed!");
   }
