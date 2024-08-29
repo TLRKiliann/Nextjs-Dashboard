@@ -4,7 +4,7 @@ import { auth } from '@/auth';
 import prisma from '@/prisma/prisma';
 import React, { Suspense } from 'react';
 import { redirect } from 'next/navigation';
-import ShoppingCartPage from '@/components/cart/ShoppingCart';
+import ShoppingCart from '@/components/cart/ShoppingCart';
 import Loader from '@/components/Loader';
 
 export const metadata: Metadata = {
@@ -49,7 +49,7 @@ export default async function CartPage() {
     return (
         <React.Fragment>
             <Suspense fallback={<Loader />}>
-                <ShoppingCartPage carts={user.carts} />
+                <ShoppingCart carts={user.carts} />
             </Suspense>
         </React.Fragment>
     )
