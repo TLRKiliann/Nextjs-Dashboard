@@ -7,8 +7,6 @@ import CloseEmail from './action-email/close-email';
 import RemoveEmail from './action-email/remove-email';
 import ResponseAdminEmail from './response-admin-email';
 
-//http://localhost:3000/dashboard/emails-admin
-
 export default async function EmailsAdmin() {
 
     const session = await auth();
@@ -33,7 +31,7 @@ export default async function EmailsAdmin() {
     });
 
     return (
-        <div className='flex flex-row items-start w-full h-[90%] text-slate-800 mt-[10vh]'>
+        <div className='flex flex-row items-start w-full h-[90%] text-slate-800 bg-slate-100 mt-[10vh]'>
 
             <div className='relative mt-0 z-10 w-[35%] h-[100%]'>
 
@@ -73,7 +71,7 @@ export default async function EmailsAdmin() {
                     {emailBox.map((email: Message) => email.isOpen === true && email.src !== "admin@prisma.io" ? (
                         <div key={email.id} className='w-full h-auto bg-white'>
                             <div className='flex flex-row items-end justify-between w-full h-auto 
-                                text-slate-50 bg-gradient-to-r from-slate-900 to-cyan-900 rounded-tl rounded-bl p-2'>
+                                text-slate-50 bg-gradient-to-r from-slate-900 to-cyan-900 p-2'>
                                 <div>
                                     <p className='text-base font-bold py-1'>{email.src}</p>
                                     <p className='text-sm pb-1'>{String(email.createdAt).slice(0, 24)}</p>
