@@ -50,11 +50,11 @@ const HeaderProducts = async () => {
                         <Link href="/contact">Contact</Link>
                     </li>
 
-                    <li className='relative flex items-center justify-center w-[40px] h-[40px] transform 
-                        duration-200 ease-in-out hover:text-white hover:bg-cyan-500
-                        active:bg-cyan-500/70 rounded-full mr-6'>
-                        <Link href="/cart">
-                            <FaShoppingCart size={18}/>
+                    <li className="list-none">
+                        <Link href="/cart" className='relative flex items-center justify-center w-[40px] h-[40px] transform 
+                        duration-200 ease-in-out hover:scale-105 hover:text-white hover:bg-sky-500
+                        active:bg-cyan-500/70 active:scale-95 rounded-full mr-6'>
+                            <FaShoppingCart className="transform duration-100 ease-in-out group-hover:scale-105" size={18} />
                             <CartItemsQuantity />
                         </Link>
                     </li>
