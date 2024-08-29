@@ -106,7 +106,7 @@ export default function TasksContent(): JSX.Element {
                     type="text"
                     value={todo}
                     onChange={(e) => handleChange(e)}
-                    placeholder='Enter a todo task here...'
+                    placeholder='Enter your task here...'
                     className="w-[300px] xl:w-[400px] text-base font-normal text-slate-700/70 bg-white border border-solid border-orange-300 transition ease-in-out
                         focus:text-slate-700/70 focus:bg-white focus:border-orange-400 focus:outline-none my-0 mr-4 px-3 py-2 rounded-full"
                 />
