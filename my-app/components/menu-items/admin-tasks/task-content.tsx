@@ -107,10 +107,8 @@ export default function TasksContent(): JSX.Element {
                     value={todo}
                     onChange={(e) => handleChange(e)}
                     placeholder='Enter a todo task here...'
-                    className="block w-[300px] xl:w-[400px] text-sm font-normal text-gray-700 bg-white 
-                        border border-solid border-gray-300 transition ease-in-out m-0 
-                        focus:text-gray-700 focus:bg-white focus:border-orange-400 focus:outline-none 
-                        mr-4 px-3 py-2 rounded-full"
+                    className="w-[300px] xl:w-[400px] text-base font-normal text-slate-700/70 bg-white border border-solid border-orange-300 transition ease-in-out
+                        focus:text-slate-700/70 focus:bg-white focus:border-orange-400 focus:outline-none my-0 mr-4 px-3 py-2 rounded-full"
                 />
                 <button
                     type="button"
@@ -125,13 +123,15 @@ export default function TasksContent(): JSX.Element {
             {newTodosArray.map((item) => (
                 <div 
                     key={item.id} 
-                    className='flex flex-row items-center justify-between w-4/5 bg-gradient-to-l from-orange-400 to-yellow-100 border border-orange-100 m-auto mb-2 p-2 rounded'>
+                    className='flex flex-row items-center justify-between w-4/5 bg-gradient-to-l from-orange-400 to-yellow-100 border border-orange-100 m-auto mb-2 px-4 py-2 rounded-md'>
                     
                     {item.display === false ? (
                         <div 
                             key={item.id} 
                             className='flex flex-row items-center justify-between w-full'>
-                            <p>{item.task}</p>
+                            <li className='list-none text-base text-slate-700/70'>
+                                <p>{item.task}</p>
+                            </li>                        
                             <span
                                 onClick={() => handleModify(item.id)} 
                                 className='text-slate-50 bg-blue-500 cursor-pointer transition ease-in-out duration-100 hover:bg-blue-600 hover:text-slate-200 hover:scale-105
@@ -148,7 +148,8 @@ export default function TasksContent(): JSX.Element {
                                 type="text"
                                 value={item.task}
                                 onChange={(e) => handleNewTodo(e, item.id)} 
-                                className='mr-4 px-2 py-1 rounded'
+                                className="w-[300px] xl:w-[400px] text-base font-normal text-slate-700/70 bg-white border border-solid border-orange-300 transition ease-in-out
+                                    focus:text-slate-700/70 focus:bg-white focus:border-orange-400 focus:outline-none mr-4 px-3 py-2 rounded-md"
                             />
                             <span
                                 onClick={() => handleSave(item.id)} 
