@@ -2,9 +2,11 @@
 
 import { User } from 'next-auth';
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function AdminAccessLink({user}: {user: User}) {
+
+    const router = useRouter();
 
     const [isAdmin, setIsAdmin] = useState(false);
 
@@ -27,13 +29,14 @@ export default function AdminAccessLink({user}: {user: User}) {
     return (
         <>
         {isAdmin ? (
-            <li className="list-none bg-gradient-to-bl from-blue-500/70 to-cyan-500 shadow rounded-md px-2 py-1">
-                <Link 
-                    href="/dashboard/dashboardnative"
-                    className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-200 to-orange-600 hover:text-yellow-200 active:text-orange-300">
+            <button 
+                onClick={() => router.push("/dashboard/dashboardnative")} 
+                className="list-none transform duration-200 ease-in-out bg-gradient-to-tr from-sky-500 to-sky-300 hover:from-sky-400 hover:to-sky-400 shadow hover:scale-105 active:shadow-none active:scale-95 rounded-md px-3 py-1">
+                <span     
+                    className="drop-shadow-sm-text">
                         Dashboard
-                </Link>
-            </li>
+                </span>
+            </button>
         ) : null}
         </>
     )
