@@ -4,6 +4,7 @@ import Image from 'next/image';
 import AddItemToCart from '@/components/cart/action-cart-item/add-item-to-cart';
 import DeleteItemFromCart from '@/components/cart/action-cart-item/delete-item-from-cart';
 import RemoveItemsFromCart from '@/components/cart/action-cart-item/remove-items-from-cart';
+import BtnPayment from '@/components/cart//btn-payment';
 
 export default async function ShoppingCartPage({carts}: {carts: Cart[]}) {
 
@@ -95,14 +96,9 @@ export default async function ShoppingCartPage({carts}: {carts: Cart[]}) {
 
                         </div>
 
-                        <div className='absolute z-50 h-20 right-0 bottom-0 -left-4 flex items-center justify-center bg-white -ml-4 shadow-xs-out'>
+                        <div className='absolute z-50 h-20 right-0 bottom-0 -left-4 flex items-center justify-center bg-white -ml-4 shadow-lg'>
 
-                            <li className="list-none">
-                                <Link href="/shipping" className='text-base font-bold text-slate-50 bg-blue-600/90
-                                    hover:bg-blue-600 active:bg-blue-700 px-6 py-2 rounded'>
-                                    Payment
-                                </Link>
-                            </li>
+                            <BtnPayment />
 
                         </div>
 
