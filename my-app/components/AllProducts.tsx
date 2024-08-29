@@ -1,10 +1,8 @@
 import { User } from 'next-auth';
-import Image from 'next/image';
 import type { Product } from '@prisma/client';
 import StoreOfProducts from '@/components/products/store-of-products';
 import CartProduct from '@/components/products/CartProduct';
 import Loader from '@/components/Loader';
-import imgBgProd from '@/public/assets/images/bg/micro-circuit.jpg';
 
 type ProductType = {
     family: string;
@@ -25,16 +23,7 @@ export default function AllProducts({ products, user, userCart }: { products: Pr
     };
 
     return (
-        <div className='w-full min-h-screen'>
-
-            <div className='absolute w-full h-full bg-slate-200 -z-20'>
-                <Image
-                    src={imgBgProd}
-                    priority={true} 
-                    alt="bg products img"
-                    className='fixed w-full h-full opacity-40 -z-10 object-cover'
-                />
-            </div>
+        <div className='w-full min-h-screen bg-slate-50'>
 
             <div className='w-full min-h-screen grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 grid-rows-3 gap-10 p-10 pt-[14vh]'>
                 {products.map((product: Product) => (
