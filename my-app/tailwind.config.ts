@@ -37,6 +37,10 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      dropShadow: {
+        "text": "2px 2px 1px rgba(0, 0, 0, 0.4)",
+        "sm-text": "1px 1px 1px rgba(0, 0, 0, 0.4)",
+      },
       boxShadow: {
         "xs-out": "0 0 5px rgba(0, 0, 0, 0.2)",
         "sm-graph": "0 0 3px rgba(100, 100, 100, 0.2)",
