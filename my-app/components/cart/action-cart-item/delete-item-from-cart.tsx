@@ -36,12 +36,11 @@ export default function DeleteItemFromCart({ id, quantity, name, stock }:
 
                     toast.success("Successfully deleted from cart!");
                 }}
-                className="w-[38px] h-[38px] text-slate-100 font-bold bg-blue-500 
-                    hover:bg-blue-600/90 active:bg-blue-600 disabled:opacity-50 rounded-full shadow-sm-out-light"
+                className="group w-[40px] h-[40px] text-base font-bold transform transition duration-100 ease-in-out disabled:opacity-50 text-slate-100 bg-blue-500 hover:scale-105 hover:text-lg hover:bg-blue-600/90 active:scale-95 active:bg-blue-600 rounded-full shadow-sm-out-light"
                 disabled={stock === quantity ? true : false}
                 aria-label={`Delete one more ${name}`}
             >
-                -
+                <span className="transform duration-100 ease-in-out group-hover:scale-105">⬇</span>
             </button>
         </div>
     )
