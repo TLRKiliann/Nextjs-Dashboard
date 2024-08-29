@@ -34,26 +34,27 @@ const HeaderProducts = async () => {
 
     return (
         <div className="fixed z-20 top-0 w-full h-[10vh] text-lg font-bold text-slate-100 
-            bg-gradient-to-l from-cyan-950 to-cyan-800 border-none shadow-md">
-            <nav className="w-full h-full">
-                <ul className='w-full h-full flex flex-row items-center justify-end'>
+            bg-gradient-to-l from-cyan-950 to-cyan-800 shadow-md">
 
-                    <li className='transform duration-200 ease-in-out hover:text-cyan-200 active:text-cyan-400 mr-6'>
+            <nav className="w-full h-full flex items-center justify-end">
+                <ul className='w-[450px] h-full flex flex-row items-center justify-evenly'>
+
+                    <li className='transition-colors duration-200 ease-in-out hover:text-cyan-600 active:text-cyan-700'>
                         <Link href="/">Home</Link>
                     </li>
 
-                    <li className='transform duration-200 ease-in-out hover:text-cyan-200 active:text-cyan-400 mr-6'>
+                    <li className='transition-colors duration-200 ease-in-out hover:text-cyan-600 active:text-cyan-700'>
                         <Link href="/products">Shop</Link>
                     </li>
 
-                    <li className='transform duration-200 ease-in-out hover:text-cyan-200 active:text-cyan-400 mr-4'>
+                    <li className='transition-colors duration-200 ease-in-out hover:text-cyan-600 active:text-cyan-700'>
                         <Link href="/contact">Contact</Link>
                     </li>
 
-                    <li className="list-none">
+                    <li className="list-none mr-2">
                         <Link href="/cart" className='relative flex items-center justify-center w-[40px] h-[40px] transform 
                         duration-200 ease-in-out hover:scale-105 hover:text-white hover:bg-sky-500
-                        active:bg-cyan-500/70 active:scale-95 rounded-full mr-6'>
+                        active:bg-cyan-500/70 active:scale-95 rounded-full'>
                             <FaShoppingCart className="transform duration-100 ease-in-out group-hover:scale-105" size={18} />
                             <CartItemsQuantity />
                         </Link>
@@ -61,7 +62,7 @@ const HeaderProducts = async () => {
 
                     {user && (
                         <form title="logout" action={logoutAction}>
-                            <li className='flex items-center transform duration-200 ease-in-out hover:text-cyan-200 active:text-cyan-400 mr-8'>
+                            <li className='flex items-center transition-colors duration-200 ease-in-out hover:text-cyan-600 active:text-cyan-700'>
                                 <button><FaPowerOff size={16} /></button>
                             </li>
                         </form>
