@@ -1,9 +1,22 @@
 import prisma from '@/prisma/prisma';
 import type { User } from '@prisma/client';
+import { readFile } from 'fs/promises';
 import Image from 'next/image';
 import TablePage from '@/components/TablePage';
 import QuantityPrice from '@/components/members/quantity-price';
+import ClientIp from './ClientIp';
 import imgLogo from "@/public/assets/images/users/user_icon.png";
+
+export const dynamic = "force-dynamic";
+
+type DataIpProps = {
+    dataIpUser: {
+        data: {
+            ip: string;
+        };
+    };
+    username: string;
+};
 
 export default async function TableOneDefault() {
 
@@ -25,6 +38,13 @@ export default async function TableOneDefault() {
         throw new Error("users cannot be fetched by prisma");
     };
 
+    const filenameIp = './utils/ip-data.json';
+    const fileIp = await readFile(filenameIp, { encoding: 'utf8' });
+    if (!fileIp) {
+        throw new Error("Something went wrong with public ip");
+    };
+    const dataIp: DataIpProps[] = JSON.parse(fileIp);
+
     return (
         <TablePage title="Members" url="" link="">
 
@@ -44,6 +64,13 @@ export default async function TableOneDefault() {
 
                                     <div className='w-[100px] mx-2'>
                                         <p className='text-xs xl:text-base font-bold text-gray-500'>{customer.name}</p>
+                                    </div>
+
+                                    <div className='px-4'>
+                                        {dataIp.slice(0, 1).map((dataIp: DataIpProps, index: number) => dataIp.username === customer.name ? (
+                                            <ClientIp key={index} index={index} dataIpUser={dataIp.dataIpUser.data.ip} dataUsername={dataIp.username} />
+                                            ) : null
+                                        )}
                                     </div>
                                     
                                 </div>
