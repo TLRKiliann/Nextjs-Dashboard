@@ -1,9 +1,11 @@
 import { auth } from '@/auth';
 import prisma from '@/prisma/prisma';
+import { readFile } from 'fs/promises';
 import React, { Suspense } from 'react';
 import { redirect } from 'next/navigation';
 import { ApiGeolocation } from '@/utils/api-request';
 import TablePage from '@/components/TablePage';
+import RefresherGeo from './RefresherGeo';
 import MapChart from '@/components/MapChart';
 import Loader from '@/components/Loader';
 
@@ -12,7 +14,6 @@ export const dynamic = "force-dynamic";
 export default async function GeolocationPage() {
 
     const session = await auth();
-
     const user = session?.user;
 
     if (!user) {
@@ -30,13 +31,15 @@ export default async function GeolocationPage() {
         return redirect("/api/auth/signin");
     };
 
-    const resIp = await fetch("http://localhost:3000/api/dashboard/publicip");
-    if (!resIp.ok) {
-        throw new Error("No ip public detected");
+    const filenameIp = './utils/publicIp.json';
+    const fileIp = await readFile(filenameIp, { encoding: 'utf8' });
+    if (!fileIp) {
+        return <RefresherGeo />
     };
-    const ipResult = await resIp.json();
 
-    const geoResult = await ApiGeolocation(ipResult);
+    const dataIp: string = JSON.parse(fileIp);
+
+    const geoResult = await ApiGeolocation(dataIp);
     if (!geoResult) {
         throw new Error("No geolocation available");
     };
