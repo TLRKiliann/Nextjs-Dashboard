@@ -1,6 +1,6 @@
-import { Product } from "@prisma/client";
-import prisma from "@/prisma/prisma";
 import { auth } from "@/auth";
+import type { Product } from "@prisma/client";
+import prisma from "@/prisma/prisma";
 
 export async function GET() {
     try {
