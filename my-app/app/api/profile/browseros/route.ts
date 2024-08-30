@@ -1,3 +1,4 @@
+import { auth } from "@/auth";
 import { NextResponse } from "next/server";
 import { readData, writeData } from '@/utils/api-request';
 
@@ -8,8 +9,19 @@ export async function POST(request: Request) {
     };
     const browser: string = body;
     const filename: string = './utils/browseros-data.json';
+
+    // authorization
+    const session = await auth();
+    const user = session?.user;
+
+    if (!user?.name) {
+        return Response.json({error: "Unauthorized"}, {status: 401});
+    };
+
+    const username = user.name;
+
     try {
-        const nextBrowser: { browser: string } = { browser };
+        const nextBrowser: { browser: string; username: string } = { browser, username };
 
         const prevBrowsers = await readData(filename) || [];
         prevBrowsers.push(nextBrowser);
@@ -24,7 +36,8 @@ export async function POST(request: Request) {
         const apiUrl: string = `${process.env.NEXTAUTH_URL}/api/dashboard/publicip`;
         
         const res = await fetch(apiUrl);
-        const ipResult: {data: {ip: string}} = (await res.json()) as {data: {ip: string}};
+        const dataIpUser: { data: { ip: string; } } = (await res.json()) as { data: { ip: string; } };
+        const ipResult: { dataIpUser: { data: { ip: string; } }, username: string; } = { dataIpUser, username };
 
         if (!ipResult) {
             throw new Error("No public IP detected");
