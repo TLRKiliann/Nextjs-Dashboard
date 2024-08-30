@@ -20,9 +20,9 @@ export default function ErrorBoundary({
             <button 
               type="button" 
               onClick={() => router.back()} 
-              className="bg-blue-600 mt-4 px-4 py-2 rounded"
+              className="text-slate-50 bg-blue-600 mt-4 px-4 py-2 rounded"
             >
-              Back to products
+              Refresh the page !
             </button>
     </div>
   )
