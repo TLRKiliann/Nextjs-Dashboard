@@ -36,7 +36,13 @@ export default function ClientIp({ index, dataIpUser }: { index: number; dataIpU
             e.preventDefault();
             onSubmit(dataIpUser); 
         }}>
-            <button type="submit" key={index} className='text-xs text-orange-500'>{dataIpUser}</button>
+            <button
+                type="submit"
+                key={index} 
+                className='text-xs text-orange-500 hover:text-orange-600 active:text-red-600'
+            >
+                {dataIpUser}
+            </button>
         </form>
     )
 };

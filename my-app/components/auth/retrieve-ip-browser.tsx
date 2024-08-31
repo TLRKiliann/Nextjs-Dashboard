@@ -32,24 +32,25 @@ export default function OsBrowserData() {
     // write browser & os in json file
     useEffect(() => {
         const fetchData = async () => {
-            const res = await fetch("/api/profile/browseros", {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({browser, ip}),
-            });
-            const data = await res.json();
-            if (data) {
-                console.log("data ok", data)
-            } else {
-                console.error("data error");
-            };
+            if (browser && ip) {
+                const res = await fetch("/api/profile/browseros", {
+                    method: 'POST',
+                    headers: {
+                    'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({browser, ip}),
+                });
+                const data = await res.json();
+                if (data) {
+                    console.log("data ok", data)
+                } else {
+                    console.error("data error");
+                };
+            }
         }
         fetchData();
         return () => console.log("clean-up");
     }, [browser, ip]);
-
 
     return (
         <>
