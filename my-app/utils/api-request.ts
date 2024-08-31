@@ -3,15 +3,14 @@ import { readFile, writeFile } from "fs/promises";
 
 type DataProps = {
     browser?: string;
-    data?: {
-        ip: string;
-    }
+    username?: string;
+    dataIp?: string;
 };
 
-export const ApiGeolocation = async ({data}: {data: {ip: string;}}): Promise<GeoLocationData> => {
+export const ApiGeolocation = async (dataIp: string): Promise<GeoLocationData> => {
     const secApiKey = process.env.SECRET_API_KEY;
     try {
-        const geoRes = await fetch(`https://api.ip2location.io/?key=${secApiKey}&ip=${data.ip}`, {
+        const geoRes = await fetch(`https://api.ip2location.io/?key=${secApiKey}&ip=${dataIp}`, {
             next: {
                 revalidate: 10
             }
@@ -33,5 +32,10 @@ export async function readData(filename: string): Promise<DataProps[]> {
 };
 
 export async function writeData(filename: string, data: DataProps[]): Promise<void> {
+    await writeFile(filename, JSON.stringify(data, null, 4));
+};
+
+// public ip of users
+export async function writeIp(filename: string, data: {ip: string}): Promise<void> {
     await writeFile(filename, JSON.stringify(data, null, 4));
 };

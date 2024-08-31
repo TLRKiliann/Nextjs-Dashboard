@@ -1,5 +1,10 @@
 import { readFile } from "fs/promises";
 
+type DataIpProps = {
+    dataIp: string;
+    username: string;
+};
+
 export default async function Network() {
     
     const filenameBrowser = './utils/browseros-data.json';
@@ -14,7 +19,7 @@ export default async function Network() {
     if (!fileIp) {
         throw new Error("Something went wrong with public ip");
     };
-    const dataIp = JSON.parse(fileIp);
+    const dataIp: DataIpProps[] = JSON.parse(fileIp);
 
     return (
         <div className='flex justify-start text-green-500 bg-slate-950 w-full h-full rounded-lg'>
@@ -22,14 +27,14 @@ export default async function Network() {
                 <div className='absolute -z-10 flex flex-row items-start justify-center w-full h-full overflow-y-scroll no-scrollbar py-4'>
 
                     <div className='px-4'>
-                        {dataIp.map((dataIp: {data: {ip: string}}, index: number) => (
-                            <h3 key={index} className='text-base font-bold py-2'>✅ Public IP: {dataIp.data.ip}</h3>
+                        {dataIp.map((dataIp: DataIpProps, index: number) => (
+                            <h3 key={index} className='text-sm font-bold py-2'>✅ Public IP: {dataIp.dataIp} - {dataIp.username}</h3>
                         ))}
                     </div>
 
                     <div className='px-4'>
-                        {dataBrowser.map((dataBrowser: {browser: string}, index: number) => (
-                            <h3 key={index} className='text-base font-bold py-2'>Browsers: {dataBrowser.browser}</h3>
+                        {dataBrowser.map((dataBrowser: {browser: string, username: string}, index: number) => (
+                            <h3 key={index} className='text-sm font-bold py-2'>Browsers: {dataBrowser.browser}</h3>
                         ))}
                     </div>
   
