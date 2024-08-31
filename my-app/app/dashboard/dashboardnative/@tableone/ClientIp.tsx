@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import { toast } from 'react-hot-toast';
 
-export default function ClientIp({ index, dataIpUser, dataUsername }: { index: number; dataIpUser: string; dataUsername: string; }) {
+export default function ClientIp({ index, dataIpUser }: { index: number; dataIpUser: string; }) {
     const [ipData, setIpData] = useState<string | null>(null);
 
     const onSubmit = async (dataIpUser: string) => {
@@ -19,13 +20,13 @@ export default function ClientIp({ index, dataIpUser, dataUsername }: { index: n
         };
 
         const data = (await res.json()) as string;
-        console.log(data, "data from RCC");
         setIpData(data);
+        toast.success("IP catched !");
     };
 
     useEffect(() => {
         if (ipData) {
-            console.log("Nouvelles données IP:", ipData);
+            console.log("New IP:", ipData);
         }
         return () => console.log("clean-up");
     }, [ipData]);
@@ -35,7 +36,7 @@ export default function ClientIp({ index, dataIpUser, dataUsername }: { index: n
             e.preventDefault();
             onSubmit(dataIpUser); 
         }}>
-            <button type="submit" key={index} className='text-xs'>{dataIpUser} - {dataUsername}</button>
+            <button type="submit" key={index} className='text-xs text-orange-500'>{dataIpUser}</button>
         </form>
     )
 };
