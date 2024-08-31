@@ -8,15 +8,16 @@ export default function RefresherGeo() {
     const router = useRouter();
 
     return (
-        <>
-            <p>Click ip and then click refresh!</p>
+        <div className='absolute flex flex-row items-center justify-left h-[10%] text-xs'>
+            <p className='text-red-500 mr-2'>Click ip & then Click refresh!</p>
             <button
                 type="button"
                 onClick={() => router.refresh()}
-                className='text-slate-50 bg-blue-500 px-4 py-1'
+                className='transition-colors duration-100 ease-in-out text-slate-50 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 
+                px-2 py-1 rounded'
             >
-                refresh
+                Refresh
             </button>
-        </>
+        </div>
     )
 }
