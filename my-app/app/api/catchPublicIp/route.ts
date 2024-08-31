@@ -19,11 +19,11 @@ export async function POST(req: Request) {
     };
 
     try {
-        await writeIp(filename,  publicIp);
-        console.log('Public IP has been written to publicIp.json');
+        const ipObject: {ip: string} = { ip: publicIp };
+        await writeIp(filename, ipObject);
     } catch (error) {
-        throw new Error(`An error occurred while writing to publicIp.json: ${error}`);
+        return NextResponse.json({ error: `An error occurred: ${error}` }, { status: 500 });
     };
 
-    return NextResponse.json({message: "Public IP has been written - done!"}, {status: 200});
+    return NextResponse.json({ message: "Public IP has been written - done!" }, { status: 200 });
 };
