@@ -10,11 +10,7 @@ import imgLogo from "@/public/assets/images/users/user_icon.png";
 export const dynamic = "force-dynamic";
 
 type DataIpProps = {
-    dataIpUser: {
-        data: {
-            ip: string;
-        };
-    };
+    dataIp: string;
     username: string;
 };
 
@@ -67,10 +63,10 @@ export default async function TableOneDefault() {
                                     </div>
 
                                     <div className='px-4'>
-                                        {dataIp.slice(0, 1).map((dataIp: DataIpProps, index: number) => dataIp.username === customer.name ? (
-                                            <ClientIp key={index} index={index} dataIpUser={dataIp.dataIpUser.data.ip} dataUsername={dataIp.username} />
+                                        {dataIp.map((dataIp: DataIpProps, index: number) => dataIp.username === customer.name ? (
+                                            <ClientIp key={index} index={index} dataIpUser={dataIp.dataIp} />
                                             ) : null
-                                        )}
+                                        ).filter(Boolean).slice(0, 1)}
                                     </div>
                                     
                                 </div>
