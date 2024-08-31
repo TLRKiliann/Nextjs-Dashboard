@@ -1,11 +1,7 @@
 import { readFile } from "fs/promises";
 
 type DataIpProps = {
-    dataIpUser: {
-        data: {
-            ip: string;
-        };
-    };
+    dataIp: string;
     username: string;
 };
 
@@ -32,7 +28,7 @@ export default async function Network() {
 
                     <div className='px-4'>
                         {dataIp.map((dataIp: DataIpProps, index: number) => (
-                            <h3 key={index} className='text-sm font-bold py-2'>✅ Public IP: {dataIp.dataIpUser.data.ip} - {dataIp.username}</h3>
+                            <h3 key={index} className='text-sm font-bold py-2'>✅ Public IP: {dataIp.dataIp} - {dataIp.username}</h3>
                         ))}
                     </div>
 
