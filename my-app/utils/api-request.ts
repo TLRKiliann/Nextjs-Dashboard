@@ -4,11 +4,7 @@ import { readFile, writeFile } from "fs/promises";
 type DataProps = {
     browser?: string;
     username?: string;
-    dataIpUser?: {
-        data: {
-            ip: string;
-        };
-    };
+    dataIp?: string;
 };
 
 export const ApiGeolocation = async (dataIp: string): Promise<GeoLocationData> => {
@@ -40,6 +36,6 @@ export async function writeData(filename: string, data: DataProps[]): Promise<vo
 };
 
 // public ip of users
-export async function writeIp(filename: string, data: string): Promise<void> {
+export async function writeIp(filename: string, data: {ip: string}): Promise<void> {
     await writeFile(filename, JSON.stringify(data, null, 4));
 };
