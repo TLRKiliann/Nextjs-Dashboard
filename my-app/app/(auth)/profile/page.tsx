@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import DataProfile from "@/components/auth/data-profile";
-import OsBrowserData from "@/components/auth/os-browser-data";
+import OsBrowserData from "@/components/auth/retrieve-ip-browser";
 import ConsentDataCollection from "@/components/auth/consent-data-collection";
 import userLogo from "@/public/assets/images/users/user_icon.png";
 
