@@ -5,9 +5,13 @@ import { readdir, writeFile } from "fs/promises";
 import path from 'path';
 
 export async function GET(): Promise<NextResponse> {
-    const files = await readdir("./public/assets/images/upload");
-    return NextResponse.json({msg: "image get successfully", files});
-}
+    try {
+        const files = await readdir("./public/assets/images/upload");
+        return NextResponse.json({msg: "image get successfully", files});
+    } catch (error) {
+        return NextResponse.json({ msg: `Error retrieving images: ${error}` }, { status: 500 });
+    }
+};
 
 export async function POST(request: Request): Promise<NextResponse> {
     const file = await request.formData();
