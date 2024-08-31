@@ -33,15 +33,20 @@ export default async function GeolocationPage() {
 
     const filenameIp = './utils/publicIp.json';
     const fileIp = await readFile(filenameIp, { encoding: 'utf8' });
+
     if (!fileIp) {
-        return <RefresherGeo />
+        return (
+            <div className='relative flex items-center justify-center w-full h-full'>
+                <RefresherGeo />
+            </div>
+        )
     };
 
-    const dataIp: string = JSON.parse(fileIp);
+    const resultIp = JSON.parse(fileIp) as {ip: string};
 
-    const geoResult = await ApiGeolocation(dataIp);
+    const geoResult = await ApiGeolocation(resultIp.ip);
     if (!geoResult) {
-        throw new Error("No geolocation available");
+        throw new Error("Geolocation is not available!");
     };
 
     return (
@@ -55,6 +60,8 @@ export default async function GeolocationPage() {
                 </div>
             ): null}
             
+            <RefresherGeo />
+
         </TablePage>
     )
 };
