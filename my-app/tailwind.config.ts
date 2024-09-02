@@ -52,6 +52,7 @@ const config: Config = {
         "btn-dark": "0 0 10px rgba(0, 0, 0, 0.3)",
         "in": "inset 0 0 7px rgba(100, 100, 100, 0.4)",
         "indarker": "inset 0 0 7px rgba(0, 0, 0, 0.2)",
+        "frame-in": "inset 0 0 10px rgba(0, 0, 0, 0.3)",
         "whitecustom": "0 0 7px rgba(255, 255, 255, 1)",
         "green": "0 0 3px rgba(74, 222, 128, 0.5)",
         "orange": "0 0 3px rgba(251, 146, 60, 0.5)",
