@@ -220,8 +220,6 @@ export const removeEmail = actionClient
     revalidatePath("/dashboard/emails-admin");
 });
 
-// deleteMany()
-
 // admin response
 const schemaAdminEmail = zfd.formData({
     src: zfd.text(z.string()),
@@ -247,3 +245,13 @@ export const adminEmail = actionClient
     revalidatePath("/dashboard/emails-admin");
 });
 
+// Delete All Messages (header dashboard)
+export const deleteAllMessages = actionClient
+    .action(async () => {
+    try {
+        await prisma.message.deleteMany({});
+    } catch (error) {
+        throw new Error("Error during deleting all messages");
+    };
+    revalidatePath("/dashboard/dashboardnative");
+});
