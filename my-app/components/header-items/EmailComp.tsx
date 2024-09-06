@@ -3,6 +3,8 @@
 import { EmailProps } from '@/lib/definitions';
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { deleteAllMessages } from '@/lib/actions/admin';
+import toast from 'react-hot-toast';
 import { MdMarkEmailRead } from "react-icons/md";
 import { MdMarkEmailUnread } from "react-icons/md";
 import { IoIosMailOpen } from "react-icons/io";
@@ -47,9 +49,20 @@ export default function EmailComp({emailBox}: {emailBox: EmailProps[]}) {
                         className='flex flex-row items-center w-auto cursor-pointer hover:text-slate-500 
                             hover:bg-slate-300 icon-hover-container px-2 py-2'>
                         <IoSettingsSharp size={16} className='text-slate-500/70 icon-hover' />
-                        <p className='text-sm mx-2'>
+                        
+                        <button type="button" onClick={async () => {
+                            const res = await deleteAllMessages();
+                            if (res?.validationErrors) {
+                                toast.error("Error to open message");
+                            };
+                            if (res?.serverError) {
+                                toast.error("Server error !");
+                            };
+                            toast.success("Message opened !");
+                        }} className='text-sm mx-2'>
                             Delete All
-                        </p>
+                        </button>
+                        
                     </span>
 
                     <span 
