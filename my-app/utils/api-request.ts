@@ -11,9 +11,7 @@ export const ApiGeolocation = async (dataIp: string): Promise<GeoLocationData> =
     const secApiKey = process.env.SECRET_API_KEY;
     try {
         const geoRes = await fetch(`https://api.ip2location.io/?key=${secApiKey}&ip=${dataIp}`, {
-            next: {
-                revalidate: 10
-            }
+            cache: 'no-store'
         });
         if (!geoRes.ok) {
             throw new Error('Error: geoRes failed (GeoLocationData API call)!');
@@ -26,16 +24,16 @@ export const ApiGeolocation = async (dataIp: string): Promise<GeoLocationData> =
     }
 };
 
-export async function readData(filename: string): Promise<DataProps[]> {
+export const readData = async (filename: string): Promise<DataProps[]> => {
     const file = await readFile(filename, { encoding: 'utf8' });
     return JSON.parse(file) as DataProps[];
 };
 
-export async function writeData(filename: string, data: DataProps[]): Promise<void> {
+export const writeData = async (filename: string, data: DataProps[]): Promise<void> => {
     await writeFile(filename, JSON.stringify(data, null, 4));
 };
 
 // public ip of users
-export async function writeIp(filename: string, data: {ip: string}): Promise<void> {
+export const writeIp = async (filename: string, data: {ip: string}): Promise<void> => {
     await writeFile(filename, JSON.stringify(data, null, 4));
 };

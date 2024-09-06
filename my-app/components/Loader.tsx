@@ -4,7 +4,7 @@ import spinLoader from "@/public/assets/images/bg/loader.png";
 
 export default function Loader() {
     return (
-        <div className='m-auto'>
+        <div className='flex items-center justify-center w-full h-full'>
             <Image
                 src={spinLoader}
                 width={40}

@@ -15,15 +15,15 @@ export default function ErrorBoundary({
   const router = useRouter();
 
   return (
-    <div>
-        <h1 className='text-xl font-bold text-red-400'>Error: {error.message}</h1>
-            <button 
-              type="button" 
-              onClick={() => router.back()} 
-              className="text-slate-50 bg-blue-600 mt-4 px-4 py-2 rounded"
-            >
-              Refresh the page !
-            </button>
+    <div className='flex flex-col items-center justify-center w-full h-[80%]'>
+      <h3 className='text-base font-bold text-justify text-red-400'>Error: {error.message}</h3>
+      <button 
+        type="button" 
+        onClick={() => router.back()} 
+        className="text-slate-50 bg-blue-600 mt-4 px-4 py-2 rounded"
+      >
+        Go back !
+      </button>
     </div>
   )
 }

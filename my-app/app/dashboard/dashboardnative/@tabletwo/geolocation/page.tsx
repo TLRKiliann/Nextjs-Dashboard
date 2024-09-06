@@ -3,11 +3,12 @@ import prisma from '@/prisma/prisma';
 import { readFile } from 'fs/promises';
 import React, { Suspense } from 'react';
 import { redirect } from 'next/navigation';
+import Link from 'next/link';
 import { ApiGeolocation } from '@/utils/api-request';
 import TablePage from '@/components/TablePage';
-import RefresherGeo from './RefresherGeo';
 import MapChart from '@/components/MapChart';
 import Loader from '@/components/Loader';
+import RefresherGeo from './RefresherGeo';
 
 export const dynamic = "force-dynamic";
 
@@ -36,17 +37,23 @@ export default async function GeolocationPage() {
 
     if (!fileIp) {
         return (
-            <div className='relative flex items-center justify-center w-full h-full'>
-                <RefresherGeo />
+            <div className='relative flex flex-col items-center justify-center w-full h-full'>
+                <p className='text-base text-orange-500 mb-4'>No ip selected !</p>
+                <Link 
+                    href="/dashboard/dashboardnative"
+                    className='text-slate-50 font-bold transform duration-100 ease-in-out bg-blue-500 hover:scale-105 hover:bg-blue-600 active:scale-95 active:bg-blue-700 px-4 py-1 rounded'
+                >
+                    Go Back
+                </Link>
             </div>
         )
     };
 
-    const resultIp = JSON.parse(fileIp) as {ip: string};
+    let geoResult = null;
 
-    const geoResult = await ApiGeolocation(resultIp.ip);
-    if (!geoResult) {
-        throw new Error("Geolocation is not available!");
+    if (fileIp) {
+        const resultIp = JSON.parse(fileIp) as { ip: string };
+        geoResult = await ApiGeolocation(resultIp.ip);
     };
 
     return (

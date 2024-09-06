@@ -4,7 +4,7 @@ import prisma from "@/prisma/prisma";
 import { readdir, writeFile } from "fs/promises";
 import path from 'path';
 
-export async function GET(): Promise<NextResponse> {
+export async function GET() {
     try {
         const files = await readdir("./public/assets/images/upload");
         return NextResponse.json({msg: "image get successfully", files});
@@ -13,9 +13,8 @@ export async function GET(): Promise<NextResponse> {
     }
 };
 
-export async function POST(request: Request): Promise<NextResponse> {
+export async function POST(request: Request) {
     const file = await request.formData();
-
     const image = file.get("image");
     
     if (image instanceof Blob) {
@@ -28,7 +27,7 @@ export async function POST(request: Request): Promise<NextResponse> {
         const session = await auth();
         const user = session?.user;
         if (!user) {
-            throw new Error("An error occured during definition of auth");
+            return Response.json({error: "Unauthorized"}, {status: 401});
         };
 
         const pathToDb = pathOfImage.slice(8);
@@ -47,5 +46,5 @@ export async function POST(request: Request): Promise<NextResponse> {
             return NextResponse.json({msg: "Error: prisma update image!"});
         }
     };
-    return NextResponse.json({msg: "image upload successfully"});
+    return NextResponse.json({msg: "image upload successfully"}, {status: 200});
 };

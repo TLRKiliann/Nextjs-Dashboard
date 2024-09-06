@@ -22,7 +22,7 @@ export default function BtnLogout() {
     return (
         <form action={logoutAction} className='flex pr-4'>
             <li className='flex items-center justify-center text-base 
-                transition duration-200 ease-in-out hover:text-slate-500'>
+                transition duration-200 ease-in-out hover:text-slate-500 active:text-orange-500'>
                 <button type="submit">
                     <FaPowerOff size={16} />
                 </button>

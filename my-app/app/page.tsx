@@ -13,7 +13,7 @@ export default function Home() {
       </div>
 
       <div className="absolute -z-20 w-[650px] h-[390px] flex items-center justify-center 
-        bg-gradient-to-br from-sky-200 to-sky-400 shadow-in rounded-lg">
+        bg-gradient-to-br from-sky-200 to-sky-400 shadow-frame-in rounded-lg">
         <div className="absolute -z-10 flex items-center justify-center w-[600px] h-[340px] 
           bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-500/60 from-50% to-purple-500/5 to-70% rounded-lg">
           <Image

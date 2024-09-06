@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import userLogo from "@/public/assets/images/users/user_icon.png";
@@ -24,31 +24,44 @@ export default function Settings() {
         if (image) {
             const formData = new FormData();
             formData.append('image', image);
+            try {
+                const response = await fetch("/api/profile/settings", {
+                    method: "POST",
+                    body: formData,
+                });
+    
+                if (!response.ok) {
+                    throw new Error("Upload failed!");
+                };
 
-            const response = await fetch("/api/profile/settings", {
-                method: "POST",
-                body: formData,
-            });
-            const data = await response.json();
-            if (data) {
-                console.log("Image uploaded!");
+                const data = await response.json();
+
                 const res = await fetch("/api/profile/settings", {
                     method: "GET",
-                })
-                const result = await res.json();
-                if (result) {
+                });
+
+                if (res.ok) {
+                    const result = await res.json();
                     console.log("ok", result);
                     setDisplay(imageUrl);
                     setImage(null);
                     setImageUrl(null);
-                }
-            } else {
+                };
+            } catch (error) {
                 console.error("Upload failed!");
             }
         } else {
             console.error("No file selected.");
         }
     };
+
+    useEffect(() => {
+        return () => {
+            if (imageUrl) {
+                URL.revokeObjectURL(imageUrl);
+            }
+        };
+    }, [imageUrl]);
 
     return (
         <>

@@ -1,23 +1,22 @@
 "use client";
 
-import { useRouter } from 'next/navigation';
 import React from 'react';
 
 export default function RefresherGeo() {
-    
-    const router = useRouter();
+
+    const handleRefresh = (): void => {
+        window.location.reload();
+    };
 
     return (
-        <div className='absolute flex flex-row items-center justify-left h-[10%] text-xs'>
-            <p className='text-red-500 mr-2'>Click ip & then Click refresh!</p>
+        <div className='absolute flex items-center justify-left h-[10%] text-xs'>
             <button
                 type="button"
-                onClick={() => router.refresh()}
-                className='transition-colors duration-100 ease-in-out text-slate-50 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 
-                px-2 py-1 rounded'
+                onClick={handleRefresh}
+                className='text-slate-50 transform duration-100 ease-in-out bg-blue-500 hover:scale-105 hover:bg-blue-600 active:scale-95 active:bg-blue-700 px-2 py-1 rounded'
             >
                 Refresh
             </button>
         </div>
     )
-}
+};
