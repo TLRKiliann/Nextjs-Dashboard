@@ -244,21 +244,11 @@ I don't used stripe, because that wasn't my goal.
 
 `$ pnpm add next-safe-action`
 
----
+## Video Youtube
 
-## Result
 
-[*(youtube)*](https://www.youtube.com/watch?v=fMMOh8GGPV0)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/fMMOh8GGPV0/0.jpg)](https://www.youtube.com/watch?v=fMMOh8GGPV0)
 
-<!-- [<img src="https://img.youtube.com/vi/<VIDEO_ID>/hqdefault.jpg" width="600" height="300"
-/>](https://www.youtube.com/embed/<VIDEO_ID>)
-
-[![Watch the video](https://img.youtube.com/vi/<VIDEO_ID>/hqdefault.jpg)](https://www.youtube.com/embed/<VIDEO_ID>)
-
-[<img src="https://img.youtube.com/vi/<VIDEO_ID>/hqdefault.jpg" width="600" height="300"
-/>](https://www.youtube.com/embed/<VIDEO_ID>) -->
-
----
 
 ## Ref
 
