@@ -46,7 +46,7 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "bcryptjs": "^2.4.3",
-    "eslint": "^8.57.0",
+    "eslint": "^9.26.0",
     "eslint-config-next": "15.0.0-rc.0",
     "postcss": "^8.4.40",
     "prisma": "^5.17.0",
